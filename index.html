@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aiden Rhaa — Cloud & DevOps Engineer</title>
+
+<style>
+  :root {
+    --bg: #080d1a;
+    --surface: #0f1829;
+    --card: #131f32;
+    --card-hover: #172338;
+    --border: rgba(0, 212, 255, 0.12);
+    --border-hover: rgba(0, 212, 255, 0.35);
+    --cyan: #00d4ff;
+    --cyan-dim: rgba(0, 212, 255, 0.08);
+    --orange: #ff7043;
+    --orange-dim: rgba(255, 112, 67, 0.08);
+    --green: #00e5a0;
+    --text: #dde4f0;
+    --text-muted: #5e7090;
+    --text-soft: #8ca0bc;
+    --heading: #f0f5ff;
+    --mono: 'Courier New', 'Consolas', 'Menlo', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* GRID BACKGROUND */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 5%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(8, 13, 26, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--heading);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span {
+    color: var(--cyan);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    font-family: var(--mono);
+  }
+
+  .nav-links a:hover { color: var(--cyan); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--cyan);
+    color: var(--cyan) !important;
+    padding: 6px 18px;
+    border-radius: 4px;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--cyan) !important;
+    color: var(--bg) !important;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 120px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* HERO */
+  #hero {
+    padding-top: 160px;
+    padding-bottom: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 229, 160, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(0, 229, 160, 0); }
+  }
+
+  .hero-eyebrow span {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 4vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--heading);
+    margin-bottom: 16px;
+  }
+
+  h1 .line2 {
+    display: block;
+    color: var(--cyan);
+    -webkit-text-stroke: 0px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-soft);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+
+  .hero-certs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .cert-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    background: var(--cyan-dim);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-family: var(--mono);
+    color: var(--cyan);
+    letter-spacing: 0.03em;
+    animation: fadeInUp 0.6s ease both;
+  }
+
+  .cert-badge:nth-child(2) { animation-delay: 0.1s; }
+  .cert-badge:nth-child(3) { animation-delay: 0.2s; }
+
+  .cert-badge svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--cyan);
+    color: #080d1a;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover {
+    background: #33ddff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.25);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text);
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    transform: translateY(-1px);
+  }
+
+  /* HERO RIGHT — PHOTO CARD */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .photo-frame {
+    position: relative;
+    width: 340px;
+  }
+
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--cyan), transparent 50%, var(--orange) 100%);
+    border-radius: 16px;
+    z-index: -1;
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 15px;
+    display: block;
+    filter: grayscale(15%) contrast(1.05);
+  }
+
+  .photo-tag {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    min-width: 180px;
+    backdrop-filter: blur(12px);
+  }
+
+  .photo-tag .tag-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .photo-tag .tag-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--heading);
+  }
+
+  .photo-tag-top {
+    position: absolute;
+    top: -16px;
+    right: -20px;
+    background: var(--cyan);
+    color: #080d1a;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* FLOATING STATS */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 100px;
+    overflow: hidden;
+  }
+
+  .stat-item {
+    background: var(--surface);
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--cyan);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+
+  /* SECTION HEADERS */
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 40px;
+    background: var(--cyan);
+    opacity: 0.4;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--heading);
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    color: var(--text-soft);
+    font-size: 1rem;
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 56px;
+  }
+
+  /* SKILLS */
+  #skills { padding-top: 0; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-category {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-category:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .skill-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .skill-cat-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .icon-aws { background: rgba(255, 153, 0, 0.12); }
+  .icon-iac { background: rgba(126, 87, 194, 0.15); }
+  .icon-code { background: rgba(0, 212, 255, 0.1); }
+  .icon-db { background: rgba(0, 229, 160, 0.1); }
+  .icon-web { background: rgba(255, 112, 67, 0.1); }
+  .icon-platform { background: rgba(100, 160, 255, 0.1); }
+
+  .skill-cat-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--heading);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+    transition: all 0.15s;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--border-hover);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 212, 255, 0.1);
+  }
+
+  .project-header {
+    padding: 28px 28px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .project-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .project-link {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+  }
+
+  .project-link:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+
+  .project-body {
+    padding: 20px 28px;
+    flex: 1;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--heading);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .project-metric {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--orange-dim);
+    border: 1px solid rgba(255, 112, 67, 0.2);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--orange);
+    margin-bottom: 20px;
+    letter-spacing: 0.03em;
+  }
+
+  .project-footer {
+    padding: 16px 28px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tech-pill {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    background: var(--cyan-dim);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 3px;
+    color: var(--cyan);
+    letter-spacing: 0.03em;
+  }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--cyan), transparent);
+    opacity: 0.3;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 52px;
+    animation: fadeInUp 0.5s ease both;
+  }
+
+  .timeline-item:last-child { margin-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -44px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+  }
+
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .timeline-role {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--heading);
+  }
+
+  .timeline-period {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    padding: 3px 10px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.06);
+    letter-spacing: 0.04em;
+  }
+
+  .timeline-company {
+    font-size: 0.88rem;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .timeline-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+
+  .timeline-list li::before {
+    content: '→';
+    color: var(--cyan);
+    opacity: 0.6;
+    flex-shrink: 0;
+    font-family: var(--mono);
+    margin-top: 1px;
+  }
+
+  /* CERTS SECTION */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .cert-card:hover::before { opacity: 1; }
+
+  .cert-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .cert-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 16px;
+  }
+
+  .cert-issuer {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .cert-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--heading);
+    line-height: 1.3;
+  }
+
+  /* CONTACT */
+  #contact {
+    text-align: center;
+  }
+
+  .contact-wrapper {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--orange), transparent);
+  }
+
+  .contact-wrapper h2 {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    margin-bottom: 16px;
+  }
+
+  .contact-wrapper p {
+    color: var(--text-soft);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid;
+  }
+
+  .contact-link.linkedin {
+    background: rgba(10, 102, 194, 0.12);
+    border-color: rgba(10, 102, 194, 0.3);
+    color: #5ba4e5;
+  }
+
+  .contact-link.linkedin:hover {
+    background: rgba(10, 102, 194, 0.22);
+    transform: translateY(-2px);
+  }
+
+  .contact-link.github {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.12);
+    color: var(--text);
+  }
+
+  .contact-link.github:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+  }
+
+  .contact-link.email {
+    background: var(--cyan-dim);
+    border-color: rgba(0, 212, 255, 0.25);
+    color: var(--cyan);
+  }
+
+  .contact-link.email:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 32px 5%;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .animate.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* TERMINAL BLOCK */
+  .terminal {
+    background: #060b16;
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 60px;
+  }
+
+  .terminal-bar {
+    background: #0d1520;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .t-red { background: #ff5f57; }
+  .t-yellow { background: #ffbd2e; }
+  .t-green { background: #28ca41; }
+
+  .terminal-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 34px;
+    letter-spacing: 0.04em;
+  }
+
+  .terminal-body {
+    padding: 24px;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.8;
+  }
+
+  .t-prompt { color: var(--green); }
+  .t-cmd { color: var(--text); }
+  .t-out { color: var(--text-muted); }
+  .t-cyan { color: var(--cyan); }
+  .t-orange { color: var(--orange); }
+  .t-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--cyan);
+    vertical-align: middle;
+    animation: blink 1.2s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .about-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    #hero {
+      grid-template-columns: 1fr;
+      padding-top: 120px;
+      min-height: auto;
+      gap: 48px;
+    }
+    .hero-visual { display: none; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 80px 20px; }
+    .contact-wrapper { padding: 40px 24px; }
+    .stats-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Aiden<span>Rhaa</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">./about</a></li>
+    <li><a href="#skills">./skills</a></li>
+    <li><a href="#projects">./projects</a></li>
+    <li><a href="#experience">./experience</a></li>
+    <li><a href="#contact" class="nav-cta">./contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative;z-index:1;">
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="status-dot"></span>
+      <span>Open to opportunities</span>
+    </div>
+    <h1>
+      Cloud &amp; DevOps<br>
+      <span class="line2">Engineer.</span>
+    </h1>
+    <p class="hero-subtitle">
+      AWS-certified architect and automation builder who turns operational complexity into scalable, 
+      production-ready infrastructure — with 10+ years deploying real systems in the wild.
+    </p>
+    <div class="hero-certs">
+      <div class="cert-badge">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        AWS Solutions Architect
+      </div>
+      <div class="cert-badge">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        AWS Developer Associate
+      </div>
+      <div class="cert-badge">
+        <svg viewBox="0 0 24 24" fill="none"><polygon points="12,2 22,20 2,20" stroke="#00d4ff" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
+        HashiCorp Terraform
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="https://linkedin.com/in/aidenrhaa" target="_blank" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn Profile
+      </a>
+      <a href="https://github.com/manynames3" target="_blank" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub Repos
+      </a>
+      <a href="mailto:aidenrhaacloud@gmail.com" class="btn-secondary">
+        ✉ Email Me
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="photo-frame">
+      <img src="aiden_rhaa_headshot__resized_.jpg" alt="Aiden Rhaa" />
+      <div class="photo-tag">
+        <div class="tag-label">Based in</div>
+        <div class="tag-value">Atlanta Metro, GA</div>
+      </div>
+      <div class="photo-tag-top">
+        ☁ AWS x2<br>⬡ Terraform
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- STATS BAR -->
+<div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 5% 80px;">
+  <div class="stats-row animate">
+    <div class="stat-item">
+      <div class="stat-number">10K+</div>
+      <div class="stat-label">Records / Year</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">200+</div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">20h+</div>
+      <div class="stat-label">Weekly Hours Automated</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">01 // About</div>
+  <h2>Infrastructure that ships.<br>Automation that scales.</h2>
+
+  <div class="terminal animate">
+    <div class="terminal-bar">
+      <div class="t-dot t-red"></div>
+      <div class="t-dot t-yellow"></div>
+      <div class="t-dot t-green"></div>
+      <div class="terminal-title">aiden@cloud ~ whoami</div>
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">➜ </span><span class="t-cmd">cat professional_summary.txt</span></div>
+      <div class="t-out" style="margin-top:8px;">
+        Cloud engineer with <span class="t-cyan">AWS Solutions Architect</span> + <span class="t-cyan">Developer Associate</span> certs<br>
+        and <span class="t-cyan">HashiCorp Terraform Associate</span> — backed by 10+ years running<br>
+        production systems across real estate and creative industries.
+      </div>
+      <div style="margin-top:12px;"><span class="t-prompt">➜ </span><span class="t-cmd">cat highlights.json | jq '.impact'</span></div>
+      <div style="margin-top:8px;">
+        <span class="t-orange">"impact"</span><span class="t-out">: {</span><br>
+        &nbsp;&nbsp;<span class="t-orange">"pipeline_automation"</span><span class="t-out">: </span><span class="t-cyan">"1,000+ leads end-to-end, zero manual entry"</span><span class="t-out">,</span><br>
+        &nbsp;&nbsp;<span class="t-orange">"data_scraping"</span><span class="t-out">: </span><span class="t-cyan">"10K+ structured records/year, 20h/week recovered"</span><span class="t-out">,</span><br>
+        &nbsp;&nbsp;<span class="t-orange">"project_delivery"</span><span class="t-out">: </span><span class="t-cyan">"200+ on-time, 4.9/5 satisfaction"</span><br>
+        <span class="t-out">}</span>
+      </div>
+      <div style="margin-top:12px;"><span class="t-prompt">➜ </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text animate">
+      <p>I'm a cloud and DevOps engineer who came up through the hard way — building and running actual production systems with real stakes, then formalizing that experience with AWS and Terraform certifications.</p>
+      <p>My edge is <strong>business context</strong>. I don't just spin up infrastructure — I've built Python automation pipelines that replaced 20+ hours of manual weekly work, deployed AI-driven CRM workflows that process 1,000+ leads end-to-end, and shipped full-stack production apps using Supabase, Netlify, Lambda, and GitHub Actions CI/CD.</p>
+      <p>Currently pursuing cloud and DevOps roles where I can bring both <strong>technical depth and operational judgment</strong> to a team that ships things that matter.</p>
+    </div>
+    <div class="animate" style="display:flex;flex-direction:column;gap:16px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Location</div>
+        <div style="color:var(--text);font-weight:500;">Atlanta Metropolitan Area, GA</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Email</div>
+        <a href="mailto:aidenrhaacloud@gmail.com" style="color:var(--cyan);font-weight:500;text-decoration:none;">aidenrhaacloud@gmail.com</a>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Education</div>
+        <div style="color:var(--text);font-weight:500;margin-bottom:4px;">Berklee College of Music</div>
+        <div style="color:var(--text);font-weight:500;">Saint Louis University — Physics, Pre-Med</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Languages</div>
+        <div style="color:var(--text);font-weight:500;">English &amp; Korean (Bilingual)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-eyebrow">02 // Certifications</div>
+  <h2>Certified &amp; Battle-Tested</h2>
+  <p class="section-desc">Three industry certifications backed by real production deployments — not just exam prep.</p>
+
+  <div class="certs-grid animate">
+    <div class="cert-card">
+      <div class="cert-logo" style="background:rgba(255,153,0,0.12);">☁</div>
+      <div class="cert-issuer">Amazon Web Services</div>
+      <div class="cert-name">Solutions Architect<br>Associate (SAA-C02)</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-logo" style="background:rgba(255,153,0,0.12);">⚡</div>
+      <div class="cert-issuer">Amazon Web Services</div>
+      <div class="cert-name">Developer<br>Associate (DVA-C01)</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-logo" style="background:rgba(126,87,194,0.15);">⬡</div>
+      <div class="cert-issuer">HashiCorp</div>
+      <div class="cert-name">Terraform<br>Associate</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">03 // Skills</div>
+  <h2>What I Work With</h2>
+  <p class="section-desc">The full stack — from infrastructure-as-code to CI/CD pipelines to Python automation.</p>
+
+  <div class="skills-grid">
+    <div class="skill-category animate">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-aws">☁</div>
+        <div class="skill-cat-name">AWS Services</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">VPC</span>
+        <span class="skill-tag">EC2</span>
+        <span class="skill-tag">ELB</span>
+        <span class="skill-tag">ASG</span>
+        <span class="skill-tag">S3</span>
+        <span class="skill-tag">Lambda</span>
+        <span class="skill-tag">API Gateway</span>
+        <span class="skill-tag">DynamoDB</span>
+        <span class="skill-tag">SAM CLI</span>
+        <span class="skill-tag">CloudFormation</span>
+        <span class="skill-tag">CloudFront</span>
+        <span class="skill-tag">Route 53</span>
+        <span class="skill-tag">IAM</span>
+        <span class="skill-tag">CloudWatch</span>
+      </div>
+    </div>
+
+    <div class="skill-category animate">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-iac">⬡</div>
+        <div class="skill-cat-name">IaC &amp; DevOps</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Terraform</span>
+        <span class="skill-tag">Ansible</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">GitHub Actions</span>
+        <span class="skill-tag">CI/CD Pipelines</span>
+        <span class="skill-tag">Shell/Bash</span>
+        <span class="skill-tag">Agile/Scrum</span>
+        <span class="skill-tag">SDLC</span>
+      </div>
+    </div>
+
+    <div class="skill-category animate">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-code">{ }</div>
+        <div class="skill-cat-name">Languages</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Bash/Shell</span>
+        <span class="skill-tag">HTML/CSS</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">YAML</span>
+        <span class="skill-tag">JSON</span>
+      </div>
+    </div>
+
+    <div class="skill-category animate">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-db">◈</div>
+        <div class="skill-cat-name">Databases</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">DynamoDB</span>
+        <span class="skill-tag">Supabase</span>
+        <span class="skill-tag">Notion DB</span>
+      </div>
+    </div>
+
+    <div class="skill-category animate">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-platform">▣</div>
+        <div class="skill-cat-name">Platforms</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Linux (CentOS/RHEL)</span>
+        <span class="skill-tag">macOS</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Claude Code</span>
+        <span class="skill-tag">Netlify</span>
+        <span class="skill-tag">Cloudflare CDN</span>
+        <span class="skill-tag">WordPress</span>
+      </div>
+    </div>
+
+    <div class="skill-category animate">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-web">⟁</div>
+        <div class="skill-cat-name">Web &amp; Hosting</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">DNS</span>
+        <span class="skill-tag">HTTP/HTTPS</span>
+        <span class="skill-tag">SSL/TLS</span>
+        <span class="skill-tag">cPanel</span>
+        <span class="skill-tag">SFTP/SSH</span>
+        <span class="skill-tag">Serverless</span>
+        <span class="skill-tag">CDN</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+  <!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">04 // Projects</div>
+  <h2>Built &amp; Shipped</h2>
+  <p class="section-desc">Production systems solving real problems — not toy demos. Each one is on GitHub with architecture docs, real cost numbers, and deployment runbooks.</p>
+
+  <!-- FEATURED: PULPIT -->
+  <div style="background:var(--card);border:1px solid rgba(0,212,255,0.25);border-radius:16px;overflow:hidden;margin-bottom:28px;transition:all 0.3s;" class="animate">
+    <div style="background:linear-gradient(135deg,rgba(0,212,255,0.07),rgba(126,87,194,0.07));padding:28px 32px 0;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:52px;height:52px;border-radius:12px;background:rgba(0,212,255,0.12);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">🎙️</div>
+          <div>
+            <div style="font-family:var(--mono);font-size:0.7rem;color:var(--cyan);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Featured Project</div>
+            <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--heading);letter-spacing:-0.02em;">Pulpit — Serverless RAG on AWS Bedrock</div>
+          </div>
+        </div>
+        <a href="https://github.com/manynames3/pulpit" target="_blank" class="btn-secondary" style="padding:9px 20px;font-size:0.82rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          View Repo
+        </a>
+      </div>
+      <p style="color:var(--text-soft);font-size:0.9rem;line-height:1.7;margin-bottom:20px;max-width:760px;">
+        Production-grade semantic search over a church's entire sermon archive — natural language queries answered with cited results, secured with Cognito auth tiers, provisioned entirely via Terraform. New sermons auto-indexed weekly. <strong style="color:var(--text);">Running cost: ~$1–2/month.</strong>
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px;">
+        <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
+          <div style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Architecture</div>
+          <div style="font-size:0.82rem;color:var(--text);">Lambda · API GW · Cognito · DynamoDB · Bedrock · S3 · EventBridge</div>
+        </div>
+        <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
+          <div style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">IaC</div>
+          <div style="font-size:0.82rem;color:var(--text);">Modular Terraform · multi-env (dev/prod) · GitHub Actions CI/CD</div>
+        </div>
+        <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
+          <div style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Security</div>
+          <div style="font-size:0.82rem;color:var(--text);">IAM least-privilege · SSM SecureString · Bedrock Guardrails · CloudTrail</div>
+        </div>
+        <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
+          <div style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Cost Engineering</div>
+          <div style="font-size:0.82rem;color:var(--text);">6 documented cost decisions · Nova Lite vs Sonnet · $47/yr saved on transcription</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:16px 32px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;">
+      <span class="tech-pill">Terraform</span>
+      <span class="tech-pill">AWS Bedrock</span>
+      <span class="tech-pill">Lambda</span>
+      <span class="tech-pill">API Gateway</span>
+      <span class="tech-pill">Cognito</span>
+      <span class="tech-pill">DynamoDB</span>
+      <span class="tech-pill">S3</span>
+      <span class="tech-pill">EventBridge</span>
+      <span class="tech-pill">GitHub Actions</span>
+      <span class="tech-pill">Python</span>
+      <span class="tech-pill">Checkov</span>
+      <span class="tech-pill">Cloudflare Pages</span>
+    </div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- super-transcriber -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(0,229,160,0.1);">🎧</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Super-Transcriber — Async Transcription Pipeline</div>
+        <div class="project-desc">Event-driven serverless pipeline for audio transcription. Users upload MP3s directly to S3, which triggers Lambda to start async Amazon Transcribe jobs. EventBridge finalizes completed jobs and a React frontend on Cloudflare Pages handles the UI — no polling, no servers.</div>
+        <div class="project-metric">⚡ S3 → Lambda → Transcribe → EventBridge · Zero always-on infra</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">S3</span>
+        <span class="tech-pill">Lambda</span>
+        <span class="tech-pill">Amazon Transcribe</span>
+        <span class="tech-pill">EventBridge</span>
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">TypeScript</span>
+        <span class="tech-pill">Cloudflare Pages</span>
+      </div>
+    </div>
+
+    <!-- probate-bot -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(255,112,67,0.1);">🤖</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3/probate-bot" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Probate-Bot — Playwright Scraper + Operator Dashboard</div>
+        <div class="project-desc">Python CLI + web app that automates Georgia probate court lead extraction via Playwright, scores real-estate-relevant cases, deduplicates to SQLite, and exports CSV/JSON. Includes deployment runbooks for AWS Lightsail and Oracle Cloud Free Tier, and built-in compliance guardrails blocking SC solicitation use per state law.</div>
+        <div class="project-metric">⚡ Multi-county · Daily sync · $8–20/mo AWS Lightsail path</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Playwright</span>
+        <span class="tech-pill">SQLite</span>
+        <span class="tech-pill">AWS Lightsail</span>
+        <span class="tech-pill">S3</span>
+        <span class="tech-pill">systemd</span>
+        <span class="tech-pill">nginx</span>
+        <span class="tech-pill">cron</span>
+      </div>
+    </div>
+
+    <!-- paranalyzer -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(0,212,255,0.1);">📊</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3/paranalyzer" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Paranalyzer — AI-Powered REI Deal Analyzer</div>
+        <div class="project-desc">Full-stack React/TypeScript web app for real estate investment analysis. Features AI-driven flip/rental evaluation, Zillow market heat index visualization, and IRR/ROI/cash-on-cash financial modeling. Deployed on Cloudflare Pages with Supabase PostgreSQL backend and data caching.</div>
+        <div class="project-metric">⚡ AI deal scoring · IRR/ROI modeling · Market heat index</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">TypeScript</span>
+        <span class="tech-pill">Supabase</span>
+        <span class="tech-pill">Cloudflare Pages</span>
+        <span class="tech-pill">Tailwind CSS</span>
+        <span class="tech-pill">Vite</span>
+        <span class="tech-pill">shadcn/ui</span>
+      </div>
+    </div>
+
+    <!-- market-scout -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(126,87,194,0.15);">🗺️</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Market Scout — Real Estate Market Intelligence</div>
+        <div class="project-desc">Search any US city, zip code, or county for live Redfin market data — median price, months of supply, days-on-market, sale-to-list ratio, and more. Flask + Python backend integrates the Redfin data API and serves structured results to a clean search interface.</div>
+        <div class="project-metric">⚡ Any US market · Live Redfin data · Multi-metric output</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Flask</span>
+        <span class="tech-pill">Redfin API</span>
+        <span class="tech-pill">HTML/CSS/JS</span>
+      </div>
+    </div>
+
+    <!-- Ansible -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(255,153,0,0.1);">🔧</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3/ansible_kk" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">ansible_kk — Server Config Playbooks</div>
+        <div class="project-desc">Ansible playbook library for automated server configuration and provisioning. IaC approach to consistent environment setup — idempotent runs ensure zero configuration drift across environments. Paired with Terraform for full infra-to-config coverage.</div>
+        <div class="project-metric">⚡ Idempotent · Repeatable · Zero-drift</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">Ansible</span>
+        <span class="tech-pill">YAML</span>
+        <span class="tech-pill">Linux</span>
+        <span class="tech-pill">SSH</span>
+        <span class="tech-pill">IaC</span>
+      </div>
+    </div>
+
+    <!-- GHL Pipeline -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(0,212,255,0.08);">⚙️</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">GHL Webhook Automation Pipeline</div>
+        <div class="project-desc">GoHighLevel CRM architecture with webhook-driven integrations processing leads from acquisition through close. Syncs all pipeline data to Notion in real time. Eliminated manual data entry entirely across 1,000+ lead records. Built alongside a Python county scraper generating 10K+ structured records annually.</div>
+        <div class="project-metric">⚡ 1,000+ leads · Zero manual entry · 20h/week recovered</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">Webhooks</span>
+        <span class="tech-pill">GoHighLevel</span>
+        <span class="tech-pill">Notion API</span>
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">REST</span>
+        <span class="tech-pill">Playwright</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">05 // Experience</div>
+  <h2>Where I've Built</h2>
+  <p class="section-desc">10+ years of shipping systems, automating workflows, and running production environments with real stakes.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item animate">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <div class="timeline-role">Real Estate Acquisitions · Automation &amp; Systems</div>
+        <div class="timeline-period">Dec 2016 – Present</div>
+      </div>
+      <div class="timeline-company">Boston Probate Solutions &amp; Clearpath Property Group · Atlanta Metropolitan Area</div>
+      <ul class="timeline-list">
+        <li>Built and maintain a Python web scraper running 2x/week, collecting 500+ county records per run and accumulating 10,000+ structured records annually — surfacing fresh leads 6–10 weeks ahead of commercial platforms</li>
+        <li>Deployed a ChatGPT-powered Voice AI agent for inbound off-hours calls — evaluated AI models against quality, latency, and cost; configured contextual prompting and auto-transcript delivery</li>
+        <li>Designed GoHighLevel CRM automation with webhook integrations processing 1,000+ leads end-to-end, syncing pipeline data to Notion and eliminating manual data entry</li>
+        <li>Built a custom macOS market analysis tool scoring nationwide pay-per-lead markets across days-on-market, Redfin score, months of inventory, and pending-to-active ratio</li>
+        <li>Maintained a repeatable underwriting framework modeling construction costs, ARV calculations, risk quantification, and data-backed offer decisions</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item animate">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <div class="timeline-role">Web Systems &amp; Automation Developer</div>
+        <div class="timeline-period">Oct 2010 – Present</div>
+      </div>
+      <div class="timeline-company">Aiden Rhaa Photography / Visual Impact Studios · Atlanta Metropolitan Area</div>
+      <ul class="timeline-list">
+        <li>Designed and deployed full-stack websites using Claude Code, GitHub, Supabase, and Netlify with CI/CD pipelines — cutting time from client brief to live production from months to days</li>
+        <li>Configured DNS, SSL/TLS, Cloudflare CDN, SFTP/SSH, and cPanel across multiple production web properties, maintaining uptime and security</li>
+        <li>Ranked 4 client websites on Google page 1 for high-value commercial keywords via SEO campaigns using MOZ, Ahrefs, Ubersuggest, and HARO</li>
+        <li>Generated inbound leads and ROI for 80+ businesses via organic SEO, Facebook Advertising, and Google PPC</li>
+        <li>Delivered 200+ cross-functional production projects on time and within budget, maintaining 4.9/5 customer satisfaction across a 15-year client roster</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item animate">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <div class="timeline-role">Multimedia Producer</div>
+        <div class="timeline-period">May 2009 – Dec 2016</div>
+      </div>
+      <div class="timeline-company">ProMedia Productions · Boston, MA</div>
+      <ul class="timeline-list">
+        <li>Managed full project lifecycle for audio and video productions across small business, corporate, and education sectors</li>
+        <li>Built a macOS Automator workflow to bulk sort and rename thousands of media files by structured naming conventions, eliminating manual file management and recovering billable capacity</li>
+        <li>Designed custom recording studio configurations including acoustic treatment planning, noise reduction analysis, and equipment layout</li>
+        <li>Sourced and coordinated per-project freelance crews across diverse production scopes</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-bottom:80px;">
+  <div class="contact-wrapper animate">
+    <div class="section-eyebrow" style="justify-content:center;text-align:center;">06 // Contact</div>
+    <h2>Let's Build Something Together</h2>
+    <p>Open to cloud engineering, DevOps, and infrastructure roles. If you're building a team that ships real systems — let's talk.</p>
+    <div class="contact-links">
+      <a href="https://linkedin.com/in/aidenrhaa" target="_blank" class="contact-link linkedin">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/aidenrhaa
+      </a>
+      <a href="https://github.com/manynames3" target="_blank" class="contact-link github">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        github.com/manynames3
+      </a>
+      <a href="mailto:aidenrhaacloud@gmail.com" class="contact-link email">
+        ✉ aidenrhaacloud@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span style="color:var(--cyan)">Aiden Rhaa</span> &nbsp;·&nbsp; Cloud &amp; DevOps Engineer &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; <span style="opacity:0.5;">Built with intent.</span>
+</footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+  // Stagger children of grid containers
+  document.querySelectorAll('.skills-grid, .projects-grid, .certs-grid').forEach(grid => {
+    grid.querySelectorAll('.animate').forEach((child, i) => {
+      child.style.transitionDelay = `${i * 80}ms`;
+    });
+  });
+</script>
+</body>
+</html>
