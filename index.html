@@ -195,32 +195,46 @@
     max-width: 480px;
   }
 
-  .hero-certs {
+  .credential-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 40px;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  .cert-badge {
+  .credential-row {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 14px;
-    background: var(--cyan-dim);
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    font-size: 0.75rem;
-    font-family: var(--mono);
-    color: var(--cyan);
-    letter-spacing: 0.03em;
-    animation: fadeInUp 0.6s ease both;
+    gap: 12px;
+    color: var(--text);
+    font-size: 0.86rem;
+    font-weight: 500;
   }
 
-  .cert-badge:nth-child(2) { animation-delay: 0.1s; }
-  .cert-badge:nth-child(3) { animation-delay: 0.2s; }
+  .brand-mark {
+    width: 38px;
+    height: 30px;
+    border-radius: 7px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
 
-  .cert-badge svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .brand-mark svg {
+    width: 28px;
+    height: 22px;
+    display: block;
+  }
+
+  .brand-aws {
+    background: rgba(255, 153, 0, 0.12);
+    border: 1px solid rgba(255, 153, 0, 0.22);
+  }
+
+  .brand-terraform {
+    background: rgba(126, 87, 194, 0.16);
+    border: 1px solid rgba(126, 87, 194, 0.28);
+  }
 
   .hero-actions {
     display: flex;
@@ -713,72 +727,6 @@
     margin-top: 1px;
   }
 
-  /* CERTS SECTION */
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .cert-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 32px 24px;
-    text-align: center;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cert-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .cert-card:hover::before { opacity: 1; }
-
-  .cert-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-  }
-
-  .cert-logo {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    margin: 0 auto 16px;
-  }
-
-  .cert-issuer {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-  }
-
-  .cert-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--heading);
-    line-height: 1.3;
-  }
-
   /* CONTACT */
   #contact {
     text-align: center;
@@ -996,7 +944,6 @@
       gap: 48px;
     }
     .hero-visual { display: none; }
-    .certs-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
@@ -1039,23 +986,9 @@
       <span class="line2">Engineer.</span>
     </h1>
     <p class="hero-subtitle">
-      AWS-certified cloud engineer and automation builder focused on Terraform, CI/CD, serverless, 
-      containers, security, and production-style infrastructure with clear validation evidence.
+      Cloud engineer and automation builder focused on Terraform, CI/CD, serverless, containers,
+      security, and production-style AWS infrastructure.
     </p>
-    <div class="hero-certs">
-      <div class="cert-badge">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        AWS Solutions Architect
-      </div>
-      <div class="cert-badge">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        AWS Developer Associate
-      </div>
-      <div class="cert-badge">
-        <svg viewBox="0 0 24 24" fill="none"><polygon points="12,2 22,20 2,20" stroke="#00d4ff" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
-        HashiCorp Terraform Associate
-      </div>
-    </div>
     <div class="hero-actions">
       <a href="https://linkedin.com/in/aidenrhaa" target="_blank" class="btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -1079,7 +1012,7 @@
         <div class="tag-value">Atlanta Metro, GA</div>
       </div>
       <div class="photo-tag-top">
-        ☁ AWS x2<br>⬡ Terraform Associate
+        AWS Cloud<br>Terraform IaC
       </div>
     </div>
   </div>
@@ -1099,7 +1032,7 @@
     </div>
     <div class="stat-item">
       <div class="stat-number">Ops</div>
-      <div class="stat-label">CloudWatch · WAF · Teardown Proof</div>
+      <div class="stat-label">CloudWatch · WAF · Runbooks</div>
     </div>
   </div>
 </div>
@@ -1121,14 +1054,13 @@
     <div class="terminal-body">
       <div><span class="t-prompt">➜ </span><span class="t-cmd">cat professional_summary.txt</span></div>
       <div class="t-out" style="margin-top:8px;">
-        Cloud engineer with <span class="t-cyan">AWS Solutions Architect Associate</span>, <span class="t-cyan">AWS Developer Associate</span>,<br>
-        and <span class="t-cyan">HashiCorp Terraform Associate</span> credentials — backed by public AWS projects<br>
-        using Terraform, ECS Fargate, Lambda, RDS, Cognito, Bedrock, CloudWatch, and CI.
+        Cloud engineer building public AWS projects with <span class="t-cyan">Terraform</span>, <span class="t-cyan">ECS Fargate</span>,<br>
+        <span class="t-cyan">Lambda</span>, <span class="t-cyan">RDS</span>, <span class="t-cyan">Cognito</span>, <span class="t-cyan">Bedrock</span>, CloudWatch, Docker, and CI.
       </div>
       <div style="margin-top:12px;"><span class="t-prompt">➜ </span><span class="t-cmd">cat highlights.json | jq '.impact'</span></div>
       <div style="margin-top:8px;">
         <span class="t-orange">"impact"</span><span class="t-out">: {</span><br>
-        &nbsp;&nbsp;<span class="t-orange">"clearpath"</span><span class="t-out">: </span><span class="t-cyan">"AWS-validated ECS Fargate, RDS PostgreSQL, CloudFront, WAF stack"</span><span class="t-out">,</span><br>
+        &nbsp;&nbsp;<span class="t-orange">"clearpath"</span><span class="t-out">: </span><span class="t-cyan">"short-lived AWS ECS Fargate, RDS PostgreSQL, CloudFront, WAF stack"</span><span class="t-out">,</span><br>
         &nbsp;&nbsp;<span class="t-orange">"photoscribe"</span><span class="t-out">: </span><span class="t-cyan">"Bedrock + Cognito governed media platform with operational guardrails"</span><span class="t-out">,</span><br>
         &nbsp;&nbsp;<span class="t-orange">"pulpit"</span><span class="t-out">: </span><span class="t-cyan">"live serverless Bedrock RAG app with auth, audit logs, and CI"</span><br>
         <span class="t-out">}</span>
@@ -1139,8 +1071,8 @@
 
   <div class="about-grid">
     <div class="about-text animate">
-      <p>I'm a career-changing cloud and DevOps engineer with a business ownership background and recent hands-on AWS builds that are public, documented, and validated.</p>
-      <p>My strongest work is in <strong>AWS infrastructure and automation</strong>: Terraform modules, serverless APIs, ECS Fargate services, Cognito auth, private S3 flows, RDS/PostgreSQL, CloudWatch alarms, CI workflows, and teardown-friendly deployment evidence.</p>
+      <p>I'm a career-changing cloud and DevOps engineer with a business ownership background and recent hands-on AWS builds that are public, documented, and shaped around realistic operating constraints.</p>
+      <p>My strongest work is in <strong>AWS infrastructure and automation</strong>: Terraform modules, serverless APIs, ECS Fargate services, Cognito auth, private S3 flows, RDS/PostgreSQL, CloudWatch alarms, CI workflows, and repeatable deployment and teardown paths.</p>
       <p>Currently pursuing cloud engineering, DevOps, and infrastructure roles where I can bring <strong>technical depth, operational judgment, and business context</strong> to teams that need builders who can ship and document real systems.</p>
     </div>
     <div class="animate" style="display:flex;flex-direction:column;gap:16px;">
@@ -1151,6 +1083,39 @@
       <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
         <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Email</div>
         <a href="mailto:aidenrhaacloud@gmail.com" style="color:var(--cyan);font-weight:500;text-decoration:none;">aidenrhaacloud@gmail.com</a>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.1em;">Credentials</div>
+        <div class="credential-list">
+          <div class="credential-row">
+            <span class="brand-mark brand-aws" aria-label="AWS logo">
+              <svg viewBox="0 0 64 42" role="img" aria-hidden="true">
+                <text x="4" y="22" fill="#ff9900" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">AWS</text>
+                <path d="M20 29c9 5 21 5 32-1" fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round"/>
+                <path d="M49 25l7 1-5 5" fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            AWS Solutions Architect
+          </div>
+          <div class="credential-row">
+            <span class="brand-mark brand-aws" aria-label="AWS logo">
+              <svg viewBox="0 0 64 42" role="img" aria-hidden="true">
+                <text x="4" y="22" fill="#ff9900" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">AWS</text>
+                <path d="M20 29c9 5 21 5 32-1" fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round"/>
+                <path d="M49 25l7 1-5 5" fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            AWS Developer Associate
+          </div>
+          <div class="credential-row">
+            <span class="brand-mark brand-terraform" aria-label="Terraform logo">
+              <svg viewBox="0 0 64 42" role="img" aria-hidden="true">
+                <path d="M8 8l13 7v14L8 22V8zM24 16l13 7v14l-13-7V16zM24 2l13 7v12l-13-7V2zM40 23l13-7v14l-13 7V23z" fill="#7b42bc"/>
+              </svg>
+            </span>
+            HashiCorp Terraform Associate
+          </div>
+        </div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
         <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Education</div>
@@ -1167,36 +1132,9 @@
 
 <div class="section-divider"></div>
 
-<!-- CERTIFICATIONS -->
-<section id="certs">
-  <div class="section-eyebrow">02 // Certifications</div>
-  <h2>Certified &amp; Battle-Tested</h2>
-  <p class="section-desc">Three industry certifications backed by hands-on AWS and Terraform projects — not just exam prep.</p>
-
-  <div class="certs-grid animate">
-    <div class="cert-card">
-      <div class="cert-logo" style="background:rgba(255,153,0,0.12);">☁</div>
-      <div class="cert-issuer">Amazon Web Services</div>
-      <div class="cert-name">Solutions Architect<br>Associate (SAA-C02)</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-logo" style="background:rgba(255,153,0,0.12);">⚡</div>
-      <div class="cert-issuer">Amazon Web Services</div>
-      <div class="cert-name">Developer<br>Associate (DVA-C01)</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-logo" style="background:rgba(126,87,194,0.15);">⬡</div>
-      <div class="cert-issuer">HashiCorp</div>
-      <div class="cert-name">Terraform<br>Associate</div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-eyebrow">03 // Skills</div>
+  <div class="section-eyebrow">02 // Skills</div>
   <h2>What I Work With</h2>
   <p class="section-desc">The full stack — from infrastructure-as-code to CI/CD pipelines to Python automation.</p>
 
@@ -1323,9 +1261,9 @@
 
   <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-eyebrow">04 // Projects</div>
+  <div class="section-eyebrow">03 // Projects</div>
   <h2>Built &amp; Shipped</h2>
-  <p class="section-desc">Public cloud projects built around real AWS services, Terraform, CI, architecture docs, runbooks, and validation evidence.</p>
+  <p class="section-desc">Public cloud projects built around real AWS services, Terraform, CI, architecture docs, runbooks, and working deployment paths.</p>
 
   <!-- FEATURED: CLEARPATH -->
   <div style="background:var(--card);border:1px solid rgba(0,212,255,0.25);border-radius:16px;overflow:hidden;margin-bottom:28px;transition:all 0.3s;" class="animate">
@@ -1344,7 +1282,7 @@
         </a>
       </div>
       <p style="color:var(--text-soft);font-size:0.9rem;line-height:1.7;margin-bottom:20px;max-width:760px;">
-        Production-pattern FastAPI service for real estate lead intelligence, deployed in a short-lived AWS validation run and then destroyed cleanly. The stack proved ECS Fargate tasks, ALB routing, CloudFront/WAF, private RDS PostgreSQL, RDS Proxy, CloudWatch alarms, modular Terraform, and a GoHighLevel-compatible webhook receiver path.
+        Production-pattern FastAPI service for real estate lead intelligence, deployed in a short-lived AWS run and then destroyed cleanly. The stack ran ECS Fargate tasks, ALB routing, CloudFront/WAF, private RDS PostgreSQL, RDS Proxy, CloudWatch alarms, modular Terraform, and a GoHighLevel-compatible webhook receiver path.
       </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px;">
         <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
@@ -1360,8 +1298,8 @@
           <div style="font-size:0.82rem;color:var(--text);">RDS PostgreSQL · RDS Proxy · private database tier</div>
         </div>
         <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-          <div style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Evidence</div>
-          <div style="font-size:0.82rem;color:var(--text);">Live AWS screenshots · troubleshooting notes · 93-resource teardown</div>
+          <div style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Operations</div>
+          <div style="font-size:0.82rem;color:var(--text);">Live AWS run notes · troubleshooting notes · 93-resource teardown</div>
         </div>
       </div>
     </div>
@@ -1546,54 +1484,54 @@
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-eyebrow">05 // Experience</div>
+  <div class="section-eyebrow">04 // Experience</div>
   <h2>Where I've Built</h2>
-  <p class="section-desc">10+ years of shipping systems, automating workflows, and running production environments with real stakes.</p>
+  <p class="section-desc">Business ownership and client delivery experience translated into cloud infrastructure, automation, and operational workflows.</p>
 
   <div class="timeline">
 
     <div class="timeline-item animate">
       <div class="timeline-dot"></div>
       <div class="timeline-meta">
-        <div class="timeline-role">Real Estate Acquisitions · Automation &amp; Systems</div>
+        <div class="timeline-role">Founder / Lead Engineer</div>
         <div class="timeline-period">Dec 2016 – Present</div>
       </div>
-      <div class="timeline-company">Boston Probate Solutions &amp; Clearpath Property Group · Atlanta Metropolitan Area</div>
+      <div class="timeline-company">Clearpath Property Group / Boston Probate Solutions · Atlanta Metropolitan Area</div>
       <ul class="timeline-list">
-        <li>Built and maintain a Python web scraper running 2x/week, collecting 500+ county records per run and accumulating 10,000+ structured records annually — surfacing fresh leads 6–10 weeks ahead of commercial platforms</li>
-        <li>Deployed a ChatGPT-powered Voice AI agent for inbound off-hours calls — evaluated AI models against quality, latency, and cost; configured contextual prompting and auto-transcript delivery</li>
-        <li>Designed GoHighLevel CRM automation with webhook integrations processing 1,000+ leads end-to-end, syncing pipeline data to Notion and eliminating manual data entry</li>
-        <li>Built a custom macOS market analysis tool scoring nationwide pay-per-lead markets across days-on-market, Redfin score, months of inventory, and pending-to-active ratio</li>
-        <li>Maintained a repeatable underwriting framework modeling construction costs, ARV calculations, risk quantification, and data-backed offer decisions</li>
+        <li>Own real estate acquisition workflows and technical automation for lead intake, public records research, market data, CRM integration, and seller communication</li>
+        <li>Engineered Python-based data ingestion workflows to scrape, aggregate, normalize, and export public county records and property documents for acquisition research</li>
+        <li>Designed webhook-driven API workflows between CRM platforms, AI inference prompts, communication tools, and lead qualification processes</li>
+        <li>Implemented API-driven voice AI workflows with contextual prompting, guardrails, intent capture, transcript summaries, and follow-up data handoff</li>
+        <li>Built and documented the Clearpath Lead Intelligence API as a public cloud engineering project tied to real business workflow requirements, including live AWS run notes and teardown workflow</li>
       </ul>
     </div>
 
     <div class="timeline-item animate">
       <div class="timeline-dot"></div>
       <div class="timeline-meta">
-        <div class="timeline-role">Web Systems &amp; Automation Developer</div>
+        <div class="timeline-role">Creative Director / Operations</div>
         <div class="timeline-period">Oct 2010 – Present</div>
       </div>
       <div class="timeline-company">Aiden Rhaa Photography / Visual Impact Studios · Atlanta Metropolitan Area</div>
       <ul class="timeline-list">
-        <li>Designed and deployed full-stack websites using Claude Code, GitHub, Supabase, and Netlify with CI/CD pipelines — cutting time from client brief to live production from months to days</li>
-        <li>Configured DNS, SSL/TLS, Cloudflare CDN, SFTP/SSH, and cPanel across multiple production web properties, maintaining uptime and security</li>
-        <li>Ranked 4 client websites on Google page 1 for high-value commercial keywords via SEO campaigns using MOZ, Ahrefs, Ubersuggest, and HARO</li>
-        <li>Generated inbound leads and ROI for 80+ businesses via organic SEO, Facebook Advertising, and Google PPC</li>
-        <li>Delivered 200+ cross-functional production projects on time and within budget, maintaining 4.9/5 customer satisfaction across a 15-year client roster</li>
+        <li>Managed client-facing web properties, DNS records, SSL/TLS certificates, Cloudflare configuration, hosting, GitHub-based deployments, Supabase/Netlify workflows, cPanel, SFTP/SSH access, and WordPress administration</li>
+        <li>Directed cross-functional creative, technical, and contractor workflows for deadline-driven client projects with high service expectations</li>
+        <li>Built, rebuilt, or maintained static and CMS websites with focus on performance, SEO, image optimization, mobile responsiveness, and low operating cost</li>
+        <li>Translated client and business requirements into working web infrastructure, publishing workflows, and operational processes</li>
+        <li>Delivered 200+ client projects across a 15-year service business, balancing technical execution, vendor coordination, customer communication, and budget constraints</li>
       </ul>
     </div>
 
     <div class="timeline-item animate">
       <div class="timeline-dot"></div>
       <div class="timeline-meta">
-        <div class="timeline-role">Multimedia Producer</div>
+        <div class="timeline-role">Multimedia Producer / Technical Workflow Lead</div>
         <div class="timeline-period">May 2009 – Dec 2016</div>
       </div>
       <div class="timeline-company">ProMedia Productions · Boston, MA</div>
       <ul class="timeline-list">
         <li>Managed full project lifecycle for audio and video productions across small business, corporate, and education sectors</li>
-        <li>Built a macOS Automator workflow to bulk sort and rename thousands of media files by structured naming conventions, eliminating manual file management and recovering billable capacity</li>
+        <li>Built a macOS Automator workflow to bulk sort and rename thousands of media files by structured naming conventions, reducing manual file-management work</li>
         <li>Designed custom recording studio configurations including acoustic treatment planning, noise reduction analysis, and equipment layout</li>
         <li>Sourced and coordinated per-project freelance crews across diverse production scopes</li>
       </ul>
@@ -1607,7 +1545,7 @@
 <!-- CONTACT -->
 <section id="contact" style="padding-bottom:80px;">
   <div class="contact-wrapper animate">
-    <div class="section-eyebrow" style="justify-content:center;text-align:center;">06 // Contact</div>
+    <div class="section-eyebrow" style="justify-content:center;text-align:center;">05 // Contact</div>
     <h2>Let's Build Something Together</h2>
     <p>Open to cloud engineering, DevOps, and infrastructure roles. If you're building a team that ships real systems — let's talk.</p>
     <div class="contact-links">
@@ -1643,7 +1581,7 @@
   document.querySelectorAll('.animate').forEach(el => observer.observe(el));
 
   // Stagger children of grid containers
-  document.querySelectorAll('.skills-grid, .projects-grid, .certs-grid').forEach(grid => {
+  document.querySelectorAll('.skills-grid, .projects-grid').forEach(grid => {
     grid.querySelectorAll('.animate').forEach((child, i) => {
       child.style.transitionDelay = `${i * 80}ms`;
     });
