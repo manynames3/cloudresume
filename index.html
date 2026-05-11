@@ -692,6 +692,22 @@
     margin-top: 1px;
   }
 
+  .experience-bridge {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    color: var(--text-soft);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin: -28px 0 48px;
+  }
+
+  .experience-bridge strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
   /* CONTACT */
   #contact {
     text-align: center;
@@ -1258,12 +1274,12 @@
         </a>
       </div>
       <p style="color:var(--text-soft);font-size:0.9rem;line-height:1.7;margin-bottom:20px;max-width:760px;">
-        Production-pattern FastAPI service for real estate lead intelligence, deployed in a short-lived AWS run and then destroyed cleanly. The stack ran ECS Fargate tasks, ALB routing, CloudFront/WAF, private RDS PostgreSQL, RDS Proxy, CloudWatch alarms, modular Terraform, and a GoHighLevel-compatible webhook receiver path.
+        Production-pattern FastAPI service for real estate lead intelligence, deployed in a short-lived AWS run and then destroyed cleanly. The stack ran 2 healthy ECS Fargate tasks, ALB routing, CloudFront/WAF, private RDS PostgreSQL, RDS Proxy, CloudWatch alarms, modular Terraform, and a GoHighLevel-compatible webhook receiver path.
       </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px;">
         <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
           <div style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Compute</div>
-          <div style="font-size:0.82rem;color:var(--text);">ECS Fargate · FastAPI · Docker · ECR · ALB target groups</div>
+          <div style="font-size:0.82rem;color:var(--text);">2 healthy Fargate tasks · FastAPI · Docker · ECR · ALB target groups</div>
         </div>
         <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
           <div style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Network &amp; Security</div>
@@ -1308,8 +1324,8 @@
       </div>
       <div class="project-body">
         <div class="project-title">PhotoScribe AI — Governed Media Search</div>
-        <div class="project-desc">Serverless media asset platform using Bedrock Nova/Titan, S3 Vectors, Lambda, API Gateway, Cognito role groups, S3, DynamoDB policy/audit records, SQS ingest, and Terraform-managed observability.</div>
-        <div class="project-metric">⚡ Bedrock · Cognito roles · SQS DLQ · CloudWatch alarms</div>
+        <div class="project-desc">Serverless media asset platform using Bedrock Nova/Titan, S3 Vectors, Lambda, API Gateway, role-based Cognito groups, S3, DynamoDB policy/audit records, SQS ingest, and Terraform-managed observability.</div>
+        <div class="project-metric">⚡ Role-based Cognito groups · SQS DLQ · CloudWatch alarms</div>
       </div>
       <div class="project-footer">
         <span class="tech-pill">Bedrock</span>
@@ -1335,7 +1351,7 @@
       </div>
       <div class="project-body">
         <div class="project-title">Pulpit — Serverless Bedrock RAG</div>
-        <div class="project-desc">Live bilingual sermon search app with Cloudflare Pages frontend and AWS backend. Cognito protects query routes, Lambda performs retrieval and answer generation, DynamoDB stores cache/audit records, and S3 holds the transcript index.</div>
+        <div class="project-desc">Live bilingual sermon search app with Cloudflare Pages frontend and a low-idle-cost AWS backend. Cognito protects query routes, Lambda performs retrieval and answer generation, DynamoDB stores cache/audit records, and S3 holds the transcript index.</div>
         <div class="project-metric">⚡ Live demo · Bedrock Nova/Titan · low-idle-cost architecture</div>
       </div>
       <div class="project-footer">
@@ -1362,8 +1378,8 @@
       </div>
       <div class="project-body">
         <div class="project-title">FaceID — Serverless Photo Matching</div>
-        <div class="project-desc">Photo sorting app connected to a Terraform-managed AWS backend with Cognito JWT auth, API Gateway, Python Lambda, private S3 presigned uploads/previews, Rekognition face comparison, DynamoDB metadata, and CloudWatch alarms.</div>
-        <div class="project-metric">⚡ Public demo connected to AWS · private S3 · owner-scoped data</div>
+        <div class="project-desc">Photo sorting app connected to a Terraform-managed AWS backend with Cognito JWT auth, API Gateway, Python Lambda, private S3 presigned uploads/previews, Rekognition face comparison, owner-scoped DynamoDB records, and CloudWatch alarms.</div>
+        <div class="project-metric">⚡ Private S3 · presigned uploads/previews · owner-scoped records</div>
       </div>
       <div class="project-footer">
         <span class="tech-pill">Cognito</span>
@@ -1414,8 +1430,8 @@
       </div>
       <div class="project-body">
         <div class="project-title">Pulpit V2 — EKS Platform Migration</div>
-        <div class="project-desc">Platform-focused migration scaffold for the Pulpit app with Terraform EKS modules, ECR, Helm charts, tenant namespaces, ArgoCD app-of-apps manifests, IRSA-ready service accounts, ServiceMonitor starters, and Grafana dashboard artifacts.</div>
-        <div class="project-metric">⚡ EKS · Helm · ArgoCD · Prometheus/Grafana · active platform build</div>
+        <div class="project-desc">Active EKS/GitOps platform track extending the live Pulpit serverless app with Terraform EKS modules, ECR, Helm charts, tenant namespaces, ArgoCD app-of-apps manifests, IRSA-ready service accounts, ServiceMonitor starters, and Grafana dashboard artifacts.</div>
+        <div class="project-metric">⚡ Active platform track · EKS · Helm · ArgoCD · Prometheus/Grafana</div>
       </div>
       <div class="project-footer">
         <span class="tech-pill">EKS</span>
@@ -1463,6 +1479,9 @@
   <div class="section-eyebrow">04 // Experience</div>
   <h2>Where I've Built</h2>
   <p class="section-desc">Business ownership and client delivery experience translated into cloud infrastructure, automation, and operational workflows.</p>
+  <div class="experience-bridge animate">
+    <strong>Business ownership background</strong> with hands-on technical responsibility across automation, web infrastructure, CRM/API workflows, and AWS portfolio builds.
+  </div>
 
   <div class="timeline">
 
