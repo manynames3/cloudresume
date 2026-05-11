@@ -359,41 +359,6 @@
     line-height: 1.4;
   }
 
-  /* FLOATING STATS */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 100px;
-    overflow: hidden;
-  }
-
-  .stat-item {
-    background: var(--surface);
-    padding: 28px 24px;
-    text-align: center;
-  }
-
-  .stat-number {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--cyan);
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    font-family: var(--mono);
-    letter-spacing: 0.04em;
-  }
-
   /* SECTION HEADERS */
   .section-eyebrow {
     font-family: var(--mono);
@@ -947,13 +912,11 @@
     .about-grid { grid-template-columns: 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
-    .stats-row { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 600px) {
     section { padding: 80px 20px; }
     .contact-wrapper { padding: 40px 24px; }
-    .stats-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -1017,24 +980,6 @@
     </div>
   </div>
 </section>
-</div>
-
-<!-- STATS BAR -->
-<div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 5% 80px;">
-  <div class="stats-row animate">
-    <div class="stat-item">
-      <div class="stat-number">AWS</div>
-      <div class="stat-label">ECS · Lambda · RDS · Bedrock</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">IaC</div>
-      <div class="stat-label">Terraform · CI · Runbooks</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">Ops</div>
-      <div class="stat-label">CloudWatch · WAF · Runbooks</div>
-    </div>
-  </div>
 </div>
 
 <div class="section-divider"></div>
@@ -1135,123 +1080,121 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-eyebrow">02 // Skills</div>
-  <h2>What I Work With</h2>
-  <p class="section-desc">The full stack — from infrastructure-as-code to CI/CD pipelines to Python automation.</p>
+  <h2>Cloud Stack</h2>
+  <p class="section-desc">Grouped by how I use the tools: delivery, data, infrastructure, security, operations, and application code.</p>
 
   <div class="skills-grid">
     <div class="skill-category animate">
       <div class="skill-cat-header">
         <div class="skill-cat-icon icon-aws">☁</div>
-        <div class="skill-cat-name">AWS Services</div>
+        <div class="skill-cat-name">Compute &amp; Delivery</div>
       </div>
       <div class="skill-tags">
-        <span class="skill-tag">VPC</span>
         <span class="skill-tag">ECS Fargate</span>
         <span class="skill-tag">ECR</span>
-        <span class="skill-tag">ALB</span>
-        <span class="skill-tag">RDS PostgreSQL</span>
-        <span class="skill-tag">RDS Proxy</span>
-        <span class="skill-tag">S3</span>
+        <span class="skill-tag">Docker</span>
         <span class="skill-tag">Lambda</span>
         <span class="skill-tag">API Gateway</span>
-        <span class="skill-tag">Cognito</span>
-        <span class="skill-tag">DynamoDB</span>
-        <span class="skill-tag">SQS</span>
-        <span class="skill-tag">EventBridge</span>
-        <span class="skill-tag">Bedrock</span>
-        <span class="skill-tag">Rekognition</span>
-        <span class="skill-tag">Transcribe</span>
+        <span class="skill-tag">ALB</span>
         <span class="skill-tag">CloudFront</span>
-        <span class="skill-tag">WAF</span>
-        <span class="skill-tag">Route 53</span>
-        <span class="skill-tag">IAM</span>
-        <span class="skill-tag">CloudWatch</span>
-        <span class="skill-tag">Secrets Manager</span>
-      </div>
-    </div>
-
-    <div class="skill-category animate">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-iac">⬡</div>
-        <div class="skill-cat-name">IaC &amp; DevOps</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Terraform</span>
-        <span class="skill-tag">Checkov</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">GitHub Actions</span>
-        <span class="skill-tag">Helm</span>
-        <span class="skill-tag">ArgoCD</span>
-        <span class="skill-tag">Kubernetes</span>
-        <span class="skill-tag">CI/CD Pipelines</span>
-        <span class="skill-tag">Runbooks</span>
-        <span class="skill-tag">Shell/Bash</span>
-        <span class="skill-tag">SDLC</span>
-      </div>
-    </div>
-
-    <div class="skill-category animate">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-code">{ }</div>
-        <div class="skill-cat-name">Languages</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">Bash/Shell</span>
-        <span class="skill-tag">HTML/CSS</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">YAML</span>
-        <span class="skill-tag">JSON</span>
+        <span class="skill-tag">Cloudflare Pages</span>
+        <span class="skill-tag">Netlify</span>
       </div>
     </div>
 
     <div class="skill-category animate">
       <div class="skill-cat-header">
         <div class="skill-cat-icon icon-db">◈</div>
-        <div class="skill-cat-name">Databases</div>
+        <div class="skill-cat-name">Data &amp; AI Services</div>
       </div>
       <div class="skill-tags">
-        <span class="skill-tag">MySQL</span>
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">RDS</span>
-        <span class="skill-tag">DynamoDB</span>
-        <span class="skill-tag">SQLite</span>
+        <span class="skill-tag">RDS PostgreSQL</span>
+        <span class="skill-tag">RDS Proxy</span>
+        <span class="skill-tag">S3</span>
         <span class="skill-tag">S3 Vectors</span>
+        <span class="skill-tag">DynamoDB</span>
+        <span class="skill-tag">Bedrock</span>
+        <span class="skill-tag">Rekognition</span>
+        <span class="skill-tag">Transcribe</span>
+        <span class="skill-tag">SQLite</span>
         <span class="skill-tag">Supabase</span>
       </div>
     </div>
 
     <div class="skill-category animate">
       <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-platform">▣</div>
-        <div class="skill-cat-name">Platforms</div>
+        <div class="skill-cat-icon icon-iac">⬡</div>
+        <div class="skill-cat-name">Infrastructure as Code</div>
       </div>
       <div class="skill-tags">
-        <span class="skill-tag">Linux (CentOS/RHEL)</span>
-        <span class="skill-tag">macOS</span>
-        <span class="skill-tag">GitHub</span>
-        <span class="skill-tag">AWS CLI</span>
-        <span class="skill-tag">Cloudflare Pages</span>
-        <span class="skill-tag">Netlify</span>
-        <span class="skill-tag">Cloudflare CDN</span>
-        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">Terraform</span>
+        <span class="skill-tag">Reusable Modules</span>
+        <span class="skill-tag">Plan / Apply / Destroy</span>
+        <span class="skill-tag">Environment Variables</span>
+        <span class="skill-tag">Remote State Ready</span>
+        <span class="skill-tag">Checkov</span>
+        <span class="skill-tag">GitHub Actions</span>
+        <span class="skill-tag">OIDC Gates</span>
+        <span class="skill-tag">Runbooks</span>
       </div>
     </div>
 
     <div class="skill-category animate">
       <div class="skill-cat-header">
         <div class="skill-cat-icon icon-web">⟁</div>
-        <div class="skill-cat-name">Web &amp; Hosting</div>
+        <div class="skill-cat-name">Security &amp; Identity</div>
       </div>
       <div class="skill-tags">
-        <span class="skill-tag">DNS</span>
-        <span class="skill-tag">HTTP/HTTPS</span>
-        <span class="skill-tag">SSL/TLS</span>
-        <span class="skill-tag">cPanel</span>
-        <span class="skill-tag">SFTP/SSH</span>
-        <span class="skill-tag">Serverless</span>
-        <span class="skill-tag">CDN</span>
+        <span class="skill-tag">IAM</span>
+        <span class="skill-tag">Cognito</span>
+        <span class="skill-tag">Secrets Manager</span>
+        <span class="skill-tag">SSM Parameter Store</span>
+        <span class="skill-tag">KMS</span>
+        <span class="skill-tag">WAF</span>
+        <span class="skill-tag">CloudTrail</span>
+        <span class="skill-tag">GuardDuty</span>
+        <span class="skill-tag">Private Subnets</span>
+      </div>
+    </div>
+
+    <div class="skill-category animate">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-platform">▣</div>
+        <div class="skill-cat-name">Platform &amp; Operations</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">VPC</span>
+        <span class="skill-tag">Route 53</span>
+        <span class="skill-tag">ACM</span>
+        <span class="skill-tag">CloudWatch</span>
+        <span class="skill-tag">Logs &amp; Alarms</span>
+        <span class="skill-tag">SQS</span>
+        <span class="skill-tag">EventBridge</span>
+        <span class="skill-tag">Kubernetes</span>
+        <span class="skill-tag">Helm</span>
+        <span class="skill-tag">ArgoCD</span>
+        <span class="skill-tag">Prometheus</span>
+        <span class="skill-tag">Grafana</span>
+      </div>
+    </div>
+
+    <div class="skill-category animate">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-code">{ }</div>
+        <div class="skill-cat-name">Languages &amp; Frameworks</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Flask</span>
+        <span class="skill-tag">Bash/Shell</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">YAML</span>
+        <span class="skill-tag">JSON</span>
+        <span class="skill-tag">HTML/CSS</span>
       </div>
     </div>
   </div>
