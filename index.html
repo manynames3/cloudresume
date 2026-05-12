@@ -6,6 +6,8 @@
 <title>Aiden Rhaa — Cloud & DevOps Engineer</title>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
+
   :root {
     --bg: #080d1a;
     --surface: #0f1829;
@@ -23,6 +25,20 @@
     --text-soft: #8ca0bc;
     --heading: #f0f5ff;
     --mono: 'Courier New', 'Consolas', 'Menlo', monospace;
+    --bento-bg: #0a0a0b;
+    --bento-surface: #111113;
+    --bento-elevated: #1a1a1e;
+    --bento-border: rgba(255,255,255,0.07);
+    --bento-border-medium: rgba(255,255,255,0.12);
+    --bento-border-strong: rgba(255,255,255,0.2);
+    --bento-text: #f2f2f3;
+    --bento-secondary: #9b9ba6;
+    --bento-muted: #5b5b66;
+    --bento-accent: #f97316;
+    --bento-accent-soft: rgba(249,115,22,0.15);
+    --bento-accent-border: rgba(249,115,22,0.28);
+    --font-sans: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'Geist Mono', 'Courier New', 'Consolas', 'Menlo', monospace;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -399,57 +415,143 @@
   }
 
   /* SKILLS */
-  #skills { padding-top: 0; }
+  #skills {
+    padding-top: 0;
+    font-family: var(--font-sans);
+  }
+
+  #skills .section-eyebrow {
+    color: var(--bento-accent);
+  }
+
+  #skills h2 {
+    font-family: var(--font-sans);
+    color: var(--bento-text);
+  }
+
+  #skills .section-desc {
+    color: var(--bento-secondary);
+  }
 
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: minmax(230px, auto);
+    gap: 12px;
   }
 
   .skill-category {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.018)),
+      var(--bento-surface);
+    border: 1px solid var(--bento-border);
+    border-radius: 20px;
     padding: 28px;
-    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 1px 0 rgba(0,0,0,0.6);
+    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
   }
 
+  .skill-category::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 21px;
+    background: linear-gradient(135deg, var(--bento-accent-soft), transparent 58%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+  }
+
+  .skill-category::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    opacity: 0.28;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  .skill-category > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .skill-wide { grid-column: span 2; }
+
+  .skill-compact { min-height: 100%; }
+
   .skill-category:hover {
-    border-color: var(--border-hover);
+    border-color: var(--bento-border-medium);
     transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.1),
+      0 16px 48px rgba(0,0,0,0.4),
+      0 0 0 1px var(--bento-border-medium);
+  }
+
+  .skill-category:hover::before {
+    opacity: 1;
   }
 
   .skill-cat-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
   .skill-cat-icon {
     width: 36px;
     height: 36px;
-    border-radius: 8px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--bento-accent);
+    background: var(--bento-accent-soft);
+    border: 1px solid var(--bento-accent-border);
     flex-shrink: 0;
   }
 
-  .icon-aws { background: rgba(255, 153, 0, 0.12); }
-  .icon-iac { background: rgba(126, 87, 194, 0.15); }
-  .icon-code { background: rgba(0, 212, 255, 0.1); }
-  .icon-db { background: rgba(0, 229, 160, 0.1); }
-  .icon-web { background: rgba(255, 112, 67, 0.1); }
-  .icon-platform { background: rgba(100, 160, 255, 0.1); }
-
   .skill-cat-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--heading);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1.25;
+    color: var(--bento-text);
+    letter-spacing: -0.02em;
+    margin-bottom: 7px;
+  }
+
+  .skill-note {
+    color: var(--bento-secondary);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    max-width: 54ch;
+  }
+
+  .skill-groups {
+    display: grid;
+    gap: 16px;
+  }
+
+  .skill-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--bento-muted);
+    margin-bottom: 8px;
   }
 
   .skill-tags {
@@ -459,21 +561,44 @@
   }
 
   .skill-tag {
-    font-family: var(--mono);
+    font-family: var(--font-mono);
     font-size: 0.72rem;
-    padding: 5px 10px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 4px;
-    color: var(--text-soft);
+    padding: 6px 10px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid var(--bento-border-medium);
+    border-radius: 999px;
+    color: var(--bento-secondary);
     letter-spacing: 0.02em;
-    transition: all 0.15s;
+    transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+
+  .skill-tags-core .skill-tag {
+    background: var(--bento-accent-soft);
+    border-color: var(--bento-accent-border);
+    color: var(--bento-text);
   }
 
   .skill-tag:hover {
-    border-color: var(--border-hover);
-    color: var(--cyan);
-    background: var(--cyan-dim);
+    border-color: var(--bento-border-strong);
+    color: var(--bento-text);
+    background: var(--bento-elevated);
+  }
+
+  .skill-secondary {
+    color: var(--bento-secondary);
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  .skill-secondary span {
+    color: var(--bento-text);
+  }
+
+  .skill-category hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--bento-border-medium), transparent);
+    margin: 2px 0 0;
   }
 
   /* PROJECTS */
@@ -959,12 +1084,18 @@
     }
     .hero-visual { display: none; }
     .about-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .skill-wide { grid-column: span 2; }
     .projects-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
   }
 
   @media (max-width: 600px) {
     section { padding: 80px 20px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .skill-wide { grid-column: span 1; }
+    .skill-category { padding: 22px; }
+    .skill-cat-header { align-items: flex-start; }
     .contact-wrapper { padding: 40px 24px; }
   }
 </style>
@@ -1133,119 +1264,169 @@
   <p class="section-desc">Grouped by how I use the tools: delivery, data, infrastructure, security, operations, and application code.</p>
 
   <div class="skills-grid">
-    <div class="skill-category animate">
+    <div class="skill-category skill-wide animate">
       <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-aws">☁</div>
-        <div class="skill-cat-name">Compute &amp; Delivery</div>
+        <div>
+          <div class="skill-cat-name">Compute &amp; Delivery</div>
+          <p class="skill-note">Containers, functions, APIs, and CDN-backed frontends across Clearpath, Super Transcriber, Pulpit, and PhotoScribe.</p>
+        </div>
+        <div class="skill-cat-icon" aria-hidden="true">01</div>
       </div>
-      <div class="skill-tags">
-        <span class="skill-tag">ECS Fargate</span>
-        <span class="skill-tag">ECR</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Lambda</span>
-        <span class="skill-tag">API Gateway</span>
-        <span class="skill-tag">ALB</span>
-        <span class="skill-tag">CloudFront</span>
-        <span class="skill-tag">Cloudflare Pages</span>
-        <span class="skill-tag">Netlify</span>
+      <div class="skill-groups">
+        <div>
+          <div class="skill-label">Core</div>
+          <div class="skill-tags skill-tags-core">
+            <span class="skill-tag">ECS Fargate</span>
+            <span class="skill-tag">Lambda</span>
+            <span class="skill-tag">API Gateway</span>
+            <span class="skill-tag">CloudFront</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">ECR</span>
+          </div>
+        </div>
+        <hr>
+        <div>
+          <div class="skill-label">Also Used</div>
+          <div class="skill-secondary"><span>ALB</span> · Cloudflare Pages · Netlify</div>
+        </div>
       </div>
     </div>
 
-    <div class="skill-category animate">
+    <div class="skill-category skill-compact animate">
       <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-db">◈</div>
-        <div class="skill-cat-name">Data &amp; AI Services</div>
+        <div>
+          <div class="skill-cat-name">IaC &amp; CI</div>
+          <p class="skill-note">Repeatable infrastructure, validation, security scanning, and documented deploy/teardown paths.</p>
+        </div>
+        <div class="skill-cat-icon" aria-hidden="true">02</div>
       </div>
-      <div class="skill-tags">
-        <span class="skill-tag">RDS PostgreSQL</span>
-        <span class="skill-tag">RDS Proxy</span>
-        <span class="skill-tag">S3</span>
-        <span class="skill-tag">S3 Vectors</span>
-        <span class="skill-tag">DynamoDB</span>
-        <span class="skill-tag">Bedrock</span>
-        <span class="skill-tag">Textract</span>
-        <span class="skill-tag">Rekognition</span>
-        <span class="skill-tag">Transcribe</span>
-        <span class="skill-tag">SQLite</span>
-        <span class="skill-tag">Supabase</span>
+      <div class="skill-groups">
+        <div>
+          <div class="skill-label">Core</div>
+          <div class="skill-tags skill-tags-core">
+            <span class="skill-tag">Terraform</span>
+            <span class="skill-tag">Modules</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">OIDC</span>
+            <span class="skill-tag">Checkov</span>
+          </div>
+        </div>
+        <hr>
+        <div>
+          <div class="skill-label">Also Used</div>
+          <div class="skill-secondary">Plan / Apply / Destroy · Runbooks · Remote State Ready</div>
+        </div>
       </div>
     </div>
 
-    <div class="skill-category animate">
+    <div class="skill-category skill-compact animate">
       <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-iac">⬡</div>
-        <div class="skill-cat-name">Infrastructure as Code</div>
+        <div>
+          <div class="skill-cat-name">Security &amp; Identity</div>
+          <p class="skill-note">Auth, secret handling, network boundaries, and edge controls for public AWS projects.</p>
+        </div>
+        <div class="skill-cat-icon" aria-hidden="true">03</div>
       </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Terraform</span>
-        <span class="skill-tag">Reusable Modules</span>
-        <span class="skill-tag">Plan / Apply / Destroy</span>
-        <span class="skill-tag">Environment Variables</span>
-        <span class="skill-tag">Remote State Ready</span>
-        <span class="skill-tag">Checkov</span>
-        <span class="skill-tag">GitHub Actions</span>
-        <span class="skill-tag">OIDC Gates</span>
-        <span class="skill-tag">Runbooks</span>
+      <div class="skill-groups">
+        <div>
+          <div class="skill-label">Core</div>
+          <div class="skill-tags skill-tags-core">
+            <span class="skill-tag">IAM</span>
+            <span class="skill-tag">Cognito</span>
+            <span class="skill-tag">Secrets Manager</span>
+            <span class="skill-tag">WAF</span>
+            <span class="skill-tag">SSM</span>
+          </div>
+        </div>
+        <hr>
+        <div>
+          <div class="skill-label">Also Used</div>
+          <div class="skill-secondary">KMS · CloudTrail · GuardDuty · Private Subnets</div>
+        </div>
       </div>
     </div>
 
-    <div class="skill-category animate">
+    <div class="skill-category skill-wide animate">
       <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-web">⟁</div>
-        <div class="skill-cat-name">Security &amp; Identity</div>
+        <div>
+          <div class="skill-cat-name">Platform Ops</div>
+          <p class="skill-note">Event-driven workflows, observability, DNS/TLS, and validated Kubernetes/GitOps infrastructure.</p>
+        </div>
+        <div class="skill-cat-icon" aria-hidden="true">04</div>
       </div>
-      <div class="skill-tags">
-        <span class="skill-tag">IAM</span>
-        <span class="skill-tag">Cognito</span>
-        <span class="skill-tag">Secrets Manager</span>
-        <span class="skill-tag">SSM Parameter Store</span>
-        <span class="skill-tag">KMS</span>
-        <span class="skill-tag">WAF</span>
-        <span class="skill-tag">CloudTrail</span>
-        <span class="skill-tag">GuardDuty</span>
-        <span class="skill-tag">Private Subnets</span>
+      <div class="skill-groups">
+        <div>
+          <div class="skill-label">Core</div>
+          <div class="skill-tags skill-tags-core">
+            <span class="skill-tag">VPC</span>
+            <span class="skill-tag">CloudWatch</span>
+            <span class="skill-tag">Step Functions</span>
+            <span class="skill-tag">SQS</span>
+            <span class="skill-tag">EventBridge</span>
+            <span class="skill-tag">EKS</span>
+          </div>
+        </div>
+        <hr>
+        <div>
+          <div class="skill-label">Also Used</div>
+          <div class="skill-secondary">Route 53 · ACM · Helm · ArgoCD · Prometheus · Grafana</div>
+        </div>
       </div>
     </div>
 
-    <div class="skill-category animate">
+    <div class="skill-category skill-wide animate">
       <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-platform">▣</div>
-        <div class="skill-cat-name">Platform &amp; Operations</div>
+        <div>
+          <div class="skill-cat-name">Data &amp; AI Services</div>
+          <p class="skill-note">Storage, relational data, vector search, OCR, transcription, image matching, and Bedrock-backed workflows.</p>
+        </div>
+        <div class="skill-cat-icon" aria-hidden="true">05</div>
       </div>
-      <div class="skill-tags">
-        <span class="skill-tag">VPC</span>
-        <span class="skill-tag">Route 53</span>
-        <span class="skill-tag">ACM</span>
-        <span class="skill-tag">CloudWatch</span>
-        <span class="skill-tag">Logs &amp; Alarms</span>
-        <span class="skill-tag">Step Functions</span>
-        <span class="skill-tag">SQS</span>
-        <span class="skill-tag">EventBridge</span>
-        <span class="skill-tag">Kubernetes</span>
-        <span class="skill-tag">Helm</span>
-        <span class="skill-tag">ArgoCD</span>
-        <span class="skill-tag">Prometheus</span>
-        <span class="skill-tag">Grafana</span>
+      <div class="skill-groups">
+        <div>
+          <div class="skill-label">Core</div>
+          <div class="skill-tags skill-tags-core">
+            <span class="skill-tag">RDS PostgreSQL</span>
+            <span class="skill-tag">RDS Proxy</span>
+            <span class="skill-tag">S3</span>
+            <span class="skill-tag">DynamoDB</span>
+            <span class="skill-tag">Bedrock</span>
+            <span class="skill-tag">S3 Vectors</span>
+          </div>
+        </div>
+        <hr>
+        <div>
+          <div class="skill-label">Also Used</div>
+          <div class="skill-secondary">Textract · Rekognition · Transcribe · SQLite · Supabase</div>
+        </div>
       </div>
     </div>
 
-    <div class="skill-category animate">
+    <div class="skill-category skill-compact animate">
       <div class="skill-cat-header">
-        <div class="skill-cat-icon icon-code">{ }</div>
-        <div class="skill-cat-name">Languages &amp; Frameworks</div>
+        <div>
+          <div class="skill-cat-name">Application Code</div>
+          <p class="skill-note">Backend APIs, serverless handlers, frontend demos, data pipelines, and automation scripts.</p>
+        </div>
+        <div class="skill-cat-icon" aria-hidden="true">06</div>
       </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">FastAPI</span>
-        <span class="skill-tag">Flask</span>
-        <span class="skill-tag">Bash/Shell</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">YAML</span>
-        <span class="skill-tag">JSON</span>
-        <span class="skill-tag">HTML/CSS</span>
+      <div class="skill-groups">
+        <div>
+          <div class="skill-label">Core</div>
+          <div class="skill-tags skill-tags-core">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Bash/Shell</span>
+          </div>
+        </div>
+        <hr>
+        <div>
+          <div class="skill-label">Also Used</div>
+          <div class="skill-secondary">JavaScript · Flask · YAML · JSON · HTML/CSS</div>
+        </div>
       </div>
     </div>
   </div>
