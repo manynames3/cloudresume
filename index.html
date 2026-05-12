@@ -1163,6 +1163,7 @@
         <span class="skill-tag">S3 Vectors</span>
         <span class="skill-tag">DynamoDB</span>
         <span class="skill-tag">Bedrock</span>
+        <span class="skill-tag">Textract</span>
         <span class="skill-tag">Rekognition</span>
         <span class="skill-tag">Transcribe</span>
         <span class="skill-tag">SQLite</span>
@@ -1217,6 +1218,7 @@
         <span class="skill-tag">ACM</span>
         <span class="skill-tag">CloudWatch</span>
         <span class="skill-tag">Logs &amp; Alarms</span>
+        <span class="skill-tag">Step Functions</span>
         <span class="skill-tag">SQS</span>
         <span class="skill-tag">EventBridge</span>
         <span class="skill-tag">Kubernetes</span>
@@ -1418,6 +1420,33 @@
       </div>
     </div>
 
+    <!-- DocuFlow OCR -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(0,229,160,0.1);">▤</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3/docuflow-ocr" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">DocuFlow OCR — Serverless Invoice Processing</div>
+        <div class="project-desc">Accounts payable OCR workflow with presigned S3 intake, API Gateway, Step Functions, Textract async document analysis, Python Lambda parsing, DynamoDB job/audit tables, review APIs, SQS DLQ, CloudWatch alarms, and Terraform.</div>
+        <div class="project-metric">⚡ Step Functions · Textract · review queue · SQS DLQ</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">Textract</span>
+        <span class="tech-pill">Step Functions</span>
+        <span class="tech-pill">Lambda</span>
+        <span class="tech-pill">API Gateway</span>
+        <span class="tech-pill">S3</span>
+        <span class="tech-pill">DynamoDB</span>
+        <span class="tech-pill">SQS</span>
+        <span class="tech-pill">Terraform</span>
+      </div>
+    </div>
+
     <!-- Pulpit V2 -->
     <div class="project-card animate">
       <div class="project-header">
@@ -1430,8 +1459,8 @@
       </div>
       <div class="project-body">
         <div class="project-title">Pulpit V2 — EKS Platform Migration</div>
-        <div class="project-desc">Active EKS/GitOps platform track extending the live Pulpit serverless app with Terraform EKS modules, ECR, Helm charts, tenant namespaces, ArgoCD app-of-apps manifests, IRSA-ready service accounts, ServiceMonitor starters, and Grafana dashboard artifacts.</div>
-        <div class="project-metric">⚡ Active platform track · EKS · Helm · ArgoCD · Prometheus/Grafana</div>
+        <div class="project-desc">Deployed and documented EKS/GitOps platform track extending the live Pulpit serverless app with Terraform EKS modules, ECR, Helm charts, tenant namespaces, ArgoCD app-of-apps manifests, IRSA-ready service accounts, ServiceMonitor starters, and Grafana dashboard artifacts. Destroyed after validation to avoid ongoing cluster costs.</div>
+        <div class="project-metric">⚡ Deployed then destroyed · EKS · Helm · ArgoCD · Prometheus/Grafana</div>
       </div>
       <div class="project-footer">
         <span class="tech-pill">EKS</span>
@@ -1441,6 +1470,31 @@
         <span class="tech-pill">Prometheus</span>
         <span class="tech-pill">Grafana</span>
         <span class="tech-pill">Terraform</span>
+      </div>
+    </div>
+
+    <!-- Market Scout -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(0,212,255,0.1);">↗</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3/market-scout" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Market Scout — Static Data Pipeline</div>
+        <div class="project-desc">Real estate market analytics tool that transforms Redfin public market data into compact static JSON artifacts for city, ZIP, and county comparison. Migrated from a local Flask app to a Cloudflare Pages deployment path with GitHub Actions scheduled rebuilds.</div>
+        <div class="project-metric">⚡ Python build pipeline · scheduled rebuilds · low-cost static hosting</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Flask</span>
+        <span class="tech-pill">GitHub Actions</span>
+        <span class="tech-pill">Cloudflare Pages</span>
+        <span class="tech-pill">JSON Artifacts</span>
+        <span class="tech-pill">CSV Export</span>
       </div>
     </div>
 
