@@ -1,6 +1,6 @@
 # Cloud Resume
 
-Static cloud resume and portfolio site for Aiden Rhaa, focused on AWS cloud engineering, DevOps automation, Terraform infrastructure, serverless systems, CI/CD, containers, and production-style cloud project documentation.
+Static cloud resume and portfolio site for Aiden Rhaa, focused on AWS cloud engineering, DevOps automation, Terraform infrastructure, platform tooling, serverless systems, CI/CD, containers, and production-style cloud project documentation.
 
 - Live site: https://manynames3.github.io/cloudresume/
 - Repository: https://github.com/manynames3/cloudresume
@@ -16,9 +16,10 @@ The site is intentionally simple: plain HTML, embedded CSS, lightweight JavaScri
 ## Featured Content
 
 - AWS-focused cloud and DevOps engineer profile.
-- Public cloud projects using Terraform, ECS Fargate, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, EKS, Docker, GitHub Actions, and CloudWatch.
+- Public cloud projects using Terraform, Terraform plan review, ECS Fargate, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, EKS, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, and CloudWatch.
 - Featured infrastructure project: Clearpath AWS Fargate Lead Intelligence API.
-- Additional project cards for PhotoScribe AI, Pulpit, FaceID, Super Transcriber, DocuFlow OCR, Pulpit V2, Market Scout, and AegisDesk.
+- Top project cards for TerraGate, AegisDesk, Pulpit V2, PhotoScribe AI, Pulpit, FaceID, Super Transcriber, DocuFlow OCR, and Market Scout.
+- Downloadable ATS/human-optimized resume PDF.
 - Skills, certifications, experience, target roles, and contact links.
 
 ## Repository Structure
@@ -26,6 +27,7 @@ The site is intentionally simple: plain HTML, embedded CSS, lightweight JavaScri
 ```text
 .
 ├── index.html
+├── Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf
 ├── aiden_rhaa_headshot__resized_.jpg
 └── README.md
 ```
@@ -63,7 +65,7 @@ https://manynames3.github.io/cloudresume/
 To publish an update:
 
 ```sh
-git add index.html aiden_rhaa_headshot__resized_.jpg README.md
+git add index.html Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf aiden_rhaa_headshot__resized_.jpg README.md
 git commit -m "Update cloud resume"
 git push origin master
 ```
