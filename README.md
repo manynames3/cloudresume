@@ -16,9 +16,9 @@ The site is intentionally simple: plain HTML, embedded CSS, lightweight JavaScri
 ## Featured Content
 
 - AWS-focused cloud and DevOps engineer profile.
-- Public cloud projects using Terraform, Terraform plan review, ECS Fargate, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, EKS, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, and CloudWatch.
+- Public cloud projects using Terraform, Terraform plan review, ECS Fargate, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, EKS, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, CloudWatch, SQS, EventBridge, OpenAPI, and platform governance workflows.
 - Featured infrastructure project: Clearpath AWS Fargate Lead Intelligence API.
-- Top project cards for TerraGate, AegisDesk, Pulpit V2, PhotoScribe AI, Pulpit, FaceID, Super Transcriber, DocuFlow OCR, and Market Scout.
+- Top project cards for TerraGate, BrokerOps, AegisDesk, Super Transcriber API, Pulpit V2, PhotoScribe AI, Pulpit, InvoiceBridge API, RevenueCoach AI, and DocuFlow OCR.
 - Downloadable ATS/human-optimized resume PDF.
 - Skills, certifications, experience, target roles, and contact links.
 
@@ -76,7 +76,7 @@ GitHub Pages will rebuild the static site after the push.
 
 - Keep the site self-contained unless a build step becomes necessary.
 - Update project cards when public project repos change.
-- Keep links current for GitHub, LinkedIn, email, and deployed demos.
+- Keep links current for GitHub, LinkedIn, email, deployed apps, and live project URLs.
 - Compress any replacement images before committing them.
 - Test mobile layout after changing hero, project cards, or contact sections.
 
