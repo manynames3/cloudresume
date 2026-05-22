@@ -1130,7 +1130,7 @@
     </h1>
     <p class="hero-subtitle">
       AWS cloud engineer and automation builder focused on Terraform, CI/CD, platform tooling,
-      serverless APIs, containers, security, governance, observability, and production-style infrastructure.
+      serverless APIs, event-driven data products, containers, security, governance, observability, and production-style infrastructure.
     </p>
     <div class="hero-actions">
       <a href="https://linkedin.com/in/aidenrhaa" target="_blank" class="btn-primary">
@@ -1189,7 +1189,8 @@
       <div style="margin-top:8px;">
         <span class="t-orange">"impact"</span><span class="t-out">: {</span><br>
         &nbsp;&nbsp;<span class="t-orange">"terragate"</span><span class="t-out">: </span><span class="t-cyan">"Terraform PR risk gate with deterministic checks and approval-gated GitHub actions"</span><span class="t-out">,</span><br>
-        &nbsp;&nbsp;<span class="t-orange">"brokerops"</span><span class="t-out">: </span><span class="t-cyan">"ECS/RDS reconciliation platform with CI/CD, smoke tests, and cost-aware preview environments"</span><span class="t-out">,</span><br>
+        &nbsp;&nbsp;<span class="t-orange">"grantstack"</span><span class="t-out">: </span><span class="t-cyan">"API Gateway, Lambda, SQS, DynamoDB, source refresh, tokenized reports"</span><span class="t-out">,</span><br>
+        &nbsp;&nbsp;<span class="t-orange">"queuewatch"</span><span class="t-out">: </span><span class="t-cyan">"8 ISO/RTO sources, 15,800 normalized rows, 175 capacity signals"</span><span class="t-out">,</span><br>
         &nbsp;&nbsp;<span class="t-orange">"aegisdesk"</span><span class="t-out">: </span><span class="t-cyan">"live CloudOps AI control plane with Cognito, OPA, Bedrock, audit trails"</span><span class="t-out">,</span><br>
         &nbsp;&nbsp;<span class="t-orange">"super_transcriber_api"</span><span class="t-out">: </span><span class="t-cyan">"serverless transcription API with SQS, EventBridge, DynamoDB, OpenAPI, and SDK"</span><br>
         <span class="t-out">}</span>
@@ -1201,7 +1202,7 @@
   <div class="about-grid">
     <div class="about-text animate">
       <p>I'm a career-changing AWS cloud engineer with a business ownership background and hands-on builds that are public, documented, and shaped around realistic operating constraints.</p>
-      <p>My strongest work is in <strong>AWS infrastructure, Terraform automation, and platform workflows</strong>: ECS Fargate services, RDS/PostgreSQL, Terraform PR review, serverless APIs, Cognito auth, private S3 flows, CloudWatch alarms, GitHub Actions, OPA/Rego policy checks, and repeatable deployment and teardown paths.</p>
+      <p>My strongest work is in <strong>AWS infrastructure, Terraform automation, and platform workflows</strong>: ECS Fargate services, RDS/PostgreSQL, Terraform PR review, event-driven data products, serverless APIs, Cognito auth, private S3 flows, CloudWatch alarms, GitHub Actions, OPA/Rego policy checks, and repeatable deployment and teardown paths.</p>
       <p>Currently pursuing cloud engineering, DevOps, infrastructure, and platform roles where I can bring <strong>technical depth, operational judgment, and business context</strong> to teams that need builders who can ship and document real systems.</p>
     </div>
     <div class="animate" style="display:flex;flex-direction:column;gap:16px;">
@@ -1272,7 +1273,7 @@
       <div class="skill-cat-header">
         <div>
           <div class="skill-cat-name">Compute &amp; Delivery</div>
-          <p class="skill-note">Containers, functions, APIs, and CDN-backed frontends across Clearpath, BrokerOps, TerraGate, AegisDesk, Super Transcriber API, Pulpit, and PhotoScribe.</p>
+          <p class="skill-note">Containers, functions, APIs, and CDN-backed frontends across Clearpath, BrokerOps, GrantStack, QueueWatch, TerraGate, AegisDesk, Super Transcriber API, Pulpit, and PhotoScribe.</p>
         </div>
         <div class="skill-cat-icon" aria-hidden="true">01</div>
       </div>
@@ -1357,7 +1358,7 @@
       <div class="skill-cat-header">
         <div>
           <div class="skill-cat-name">Platform Ops</div>
-          <p class="skill-note">Event-driven workflows, observability, DNS/TLS, preview environments, and validated Kubernetes/GitOps infrastructure.</p>
+          <p class="skill-note">Event-driven workflows, scheduled ingestion, observability, DNS/TLS, preview environments, and validated Kubernetes/GitOps infrastructure.</p>
         </div>
         <div class="skill-cat-icon" aria-hidden="true">04</div>
       </div>
@@ -1377,7 +1378,7 @@
         <hr>
         <div>
           <div class="skill-label">Also Used</div>
-          <div class="skill-secondary">Route 53 · ACM · Helm · ArgoCD · Prometheus · Grafana · Smoke Tests</div>
+          <div class="skill-secondary">Route 53 · ACM · X-Ray · Helm · ArgoCD · Prometheus · Grafana · Smoke Tests</div>
         </div>
       </div>
     </div>
@@ -1386,7 +1387,7 @@
       <div class="skill-cat-header">
         <div>
           <div class="skill-cat-name">Data &amp; AI Services</div>
-          <p class="skill-note">Storage, relational data, vector search, OCR, transcription, compliance workflow APIs, and Bedrock-backed systems.</p>
+          <p class="skill-note">Storage, relational data, public-source ingestion, vector search, OCR, transcription, compliance workflow APIs, and Bedrock-backed systems.</p>
         </div>
         <div class="skill-cat-icon" aria-hidden="true">05</div>
       </div>
@@ -1531,6 +1532,62 @@
         <span class="tech-pill">LangGraph</span>
         <span class="tech-pill">GitHub Actions</span>
         <span class="tech-pill">AWS Lambda</span>
+      </div>
+    </div>
+
+    <!-- GrantStack -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(0,229,160,0.1);">◧</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3/grantstack" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+          <a href="https://grantstack.pages.dev" target="_blank" class="project-link" title="Live Demo">🌐</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">GrantStack — Event-Driven Incentive Intelligence</div>
+        <div class="project-desc">Live AWS serverless product for facility incentive diligence with API Gateway intake, Lambda processing, SQS/DLQ async workflow, DynamoDB reports, S3 source catalog, EventBridge source refresh, CloudWatch/X-Ray, Terraform, and private tokenized report links.</div>
+        <div class="project-metric">⚡ 202 Accepted intake · SQS processor · tokenized reports · X-Ray</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">API Gateway</span>
+        <span class="tech-pill">Lambda</span>
+        <span class="tech-pill">SQS/DLQ</span>
+        <span class="tech-pill">DynamoDB</span>
+        <span class="tech-pill">S3</span>
+        <span class="tech-pill">EventBridge</span>
+        <span class="tech-pill">Terraform</span>
+        <span class="tech-pill">X-Ray</span>
+      </div>
+    </div>
+
+    <!-- QueueWatch -->
+    <div class="project-card animate">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(0,212,255,0.1);">↯</div>
+        <div class="project-links">
+          <a href="https://github.com/manynames3/queuewatch" target="_blank" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+          <a href="https://queuewatch.pages.dev" target="_blank" class="project-link" title="Live Demo">🌐</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">QueueWatch — Serverless Grid Capacity Pipeline</div>
+        <div class="project-desc">AWS serverless data product monitoring 8 public ISO/RTO interconnection queue sources, normalizing 15,800 project rows from XLSX, CSV, XML, HTML, and PDF sources into 175 source-backed capacity signals with S3 snapshots and report artifacts.</div>
+        <div class="project-metric">⚡ 8 public sources · 15,800 rows · 175 signals · Bedrock/Textract fallback</div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-pill">Lambda</span>
+        <span class="tech-pill">DynamoDB</span>
+        <span class="tech-pill">S3</span>
+        <span class="tech-pill">EventBridge</span>
+        <span class="tech-pill">Bedrock</span>
+        <span class="tech-pill">Textract</span>
+        <span class="tech-pill">CloudWatch</span>
+        <span class="tech-pill">Terraform</span>
       </div>
     </div>
 
@@ -1698,33 +1755,6 @@
       </div>
     </div>
 
-    <!-- InvoiceBridge -->
-    <div class="project-card animate">
-      <div class="project-header">
-        <div class="project-icon" style="background:rgba(0,229,160,0.1);">≋</div>
-        <div class="project-links">
-          <a href="https://github.com/manynames3/invoicebridge-api" target="_blank" class="project-link" title="GitHub">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          </a>
-          <a href="https://invoicebridge-api.pages.dev/" target="_blank" class="project-link" title="Live Demo">🌐</a>
-        </div>
-      </div>
-      <div class="project-body">
-        <div class="project-title">InvoiceBridge API — E-Invoicing Workflow API</div>
-        <div class="project-desc">Germany-first FastAPI/PostgreSQL compliance workflow API with tenant-scoped API keys, idempotency request hashing, XRechnung-style XML output, official-validator hooks, audit hashes, Alembic migrations, multi-region metadata, Docker, and CI.</div>
-        <div class="project-metric">⚡ Tenant keys · audit evidence · XRechnung validation path</div>
-      </div>
-      <div class="project-footer">
-        <span class="tech-pill">FastAPI</span>
-        <span class="tech-pill">PostgreSQL</span>
-        <span class="tech-pill">Alembic</span>
-        <span class="tech-pill">Docker</span>
-        <span class="tech-pill">API Keys</span>
-        <span class="tech-pill">Audit Logs</span>
-        <span class="tech-pill">CI</span>
-      </div>
-    </div>
-
     <!-- RevenueCoach AI -->
     <div class="project-card animate">
       <div class="project-header">
@@ -1749,34 +1779,6 @@
         <span class="tech-pill">Transcribe</span>
         <span class="tech-pill">FastAPI</span>
         <span class="tech-pill">Next.js</span>
-      </div>
-    </div>
-
-    <!-- DocuFlow OCR -->
-    <div class="project-card animate">
-      <div class="project-header">
-        <div class="project-icon" style="background:rgba(0,229,160,0.1);">▤</div>
-        <div class="project-links">
-          <a href="https://github.com/manynames3/docuflow-ocr" target="_blank" class="project-link" title="GitHub">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          </a>
-          <a href="https://docuflow-ocr.pages.dev/" target="_blank" class="project-link" title="Live Demo">🌐</a>
-        </div>
-      </div>
-      <div class="project-body">
-        <div class="project-title">DocuFlow OCR — Serverless Invoice Processing</div>
-        <div class="project-desc">Accounts payable OCR workflow with presigned S3 intake, API Gateway, Step Functions, Textract async document analysis, Python Lambda parsing, DynamoDB job/audit tables, review APIs, SQS DLQ, CloudWatch alarms, and Terraform.</div>
-        <div class="project-metric">⚡ Step Functions · Textract · review queue · SQS DLQ</div>
-      </div>
-      <div class="project-footer">
-        <span class="tech-pill">Textract</span>
-        <span class="tech-pill">Step Functions</span>
-        <span class="tech-pill">Lambda</span>
-        <span class="tech-pill">API Gateway</span>
-        <span class="tech-pill">S3</span>
-        <span class="tech-pill">DynamoDB</span>
-        <span class="tech-pill">SQS</span>
-        <span class="tech-pill">Terraform</span>
       </div>
     </div>
 
