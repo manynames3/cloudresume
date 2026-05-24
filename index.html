@@ -54,6 +54,7 @@
       line-height: 1.6;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     img {
@@ -91,8 +92,9 @@
     }
 
     .nav {
-      width: min(100%, var(--max));
-      margin: 0 auto;
+      width: 100%;
+      max-width: 22.5rem;
+      margin: 0;
       padding: 0.75rem 1rem 0.85rem;
       display: grid;
       gap: 0.75rem;
@@ -120,8 +122,11 @@
 
     .nav-links {
       display: flex;
+      flex-wrap: wrap;
       gap: 0.35rem;
-      overflow-x: auto;
+      min-width: 0;
+      max-width: 100%;
+      overflow-x: visible;
       list-style: none;
       margin: 0;
       padding: 0 0 0.1rem;
@@ -136,7 +141,7 @@
       display: inline-flex;
       min-height: 2.25rem;
       align-items: center;
-      padding: 0.45rem 0.72rem;
+      padding: 0.4rem 0.58rem;
       border: 1px solid transparent;
       border-radius: 999px;
       color: var(--ink-soft);
@@ -156,6 +161,8 @@
 
     .section {
       padding: 4.5rem 1rem;
+      max-width: 100vw;
+      overflow-x: hidden;
     }
 
     .section.alt {
@@ -164,8 +171,10 @@
     }
 
     .wrap {
-      width: min(100%, var(--max));
-      margin: 0 auto;
+      width: 100%;
+      max-width: 22.5rem;
+      margin: 0;
+      min-width: 0;
     }
 
     .hero {
@@ -177,6 +186,10 @@
       display: grid;
       gap: 2.25rem;
       align-items: center;
+    }
+
+    .hero-layout > * {
+      min-width: 0;
     }
 
     .eyebrow {
@@ -212,6 +225,7 @@
       font-size: 2.45rem;
       line-height: 0.98;
       font-weight: 850;
+      overflow-wrap: break-word;
     }
 
     .hero-title {
@@ -219,13 +233,58 @@
       color: var(--ink-soft);
       font-size: 1.02rem;
       font-weight: 780;
+      overflow-wrap: break-word;
     }
 
     .hero-copy {
       max-width: 44rem;
-      margin-bottom: 1.35rem;
+      margin-bottom: 0.9rem;
       color: var(--ink-soft);
       font-size: 1.04rem;
+      overflow-wrap: break-word;
+    }
+
+    .hero-proof-line {
+      max-width: 44rem;
+      margin-bottom: 1rem;
+      color: var(--forest);
+      font-weight: 760;
+      font-size: 0.98rem;
+      overflow-wrap: break-word;
+    }
+
+    .proof-points {
+      display: grid;
+      gap: 0.6rem;
+      max-width: 100%;
+      margin: 0 0 1.2rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .proof-point {
+      display: grid;
+      grid-template-columns: 1.65rem minmax(0, 1fr);
+      gap: 0.65rem;
+      align-items: start;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .proof-point::before {
+      content: "";
+      width: 1.65rem;
+      height: 1.65rem;
+      border: 1px solid rgba(21, 71, 52, 0.18);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, var(--forest) 0 0.22rem, transparent 0.24rem),
+        var(--forest-soft);
+    }
+
+    .proof-point strong {
+      color: var(--ink);
+      font-weight: 800;
     }
 
     .hero-actions,
@@ -234,6 +293,11 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .hero-actions .button {
+      flex: 1 1 100%;
     }
 
     .button {
@@ -276,14 +340,46 @@
       outline: none;
     }
 
+    .best-fit {
+      margin-top: 1.2rem;
+      max-width: 100%;
+      padding: 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.7);
+    }
+
+    .best-fit-label {
+      margin-bottom: 0.55rem;
+      color: var(--forest);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .role-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      max-width: 100%;
+      overflow-x: visible;
+      scrollbar-width: none;
+    }
+
+    .role-strip::-webkit-scrollbar {
+      display: none;
+    }
+
     .hero-visual {
       display: grid;
-      grid-template-columns: 5.25rem minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: 0.9rem;
       align-items: stretch;
     }
 
     .profile-image {
+      display: none;
       overflow: hidden;
       border-radius: var(--radius);
       border: 1px solid var(--line);
@@ -331,6 +427,7 @@
       display: flex;
       flex-wrap: nowrap;
       gap: 0.55rem;
+      max-width: 100%;
       overflow-x: auto;
       padding-bottom: 0.2rem;
       scrollbar-width: none;
@@ -478,6 +575,15 @@
       overflow: hidden;
     }
 
+    .featured-projects .project-card {
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .featured-projects .project-card:hover {
+      border-color: rgba(21, 71, 52, 0.36);
+    }
+
     .project-top {
       padding: 1.05rem 1.15rem;
       border-bottom: 1px solid var(--line);
@@ -558,6 +664,50 @@
       display: grid;
       gap: 0.75rem;
       align-content: start;
+    }
+
+    .supporting-projects {
+      padding-top: 3.5rem;
+    }
+
+    .supporting-projects .section-head {
+      margin-bottom: 1.1rem;
+    }
+
+    .supporting-projects .section-head h2 {
+      max-width: 25ch;
+      font-size: 1.45rem;
+      line-height: 1.18;
+    }
+
+    .supporting-projects .additional-grid {
+      gap: 0.75rem;
+    }
+
+    .supporting-projects .mini-project {
+      gap: 0.55rem;
+      padding: 0.9rem;
+      background: rgba(255,255,255,0.78);
+      box-shadow: none;
+    }
+
+    .supporting-projects .mini-project h3 {
+      margin-bottom: 0;
+      font-size: 0.98rem;
+    }
+
+    .supporting-projects .mini-project p {
+      font-size: 0.88rem;
+    }
+
+    .supporting-projects .stack {
+      gap: 0.32rem;
+    }
+
+    .supporting-projects .stack .tag {
+      min-height: 1.55rem;
+      padding: 0.2rem 0.45rem;
+      font-size: 0.7rem;
     }
 
     .mini-project .link-row {
@@ -687,7 +837,16 @@
     }
 
     @media (min-width: 700px) {
+      .wrap {
+        width: min(100%, var(--max));
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+
       .nav {
+        width: min(100%, var(--max));
+        max-width: var(--max);
+        margin: 0 auto;
         padding: 0.9rem 1.25rem;
         grid-template-columns: auto 1fr;
         align-items: center;
@@ -722,13 +881,39 @@
         font-size: 1.12rem;
       }
 
+      .proof-points {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+
+      .proof-point {
+        grid-template-columns: 1fr;
+        padding: 0.9rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255,255,255,0.74);
+      }
+
       .cred-strip {
+        flex-wrap: wrap;
+        overflow-x: visible;
+      }
+
+      .hero-actions .button {
+        flex: 0 1 auto;
+      }
+
+      .role-strip {
         flex-wrap: wrap;
         overflow-x: visible;
       }
 
       .hero-visual {
         grid-template-columns: 1fr;
+      }
+
+      .profile-image {
+        display: block;
       }
 
       .profile-image img {
@@ -756,6 +941,10 @@
       .additional-grid,
       .skills-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .supporting-projects .section-head h2 {
+        font-size: 1.8rem;
       }
 
       .section-head h2,
@@ -807,15 +996,35 @@
             <h1 id="hero-heading">I build cloud systems for real business workflows.</h1>
             <p class="hero-title">AWS Cloud Engineer | Infrastructure, Automation &amp; Platform Engineering</p>
             <p class="hero-copy">I design secure AWS infrastructure, automation, and internal platforms that reduce manual work, improve reliability, and turn messy operational problems into production-style systems.</p>
+            <p class="hero-proof-line">Public AWS portfolio across Terraform, ECS Fargate, EKS/GitOps, Lambda/serverless, CloudOps governance, and business workflow automation.</p>
+            <ul class="proof-points" aria-label="Portfolio proof points">
+              <li class="proof-point"><span><strong>Public project evidence</strong> with repos, live demos, tests, and teardown documentation.</span></li>
+              <li class="proof-point"><span><strong>Verified credentials</strong> across AWS Solutions Architect, AWS Developer, and Terraform.</span></li>
+              <li class="proof-point"><span><strong>Operator context</strong> translating real workflows into cloud architecture and automation.</span></li>
+            </ul>
             <div class="hero-actions" aria-label="Primary actions">
               <a class="button primary" href="#projects">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                View Engineering Portfolio
+                View Featured Projects
+              </a>
+              <a class="button secondary" href="Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf" download>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download Resume
               </a>
               <a class="button secondary" href="mailto:aidenrhaacloud@gmail.com">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Contact Me
               </a>
+            </div>
+            <div class="best-fit" aria-label="Best fit roles">
+              <div class="best-fit-label">Best fit</div>
+              <div class="role-strip">
+                <span class="tag">AWS Cloud Engineer</span>
+                <span class="tag">Cloud Infrastructure Engineer</span>
+                <span class="tag">Platform Engineer</span>
+                <span class="tag">DevOps Engineer</span>
+                <span class="tag">Infrastructure Automation Engineer</span>
+              </div>
             </div>
             <div class="cred-strip" aria-label="Credibility and technology strip">
               <span>AWS Certified Solutions Architect Associate</span>
@@ -907,7 +1116,7 @@
           <p>Each project is framed around the operational problem, the implementation path, and the value a team could get from the system.</p>
         </div>
 
-        <div class="project-grid">
+        <div class="project-grid featured-projects">
           <article class="project-card">
             <div class="project-top">
               <p class="project-label">Platform-style risk gate</p>
@@ -1038,11 +1247,11 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="additional-heading">
+    <section class="section supporting-projects" aria-labelledby="additional-heading">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">Additional Cloud Projects</p>
-          <h2 id="additional-heading">More public builds across serverless, AI, data, and workflow automation.</h2>
+          <h2 id="additional-heading">Supporting project evidence across serverless, AI, data, and workflow automation.</h2>
         </div>
         <div class="additional-grid">
           <article class="mini-project">
