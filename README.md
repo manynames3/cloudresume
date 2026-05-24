@@ -3,6 +3,7 @@
 Static personal portfolio site for Aiden Rhaa, positioned as a product-minded AWS infrastructure engineer focused on production-style AWS systems, infrastructure automation, platform engineering, governance, observability, and business workflow automation.
 
 - GitHub Pages site: https://manynames3.github.io/cloudresume/
+- Cloudflare Pages site: https://cloudresume-91x.pages.dev/
 - Repository: https://github.com/manynames3/cloudresume
 - GitHub profile: https://github.com/manynames3
 - LinkedIn: https://linkedin.com/in/aidenrhaa
@@ -67,6 +68,14 @@ Suggested Cloudflare Pages settings:
 ```text
 Build command: none
 Build output directory: ./
+```
+
+Current Cloudflare Pages deployment:
+
+```text
+Project: cloudresume
+URL: https://cloudresume-91x.pages.dev/
+Deployment method: Wrangler direct upload from the pushed Git commit
 ```
 
 To publish an update through Git:
