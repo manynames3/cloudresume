@@ -1,26 +1,26 @@
 # Cloud Resume
 
-Static cloud resume and portfolio site for Aiden Rhaa, focused on AWS cloud engineering, DevOps automation, Terraform infrastructure, platform tooling, serverless systems, CI/CD, containers, and production-style cloud project documentation.
+Static personal portfolio site for Aiden Rhaa, positioned as a product-minded AWS infrastructure engineer focused on production-style AWS systems, infrastructure automation, platform engineering, governance, observability, and business workflow automation.
 
-- Live site: https://manynames3.github.io/cloudresume/
+- GitHub Pages site: https://manynames3.github.io/cloudresume/
 - Repository: https://github.com/manynames3/cloudresume
 - GitHub profile: https://github.com/manynames3
 - LinkedIn: https://linkedin.com/in/aidenrhaa
 
 ## Overview
 
-This repository hosts a single-page resume portfolio deployed with GitHub Pages. The page highlights cloud engineering positioning, certifications, technical skills, public project work, professional experience, and contact links.
+This repository hosts a single-page portfolio deployed from GitHub. The page highlights cloud engineering positioning, certifications, technical skills, public project work, operator background, and contact links.
 
-The site is intentionally simple: plain HTML, embedded CSS, lightweight JavaScript, and a local headshot image. There is no framework, build step, package manager, or external hosting dependency beyond GitHub Pages.
+The site is intentionally simple: plain HTML, embedded CSS, and a local headshot image. There is no framework, build step, package manager, or runtime dependency.
 
 ## Featured Content
 
-- AWS-focused cloud and DevOps engineer profile.
-- Public cloud projects using Terraform, Terraform plan review, ECS Fargate, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, EKS, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, CloudWatch, X-Ray, SQS/DLQ, EventBridge, OpenAPI, public-data ingestion, and platform governance workflows.
-- Featured infrastructure project: Clearpath AWS Fargate Lead Intelligence API.
-- Top project cards for TerraGate, GrantStack, QueueWatch, BrokerOps, AegisDesk, Super Transcriber API, Pulpit V2, PhotoScribe AI, Pulpit, and RevenueCoach AI.
+- Product-minded AWS infrastructure engineering profile.
+- Public cloud projects using Terraform, Terraform plan review, ECS Fargate, EKS/GitOps, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, CloudWatch, SQS, EventBridge, and platform governance workflows.
+- Featured project cards for TerraGate, AegisDesk, Clearpath Fargate API, and Pulpit V2.
+- Additional project cards for PhotoScribe AI, Pulpit, DocuFlow OCR, FaceID, Super Transcriber, and Market Scout.
 - Downloadable ATS/human-optimized resume PDF.
-- Skills, certifications, experience, target roles, and contact links.
+- Skills, certifications, operator background, target roles, and contact links.
 
 ## Repository Structure
 
@@ -54,23 +54,30 @@ http://localhost:8000/
 
 ## Deployment
 
-The site is deployed with GitHub Pages from the `master` branch root.
+The site is a static deploy from the `master` branch root. GitHub Pages can serve it directly, and Cloudflare Pages can deploy the same repository with no build command.
 
-Current public URL:
+GitHub Pages URL:
 
 ```text
 https://manynames3.github.io/cloudresume/
 ```
 
-To publish an update:
+Suggested Cloudflare Pages settings:
+
+```text
+Build command: none
+Build output directory: ./
+```
+
+To publish an update through Git:
 
 ```sh
 git add index.html Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf aiden_rhaa_headshot__resized_.jpg README.md
-git commit -m "Update cloud resume"
+git commit -m "Update portfolio landing page"
 git push origin master
 ```
 
-GitHub Pages will rebuild the static site after the push.
+GitHub Pages will rebuild after the push. A connected Cloudflare Pages project will also deploy from the pushed branch.
 
 ## Editing Notes
 
