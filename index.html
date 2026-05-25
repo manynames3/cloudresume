@@ -602,52 +602,110 @@
 
     .model-grid {
       display: grid;
-      gap: 1rem;
+      gap: 1.25rem;
+      align-items: start;
     }
 
-    .model-statement {
-      padding: 1.35rem;
+    .owner-lens {
+      display: grid;
+      gap: 1rem;
+      padding: 1.25rem;
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--radius);
       background: rgba(255, 255, 255, 0.06);
       box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
     }
 
-    .model-statement p {
+    .model-label {
+      margin: 0;
+      color: #93c5fd;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .owner-lens h3 {
       margin: 0;
       color: #fff;
-      font-size: clamp(1.3rem, 6vw, 3.25rem);
+      font-size: clamp(1.55rem, 5vw, 2.55rem);
       line-height: 1.05;
       font-weight: 780;
-      letter-spacing: 0;
+    }
+
+    .owner-lens p:not(.model-label) {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1rem;
+    }
+
+    .optimization-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-top: 0.25rem;
+    }
+
+    .optimization-strip span {
+      display: inline-flex;
+      min-height: 2rem;
+      align-items: center;
+      border: 1px solid rgba(147, 197, 253, 0.22);
+      border-radius: 999px;
+      background: rgba(147, 197, 253, 0.08);
+      color: #dbeafe;
+      padding: 0.32rem 0.62rem;
+      font-size: 0.76rem;
+      font-weight: 760;
     }
 
     .model-steps {
+      position: relative;
       display: grid;
       gap: 0.75rem;
     }
 
+    .model-steps::before {
+      content: "";
+      position: absolute;
+      top: 1.25rem;
+      bottom: 1.25rem;
+      left: 1.82rem;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(147, 197, 253, 0), rgba(147, 197, 253, 0.5), rgba(147, 197, 253, 0));
+    }
+
     .model-step {
+      position: relative;
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 0.8rem;
-      padding: 1rem;
+      grid-template-columns: 2.1rem minmax(0, 1fr);
+      gap: 0.95rem;
+      padding: 1rem 1.05rem;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 1rem;
       background: rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(18px);
     }
 
     .model-step span {
+      display: inline-grid;
+      place-items: center;
+      width: 2.1rem;
+      height: 2.1rem;
+      border: 1px solid rgba(147, 197, 253, 0.28);
+      border-radius: 0.75rem;
+      background: rgba(147, 197, 253, 0.1);
       color: #bfdbfe;
       font-family: var(--mono);
       font-size: 0.72rem;
       font-weight: 850;
+      z-index: 1;
     }
 
     .model-step h3 {
       margin: 0 0 0.2rem;
       color: #fff;
-      font-size: 1rem;
+      font-size: 1.05rem;
       line-height: 1.25;
     }
 
@@ -655,6 +713,20 @@
       margin: 0;
       color: rgba(255, 255, 255, 0.68);
       font-size: 0.92rem;
+    }
+
+    .model-evidence {
+      margin-top: 0.25rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(16, 185, 129, 0.18);
+      border-radius: 1rem;
+      background: rgba(16, 185, 129, 0.08);
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.92rem;
+    }
+
+    .model-evidence strong {
+      color: #a7f3d0;
     }
 
     .outcome-grid {
@@ -1074,7 +1146,7 @@
       }
 
       .model-grid {
-        grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+        grid-template-columns: minmax(0, 0.82fr) minmax(20rem, 1.18fr);
         align-items: start;
       }
 
@@ -1288,31 +1360,42 @@
           <p>Cloud systems should be judged by how well they reduce operational drag, make change safer, and give teams better control.</p>
         </div>
         <div class="model-grid">
-          <div class="model-statement">
-            <p>My owner's view of engineering comes from building systems I needed to run real businesses. The architecture matters, but only after the workflow is understood.</p>
+          <div class="owner-lens">
+            <p class="model-label">Owner's Lens</p>
+            <h3>I design infrastructure from the workflow outward.</h3>
+            <p>What needs to be requested, approved, released, observed, audited, recovered, or handed off determines the architecture.</p>
+            <div class="optimization-strip" aria-label="Operating priorities">
+              <span>Reliability</span>
+              <span>Reviewability</span>
+              <span>Cost control</span>
+              <span>Auditability</span>
+              <span>Workflow speed</span>
+              <span>Maintainability</span>
+            </div>
           </div>
           <div class="model-steps">
             <article class="model-step">
               <span>01</span>
               <div>
-                <h3>Start with the workflow.</h3>
-                <p>What is being requested, approved, released, escalated, measured, or handed off? That tells me what the system has to protect.</p>
+                <h3>Messy workflow</h3>
+                <p>Identify what is manual, risky, unclear, duplicated, slow, or dependent on tribal knowledge.</p>
               </div>
             </article>
             <article class="model-step">
               <span>02</span>
               <div>
-                <h3>Design for the operating path.</h3>
-                <p>I prioritize reviewability, rollback, least-privilege access, auditability, cost controls, observability, and known failure modes.</p>
+                <h3>Operating constraints</h3>
+                <p>Define what needs governance, rollback, observability, least-privilege access, cost controls, and auditability.</p>
               </div>
             </article>
             <article class="model-step">
               <span>03</span>
               <div>
-                <h3>Leave evidence behind.</h3>
-                <p>Terraform, CI checks, runbooks, ADRs, teardown notes, security reasoning, and documented limitations make the work inspectable.</p>
+                <h3>Production evidence</h3>
+                <p>Leave behind infrastructure as code, policy checks, logs, runbooks, ADRs, teardown notes, and documented tradeoffs.</p>
               </div>
             </article>
+            <div class="model-evidence"><strong>Result:</strong> systems that can be reviewed, operated, improved, and handed off without guesswork.</div>
           </div>
         </div>
       </div>
