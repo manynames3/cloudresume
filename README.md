@@ -10,16 +10,18 @@ Static personal portfolio site for Aiden Rhaa, positioned as a product-minded AW
 
 ## Overview
 
-This repository hosts a single-page portfolio deployed from GitHub. The page highlights cloud engineering positioning, certifications, technical skills, public project work, operator background, and contact links.
+This repository hosts a single-page portfolio deployed from GitHub. The page presents Aiden's cloud engineering brand, operating thesis, operator background, public project work, technical capabilities, and contact links.
 
 The site is intentionally simple: plain HTML, embedded CSS, and a local headshot image. There is no framework, build step, package manager, or runtime dependency.
 
 ## Featured Content
 
 - Product-minded AWS infrastructure engineering profile.
+- Brand-forward operating thesis around workflow-first cloud infrastructure, reviewability, governance, observability, and cost-aware operations.
+- Earlier operator background section connecting business workflow ownership to infrastructure decisions.
 - Public cloud projects using Terraform, Terraform plan review, ECS Fargate, EKS/GitOps, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, CloudWatch, SQS, EventBridge, and platform governance workflows.
-- Featured project cards for AegisDesk, Pulpit Platform Evolution, Clearpath Fargate API, TerraGate, and GrantStack.
-- A best-review path that points busy reviewers to AegisDesk, Pulpit, and Clearpath first.
+- Featured project cards framed as proof of the operating model: AegisDesk, Pulpit Platform Evolution, Clearpath Fargate API, TerraGate, and GrantStack.
+- A project reading path that points viewers to AegisDesk, Pulpit, and Clearpath first.
 - Additional project cards for PursuitDesk, BrokerOps Platform, InvoiceBridge API, PhotoScribe AI, Super Transcriber API, and DocuFlow OCR.
 - Downloadable ATS/human-optimized resume PDF.
 - Skills, certifications, operator background, target roles, and contact links.

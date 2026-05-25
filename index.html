@@ -123,7 +123,8 @@
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem;
+      justify-content: space-between;
+      gap: 0.18rem;
       min-width: 0;
       max-width: 100%;
       overflow-x: visible;
@@ -141,12 +142,12 @@
       display: inline-flex;
       min-height: 2.25rem;
       align-items: center;
-      padding: 0.4rem 0.58rem;
+      padding: 0.34rem 0.28rem;
       border: 1px solid transparent;
       border-radius: 999px;
       color: var(--ink-soft);
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 650;
       white-space: nowrap;
     }
@@ -253,40 +254,6 @@
       overflow-wrap: break-word;
     }
 
-    .proof-points {
-      display: grid;
-      gap: 0.6rem;
-      max-width: 100%;
-      margin: 0 0 1.2rem;
-      padding: 0;
-      list-style: none;
-    }
-
-    .proof-point {
-      display: grid;
-      grid-template-columns: 1.65rem minmax(0, 1fr);
-      gap: 0.65rem;
-      align-items: start;
-      color: var(--ink-soft);
-      font-size: 0.92rem;
-    }
-
-    .proof-point::before {
-      content: "";
-      width: 1.65rem;
-      height: 1.65rem;
-      border: 1px solid rgba(21, 71, 52, 0.18);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at center, var(--forest) 0 0.22rem, transparent 0.24rem),
-        var(--forest-soft);
-    }
-
-    .proof-point strong {
-      color: var(--ink);
-      font-weight: 800;
-    }
-
     .hero-actions,
     .cta-actions,
     .link-row {
@@ -340,16 +307,17 @@
       outline: none;
     }
 
-    .best-fit {
+    .brand-thesis {
       margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
       max-width: 100%;
-      padding: 0.95rem;
+      padding: 1rem;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(255,255,255,0.7);
     }
 
-    .best-fit-label {
+    .thesis-label {
       margin-bottom: 0.55rem;
       color: var(--forest);
       font-family: var(--mono);
@@ -358,17 +326,37 @@
       text-transform: uppercase;
     }
 
-    .role-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      max-width: 100%;
-      overflow-x: visible;
-      scrollbar-width: none;
+    .brand-thesis p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 0.98rem;
+      font-weight: 690;
+      line-height: 1.55;
     }
 
-    .role-strip::-webkit-scrollbar {
-      display: none;
+    .thesis-grid {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+
+    .thesis-point {
+      display: grid;
+      grid-template-columns: 0.55rem minmax(0, 1fr);
+      gap: 0.55rem;
+      align-items: start;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .thesis-point::before {
+      content: "";
+      width: 0.42rem;
+      height: 0.42rem;
+      margin-top: 0.48rem;
+      border-radius: 50%;
+      background: var(--forest);
     }
 
     .hero-visual {
@@ -898,6 +886,12 @@
 
       .nav-links {
         justify-content: flex-end;
+        gap: 0.35rem;
+      }
+
+      .nav-links a {
+        padding: 0.4rem 0.58rem;
+        font-size: 0.88rem;
       }
 
       .section {
@@ -917,31 +911,17 @@
         font-size: 1.12rem;
       }
 
-      .proof-points {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.75rem;
-      }
-
-      .proof-point {
-        grid-template-columns: 1fr;
-        padding: 0.9rem;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: rgba(255,255,255,0.74);
-      }
-
       .cred-strip {
         flex-wrap: wrap;
         overflow-x: visible;
       }
 
-      .hero-actions .button {
-        flex: 0 1 auto;
+      .thesis-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .role-strip {
-        flex-wrap: wrap;
-        overflow-x: visible;
+      .hero-actions .button {
+        flex: 0 1 auto;
       }
 
       .hero-visual {
@@ -1020,8 +1000,8 @@
       </div>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -1037,12 +1017,16 @@
             <h1 id="hero-heading">I build cloud systems for real business workflows.</h1>
             <p class="hero-title">AWS Cloud Engineer | Infrastructure, Automation &amp; Platform Engineering</p>
             <p class="hero-copy">I design secure AWS infrastructure, automation, and internal platforms that reduce manual work, improve reliability, and turn messy operational problems into production-style systems.</p>
-            <p class="hero-proof-line">Public AWS systems built for technical review: live demos, Terraform, CI/CD, runbooks, security notes, cost reasoning, and known limitations.</p>
-            <ul class="proof-points" aria-label="Portfolio proof points">
-              <li class="proof-point"><span><strong>Reviewer-ready evidence</strong> across CloudOps, ECS Fargate, EKS/GitOps, Lambda/serverless, RDS, Cognito, WAF, and CloudWatch.</span></li>
-              <li class="proof-point"><span><strong>Verified credentials</strong> across AWS Solutions Architect, AWS Developer, and Terraform.</span></li>
-              <li class="proof-point"><span><strong>Operator context</strong> translating real workflows into cloud architecture and automation.</span></li>
-            </ul>
+            <p class="hero-proof-line">My work starts with ownership, release paths, failure modes, cost pressure, and the handoffs a real operation has to survive.</p>
+            <div class="brand-thesis" aria-label="Operating thesis">
+              <div class="thesis-label">Operating thesis</div>
+              <p>Cloud infrastructure is only valuable when it makes the business easier to run: safer releases, clearer ownership, lower operational drag, better visibility, and systems teams can actually maintain.</p>
+              <div class="thesis-grid">
+                <span class="thesis-point">Start with the workflow before choosing the AWS service.</span>
+                <span class="thesis-point">Design for reviewability, rollback, auditability, and cost awareness.</span>
+                <span class="thesis-point">Build enough platform discipline without over-engineering the first version.</span>
+              </div>
+            </div>
             <div class="hero-actions" aria-label="Primary actions">
               <a class="button primary" href="#projects">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1056,16 +1040,6 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Contact Me
               </a>
-            </div>
-            <div class="best-fit" aria-label="Best fit roles">
-              <div class="best-fit-label">Best fit</div>
-              <div class="role-strip">
-                <span class="tag">AWS Cloud Engineer</span>
-                <span class="tag">Cloud Infrastructure Engineer</span>
-                <span class="tag">Platform Engineer</span>
-                <span class="tag">DevOps Engineer</span>
-                <span class="tag">Infrastructure Automation Engineer</span>
-              </div>
             </div>
             <div class="cred-strip" aria-label="Credibility and technology strip">
               <span>AWS Certified Solutions Architect Associate</span>
@@ -1101,27 +1075,49 @@
     <section class="section alt" id="about" aria-labelledby="about-heading">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">Engineering Philosophy</p>
+          <p class="eyebrow">How I Think</p>
           <h2 id="about-heading">Infrastructure is only valuable when it improves the operation.</h2>
-          <p>Operational systems for real business workflows.</p>
+          <p>My brand is not a stack list. It is a way of working: translate messy operational problems into cloud systems that are easier to review, operate, govern, and improve.</p>
         </div>
         <div class="philosophy">
           <div class="lead-copy">
-            <p>My background as a business operator gives me an owner's view of engineering: infrastructure is not the end goal; better workflows, safer releases, lower costs, clearer visibility, and faster execution are.</p>
+            <p>My background as a business operator gives me an owner's view of engineering: infrastructure is not the end goal. Better workflows, safer releases, lower costs, clearer visibility, and faster execution are.</p>
           </div>
           <ul class="proof-list">
-            <li>I build around constraints that matter after launch: reliability, cost, workflow speed, governance, visibility, and maintainability.</li>
-            <li>I translate business workflow problems into infrastructure, automation, data handoff, and release processes that teams can actually operate.</li>
-            <li>I favor production-style patterns: least-privilege access, private networking, auditability, policy checks, observability, and documented teardown paths.</li>
+            <li>Start with the real workflow: intake, approvals, release paths, incident response, cost review, and the people who own the handoff.</li>
+            <li>Choose infrastructure patterns based on operating constraints, not on what sounds most impressive in a portfolio.</li>
+            <li>Make systems legible through Terraform, CI checks, runbooks, audit trails, observability, ADRs, and documented limitations.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="solve-heading">
+    <section class="section" id="experience" aria-labelledby="experience-heading">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">What I Solve</p>
+          <p class="eyebrow">Operator Background</p>
+          <h2 id="experience-heading">Built from real operational problems.</h2>
+          <p>This is the difference in the work: the systems are not cloud labs arranged around services. They come from the pressure of actual workflows, handoffs, clients, data, and business operations.</p>
+        </div>
+        <div class="operator">
+          <div class="operator-copy">
+            <p>My engineering path started by building systems I needed to run real businesses: lead intake, public-record research, CRM/API workflows, client-facing websites, automation, and structured data handoff.</p>
+            <p>That operator experience now informs how I design cloud systems: practical, reliable, cost-aware, and built around actual workflows.</p>
+          </div>
+          <ul class="experience-list">
+            <li><strong>Founder / Automation &amp; Systems Lead</strong><span>Clearpath Property Group / Boston Probate Solutions, including lead intake, county research, CRM/API automation, AI prompt orchestration, and structured handoff.</span></li>
+            <li><strong>200+ client projects</strong><span>Photography and visual business operations with technical delivery, vendor coordination, client communication, and workflow ownership.</span></li>
+            <li><strong>Web and infrastructure operations</strong><span>Web properties, DNS, SSL/TLS, Cloudflare, hosting, GitHub-based deployments, Supabase/Netlify, and WordPress administration.</span></li>
+            <li><strong>Automation roots</strong><span>Python ingestion workflows, CRM/API automation, data normalization, public-record research, and AI-assisted workflow design.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" aria-labelledby="solve-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">What This Produces</p>
           <h2 id="solve-heading">Cloud work tied to operational outcomes.</h2>
         </div>
         <div class="cards">
@@ -1149,12 +1145,12 @@
       </div>
     </section>
 
-    <section class="section alt" id="projects" aria-labelledby="projects-heading">
+    <section class="section" id="projects" aria-labelledby="projects-heading">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">Featured Engineering Projects</p>
-          <h2 id="projects-heading">Public AWS systems built for technical review.</h2>
-          <p>These projects are structured so a reviewer can inspect the architecture, deployment model, operational tradeoffs, CI checks, runbooks, and known limitations without guessing what was actually built.</p>
+          <p class="eyebrow">Proof of the Operating Model</p>
+          <h2 id="projects-heading">Projects that show the thesis in production-style systems.</h2>
+          <p>Each project maps a real workflow constraint to an architecture, control path, and operating model: what can fail, what needs visibility, what needs approval, and what a team would need to maintain it.</p>
         </div>
 
         <div class="project-grid featured-projects">
@@ -1350,19 +1346,19 @@
           </article>
         </div>
 
-        <div class="review-path" aria-label="Best repository review path">
+        <div class="review-path" aria-label="Project reading path">
           <article class="review-card">
-            <span>Review first</span>
+            <span>Start here</span>
             <h3>AegisDesk</h3>
             <p>CloudOps governance, AWS control-plane thinking, policy checks, auditability, and operational visibility.</p>
           </article>
           <article class="review-card">
-            <span>Review second</span>
+            <span>Then compare</span>
             <h3>Pulpit Platform Evolution</h3>
             <p>Serverless AWS product engineering plus EKS/GitOps migration discipline from a proven V1 system.</p>
           </article>
           <article class="review-card">
-            <span>Review third</span>
+            <span>Then inspect</span>
             <h3>Clearpath</h3>
             <p>Production-style ECS Fargate, RDS PostgreSQL, CloudFront/WAF, private networking, and Terraform evidence.</p>
           </article>
@@ -1370,11 +1366,11 @@
       </div>
     </section>
 
-    <section class="section supporting-projects" aria-labelledby="additional-heading">
+    <section class="section alt supporting-projects" aria-labelledby="additional-heading">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">Additional Cloud Projects</p>
-          <h2 id="additional-heading">Supporting evidence across business workflows, serverless, AI, and data systems.</h2>
+          <p class="eyebrow">Additional Proof Points</p>
+          <h2 id="additional-heading">More systems built around real workflow constraints.</h2>
         </div>
         <div class="additional-grid">
           <article class="mini-project">
@@ -1417,11 +1413,11 @@
       </div>
     </section>
 
-    <section class="section alt" id="skills" aria-labelledby="skills-heading">
+    <section class="section" id="skills" aria-labelledby="skills-heading">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">Technical Skills</p>
-          <h2 id="skills-heading">Tools grouped by how they support operations.</h2>
+          <p class="eyebrow">Capability Map</p>
+          <h2 id="skills-heading">Technical range, kept in service of the workflow.</h2>
         </div>
         <div class="skills-grid">
           <article class="skill-group">
@@ -1458,31 +1454,10 @@
       </div>
     </section>
 
-    <section class="section" id="experience" aria-labelledby="experience-heading">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Operator Background</p>
-          <h2 id="experience-heading">Built from real operational problems.</h2>
-        </div>
-        <div class="operator">
-          <div class="operator-copy">
-            <p>My engineering path started by building systems I needed to run real businesses: lead intake, public-record research, CRM/API workflows, client-facing websites, automation, and structured data handoff.</p>
-            <p>That operator experience now informs how I design cloud systems: practical, reliable, cost-aware, and built around actual workflows.</p>
-          </div>
-          <ul class="experience-list">
-            <li><strong>Founder / Automation &amp; Systems Lead</strong><span>Clearpath Property Group / Boston Probate Solutions, including lead intake, county research, CRM/API automation, AI prompt orchestration, and structured handoff.</span></li>
-            <li><strong>200+ client projects</strong><span>Photography and visual business operations with technical delivery, vendor coordination, client communication, and workflow ownership.</span></li>
-            <li><strong>Web and infrastructure operations</strong><span>Web properties, DNS, SSL/TLS, Cloudflare, hosting, GitHub-based deployments, Supabase/Netlify, and WordPress administration.</span></li>
-            <li><strong>Automation roots</strong><span>Python ingestion workflows, CRM/API automation, data normalization, public-record research, and AI-assisted workflow design.</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
     <section class="section alt" id="contact" aria-labelledby="contact-heading">
       <div class="wrap">
         <div class="cta">
-          <p class="eyebrow">Resume / Contact</p>
+          <p class="eyebrow">Next Conversation</p>
           <h2 id="contact-heading">Need an AWS engineer who can connect infrastructure to real operational value?</h2>
           <p>I am open to cloud infrastructure, platform engineering, DevOps, and AWS engineering roles where ownership, reliability, automation, and business context matter.</p>
           <div class="cta-actions">
