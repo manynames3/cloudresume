@@ -714,6 +714,42 @@
       margin-top: 0.1rem;
     }
 
+    .review-path {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .review-card {
+      display: grid;
+      gap: 0.45rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.82);
+      box-shadow: 0 10px 28px rgba(20, 23, 20, 0.05);
+    }
+
+    .review-card span {
+      color: var(--forest);
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      font-weight: 820;
+      text-transform: uppercase;
+    }
+
+    .review-card h3 {
+      margin-bottom: 0;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .review-card p {
+      margin-bottom: 0;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+
     .skill-group {
       display: grid;
       gap: 0.75rem;
@@ -939,7 +975,8 @@
 
       .cards,
       .additional-grid,
-      .skills-grid {
+      .skills-grid,
+      .review-path {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -963,6 +1000,10 @@
       }
 
       .additional-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .review-path {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
@@ -996,9 +1037,9 @@
             <h1 id="hero-heading">I build cloud systems for real business workflows.</h1>
             <p class="hero-title">AWS Cloud Engineer | Infrastructure, Automation &amp; Platform Engineering</p>
             <p class="hero-copy">I design secure AWS infrastructure, automation, and internal platforms that reduce manual work, improve reliability, and turn messy operational problems into production-style systems.</p>
-            <p class="hero-proof-line">Public AWS portfolio across Terraform, ECS Fargate, EKS/GitOps, Lambda/serverless, CloudOps governance, and business workflow automation.</p>
+            <p class="hero-proof-line">Public AWS systems built for technical review: live demos, Terraform, CI/CD, runbooks, security notes, cost reasoning, and known limitations.</p>
             <ul class="proof-points" aria-label="Portfolio proof points">
-              <li class="proof-point"><span><strong>Public project evidence</strong> with repos, live demos, tests, and teardown documentation.</span></li>
+              <li class="proof-point"><span><strong>Reviewer-ready evidence</strong> across CloudOps, ECS Fargate, EKS/GitOps, Lambda/serverless, RDS, Cognito, WAF, and CloudWatch.</span></li>
               <li class="proof-point"><span><strong>Verified credentials</strong> across AWS Solutions Architect, AWS Developer, and Terraform.</span></li>
               <li class="proof-point"><span><strong>Operator context</strong> translating real workflows into cloud architecture and automation.</span></li>
             </ul>
@@ -1112,71 +1153,85 @@
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">Featured Engineering Projects</p>
-          <h2 id="projects-heading">Production-style AWS systems with public evidence.</h2>
-          <p>Each project is framed around the operational problem, the implementation path, and the value a team could get from the system.</p>
+          <h2 id="projects-heading">Public AWS systems built for technical review.</h2>
+          <p>These projects are structured so a reviewer can inspect the architecture, deployment model, operational tradeoffs, CI checks, runbooks, and known limitations without guessing what was actually built.</p>
         </div>
 
         <div class="project-grid featured-projects">
           <article class="project-card">
             <div class="project-top">
-              <p class="project-label">Platform-style risk gate</p>
-              <h3>TerraGate - Terraform PR Risk Gate</h3>
-              <p class="project-positioning">A platform-style tool for safer infrastructure change review.</p>
-            </div>
-            <div class="project-body">
-              <div class="project-fact">
-                <h4>Problem</h4>
-                <p>Infrastructure PRs are hard to review manually, especially when risk, cost, security, and blast radius are unclear.</p>
-              </div>
-              <div class="project-fact">
-                <h4>Solution</h4>
-                <p>Built an AI-assisted Terraform PR review platform using FastAPI, Next.js, PostgreSQL, LangGraph, Terraform plan JSON parsing, deterministic policy checks, GitHub checks/comments, sensitive-value redaction, audit persistence, and approval-gated actions.</p>
-              </div>
-              <div class="project-fact">
-                <h4>Operational Value</h4>
-                <p>Improves release discipline, reduces infrastructure review risk, and gives teams clearer governance before changes are applied.</p>
-              </div>
-              <div>
-                <h4>Stack</h4>
-                <div class="stack">
-                  <span class="tag">Terraform</span><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">LangGraph</span><span class="tag">GitHub Actions</span><span class="tag">Docker Compose</span><span class="tag">Cloudflare Workers</span><span class="tag">AWS API Gateway/Lambda path</span>
-                </div>
-              </div>
-              <div class="link-row">
-                <a class="text-link" href="https://github.com/manynames3/terragate" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a class="text-link" href="https://terragate.hangi87.workers.dev/" target="_blank" rel="noopener noreferrer">Live Demo</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-top">
-              <p class="project-label">Governed CloudOps control plane</p>
+              <p class="project-label">Highest-signal CloudOps repo</p>
               <h3>AegisDesk - Self-Hosted CloudOps AI Control Plane</h3>
               <p class="project-positioning">A governed CloudOps control plane for incident triage, access requests, ticket workflows, and cost-review governance.</p>
             </div>
             <div class="project-body">
               <div class="project-fact">
                 <h4>Problem</h4>
-                <p>Cloud operations can become fragmented across tickets, dashboards, policies, and tribal knowledge.</p>
+                <p>Cloud operations can become fragmented across tickets, dashboards, policies, cost tools, and tribal knowledge.</p>
               </div>
               <div class="project-fact">
                 <h4>Solution</h4>
-                <p>Built a live self-hosted CloudOps AI control plane on AWS using Next.js, FastAPI, Cognito/JWKS auth, OPA/Rego, Bedrock routing, DynamoDB, AWS Cost Explorer, OpenTelemetry, MCP tools, and Terraform.</p>
+                <p>Built a live self-hosted CloudOps AI control plane on AWS using Next.js, FastAPI, Cognito/JWKS auth, OPA/Rego, Bedrock routing, DynamoDB, AWS Cost Explorer, CloudWatch, OpenTelemetry, MCP tools, Jira/ServiceNow adapters, and Terraform.</p>
               </div>
               <div class="project-fact">
                 <h4>Operational Value</h4>
                 <p>Improves auditability, request visibility, trusted-source grounding, policy enforcement, and operational control.</p>
               </div>
               <div>
+                <h4>Proof</h4>
+                <div class="stack">
+                  <span class="tag">Live AWS demo</span><span class="tag">CI + deploy workflows</span><span class="tag">Terraform</span><span class="tag">OPA/Rego</span><span class="tag">runbooks</span><span class="tag">security docs</span><span class="tag">evidence docs</span>
+                </div>
+              </div>
+              <div>
                 <h4>Stack</h4>
                 <div class="stack">
-                  <span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Next.js</span><span class="tag">FastAPI</span><span class="tag">Cognito</span><span class="tag">OPA/Rego</span><span class="tag">Bedrock</span><span class="tag">DynamoDB</span><span class="tag">Cost Explorer</span><span class="tag">OpenTelemetry</span>
+                  <span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Next.js</span><span class="tag">FastAPI</span><span class="tag">Cognito</span><span class="tag">OPA/Rego</span><span class="tag">Bedrock</span><span class="tag">DynamoDB</span><span class="tag">Cost Explorer</span><span class="tag">CloudWatch</span>
                 </div>
               </div>
               <div class="link-row">
                 <a class="text-link" href="https://github.com/manynames3/aegisdesk-cloudops-control-plane" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a class="text-link" href="https://d27myiy7bbj1rz.cloudfront.net" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                <a class="text-link" href="https://d27myiy7bbj1rz.cloudfront.net/marketing" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <p class="project-label">Serverless product to EKS/GitOps platform</p>
+              <h3>Pulpit Platform Evolution</h3>
+              <p class="project-positioning">A working serverless AWS product evolved into a validated EKS/GitOps platform migration.</p>
+            </div>
+            <div class="project-body">
+              <div class="project-fact">
+                <h4>Problem</h4>
+                <p>A credible platform migration needs to preserve a proven product's retrieval quality, access control, auditability, and cost model while adding Kubernetes delivery discipline.</p>
+              </div>
+              <div class="project-fact">
+                <h4>Solution</h4>
+                <p>Built Pulpit V1 as a serverless Bedrock RAG application with Cognito, Lambda, DynamoDB, S3 indexes, retrieval-quality iteration, and Terraform. Then validated the V2 EKS/GitOps platform path with Helm, ArgoCD, tenant namespaces, External Secrets, Prometheus, Grafana, ALB ingress, and teardown runbooks.</p>
+              </div>
+              <div class="project-fact">
+                <h4>Operational Value</h4>
+                <p>Shows both product ownership and platform migration discipline: working serverless system first, then Kubernetes/GitOps evolution with clear migration boundaries.</p>
+              </div>
+              <div>
+                <h4>Proof</h4>
+                <div class="stack">
+                  <span class="tag">V1 passing CI</span><span class="tag">retrieval-quality docs</span><span class="tag">AWS screenshots</span><span class="tag">V2 platform evidence</span><span class="tag">runbooks</span><span class="tag">cost model</span><span class="tag">teardown docs</span>
+                </div>
+              </div>
+              <div>
+                <h4>Stack</h4>
+                <div class="stack">
+                  <span class="tag">Bedrock</span><span class="tag">Lambda</span><span class="tag">API Gateway</span><span class="tag">Cognito</span><span class="tag">DynamoDB</span><span class="tag">S3</span><span class="tag">Terraform</span><span class="tag">EKS</span><span class="tag">Helm</span><span class="tag">ArgoCD</span><span class="tag">Prometheus</span><span class="tag">Grafana</span>
+                </div>
+              </div>
+              <div class="link-row">
+                <a class="text-link" href="https://github.com/manynames3/pulpit" target="_blank" rel="noopener noreferrer">V1 GitHub</a>
+                <a class="text-link" href="https://pulpit.pages.dev/" target="_blank" rel="noopener noreferrer">V1 Demo</a>
+                <a class="text-link" href="https://github.com/manynames3/pulpit-v2" target="_blank" rel="noopener noreferrer">V2 GitHub</a>
+                <a class="text-link" href="https://pulpit-v2.pages.dev/" target="_blank" rel="noopener noreferrer">V2 Demo</a>
               </div>
             </div>
           </article>
@@ -1201,6 +1256,12 @@
                 <p>Connects real business workflow requirements with secure, production-style AWS infrastructure.</p>
               </div>
               <div>
+                <h4>Proof</h4>
+                <div class="stack">
+                  <span class="tag">live AWS validation</span><span class="tag">CI/CD</span><span class="tag">Terraform</span><span class="tag">screenshots</span><span class="tag">runbook</span><span class="tag">teardown docs</span><span class="tag">cost profile</span>
+                </div>
+              </div>
+              <div>
                 <h4>Stack</h4>
                 <div class="stack">
                   <span class="tag">AWS ECS Fargate</span><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">ALB</span><span class="tag">CloudFront</span><span class="tag">WAF</span><span class="tag">RDS PostgreSQL</span><span class="tag">RDS Proxy</span><span class="tag">Secrets Manager</span><span class="tag">CloudWatch</span><span class="tag">Terraform</span>
@@ -1214,34 +1275,96 @@
 
           <article class="project-card">
             <div class="project-top">
-              <p class="project-label">Validated Kubernetes platform</p>
-              <h3>Pulpit V2 - Validated EKS/GitOps Platform</h3>
-              <p class="project-positioning">A validated Kubernetes/GitOps platform on AWS.</p>
+              <p class="project-label">Platform-style risk gate</p>
+              <h3>TerraGate - Terraform PR Risk Gate</h3>
+              <p class="project-positioning">A platform-style tool for safer infrastructure change review.</p>
             </div>
             <div class="project-body">
               <div class="project-fact">
                 <h4>Problem</h4>
-                <p>Teams need repeatable, observable platform deployments with clear tenant separation and GitOps workflows.</p>
+                <p>Infrastructure PRs are hard to review manually, especially when risk, cost, security, and blast radius are unclear.</p>
               </div>
               <div class="project-fact">
                 <h4>Solution</h4>
-                <p>Validated an EKS/GitOps platform using Terraform, ECR, Helm, ArgoCD app-of-apps, tenant namespaces, External Secrets backed by SSM, Prometheus, Grafana, tenant ALB ingress, and Cloudflare frontend integration.</p>
+                <p>Built an AI-assisted Terraform PR review platform using FastAPI, Next.js, PostgreSQL, LangGraph, Terraform plan JSON parsing, deterministic policy checks, GitHub checks/comments, sensitive-value redaction, audit persistence, and approval-gated actions.</p>
               </div>
               <div class="project-fact">
                 <h4>Operational Value</h4>
-                <p>Demonstrates Kubernetes platform engineering, GitOps delivery, observability, and teardown discipline.</p>
+                <p>Improves release discipline, reduces infrastructure review risk, and gives teams clearer governance before changes are applied.</p>
+              </div>
+              <div>
+                <h4>Proof</h4>
+                <div class="stack">
+                  <span class="tag">CI passing</span><span class="tag">public demo</span><span class="tag">Terraform plan parsing</span><span class="tag">policy checks</span><span class="tag">threat model</span><span class="tag">ADRs</span>
+                </div>
               </div>
               <div>
                 <h4>Stack</h4>
                 <div class="stack">
-                  <span class="tag">EKS</span><span class="tag">Terraform</span><span class="tag">Helm</span><span class="tag">ArgoCD</span><span class="tag">ECR</span><span class="tag">External Secrets</span><span class="tag">SSM</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">ALB ingress</span><span class="tag">Cloudflare Pages</span>
+                  <span class="tag">Terraform</span><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">LangGraph</span><span class="tag">GitHub Actions</span><span class="tag">Docker Compose</span><span class="tag">Cloudflare Workers</span><span class="tag">AWS API Gateway/Lambda path</span>
                 </div>
               </div>
               <div class="link-row">
-                <a class="text-link" href="https://github.com/manynames3/pulpit-v2" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a class="text-link" href="https://pulpit-v2.pages.dev/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                <a class="text-link" href="https://github.com/manynames3/terragate" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="text-link" href="https://terragate.hangi87.workers.dev/" target="_blank" rel="noopener noreferrer">Live Demo</a>
               </div>
             </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <p class="project-label">Serverless business workflow platform</p>
+              <h3>GrantStack - Grant Intelligence Workflow Platform</h3>
+              <p class="project-positioning">An event-driven AWS platform for source-backed incentive screening, async report generation, and private report delivery.</p>
+            </div>
+            <div class="project-body">
+              <div class="project-fact">
+                <h4>Problem</h4>
+                <p>Expansion teams need a structured first-pass view of grants, tax credits, workforce programs, risk flags, and diligence questions before paying for deeper advisory work.</p>
+              </div>
+              <div class="project-fact">
+                <h4>Solution</h4>
+                <p>Built a Cloudflare + AWS serverless workflow with API Gateway, Lambda ingestion, SQS/DLQ processing, DynamoDB reports, S3 source catalog, scheduled source refresh, CloudWatch/X-Ray operations baseline, analytics capture, Terraform, and CI validation.</p>
+              </div>
+              <div class="project-fact">
+                <h4>Operational Value</h4>
+                <p>Turns a messy business diligence workflow into a source-backed, asynchronous, auditable product path with clear pilot boundaries and failure recovery.</p>
+              </div>
+              <div>
+                <h4>Proof</h4>
+                <div class="stack">
+                  <span class="tag">live frontend</span><span class="tag">live API</span><span class="tag">passing CI</span><span class="tag">DLQ runbook</span><span class="tag">Terraform</span><span class="tag">source refresh</span>
+                </div>
+              </div>
+              <div>
+                <h4>Stack</h4>
+                <div class="stack">
+                  <span class="tag">API Gateway</span><span class="tag">Lambda</span><span class="tag">SQS/DLQ</span><span class="tag">DynamoDB</span><span class="tag">S3</span><span class="tag">EventBridge</span><span class="tag">CloudWatch</span><span class="tag">X-Ray</span><span class="tag">Terraform</span><span class="tag">Cloudflare Pages</span>
+                </div>
+              </div>
+              <div class="link-row">
+                <a class="text-link" href="https://github.com/manynames3/grantstack" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="text-link" href="https://grantstack.pages.dev/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="review-path" aria-label="Best repository review path">
+          <article class="review-card">
+            <span>Review first</span>
+            <h3>AegisDesk</h3>
+            <p>CloudOps governance, AWS control-plane thinking, policy checks, auditability, and operational visibility.</p>
+          </article>
+          <article class="review-card">
+            <span>Review second</span>
+            <h3>Pulpit Platform Evolution</h3>
+            <p>Serverless AWS product engineering plus EKS/GitOps migration discipline from a proven V1 system.</p>
+          </article>
+          <article class="review-card">
+            <span>Review third</span>
+            <h3>Clearpath</h3>
+            <p>Production-style ECS Fargate, RDS PostgreSQL, CloudFront/WAF, private networking, and Terraform evidence.</p>
           </article>
         </div>
       </div>
@@ -1251,9 +1374,27 @@
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">Additional Cloud Projects</p>
-          <h2 id="additional-heading">Supporting project evidence across serverless, AI, data, and workflow automation.</h2>
+          <h2 id="additional-heading">Supporting evidence across business workflows, serverless, AI, and data systems.</h2>
         </div>
         <div class="additional-grid">
+          <article class="mini-project">
+            <h3>PursuitDesk - Serverless GovCon Capture Workflow Platform</h3>
+            <p>GovCon advisor workspace with SAM.gov opportunity scoring, capture workflow, async Bedrock proposal drafting, RDS/pgvector, and Terraform.</p>
+            <div class="stack"><span class="tag">Lambda</span><span class="tag">RDS pgvector</span><span class="tag">Bedrock</span><span class="tag">Terraform</span></div>
+            <div class="link-row"><a class="text-link" href="https://github.com/manynames3/pursuitdesk" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://pursuitdesk.pages.dev/" target="_blank" rel="noopener noreferrer">Demo</a></div>
+          </article>
+          <article class="mini-project">
+            <h3>BrokerOps Platform - Insurance Reconciliation Workflow</h3>
+            <p>Carrier statement ingestion, exception review, AWS ECS/RDS infrastructure, preview environments, Terraform, CI/CD, observability, and cost controls.</p>
+            <div class="stack"><span class="tag">ECS</span><span class="tag">RDS</span><span class="tag">Terraform</span><span class="tag">CI/CD</span></div>
+            <div class="link-row"><a class="text-link" href="https://github.com/manynames3/brokerops-platform" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://brokerops-platform-web.pages.dev" target="_blank" rel="noopener noreferrer">Demo</a></div>
+          </article>
+          <article class="mini-project">
+            <h3>InvoiceBridge API - E-Invoicing Workflow API</h3>
+            <p>Germany-first FastAPI e-invoicing API with validation evidence, tenant-scoped keys, audit trails, PostgreSQL, Docker, and CI.</p>
+            <div class="stack"><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">CI</span></div>
+            <div class="link-row"><a class="text-link" href="https://github.com/manynames3/invoicebridge-api" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://invoicebridge-api.pages.dev" target="_blank" rel="noopener noreferrer">Demo</a></div>
+          </article>
           <article class="mini-project">
             <h3>PhotoScribe AI - Governed Serverless Media Search</h3>
             <p>Governed media search with Bedrock, Lambda, S3, DynamoDB, SQS ingest, Cognito groups, and Terraform-managed observability.</p>
@@ -1261,34 +1402,16 @@
             <div class="link-row"><a class="text-link" href="https://github.com/manynames3/photoscribe-ai" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://photoscribe-ai.pages.dev/" target="_blank" rel="noopener noreferrer">Demo</a></div>
           </article>
           <article class="mini-project">
-            <h3>Pulpit - Live Serverless Bedrock RAG Application</h3>
-            <p>Cloudflare Pages frontend with AWS serverless retrieval, Cognito-protected API routes, DynamoDB cache/audit records, and S3 transcript index.</p>
-            <div class="stack"><span class="tag">Bedrock</span><span class="tag">Lambda</span><span class="tag">API Gateway</span><span class="tag">DynamoDB</span></div>
-            <div class="link-row"><a class="text-link" href="https://github.com/manynames3/pulpit" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://pulpit.pages.dev/" target="_blank" rel="noopener noreferrer">Demo</a></div>
+            <h3>Super Transcriber API - Serverless Transcription Platform</h3>
+            <p>API-key protected transcription API with async Amazon Transcribe jobs, durable queue workers, Stripe-ready billing, and a TypeScript SDK.</p>
+            <div class="stack"><span class="tag">Transcribe</span><span class="tag">Lambda</span><span class="tag">DynamoDB</span><span class="tag">Terraform</span></div>
+            <div class="link-row"><a class="text-link" href="https://github.com/manynames3/super-transcriber-api" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://super-transcriber-api.pages.dev" target="_blank" rel="noopener noreferrer">Demo</a></div>
           </article>
           <article class="mini-project">
             <h3>DocuFlow OCR - Serverless OCR Workflow</h3>
             <p>Invoice processing workflow with presigned S3 intake, API Gateway, Step Functions, Textract async analysis, Lambda parsing, DynamoDB, and SQS DLQ.</p>
             <div class="stack"><span class="tag">Textract</span><span class="tag">Step Functions</span><span class="tag">Lambda</span><span class="tag">SQS</span></div>
             <div class="link-row"><a class="text-link" href="https://github.com/manynames3/docuflow-ocr" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://docuflow-ocr.pages.dev/" target="_blank" rel="noopener noreferrer">Demo</a></div>
-          </article>
-          <article class="mini-project">
-            <h3>FaceID - Private Event Gallery With Serverless Face Matching</h3>
-            <p>Private event photo workflow with Cognito auth, API Gateway, Lambda, S3 presigned uploads/previews, Rekognition comparison, and DynamoDB records.</p>
-            <div class="stack"><span class="tag">Cognito</span><span class="tag">Lambda</span><span class="tag">S3</span><span class="tag">Rekognition</span></div>
-            <div class="link-row"><a class="text-link" href="https://github.com/manynames3/faceid" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://faceid-8dc.pages.dev/" target="_blank" rel="noopener noreferrer">Demo</a></div>
-          </article>
-          <article class="mini-project">
-            <h3>Super Transcriber - Serverless Audio Transcription</h3>
-            <p>Cost-aware transcription app using browser-to-S3 uploads, Lambda/API Gateway, Amazon Transcribe async jobs, EventBridge completion, and DynamoDB tracking.</p>
-            <div class="stack"><span class="tag">Transcribe</span><span class="tag">Lambda</span><span class="tag">EventBridge</span><span class="tag">DynamoDB</span></div>
-            <div class="link-row"><a class="text-link" href="https://github.com/manynames3/super-transcriber" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://super-transcriber.pages.dev/" target="_blank" rel="noopener noreferrer">Demo</a></div>
-          </article>
-          <article class="mini-project">
-            <h3>Market Scout - Static Market Intelligence App</h3>
-            <p>Python data pipeline that transforms public market data into compact static JSON artifacts for city, ZIP, and county comparison on low-cost hosting.</p>
-            <div class="stack"><span class="tag">Python</span><span class="tag">GitHub Actions</span><span class="tag">Cloudflare Pages</span><span class="tag">JSON</span></div>
-            <div class="link-row"><a class="text-link" href="https://github.com/manynames3/market-scout" target="_blank" rel="noopener noreferrer">GitHub</a><a class="text-link" href="https://market-scout-anl.pages.dev/" target="_blank" rel="noopener noreferrer">Demo</a></div>
           </article>
         </div>
       </div>

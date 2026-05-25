@@ -18,8 +18,9 @@ The site is intentionally simple: plain HTML, embedded CSS, and a local headshot
 
 - Product-minded AWS infrastructure engineering profile.
 - Public cloud projects using Terraform, Terraform plan review, ECS Fargate, EKS/GitOps, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, CloudWatch, SQS, EventBridge, and platform governance workflows.
-- Featured project cards for TerraGate, AegisDesk, Clearpath Fargate API, and Pulpit V2.
-- Additional project cards for PhotoScribe AI, Pulpit, DocuFlow OCR, FaceID, Super Transcriber, and Market Scout.
+- Featured project cards for AegisDesk, Pulpit Platform Evolution, Clearpath Fargate API, TerraGate, and GrantStack.
+- A best-review path that points busy reviewers to AegisDesk, Pulpit, and Clearpath first.
+- Additional project cards for PursuitDesk, BrokerOps Platform, InvoiceBridge API, PhotoScribe AI, Super Transcriber API, and DocuFlow OCR.
 - Downloadable ATS/human-optimized resume PDF.
 - Skills, certifications, operator background, target roles, and contact links.
 
