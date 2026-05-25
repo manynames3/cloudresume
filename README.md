@@ -12,19 +12,19 @@ Static personal portfolio site for Aiden Rhaa, positioned as a product-minded AW
 
 This repository hosts a single-page branding portfolio deployed from GitHub. The page presents Aiden's workflow-first cloud infrastructure point of view, operating model, proof systems, operator background, technical capabilities, and contact links.
 
-The visual system is adapted toward an Untitled UI-style B2B/SaaS foundation: neutral surfaces, restrained accent color, clear hierarchy, simple cards, and proof-led sections instead of a resume-template layout.
+The visual system is now closer to a senior product/brand landing page: an editorial hero, workbench-style proof module, dark operating-model section, outcome cards, asymmetric case files, compact supporting proof library, and a stronger final CTA. It keeps the restraint of a B2B/SaaS system without reading like a resume template.
 
 The site is intentionally simple: plain HTML, embedded CSS, and a local headshot image. There is no framework, build step, package manager, or runtime dependency.
 
 ## Featured Content
 
 - Product-minded AWS infrastructure engineering brand.
-- Hero built around a workflow-first operating model rather than a resume-style credential header.
+- Hero built around a workflow-first operating model, quick proof points, and resume/project CTAs rather than a resume-style credential header.
 - Operating-model section covering workflow discovery, reviewability, governance, observability, cost controls, and durable handoff.
 - Operator-lens section connecting business workflow ownership to infrastructure decisions.
 - Public cloud projects using Terraform, Terraform plan review, ECS Fargate, EKS/GitOps, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, CloudWatch, SQS, EventBridge, and platform governance workflows.
-- Proof-system case studies for AegisDesk, Pulpit Platform Evolution, and Clearpath Fargate API.
-- Supporting proof library for TerraGate, GrantStack, PursuitDesk, BrokerOps Platform, InvoiceBridge API, PhotoScribe AI, Super Transcriber API, and DocuFlow OCR.
+- Proof-system case studies for AegisDesk, TerraGate, Pulpit Platform Evolution, and Clearpath Fargate API.
+- Supporting proof library for GrantStack, PursuitDesk, BrokerOps Platform, InvoiceBridge API, PhotoScribe AI, Super Transcriber API, and DocuFlow OCR.
 - Downloadable ATS/human-optimized resume PDF.
 - Capability map, certifications, GitHub, LinkedIn, email, and contact links.
 
