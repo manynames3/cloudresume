@@ -290,6 +290,15 @@
       overflow-wrap: break-word;
     }
 
+    .hero-evidence {
+      max-width: 43rem;
+      margin: 0;
+      color: var(--ink);
+      font-size: 0.98rem;
+      font-weight: 720;
+      line-height: 1.55;
+    }
+
     .hero-actions,
     .cta-actions,
     .link-row {
@@ -353,44 +362,38 @@
       box-shadow: var(--shadow-soft);
     }
 
-    .proof-points {
+    .signal-grid {
       display: grid;
-      gap: 0.72rem;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.65rem;
       max-width: 42rem;
-      margin-top: 0.1rem;
+      margin-top: 0.2rem;
     }
 
-    .proof-point {
+    .signal-card {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 0.72rem;
-      align-items: start;
-      padding: 0.78rem 0;
+      gap: 0.28rem;
+      padding: 0.85rem 0;
       border-top: 1px solid rgba(203, 213, 225, 0.72);
       color: var(--ink-2);
-      font-size: 0.96rem;
-      line-height: 1.45;
+      font-size: 0.9rem;
+      line-height: 1.38;
     }
 
-    .proof-point span {
-      display: inline-grid;
-      place-items: center;
-      width: 1.52rem;
-      height: 1.52rem;
-      border-radius: 0.5rem;
-      background: var(--blue-soft);
+    .signal-card span {
       color: var(--blue);
       font-family: var(--mono);
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 850;
+      text-transform: uppercase;
     }
 
-    .proof-point strong {
+    .signal-card strong {
       color: var(--ink);
+      font-size: 0.95rem;
     }
 
-    .proof-point p,
-    .evidence-row span,
+    .signal-card p,
     .case-summary,
     .case-fact p,
     .library-item p,
@@ -399,6 +402,75 @@
     .capability-row p {
       min-width: 0;
       overflow-wrap: break-word;
+    }
+
+    .portfolio-map {
+      display: grid;
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: #fff;
+    }
+
+    .portfolio-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.75rem;
+      padding: 0.9rem;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .portfolio-row:last-child {
+      border-bottom: 0;
+    }
+
+    .portfolio-index {
+      display: inline-grid;
+      place-items: center;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 0.62rem;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 850;
+    }
+
+    .portfolio-row h3 {
+      margin: 0 0 0.18rem;
+      color: var(--ink);
+      font-size: 0.96rem;
+      line-height: 1.25;
+    }
+
+    .portfolio-row p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.42;
+      overflow-wrap: break-word;
+    }
+
+    .portfolio-row strong {
+      color: var(--ink-2);
+      font-weight: 760;
+    }
+
+    .portfolio-summary {
+      padding: 0.92rem 1rem;
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      border-radius: 1rem;
+      background: var(--blue-soft);
+      color: var(--ink-2);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .portfolio-summary strong {
+      color: var(--blue);
     }
 
     .hero-workbench {
@@ -472,85 +544,6 @@
       display: grid;
       gap: 1rem;
       padding: 1rem;
-    }
-
-    .flow-stage {
-      display: grid;
-      gap: 0.7rem;
-      padding: 0.95rem;
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      background: #fff;
-    }
-
-    .flow-stage.dark {
-      border-color: #1e293b;
-      background:
-        linear-gradient(135deg, rgba(37, 99, 235, 0.16), transparent 44%),
-        #0f172a;
-      color: #fff;
-    }
-
-    .flow-stage span {
-      color: var(--blue);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 850;
-      text-transform: uppercase;
-    }
-
-    .flow-stage.dark span {
-      color: #93c5fd;
-    }
-
-    .flow-stage strong {
-      font-size: 1rem;
-      line-height: 1.25;
-    }
-
-    .flow-stage p {
-      margin: 0;
-      color: var(--ink-2);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .flow-stage.dark p {
-      color: rgba(255, 255, 255, 0.72);
-    }
-
-    .evidence-list {
-      display: grid;
-      gap: 0;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      background: #fff;
-    }
-
-    .evidence-row {
-      display: grid;
-      grid-template-columns: minmax(6.5rem, 0.65fr) minmax(0, 1fr);
-      gap: 0.75rem;
-      padding: 0.82rem 0.9rem;
-      border-bottom: 1px solid var(--line);
-      align-items: start;
-    }
-
-    .evidence-row:last-child {
-      border-bottom: 0;
-    }
-
-    .evidence-row strong {
-      color: var(--ink);
-      font-size: 0.9rem;
-      line-height: 1.3;
-    }
-
-    .evidence-row span {
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.38;
     }
 
     .control-strip {
@@ -1140,6 +1133,10 @@
         min-width: 12rem;
       }
 
+      .signal-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
       .cert-strip {
         flex-wrap: wrap;
         overflow: visible;
@@ -1253,11 +1250,6 @@
         font-size: clamp(3rem, 14.5vw, 4rem);
       }
 
-      .evidence-row {
-        grid-template-columns: 1fr;
-        gap: 0.25rem;
-      }
-
       .control-strip {
         grid-template-columns: 1fr;
       }
@@ -1285,25 +1277,26 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <div class="hero-role">
-              <p class="hero-name">Aiden Rhaa</p>
+              <p class="hero-name">AWS Cloud Engineer · Infrastructure Automation · Platform Engineering</p>
               <strong>Product-Minded AWS Infrastructure Engineer</strong>
             </div>
             <h1 id="hero-heading" class="hero-title">I build cloud systems for real business workflows.</h1>
             <p class="hero-lead">I design secure AWS infrastructure, automation, and internal platforms that reduce manual work, improve reliability, and turn messy operational problems into production-style systems.</p>
+            <p class="hero-evidence">Public portfolio includes deployed systems across Terraform, ECS Fargate, EKS/GitOps, Lambda/serverless, CloudOps governance, and business workflow automation.</p>
             <div class="hero-actions" aria-label="Primary actions">
               <a class="button primary" href="#proof">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                View Featured Projects
+                Review Proof Systems
               </a>
               <a class="button secondary" href="Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf" download>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Download Resume
               </a>
             </div>
-            <div class="proof-points" aria-label="Fast proof points">
-              <div class="proof-point"><span>01</span><p><strong>Public AWS portfolio</strong> across Terraform, ECS Fargate, EKS/GitOps, Lambda/serverless, CloudOps governance, and workflow automation.</p></div>
-              <div class="proof-point"><span>02</span><p><strong>Certified in AWS and Terraform</strong> with repos that show tests, architecture docs, teardown notes, ADRs, and implementation tradeoffs.</p></div>
-              <div class="proof-point"><span>03</span><p><strong>Operator background</strong> translating intake, research, CRM/API, document, and handoff workflows into cloud architecture decisions.</p></div>
+            <div class="signal-grid" aria-label="Fast fit and proof signals">
+              <div class="signal-card"><span>Best fit</span><p><strong>AWS Cloud Engineer</strong> · Cloud Infrastructure · Platform · DevOps</p></div>
+              <div class="signal-card"><span>Proof</span><p><strong>Public repos</strong> · live demos · tests · ADRs · teardown docs</p></div>
+              <div class="signal-card"><span>Operating edge</span><p><strong>Business workflows</strong> translated into reviewable cloud systems</p></div>
             </div>
           </div>
 
@@ -1311,25 +1304,16 @@
             <div class="console">
               <div class="console-top">
                 <div class="traffic" aria-hidden="true"><span></span><span></span><span></span></div>
-                <div class="console-title">workflow to system</div>
+                <div class="console-title">proof system map</div>
               </div>
               <div class="console-body">
-                <div class="flow-stage">
-                  <span>Input</span>
-                  <strong>Operational pressure</strong>
-                  <p>Manual intake, unclear ownership, fragmented requests, review risk, missing visibility, cost uncertainty.</p>
+                <div class="portfolio-map" aria-label="Featured proof systems">
+                  <div class="portfolio-row"><span class="portfolio-index">01</span><div><h3>AegisDesk</h3><p><strong>Proves:</strong> CloudOps governance, policy enforcement, auditability, and cost-review visibility.</p></div></div>
+                  <div class="portfolio-row"><span class="portfolio-index">02</span><div><h3>TerraGate</h3><p><strong>Proves:</strong> Terraform change review, plan parsing, risk gates, and release discipline.</p></div></div>
+                  <div class="portfolio-row"><span class="portfolio-index">03</span><div><h3>Pulpit</h3><p><strong>Proves:</strong> Serverless product ownership evolving into EKS/GitOps platform delivery.</p></div></div>
+                  <div class="portfolio-row"><span class="portfolio-index">04</span><div><h3>Clearpath</h3><p><strong>Proves:</strong> ECS Fargate API design around real lead-intelligence workflow requirements.</p></div></div>
                 </div>
-                <div class="flow-stage dark">
-                  <span>Build</span>
-                  <strong>Production-style AWS system</strong>
-                  <p>Infrastructure automation, policy checks, private networking, identity, observability, audit trails, and documented handoff paths.</p>
-                </div>
-                <div class="evidence-list" aria-label="Featured proof systems">
-                  <div class="evidence-row"><strong>AegisDesk</strong><span>CloudOps AI control plane with Cognito, OPA/Rego, Bedrock, DynamoDB, Cost Explorer, OTel, Terraform.</span></div>
-                  <div class="evidence-row"><strong>TerraGate</strong><span>Terraform PR risk gate with plan parsing, policy checks, redaction, audit persistence, approval gates.</span></div>
-                  <div class="evidence-row"><strong>Pulpit</strong><span>Serverless RAG product evolved into validated EKS/GitOps platform work.</span></div>
-                  <div class="evidence-row"><strong>Clearpath</strong><span>ECS Fargate lead-intelligence API with private RDS, WAF, CloudFront, CloudWatch, Terraform.</span></div>
-                </div>
+                <div class="portfolio-summary"><strong>Evidence standard:</strong> public repos, live demos, architecture docs, tests, ADRs, and teardown notes where applicable.</div>
                 <div class="control-strip" aria-label="Operating controls">
                   <span>reviewable</span>
                   <span>governed</span>
