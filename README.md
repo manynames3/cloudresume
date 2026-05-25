@@ -12,6 +12,8 @@ Static personal portfolio site for Aiden Rhaa, positioned as a product-minded AW
 
 This repository hosts a single-page branding portfolio deployed from GitHub. The page presents Aiden's workflow-first cloud infrastructure point of view, operating model, proof systems, operator background, technical capabilities, and contact links.
 
+The visual system is adapted toward an Untitled UI-style B2B/SaaS foundation: neutral surfaces, restrained accent color, clear hierarchy, simple cards, and proof-led sections instead of a resume-template layout.
+
 The site is intentionally simple: plain HTML, embedded CSS, and a local headshot image. There is no framework, build step, package manager, or runtime dependency.
 
 ## Featured Content
