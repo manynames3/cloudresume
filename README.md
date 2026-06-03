@@ -41,7 +41,7 @@ Major project cards use this structure:
 - Business problem
 - Cloud system built
 - Confidence signals
-- Evidence labels and links, such as live demo, repo, API docs, architecture notes, tests, Terraform, and runbooks
+- Evidence labels and links, such as live demo, repo, architecture notes, tests, Terraform, and runbooks
 
 ## Project Groups
 
