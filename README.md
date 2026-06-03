@@ -1,32 +1,69 @@
 # Cloud Resume
 
-Static personal portfolio site for Aiden Rhaa, positioned as a product-minded AWS infrastructure engineer focused on production-style AWS systems, infrastructure automation, platform engineering, governance, observability, and business workflow automation.
+Static personal brand site for Aiden Rhaa, a Cloud & DevOps Engineer who builds production-style AWS systems from real operator workflows and verified business problems.
 
-- GitHub Pages site: https://manynames3.github.io/cloudresume/
-- Cloudflare Pages site: https://cloudresume-91x.pages.dev/
+- Live site: https://manynames3.github.io/cloudresume/
 - Repository: https://github.com/manynames3/cloudresume
 - GitHub profile: https://github.com/manynames3
 - LinkedIn: https://linkedin.com/in/aidenrhaa
 
 ## Overview
 
-This repository hosts a single-page branding portfolio deployed from GitHub. The page presents Aiden's workflow-first cloud infrastructure point of view, operating model, proof systems, operator background, technical capabilities, and contact links.
+This repository hosts a single-page portfolio site built with plain HTML, embedded CSS, a local headshot image, and a downloadable resume PDF. There is no framework, build step, package manager, or runtime dependency.
 
-The visual system is now closer to a senior product/brand landing page: an editorial hero, workbench-style proof module, dark operating-model section, outcome cards, asymmetric case files, compact supporting proof library, and a stronger final CTA. It keeps the restraint of a B2B/SaaS system without reading like a resume template.
+The page preserves the dark/blue cloud-engineer visual system and presents the brand through these sections:
 
-The site is intentionally simple: plain HTML, embedded CSS, and a local headshot image. There is no framework, build step, package manager, or runtime dependency.
+- Hero
+- Why Hiring Managers Should Care
+- Story
+- Credentials
+- Stack
+- Systems with evidence-labeled project cards
+- Origin
+- Connect
 
-## Featured Content
+## Brand Positioning
 
-- Product-minded AWS infrastructure engineering brand.
-- Hero built around a workflow-first operating model, quick proof points, and resume/project CTAs rather than a resume-style credential header.
-- Operating-model section covering workflow discovery, reviewability, governance, observability, cost controls, and durable handoff.
-- Operator-lens section connecting business workflow ownership to infrastructure decisions.
-- Public cloud projects using Terraform, Terraform plan review, ECS Fargate, EKS/GitOps, Lambda, API Gateway, Cognito, DynamoDB, S3, RDS PostgreSQL, Bedrock, Docker, GitHub Actions, OPA/Rego, OpenTelemetry, CloudWatch, SQS, EventBridge, and platform governance workflows.
-- Proof-system case studies for AegisDesk, TerraGate, Pulpit Platform Evolution, and Clearpath Fargate API.
-- Supporting proof library for GrantStack, PursuitDesk, BrokerOps Platform, InvoiceBridge API, PhotoScribe AI, Super Transcriber API, and DocuFlow OCR.
-- Downloadable ATS/human-optimized resume PDF.
-- Capability map, certifications, GitHub, LinkedIn, email, and contact links.
+The site presents Aiden as an AWS-certified Cloud & DevOps Engineer who builds secure, reviewable AWS systems from real operator workflows. The first read emphasizes business value and operating discipline, while the project cards carry the deeper stack details.
+
+The "Why Hiring Managers Should Care" section focuses on three proof points:
+
+- Translates business workflows into AWS systems
+- Builds with reviewability and operations in mind
+- Documents enough for another engineer to inspect, run, and trust
+
+## Featured Project
+
+The featured project is **PursuitDesk - GovCon Capture & Proposal Platform**, a business-validated AWS SaaS-style system for client intake, readiness scoring, opportunity triage, async proposal drafting, public data ingestion, PDF/DOCX exports, and cloud workflow automation.
+
+Major project cards use this structure:
+
+- Business problem
+- Cloud system built
+- Confidence signals
+- Evidence labels and links, such as live demo, repo, API docs, architecture notes, tests, Terraform, and runbooks
+
+## Project Groups
+
+### Platform & CloudOps Proof
+
+- TerraGate - Terraform PR Risk Gate
+- AegisDesk - Self-Hosted CloudOps AI Control Plane
+- Clearpath - AWS Fargate Lead Intelligence API
+- Pulpit V2 - Validated EKS/GitOps Platform
+
+### Business-Validated Cloud Systems
+
+- ElecBidSpec AI - Electrical Bid Intelligence Platform
+- StockSense AI - Expiration-Aware Inventory Optimization
+- QueueWatch - Serverless Grid-Capacity Intelligence
+
+### Supporting AWS Patterns
+
+- PhotoScribe AI - Governed Serverless Media Search
+- DocuFlow OCR - Step Functions + Textract Workflow
+- Super Transcriber API - API-First Serverless Transcription Backend
+- Pulpit V1 - Serverless Bedrock RAG Application
 
 ## Repository Structure
 
@@ -60,46 +97,28 @@ http://localhost:8000/
 
 ## Deployment
 
-The site is a static deploy from the `master` branch root. GitHub Pages can serve it directly, and Cloudflare Pages can deploy the same repository with no build command.
+The site deploys from the root of the `master` branch. GitHub Pages can serve it directly, and Cloudflare Pages can deploy the same repository with no build command.
 
-GitHub Pages URL:
+GitHub Pages:
 
 ```text
 https://manynames3.github.io/cloudresume/
 ```
 
-Suggested Cloudflare Pages settings:
+Cloudflare Pages compatible settings:
 
 ```text
 Build command: none
 Build output directory: ./
 ```
 
-Current Cloudflare Pages deployment:
-
-```text
-Project: cloudresume
-URL: https://cloudresume-91x.pages.dev/
-Deployment method: Wrangler direct upload from the pushed Git commit
-```
-
-To publish an update through Git:
-
-```sh
-git add index.html Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf aiden_rhaa_headshot__resized_.jpg README.md
-git commit -m "Update portfolio landing page"
-git push origin master
-```
-
-GitHub Pages will rebuild after the push. A connected Cloudflare Pages project will also deploy from the pushed branch.
-
 ## Editing Notes
 
-- Keep the site self-contained unless a build step becomes necessary.
-- Update project cards when public project repos change.
-- Keep links current for GitHub, LinkedIn, email, deployed apps, and live project URLs.
-- Compress any replacement images before committing them.
-- Test mobile layout after changing hero, project cards, or contact sections.
+- Keep the site static unless a build step becomes necessary.
+- Test desktop and mobile widths after changing hero, project cards, or contact sections.
+- Keep GitHub, LinkedIn, email, deployed demo, API, and resume links current.
+- Compress replacement images before committing them.
+- Do not commit secrets, `.env` files, Terraform state, API keys, Cloudflare credentials, or AWS credentials.
 
 ## License
 
