@@ -946,6 +946,146 @@
     white-space: nowrap;
   }
 
+  .project-architecture {
+    margin: 0 28px 24px;
+    overflow: hidden;
+    background: #f4f7fb;
+    border: 1px solid rgba(0, 212, 255, 0.18);
+    border-radius: 10px;
+  }
+
+  .project-architecture-featured {
+    margin: 0 32px 24px;
+  }
+
+  .architecture-trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    background: #f4f7fb;
+    border: 0;
+    cursor: zoom-in;
+  }
+
+  .project-architecture img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .project-architecture figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 12px;
+    background: var(--surface);
+    color: var(--text-soft);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+  }
+
+  .project-architecture figcaption span {
+    color: var(--cyan);
+    white-space: nowrap;
+  }
+
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  .architecture-lightbox {
+    width: min(96vw, 1440px);
+    max-width: none;
+    max-height: 94vh;
+    padding: 0;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 14px;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+  }
+
+  .architecture-lightbox::backdrop {
+    background: rgba(2, 6, 15, 0.88);
+    backdrop-filter: blur(8px);
+  }
+
+  .architecture-lightbox-shell {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    max-height: 94vh;
+  }
+
+  .architecture-lightbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .architecture-lightbox-header h3 {
+    color: var(--heading);
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .architecture-lightbox-label,
+  .architecture-lightbox-hint {
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .architecture-lightbox-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 38px;
+    padding: 8px 12px;
+    color: var(--heading);
+    background: var(--card);
+    border: 1px solid var(--border-hover);
+    border-radius: 7px;
+    font-family: var(--mono);
+    cursor: pointer;
+  }
+
+  .architecture-lightbox-close:hover,
+  .architecture-lightbox-close:focus-visible {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    outline: none;
+  }
+
+  .architecture-lightbox-media {
+    display: grid;
+    place-items: center;
+    min-height: 0;
+    padding: 12px;
+    background: #f4f7fb;
+    overflow: auto;
+  }
+
+  .architecture-lightbox-media img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: calc(94vh - 126px);
+  }
+
+  .architecture-lightbox-hint {
+    padding: 9px 18px;
+    text-align: right;
+    border-top: 1px solid var(--border);
+  }
+
   .project-desc {
     font-size: 0.88rem;
     color: var(--text-soft);
@@ -1520,6 +1660,36 @@
       padding-left: 22px;
       padding-right: 22px;
     }
+    .project-architecture,
+    .project-architecture-featured {
+      margin-left: 22px;
+      margin-right: 22px;
+    }
+    .architecture-lightbox {
+      width: calc(100vw - 24px);
+      max-height: 92vh;
+    }
+    .architecture-lightbox-shell {
+      max-height: 92vh;
+    }
+    .architecture-lightbox-header {
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+    }
+    .architecture-lightbox-header h3 {
+      font-size: 0.88rem;
+    }
+    .architecture-lightbox-close {
+      flex-shrink: 0;
+    }
+    .architecture-lightbox-media {
+      padding: 6px;
+    }
+    .architecture-lightbox-hint {
+      padding: 8px 12px;
+      text-align: left;
+    }
     .terminal-body {
       padding: 18px;
       font-size: 0.76rem;
@@ -1540,6 +1710,11 @@
     .supporting-grid .project-footer {
       padding-left: 18px;
       padding-right: 18px;
+    }
+    .project-architecture,
+    .project-architecture-featured {
+      margin-left: 18px;
+      margin-right: 18px;
     }
   }
 </style>
@@ -2022,6 +2197,12 @@
         <span class="evidence-chip">CloudWatch</span>
       </div>
     </div>
+    <figure class="project-architecture project-architecture-featured">
+      <button type="button" class="architecture-trigger" data-title="PursuitDesk AWS architecture" aria-label="View the PursuitDesk AWS architecture diagram">
+        <img src="assets/architecture/pursuitdesk-aws-architecture.png" alt="PursuitDesk AWS architecture showing Cloudflare Pages, API Gateway, Lambda, PostgreSQL, DynamoDB, Bedrock, and supporting services" width="2465" height="1440" loading="lazy" decoding="async">
+      </button>
+      <figcaption>PursuitDesk AWS architecture <span>View diagram</span></figcaption>
+    </figure>
     <div style="padding:16px 32px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;">
       <span class="tech-pill">AWS Lambda</span>
       <span class="tech-pill">API Gateway</span>
@@ -2077,6 +2258,12 @@
             <span class="evidence-chip">Audit persistence</span>
           </div>
         </div>
+        <figure class="project-architecture">
+          <button type="button" class="architecture-trigger" data-title="TerraGate AWS architecture" aria-label="View the TerraGate AWS architecture diagram">
+            <img src="assets/architecture/terragate-aws-architecture.png" alt="TerraGate AWS architecture showing Cloudflare, GitHub, API Gateway, Lambda, RDS PostgreSQL, CodeBuild, ECR, and CloudWatch" width="1844" height="1995" loading="lazy" decoding="async">
+          </button>
+          <figcaption>TerraGate AWS architecture <span>View diagram</span></figcaption>
+        </figure>
         <div class="project-footer">
           <span class="tech-pill">FastAPI</span>
           <span class="tech-pill">Next.js</span>
@@ -2121,6 +2308,12 @@
             <span class="evidence-chip">Terraform</span>
           </div>
         </div>
+        <figure class="project-architecture">
+          <button type="button" class="architecture-trigger" data-title="AegisDesk AWS architecture" aria-label="View the AegisDesk AWS architecture diagram">
+            <img src="assets/architecture/aegisdesk-aws-architecture.png" alt="AegisDesk AWS architecture showing CloudFront, API Gateway, Lambda, Bedrock, Cognito, DynamoDB, and CI/CD services" width="2771" height="1248" loading="lazy" decoding="async">
+          </button>
+          <figcaption>AegisDesk AWS architecture <span>View diagram</span></figcaption>
+        </figure>
         <div class="project-footer">
           <span class="tech-pill">Next.js</span>
           <span class="tech-pill">FastAPI</span>
@@ -2165,6 +2358,12 @@
             <span class="evidence-chip">Runbook</span>
           </div>
         </div>
+        <figure class="project-architecture">
+          <button type="button" class="architecture-trigger" data-title="Clearpath AWS architecture" aria-label="View the Clearpath AWS architecture diagram">
+            <img src="assets/architecture/clearpath-aws-architecture.png" alt="Clearpath AWS architecture showing WAF, CloudFront, ALB, ECS Fargate, RDS Proxy, PostgreSQL, security, and observability services" width="2350" height="1056" loading="lazy" decoding="async">
+          </button>
+          <figcaption>Clearpath AWS architecture <span>View diagram</span></figcaption>
+        </figure>
         <div class="project-footer">
           <span class="tech-pill">FastAPI</span>
           <span class="tech-pill">ECS Fargate</span>
@@ -2213,6 +2412,12 @@
             <span class="evidence-chip">Runbook</span>
           </div>
         </div>
+        <figure class="project-architecture">
+          <button type="button" class="architecture-trigger" data-title="Pulpit V2 AWS architecture" aria-label="View the Pulpit V2 AWS architecture diagram">
+            <img src="assets/architecture/pulpit-v2-aws-architecture.png" alt="Pulpit V2 AWS architecture showing Cloudflare Pages, Cognito, API Gateway, Lambda, S3, DynamoDB, Bedrock, ingestion, and operations services" width="2860" height="1668" loading="lazy" decoding="async">
+          </button>
+          <figcaption>Pulpit V2 AWS architecture <span>View diagram</span></figcaption>
+        </figure>
         <div class="project-footer">
           <span class="tech-pill">EKS</span>
           <span class="tech-pill">Kubernetes</span>
@@ -2602,6 +2807,24 @@
   <span style="color:var(--cyan)">Aiden Rhaa</span> &nbsp;·&nbsp; Cloud &amp; DevOps Engineer &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; <span style="opacity:0.5;">Built with intent.</span>
 </footer>
 
+<dialog class="architecture-lightbox" id="architecture-lightbox" aria-labelledby="architecture-lightbox-title">
+  <div class="architecture-lightbox-shell">
+    <div class="architecture-lightbox-header">
+      <div>
+        <div class="architecture-lightbox-label">Architecture diagram</div>
+        <h3 id="architecture-lightbox-title"></h3>
+      </div>
+      <button type="button" class="architecture-lightbox-close" aria-label="Close architecture diagram">
+        Close <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="architecture-lightbox-media">
+      <img id="architecture-lightbox-image" alt="">
+    </div>
+    <div class="architecture-lightbox-hint">Press Esc or click outside the diagram to close</div>
+  </div>
+</dialog>
+
 <script>
   // Intersection Observer for scroll animations
   const observer = new IntersectionObserver((entries) => {
@@ -2619,6 +2842,43 @@
     grid.querySelectorAll('.animate').forEach((child, i) => {
       child.style.transitionDelay = `${i * 80}ms`;
     });
+  });
+
+  const architectureDialog = document.querySelector('#architecture-lightbox');
+  const architectureDialogImage = document.querySelector('#architecture-lightbox-image');
+  const architectureDialogTitle = document.querySelector('#architecture-lightbox-title');
+  const architectureDialogClose = document.querySelector('.architecture-lightbox-close');
+  let architectureLastTrigger = null;
+
+  document.querySelectorAll('.architecture-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const previewImage = trigger.querySelector('img');
+      architectureLastTrigger = trigger;
+      architectureDialogImage.src = previewImage.currentSrc || previewImage.src;
+      architectureDialogImage.alt = previewImage.alt;
+      architectureDialogTitle.textContent = trigger.dataset.title;
+      document.body.classList.add('modal-open');
+      architectureDialog.showModal();
+      architectureDialogClose.focus();
+    });
+  });
+
+  architectureDialogClose.addEventListener('click', () => architectureDialog.close());
+
+  architectureDialog.addEventListener('click', event => {
+    if (event.target === architectureDialog) architectureDialog.close();
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && architectureDialog.open) {
+      event.preventDefault();
+      architectureDialog.close();
+    }
+  });
+
+  architectureDialog.addEventListener('close', () => {
+    document.body.classList.remove('modal-open');
+    architectureLastTrigger?.focus();
   });
 </script>
 </body>
