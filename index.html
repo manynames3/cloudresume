@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aiden Rhaa — Cloud &amp; DevOps Engineer</title>
-<meta name="description" content="Aiden Rhaa builds production-style AWS cloud systems from real operator workflows and verified business problems.">
+<meta name="description" content="Aiden Rhaa translates manual business workflows into secure, repeatable AWS cloud systems with an operator-first perspective.">
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
@@ -530,6 +530,14 @@
     margin-bottom: 56px;
   }
 
+  #projects {
+    padding-top: 96px;
+  }
+
+  #projects .section-desc {
+    margin-bottom: 28px;
+  }
+
   /* CERTIFICATIONS */
   .certifications-grid {
     display: grid;
@@ -772,6 +780,12 @@
     margin-top: 38px;
   }
 
+  #pursuitdesk,
+  #terragate,
+  #inspectiq {
+    scroll-margin-top: 96px;
+  }
+
   .project-group:first-of-type {
     margin-top: 0;
   }
@@ -799,6 +813,174 @@
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+  }
+
+  .reviewer-path {
+    margin: 28px 0 30px;
+    padding: 22px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(126, 87, 194, 0.07));
+    border: 1px solid rgba(0, 212, 255, 0.24);
+    border-radius: 14px;
+  }
+
+  .reviewer-path-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .reviewer-path-header strong {
+    color: var(--heading);
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.08rem, 1.7vw, 1.34rem);
+    letter-spacing: -0.02em;
+  }
+
+  .reviewer-path-header span {
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .reviewer-path-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .reviewer-path-card {
+    display: grid;
+    gap: 8px;
+    padding: 15px;
+    color: var(--text-soft);
+    text-decoration: none;
+    background: rgba(10, 15, 25, 0.72);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+
+  .reviewer-path-card:hover,
+  .reviewer-path-card:focus-visible {
+    color: var(--text);
+    border-color: var(--cyan);
+    background: rgba(0, 212, 255, 0.08);
+    outline: none;
+  }
+
+  .reviewer-path-card em {
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-style: normal;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .reviewer-path-card strong {
+    color: var(--heading);
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+
+  .reviewer-path-card span {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .reviewer-brief {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 24px 0 0;
+  }
+
+  .reviewer-brief-card {
+    padding: 14px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .reviewer-brief-card strong {
+    display: block;
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .reviewer-brief-card span {
+    display: block;
+    color: var(--text-soft);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .project-outcome {
+    display: grid;
+    gap: 4px;
+    margin: 0 0 14px;
+    padding: 12px 14px;
+    background: rgba(0, 212, 255, 0.07);
+    border: 1px solid rgba(0, 212, 255, 0.16);
+    border-radius: 10px;
+  }
+
+  .project-outcome strong {
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .project-outcome span {
+    color: var(--heading);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .project-outcome-featured {
+    max-width: 900px;
+  }
+
+  .supporting-disclosure {
+    display: block;
+  }
+
+  .supporting-disclosure > summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .supporting-disclosure > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .supporting-disclosure > summary::after {
+    content: 'View supporting systems';
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .supporting-disclosure[open] > summary::after {
+    content: 'Hide supporting systems';
+  }
+
+  .supporting-disclosure[open] > summary {
+    margin-bottom: 18px;
   }
 
   .supporting-grid {
@@ -987,6 +1169,46 @@
   }
 
   .project-architecture figcaption span {
+    color: var(--cyan);
+    white-space: nowrap;
+  }
+
+  .project-screenshot {
+    margin: 0 28px 24px;
+    overflow: hidden;
+    background: #0b101a;
+    border: 1px solid rgba(0, 212, 255, 0.18);
+    border-radius: 10px;
+  }
+
+  .project-screenshot .architecture-trigger {
+    background: #0b101a;
+  }
+
+  .project-screenshot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 540px;
+    object-fit: contain;
+    object-position: top center;
+    background: #090d16;
+  }
+
+  .project-screenshot figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 12px;
+    background: var(--surface);
+    color: var(--text-soft);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+  }
+
+  .project-screenshot figcaption span {
     color: var(--cyan);
     white-space: nowrap;
   }
@@ -1475,6 +1697,28 @@
     font-weight: 500;
   }
 
+  .operator-principles {
+    display: grid;
+    gap: 10px;
+    list-style: none;
+  }
+
+  .operator-principles li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    color: var(--text-soft);
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .operator-principles li::before {
+    content: '>';
+    color: var(--green);
+    font-family: var(--mono);
+  }
+
   @media (min-width: 901px) and (max-width: 1100px) {
     #hero {
       grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
@@ -1515,6 +1759,12 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     section {
+      scroll-margin-top: 132px;
+    }
+
+    #pursuitdesk,
+    #terragate,
+    #inspectiq {
       scroll-margin-top: 132px;
     }
 
@@ -1579,16 +1829,46 @@
     .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .skill-wide { grid-column: span 2; }
     .projects-grid { grid-template-columns: 1fr; }
+    .reviewer-brief { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .reviewer-path-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
     section {
       padding: 76px 20px;
-      scroll-margin-top: 126px;
+      scroll-margin-top: 156px;
+    }
+
+    #projects {
+      padding-top: 76px;
+    }
+
+    #pursuitdesk,
+    #terragate,
+    #inspectiq {
+      scroll-margin-top: 156px;
+    }
+
+    nav {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .nav-links {
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      overflow: visible;
+      row-gap: 6px;
+    }
+
+    .nav-links a {
+      min-height: 28px;
+      padding: 4px 8px;
+      font-size: 0.68rem;
     }
 
     #hero {
-      padding-top: 122px;
+      padding-top: 156px;
       padding-bottom: 38px;
     }
 
@@ -1643,27 +1923,93 @@
     .skill-wide { grid-column: span 1; }
     .skill-category { padding: 22px; }
     .skill-cat-header { align-items: flex-start; }
+    .reviewer-brief {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .reviewer-brief-card {
+      padding: 10px;
+    }
+    .reviewer-brief-card strong {
+      font-size: 0.58rem;
+      margin-bottom: 5px;
+    }
+    .reviewer-brief-card span {
+      font-size: 0.72rem;
+      line-height: 1.42;
+    }
     .project-group-heading {
       display: grid;
       align-items: start;
       gap: 6px;
     }
+    .reviewer-path {
+      margin: 20px 0 24px;
+      padding: 16px;
+    }
+    .reviewer-path-header {
+      display: grid;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+    .reviewer-path-card {
+      padding: 13px;
+    }
 
     .project-links {
       flex-wrap: wrap;
       justify-content: flex-end;
+      gap: 8px;
     }
 
     .project-header,
     .project-body,
     .project-footer {
-      padding-left: 22px;
-      padding-right: 22px;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .project-body {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+    .project-title {
+      font-size: 1rem;
+      line-height: 1.36;
+    }
+    .project-proof {
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .proof-row {
+      padding-left: 10px;
+    }
+    .proof-row span,
+    .project-desc {
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .evidence-strip {
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .evidence-strip .evidence-chip:nth-child(n+5),
+    .project-footer .tech-pill:nth-child(n+7) {
+      display: none;
+    }
+    .evidence-chip {
+      min-height: 22px;
+      padding: 3px 7px;
+      font-size: 0.62rem;
     }
     .project-architecture,
-    .project-architecture-featured {
-      margin-left: 22px;
-      margin-right: 22px;
+    .project-architecture-featured,
+    .project-screenshot {
+      margin-left: 18px;
+      margin-right: 18px;
+    }
+    .project-screenshot img {
+      max-height: none;
     }
     .architecture-lightbox {
       width: calc(100vw - 24px);
@@ -1700,7 +2046,15 @@
 
   @media (max-width: 360px) {
     section { padding-left: 16px; padding-right: 16px; }
-    .nav-links a { font-size: 0.72rem; padding-inline: 8px; }
+    .reviewer-brief { grid-template-columns: 1fr; }
+    .nav-links {
+      gap: 0.32rem;
+    }
+    .nav-links a {
+      min-height: 27px;
+      padding: 4px 7px;
+      font-size: 0.64rem;
+    }
     .hero-cert-pill { white-space: normal; }
     .project-header,
     .project-body,
@@ -1712,7 +2066,8 @@
       padding-right: 18px;
     }
     .project-architecture,
-    .project-architecture-featured {
+    .project-architecture-featured,
+    .project-screenshot {
       margin-left: 18px;
       margin-right: 18px;
     }
@@ -1745,7 +2100,7 @@
       <span class="line2">Engineer.</span>
     </h1>
     <p class="hero-subtitle">
-      AWS-certified Cloud &amp; DevOps Engineer who builds secure, reviewable AWS systems from real operator workflows: Terraform infrastructure, serverless APIs, container platforms, data workflows, and CloudOps governance.
+      I translate manual, disconnected business workflows into secure, repeatable AWS systems&mdash;combining operator context with Terraform, serverless APIs, containers, and automated delivery.
     </p>
     <div class="hero-cert-pills" aria-label="Certifications">
       <span class="hero-cert-pill">AWS Solutions Architect</span>
@@ -1755,7 +2110,7 @@
     <div class="mobile-proof-grid" aria-label="Portfolio proof points">
       <div class="hero-stat"><strong>AWS x2</strong><span>Certified</span></div>
       <div class="hero-stat"><strong>Terraform</strong><span>Associate</span></div>
-      <div class="hero-stat"><strong>Production-Style</strong><span>Systems</span></div>
+      <div class="hero-stat"><strong>Deployed</strong><span>Systems</span></div>
       <div class="hero-stat"><strong>200+</strong><span>Projects Delivered</span></div>
     </div>
     <div class="hero-actions">
@@ -1791,7 +2146,7 @@
       <div class="hero-stats" aria-label="Portfolio proof points">
         <div class="hero-stat"><strong>AWS x2</strong><span>Certified</span></div>
         <div class="hero-stat"><strong>Terraform</strong><span>Associate</span></div>
-        <div class="hero-stat"><strong>Production-Style</strong><span>Systems</span></div>
+        <div class="hero-stat"><strong>Deployed</strong><span>Systems</span></div>
         <div class="hero-stat"><strong>200+</strong><span>Projects Delivered</span></div>
       </div>
     </div>
@@ -1805,7 +2160,7 @@
 <section id="why" class="proof-band">
   <div class="section-eyebrow">00 // Why Hiring Managers Should Care</div>
   <h2>Operator context makes the cloud work sharper.</h2>
-  <p class="proof-intro">I bring operator context into cloud engineering. I do not just deploy services; I map messy workflows into secure, cost-aware systems with documentation, observability, teardown discipline, and handoff paths.</p>
+  <p class="proof-intro">I do not start with services; I start with the workflow. Then I map manual steps, failure points, and handoffs into secure, cost-aware cloud systems with documentation, observability, teardown discipline, and clear ownership.</p>
 
   <div class="proof-cards">
     <article class="proof-card animate">
@@ -1833,7 +2188,7 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="section-eyebrow">01 // Story</div>
-  <h2>Operator workflows turned into cloud systems.</h2>
+  <h2>Real operations shaped how I build.</h2>
 
   <div class="terminal animate">
     <div class="terminal-bar">
@@ -1847,8 +2202,8 @@
       <div class="t-out" style="margin-top:8px;">
         AWS Cloud Engineer with AWS Solutions Architect Associate,<br>
         AWS Developer Associate, and Terraform Associate credentials -<br>
-        backed by real operator experience building business automation,<br>
-        cloud workflows, and production-style AWS systems.
+        backed by operator experience across real estate, multimedia,<br>
+        business operations, automation, and deployed AWS systems.
       </div>
       <div style="margin-top:12px;"><span class="t-prompt">➜ </span><span class="t-cmd">cat portfolio_signal.json | jq '.proof'</span></div>
       <div style="margin-top:8px;">
@@ -1864,11 +2219,21 @@
 
   <div class="about-grid">
     <div class="about-text animate">
-      <p>My edge is business context. I started by building systems I needed to run real operations: lead intake, public-record research, CRM/API workflows, client-facing web systems, automation, and structured data handoff.</p>
-      <p>I now use that operator lens to design AWS systems that are <strong>practical, secure, cost-aware, and built around workflows teams actually need to run</strong>.</p>
-      <p>Core positioning: <strong>I build production-style cloud systems from real operator workflows and verified business problems.</strong></p>
+      <p>My approach to cloud engineering was shaped through real estate, multimedia, and business operations. Those environments exposed me to practical systems problems: repetitive work, disconnected tools, duplicated data entry, missed handoffs, and information that became less reliable as it moved between people.</p>
+      <p>That experience taught me to begin with the operator and the workflow: <strong>what needs to happen, where time is being lost, where mistakes occur, and what the business needs to make more reliable</strong>.</p>
+      <p>I translate those requirements into APIs, queues, databases, containers, serverless functions, and deployment pipelines. The architecture should serve the workflow, not the other way around.</p>
+      <p>AWS provides the building blocks, Terraform makes systems repeatable and reviewable, and AI accelerates prototyping and learning. The engineering judgment stays grounded: <strong>What problem does this solve? Why this approach? Where can it fail? How will someone operate it?</strong></p>
     </div>
     <div class="animate" style="display:flex;flex-direction:column;gap:16px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.1em;">Operating principles</div>
+        <ul class="operator-principles">
+          <li>Start with the workflow and the person responsible for it.</li>
+          <li>Reduce manual work, re-entry, and avoidable failure points.</li>
+          <li>Make systems observable, repeatable, and easier to hand off.</li>
+          <li>Use AI to accelerate the work without outsourcing judgment.</li>
+        </ul>
+      </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
         <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Location</div>
         <div style="color:var(--text);font-weight:500;">Atlanta Metropolitan Area, GA</div>
@@ -1965,7 +2330,7 @@
       <div class="skill-cat-header">
         <div>
           <div class="skill-cat-name">AWS Services</div>
-          <p class="skill-note">Core AWS services used across production-style systems, short-lived validation runs, public demos, and cost-aware serverless/container backends.</p>
+          <p class="skill-note">Core AWS services used across public demos, validation runs, and cost-aware serverless/container backends.</p>
         </div>
         <div class="skill-cat-icon" aria-hidden="true">01</div>
       </div>
@@ -2079,7 +2444,13 @@
             <span class="skill-tag">JavaScript</span>
             <span class="skill-tag">React</span>
             <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">SwiftUI</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express</span>
             <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">Zod</span>
+            <span class="skill-tag">Java</span>
             <span class="skill-tag">PostgreSQL</span>
             <span class="skill-tag">SQL</span>
             <span class="skill-tag">JSONB</span>
@@ -2134,6 +2505,11 @@
         <div>
           <div class="skill-label">Core</div>
           <div class="skill-tags skill-tags-core">
+            <span class="skill-tag">macOS apps</span>
+            <span class="skill-tag">Storage auditing</span>
+            <span class="skill-tag">Market intelligence</span>
+            <span class="skill-tag">Vehicle inspection</span>
+            <span class="skill-tag">Condition reports</span>
             <span class="skill-tag">GovCon capture</span>
             <span class="skill-tag">Electrical bid qualification</span>
             <span class="skill-tag">Inventory optimization</span>
@@ -2155,10 +2531,53 @@
 <section id="projects">
   <div class="section-eyebrow">04 // Systems</div>
   <h2>Built &amp; Shipped</h2>
-  <p class="section-desc">Production-style cloud systems built around real operator workflows. Each one is designed to show architecture, security, cost control, observability, handoff discipline, and business value.</p>
+  <p class="section-desc">Start with the three systems below. They show the clearest hiring signal: business workflow mapping, AWS architecture, security controls, automation, observability, and reviewable handoff.</p>
+
+  <div class="reviewer-brief" aria-label="Hiring manager quick scan">
+    <div class="reviewer-brief-card">
+      <strong>Best fit</strong>
+      <span>AWS Cloud Engineer, DevOps, platform automation, and CloudOps governance roles.</span>
+    </div>
+    <div class="reviewer-brief-card">
+      <strong>Strongest proof</strong>
+      <span>Working demos, repos, AWS diagrams, Terraform, runbooks, observability, and teardown discipline.</span>
+    </div>
+    <div class="reviewer-brief-card">
+      <strong>Differentiator</strong>
+      <span>Operator background translated into systems that reduce manual work and decision drift.</span>
+    </div>
+    <div class="reviewer-brief-card">
+      <strong>Review order</strong>
+      <span>PursuitDesk first, then TerraGate, then InspectIQ. Everything else is supporting evidence.</span>
+    </div>
+  </div>
+
+  <div class="reviewer-path" aria-label="Recommended review path">
+    <div class="reviewer-path-header">
+      <strong>Start here if you only have five minutes.</strong>
+      <span>3-project proof path</span>
+    </div>
+    <div class="reviewer-path-grid">
+      <a href="#pursuitdesk" class="reviewer-path-card">
+        <em>01 / SaaS workflow</em>
+        <strong>PursuitDesk</strong>
+        <span>GovCon capture, proposal drafting, async jobs, RDS, Bedrock, and Terraform-backed AWS architecture.</span>
+      </a>
+      <a href="#terragate" class="reviewer-path-card">
+        <em>02 / CloudOps trust</em>
+        <strong>TerraGate</strong>
+        <span>Terraform PR risk review with plan parsing, redaction, policy checks, persistence, and GitHub gates.</span>
+      </a>
+      <a href="#inspectiq" class="reviewer-path-card">
+        <em>03 / AI governance</em>
+        <strong>InspectIQ</strong>
+        <span>Vehicle inspection workflow with advisory AI, human review, audit trail, report readiness, and AWS backend path.</span>
+      </a>
+    </div>
+  </div>
 
   <!-- FEATURED: PURSUITDESK -->
-  <div style="background:var(--card);border:1px solid rgba(0,212,255,0.25);border-radius:16px;overflow:hidden;margin-bottom:28px;transition:all 0.3s;" class="animate">
+  <div id="pursuitdesk" style="background:var(--card);border:1px solid rgba(0,212,255,0.25);border-radius:16px;overflow:hidden;margin-bottom:28px;transition:all 0.3s;" class="animate">
     <div style="background:linear-gradient(135deg,rgba(0,212,255,0.07),rgba(126,87,194,0.07));padding:28px 32px 0;">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:14px;">
@@ -2172,6 +2591,10 @@
           <a href="https://github.com/manynames3/pursuitdesk" target="_blank" class="btn-secondary" style="padding:9px 16px;font-size:0.82rem;">Repo</a>
           <a href="https://pursuitdesk.pages.dev/" target="_blank" class="btn-secondary" style="padding:9px 16px;font-size:0.82rem;">Live demo</a>
         </div>
+      </div>
+      <div class="project-outcome project-outcome-featured">
+        <strong>Outcome</strong>
+        <span>Turns scattered GovCon capture work into a traceable AWS-backed workflow from opportunity intake to proposal draft.</span>
       </div>
       <div class="project-proof" style="max-width:900px;">
         <div class="proof-row">
@@ -2226,7 +2649,7 @@
     </div>
 
     <div class="projects-grid">
-      <div class="project-card animate">
+      <div id="terragate" class="project-card animate">
         <div class="project-header">
           <div class="project-icon" style="background:rgba(0,212,255,0.1);">▧</div>
           <div class="project-links">
@@ -2236,6 +2659,10 @@
         </div>
         <div class="project-body">
           <div class="project-title">TerraGate - Terraform PR Risk Gate</div>
+          <div class="project-outcome">
+            <strong>Outcome</strong>
+            <span>Makes infrastructure changes reviewable before merge by converting Terraform plans into risk, policy, and audit signals.</span>
+          </div>
           <div class="project-proof">
             <div class="proof-row">
               <strong>Business problem</strong>
@@ -2343,7 +2770,7 @@
             </div>
             <div class="proof-row">
               <strong>Cloud system built</strong>
-              <span>Production-style ECS Fargate API with FastAPI, private RDS PostgreSQL, RDS Proxy, ALB, CloudFront/WAF, Secrets Manager, CloudWatch, Terraform, and Checkov.</span>
+              <span>ECS Fargate API with FastAPI, private RDS PostgreSQL, RDS Proxy, ALB, CloudFront/WAF, Secrets Manager, CloudWatch, Terraform, and Checkov.</span>
             </div>
             <div class="proof-row">
               <strong>Confidence signals</strong>
@@ -2437,10 +2864,63 @@
   <div class="project-group">
     <div class="project-group-heading">
       <h3>Business-Validated Cloud Systems</h3>
-      <span>Bids, inventory, grid intelligence</span>
+      <span>Inspection, bids, inventory, grid intelligence</span>
     </div>
 
     <div class="projects-grid">
+      <div id="inspectiq" class="project-card animate">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(0,212,255,0.1);">IQ</div>
+          <div class="project-links">
+            <a href="https://github.com/manynames3/inspectiq" target="_blank" class="project-link" title="GitHub">Repo access</a>
+            <a href="https://inspectiq.pages.dev" target="_blank" class="project-link" title="Demo">Live demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">InspectIQ - AI-Assisted Vehicle Inspection Workbench</div>
+          <div class="project-outcome">
+            <strong>Outcome</strong>
+            <span>Turns photo-heavy vehicle inspections into evidence-backed review workflows where AI advises and humans approve.</span>
+          </div>
+          <div class="project-proof">
+            <div class="proof-row">
+              <strong>Business problem</strong>
+              <span>Wholesale and offsite inspection teams need consistent photo evidence, clear damage facts, CR/VDP readiness, buyer trust, seller disclosure, and accountable review without letting AI silently become the source of truth.</span>
+            </div>
+            <div class="proof-row">
+              <strong>Cloud system built</strong>
+              <span>Inspection workflow with React/TypeScript, Node Lambda/API Gateway, shared Zod schemas, Neon Postgres, private S3 image storage, SQS/Lambda image analysis, Bedrock, Cognito, CloudWatch, Terraform, and a Java grading boundary.</span>
+            </div>
+            <div class="proof-row">
+              <strong>Confidence signals</strong>
+              <span>Live walkthrough, repo access on request, browser E2E coverage, strict AI output validation, human-in-the-loop review, audit trail, operational docs, CloudWatch alarms, and runbooks.</span>
+            </div>
+          </div>
+          <div class="evidence-strip">
+            <span class="evidence-chip">Live demo</span>
+            <span class="evidence-chip">Repo access</span>
+            <span class="evidence-chip">Human review</span>
+            <span class="evidence-chip">Audit trail</span>
+            <span class="evidence-chip">Bedrock</span>
+            <span class="evidence-chip">Terraform</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Node.js</span>
+          <span class="tech-pill">API Gateway</span>
+          <span class="tech-pill">Lambda</span>
+          <span class="tech-pill">S3</span>
+          <span class="tech-pill">SQS</span>
+          <span class="tech-pill">Bedrock</span>
+          <span class="tech-pill">Neon Postgres</span>
+          <span class="tech-pill">Cognito</span>
+          <span class="tech-pill">CloudWatch</span>
+          <span class="tech-pill">Terraform</span>
+        </div>
+      </div>
+
       <div class="project-card animate">
         <div class="project-header">
           <div class="project-icon" style="background:rgba(255,153,0,0.1);">▤</div>
@@ -2584,9 +3064,119 @@
 
   <div class="project-group">
     <div class="project-group-heading">
-      <h3>Supporting AWS Patterns</h3>
-      <span>More proof systems</span>
+      <h3>macOS &amp; Operator Tools</h3>
+      <span>Desktop utilities and market workflows</span>
     </div>
+
+    <div class="projects-grid">
+      <div class="project-card animate">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(0,229,160,0.1);">MS</div>
+          <div class="project-links">
+            <a href="https://github.com/manynames3/market-scout" target="_blank" class="project-link" title="GitHub">Repo</a>
+            <a href="https://market-scout-anl.pages.dev/" target="_blank" class="project-link" title="Demo">Live demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Market Scout - Web + macOS Real Estate Market Intelligence</div>
+          <div class="project-proof">
+            <div class="proof-row">
+              <strong>Business problem</strong>
+              <span>Real estate operators need quick local-market comparisons across cities, ZIPs, and counties from both browser and desktop workflows without manually checking raw market trackers or rebuilding shortlists by hand.</span>
+            </div>
+            <div class="proof-row">
+              <strong>Product built</strong>
+              <span>Web and macOS market intelligence app that turns Redfin market-tracker data into sortable comparisons, seller/buyer market labels, shortlist workflows, external research links, and downloadable results.</span>
+            </div>
+            <div class="proof-row">
+              <strong>Confidence signals</strong>
+              <span>Live web demo, repo, macOS app surface, screenshot evidence, Python data build pipeline, static deployment path, bulk shortlist workflow, and operator-first market metrics.</span>
+            </div>
+          </div>
+          <div class="evidence-strip">
+            <span class="evidence-chip">Live demo</span>
+            <span class="evidence-chip">Repo</span>
+            <span class="evidence-chip">macOS app</span>
+            <span class="evidence-chip">Screenshot</span>
+            <span class="evidence-chip">Market data</span>
+            <span class="evidence-chip">CSV export</span>
+          </div>
+        </div>
+        <figure class="project-screenshot">
+          <button type="button" class="architecture-trigger" data-title="Market Scout app screenshot" aria-label="View the Market Scout app screenshot">
+            <img src="assets/screenshots/market-scout-results.png" alt="Market Scout interface showing bulk market analysis, searchable results, and sortable real estate market comparison table" width="1919" height="1997" loading="lazy" decoding="async">
+          </button>
+          <figcaption>Market Scout screenshot <span>View screenshot</span></figcaption>
+        </figure>
+        <div class="project-footer">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">macOS</span>
+          <span class="tech-pill">HTML</span>
+          <span class="tech-pill">CSS</span>
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">Redfin data</span>
+          <span class="tech-pill">CSV export</span>
+          <span class="tech-pill">Cloudflare Pages</span>
+        </div>
+      </div>
+
+      <div class="project-card animate">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(126,87,194,0.15);">NS</div>
+          <div class="project-links">
+            <a href="https://github.com/manynames3/nomospace" target="_blank" class="project-link" title="GitHub">Repo</a>
+            <a href="https://nomospace.pages.dev" target="_blank" class="project-link" title="Demo">Live demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Nomo Space - Local Mac Storage Auditor</div>
+          <div class="project-proof">
+            <div class="proof-row">
+              <strong>Business problem</strong>
+              <span>Mac users run out of disk space because System Data, app caches, developer artifacts, and cleanup risk are hard to inspect before deleting files.</span>
+            </div>
+            <div class="proof-row">
+              <strong>Product built</strong>
+              <span>Local-first Swift macOS app that audits storage, labels cleanup risk, explains findings, supports evaluation mode, and keeps cleanup decisions on the user's machine.</span>
+            </div>
+            <div class="proof-row">
+              <strong>Confidence signals</strong>
+              <span>Repo, landing page, screenshot evidence, local-only scan posture, risk-labeled findings, access-code cleanup flow, and report-oriented UX.</span>
+            </div>
+          </div>
+          <div class="evidence-strip">
+            <span class="evidence-chip">macOS app</span>
+            <span class="evidence-chip">Swift</span>
+            <span class="evidence-chip">Local-first</span>
+            <span class="evidence-chip">Screenshot</span>
+            <span class="evidence-chip">Risk labels</span>
+          </div>
+        </div>
+        <figure class="project-screenshot">
+          <button type="button" class="architecture-trigger" data-title="Nomo Space macOS app screenshot" aria-label="View the Nomo Space macOS app screenshot">
+            <img src="assets/screenshots/nomospace-evaluation-mode.png" alt="Nomo Space macOS app showing storage audit summary, evaluation mode, reclaimable storage, safe storage, review storage, and findings count" width="1065" height="747" loading="lazy" decoding="async">
+          </button>
+          <figcaption>Nomo Space macOS screenshot <span>View screenshot</span></figcaption>
+        </figure>
+        <div class="project-footer">
+          <span class="tech-pill">Swift</span>
+          <span class="tech-pill">SwiftUI</span>
+          <span class="tech-pill">macOS</span>
+          <span class="tech-pill">Local storage audit</span>
+          <span class="tech-pill">Risk labels</span>
+          <span class="tech-pill">Cloudflare Pages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <details class="project-group supporting-disclosure">
+    <summary class="project-group-heading">
+      <div>
+        <h3>Supporting AWS Patterns</h3>
+        <span>More proof systems</span>
+      </div>
+    </summary>
 
     <div class="projects-grid supporting-grid">
       <div class="project-card animate">
@@ -2701,7 +3291,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </details>
 </section>
 <div class="section-divider"></div>
 
@@ -2811,21 +3401,37 @@
   <div class="architecture-lightbox-shell">
     <div class="architecture-lightbox-header">
       <div>
-        <div class="architecture-lightbox-label">Architecture diagram</div>
+        <div class="architecture-lightbox-label">Project media</div>
         <h3 id="architecture-lightbox-title"></h3>
       </div>
-      <button type="button" class="architecture-lightbox-close" aria-label="Close architecture diagram">
+      <button type="button" class="architecture-lightbox-close" aria-label="Close project media">
         Close <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="architecture-lightbox-media">
       <img id="architecture-lightbox-image" alt="">
     </div>
-    <div class="architecture-lightbox-hint">Press Esc or click outside the diagram to close</div>
+    <div class="architecture-lightbox-hint">Press Esc or click outside the media to close</div>
   </div>
 </dialog>
 
 <script>
+  // Keep hash links aligned after late font/image layout shifts.
+  const scrollToCurrentHash = () => {
+    if (!window.location.hash) return;
+    const target = document.querySelector(window.location.hash);
+    if (target) target.scrollIntoView({ block: 'start' });
+  };
+
+  window.addEventListener('load', () => {
+    window.setTimeout(scrollToCurrentHash, 120);
+    window.setTimeout(scrollToCurrentHash, 600);
+  });
+
+  window.addEventListener('hashchange', () => {
+    window.setTimeout(scrollToCurrentHash, 0);
+  });
+
   // Intersection Observer for scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
