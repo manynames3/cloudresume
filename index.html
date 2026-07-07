@@ -3,3496 +3,1650 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aiden Rhaa — Cloud &amp; DevOps Engineer</title>
-<meta name="description" content="Aiden Rhaa translates manual business workflows into secure, repeatable AWS cloud systems with an operator-first perspective.">
-
+<title>Aiden Rhaa - AWS Cloud Engineer</title>
+<meta name="description" content="A compressed portfolio for Aiden Rhaa, focused on three AWS systems: PursuitDesk, TerraGate, and InspectIQ.">
+<link rel="canonical" href="https://manynames3.github.io/cloudresume/">
+<meta property="og:title" content="Aiden Rhaa - AWS Cloud Engineer">
+<meta property="og:description" content="A compressed AWS cloud portfolio focused on PursuitDesk, TerraGate, and InspectIQ.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://manynames3.github.io/cloudresume/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
-
   :root {
-    --bg: #080d1a;
-    --surface: #0f1829;
-    --card: #131f32;
-    --card-hover: #172338;
-    --border: rgba(0, 212, 255, 0.12);
-    --border-hover: rgba(0, 212, 255, 0.35);
+    --bg: #080a0f;
+    --bg-2: #0d1119;
+    --surface: #111722;
+    --surface-2: #151d2a;
+    --card: #101722;
+    --card-strong: #172130;
+    --line: rgba(180, 218, 235, 0.14);
+    --line-strong: rgba(0, 212, 255, 0.32);
+    --text: #e8eef8;
+    --soft: #a9b7c9;
+    --muted: #718198;
     --cyan: #00d4ff;
-    --cyan-dim: rgba(0, 212, 255, 0.08);
-    --orange: #ff7043;
-    --orange-dim: rgba(255, 112, 67, 0.08);
-    --green: #00e5a0;
-    --text: #dde4f0;
-    --text-muted: #5e7090;
-    --text-soft: #8ca0bc;
-    --heading: #f0f5ff;
-    --mono: 'Courier New', 'Consolas', 'Menlo', monospace;
-    --bento-bg: #0a0a0b;
-    --bento-surface: #111113;
-    --bento-elevated: #1a1a1e;
-    --bento-border: rgba(255,255,255,0.07);
-    --bento-border-medium: rgba(255,255,255,0.12);
-    --bento-border-strong: rgba(255,255,255,0.2);
-    --bento-text: #f2f2f3;
-    --bento-secondary: #9b9ba6;
-    --bento-muted: #5b5b66;
-    --bento-accent: #f97316;
-    --bento-accent-soft: rgba(249,115,22,0.15);
-    --bento-accent-border: rgba(249,115,22,0.28);
-    --font-sans: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-mono: 'Geist Mono', 'Courier New', 'Consolas', 'Menlo', monospace;
+    --cyan-soft: rgba(0, 212, 255, 0.1);
+    --green: #0ce5a5;
+    --orange: #ff8a4c;
+    --violet: #9d7cff;
+    --shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+    --radius: 8px;
+    --radius-lg: 12px;
+    --max: 1160px;
+    --font: "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "Geist Mono", "Courier New", monospace;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
+    margin: 0;
+    font-family: var(--font);
     color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
+    background:
+      radial-gradient(circle at 8% 6%, rgba(0, 212, 255, 0.14), transparent 28rem),
+      radial-gradient(circle at 88% 18%, rgba(255, 138, 76, 0.12), transparent 24rem),
+      linear-gradient(180deg, var(--bg), #07080c 42%, #090b10);
+    line-height: 1.55;
+    overflow-x: clip;
   }
 
-  section {
-    scroll-margin-top: 88px;
-  }
-
-  /* NOISE TEXTURE OVERLAY */
   body::before {
-    content: '';
+    content: "";
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  /* GRID BACKGROUND */
-  .grid-bg {
-    position: fixed;
-    inset: 0;
+    z-index: -1;
     background-image:
-      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
   }
 
-  /* NAV */
-  nav {
-    position: fixed;
+  a {
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 18px;
+    top: -48px;
+    z-index: 200;
+    padding: 10px 14px;
+    color: #061018;
+    background: var(--cyan);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .skip-link:focus {
+    top: 16px;
+  }
+
+  .site-nav {
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 100;
-    padding: 0 5%;
-    height: 64px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(8, 10, 15, 0.86);
+    backdrop-filter: blur(18px);
+  }
+
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 13px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(8, 13, 26, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    gap: 20px;
   }
 
-  .nav-logo {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    min-width: max-content;
+    text-decoration: none;
     font-weight: 800;
-    font-size: 1.1rem;
-    color: var(--heading);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
+    color: var(--text);
   }
 
-  .nav-logo span {
+  .brand-wordmark {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 800;
+    font-size: 1.04rem;
+    letter-spacing: 0;
+    color: var(--text);
+  }
+
+  .brand-wordmark span {
     color: var(--cyan);
   }
 
   .nav-links {
     display: flex;
-    gap: 2rem;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
     list-style: none;
     min-width: 0;
   }
 
-  .nav-links::-webkit-scrollbar { display: none; }
-
   .nav-links a {
-    color: var(--text-soft);
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 11px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--soft);
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
     font-family: var(--mono);
+    font-size: 0.72rem;
+    white-space: nowrap;
   }
 
-  .nav-links a:hover { color: var(--cyan); }
-
-  .nav-cta {
-    background: transparent;
-    border: 1px solid var(--cyan);
-    color: var(--cyan) !important;
-    padding: 6px 18px;
-    border-radius: 4px;
-    transition: all 0.2s !important;
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: var(--cyan);
+    border-color: var(--line-strong);
+    outline: none;
   }
 
-  .nav-cta:hover {
-    background: var(--cyan) !important;
-    color: var(--bg) !important;
-  }
-
-  /* SECTIONS */
-  section {
+  main {
     position: relative;
     z-index: 1;
-    padding: 120px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
   }
 
-  /* HERO */
-  #hero {
-    padding-top: 160px;
-    padding-bottom: 80px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    min-height: 92vh;
-    max-width: 1200px;
+  section {
+    max-width: var(--max);
     margin: 0 auto;
+    padding: 74px 24px;
+    scroll-margin-top: 82px;
   }
 
-  .hero-content,
-  .project-card,
-  .skill-category,
-  .cert-card,
-  .contact-wrapper,
-  .timeline-item {
-    min-width: 0;
+  .eyebrow {
+    margin: 0 0 12px;
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
   }
 
   h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2.8rem, 4vw, 4.2rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--heading);
-    margin-bottom: 16px;
+    max-width: 840px;
+    margin-bottom: 20px;
+    font-size: clamp(2.55rem, 7vw, 5.7rem);
+    line-height: 0.96;
+    letter-spacing: 0;
+    text-wrap: balance;
   }
 
-  h1 .line2 {
-    display: block;
-    color: var(--cyan);
-    -webkit-text-stroke: 0px;
+  h2 {
+    margin-bottom: 14px;
+    font-size: clamp(1.75rem, 3.4vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: 0;
+    text-wrap: balance;
   }
 
-  .hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-soft);
-    line-height: 1.7;
-    margin-bottom: 32px;
-    max-width: 480px;
-  }
-
-  .credential-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .credential-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--text);
-    font-size: 0.86rem;
-    font-weight: 500;
-  }
-
-  .brand-mark {
-    width: 38px;
-    height: 30px;
-    border-radius: 7px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .brand-mark svg {
-    width: 28px;
-    height: 22px;
-    display: block;
-  }
-
-  .brand-aws {
-    background: rgba(255, 153, 0, 0.12);
-    border: 1px solid rgba(255, 153, 0, 0.22);
-  }
-
-  .brand-terraform {
-    background: rgba(126, 87, 194, 0.16);
-    border: 1px solid rgba(126, 87, 194, 0.28);
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .mobile-proof-grid {
-    display: none;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 28px;
-    background: var(--cyan);
-    color: #080d1a;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.2s;
-    letter-spacing: 0.01em;
-  }
-
-  .btn-primary:hover {
-    background: #33ddff;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.25);
-  }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 28px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.15);
-    color: var(--text);
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    transform: translateY(-1px);
-  }
-
-  /* HERO RIGHT — PHOTO CARD */
-  .hero-visual {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .photo-frame {
-    position: relative;
-    width: min(360px, 100%);
-    display: grid;
-    gap: 12px;
-  }
-
-  .photo-frame::before {
-    content: none;
-  }
-
-  .photo-frame img {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: 16px;
-    border: 2px solid rgba(0, 212, 255, 0.72);
-    display: block;
-    filter: grayscale(15%) contrast(1.05);
-    box-shadow:
-      0 0 0 1px rgba(0, 212, 255, 0.12),
-      10px 10px 0 -4px rgba(255, 112, 67, 0.9);
-  }
-
-  .photo-tag {
-    position: static;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    min-width: 0;
-    backdrop-filter: blur(12px);
-  }
-
-  .photo-tag .tag-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 0;
-  }
-
-  .photo-tag .tag-value {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--heading);
-  }
-
-  .photo-tag-top {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--cyan);
-    color: #080d1a;
-    border-radius: 7px;
-    padding: 7px 10px;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-align: center;
-    line-height: 1.35;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-  }
-
-  .hero-stats {
-    position: static;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    padding: 8px;
-    background: rgba(19, 31, 50, 0.94);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
-  }
-
-  .hero-stat {
-    min-height: 58px;
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 8px;
-    padding: 8px 10px;
-    background: rgba(0, 0, 0, 0.18);
-  }
-
-  .hero-stat strong {
-    display: block;
-    color: var(--heading);
-    font-family: var(--mono);
-    font-size: 0.78rem;
+  h3 {
     line-height: 1.2;
+    letter-spacing: 0;
   }
 
-  .hero-stat span {
-    display: block;
-    margin-top: 4px;
-    color: var(--text-muted);
+  .lead {
+    max-width: 690px;
+    margin-bottom: 0;
+    color: var(--soft);
+    font-size: clamp(1rem, 1.5vw, 1.14rem);
+  }
+
+  .credential-line {
+    margin: -8px 0 0;
+    color: var(--cyan);
     font-family: var(--mono);
-    font-size: 0.62rem;
-    line-height: 1.25;
+    font-size: 0.76rem;
+    font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 
-  .hero-cert-pills {
+  .btn-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin: -10px 0 26px;
+    gap: 10px;
   }
 
-  .hero-cert-pill {
+  .button,
+  .text-link,
+  .mini-action,
+  .media-trigger {
+    font: inherit;
+  }
+
+  .button {
     display: inline-flex;
-    align-items: center;
-    min-height: 30px;
-    padding: 6px 10px;
-    border: 1px solid rgba(0, 212, 255, 0.16);
-    border-radius: 999px;
-    background: var(--cyan-dim);
-    color: var(--cyan);
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.03em;
-  }
-
-  .proof-band {
-    padding-top: 72px;
-    padding-bottom: 72px;
-  }
-
-  .proof-band h2 {
-    max-width: 760px;
-  }
-
-  .proof-intro {
-    color: var(--text-soft);
-    font-size: 1rem;
-    line-height: 1.75;
-    max-width: 760px;
-    margin-bottom: 28px;
-  }
-
-  .proof-cards {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  .proof-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px;
-    min-width: 0;
-  }
-
-  .proof-card span {
-    display: inline-flex;
-    margin-bottom: 12px;
-    color: var(--cyan);
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .proof-card h3 {
-    color: var(--heading);
-    font-family: 'Syne', sans-serif;
-    font-size: 1.08rem;
-    line-height: 1.28;
-    margin-bottom: 8px;
-  }
-
-  .proof-card p {
-    color: var(--text-soft);
-    font-size: 0.9rem;
-    line-height: 1.65;
-  }
-
-  /* SECTION HEADERS */
-  .section-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--cyan);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-eyebrow::after {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 40px;
-    background: var(--cyan);
-    opacity: 0.4;
-  }
-
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    color: var(--heading);
-    letter-spacing: -0.03em;
-    margin-bottom: 16px;
-  }
-
-  .section-desc {
-    color: var(--text-soft);
-    font-size: 1rem;
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 56px;
-  }
-
-  #projects {
-    padding-top: 96px;
-  }
-
-  #projects .section-desc {
-    margin-bottom: 28px;
-  }
-
-  /* CERTIFICATIONS */
-  .certifications-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .cert-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    min-height: 150px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .cert-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-  }
-
-  .cert-provider {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--cyan);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .cert-card h3 {
-    color: var(--heading);
-    font-family: 'Syne', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
-
-  .cert-card p {
-    color: var(--text-soft);
-    font-size: 0.86rem;
-    line-height: 1.6;
-  }
-
-  /* SKILLS */
-  #skills {
-    padding-top: 0;
-    font-family: var(--font-sans);
-  }
-
-  #skills .section-eyebrow {
-    color: var(--bento-accent);
-  }
-
-  #skills h2 {
-    font-family: var(--font-sans);
-    color: var(--bento-text);
-  }
-
-  #skills .section-desc {
-    color: var(--bento-secondary);
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: minmax(230px, auto);
-    gap: 12px;
-  }
-
-  .skill-category {
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.018)),
-      var(--bento-surface);
-    border: 1px solid var(--bento-border);
-    border-radius: 20px;
-    padding: 28px;
-    position: relative;
-    overflow: hidden;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.08),
-      0 1px 0 rgba(0,0,0,0.6);
-    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
-  }
-
-  .skill-category::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 21px;
-    background: linear-gradient(135deg, var(--bento-accent-soft), transparent 58%);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 300ms ease;
-  }
-
-  .skill-category::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    opacity: 0.28;
-    pointer-events: none;
-    mix-blend-mode: overlay;
-  }
-
-  .skill-category > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .skill-wide { grid-column: span 2; }
-
-  .skill-compact { min-height: 100%; }
-
-  .skill-category:hover {
-    border-color: var(--bento-border-medium);
-    transform: translateY(-2px);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.1),
-      0 16px 48px rgba(0,0,0,0.4),
-      0 0 0 1px var(--bento-border-medium);
-  }
-
-  .skill-category:hover::before {
-    opacity: 1;
-  }
-
-  .skill-cat-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-
-  .skill-cat-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
-    display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 0.95rem;
-    color: var(--bento-accent);
-    background: var(--bento-accent-soft);
-    border: 1px solid var(--bento-accent-border);
-    flex-shrink: 0;
-  }
-
-  .skill-cat-name {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 1.125rem;
-    line-height: 1.25;
-    color: var(--bento-text);
-    letter-spacing: -0.02em;
-    margin-bottom: 7px;
-  }
-
-  .skill-note {
-    color: var(--bento-secondary);
-    font-size: 0.9rem;
-    line-height: 1.65;
-    max-width: 54ch;
-  }
-
-  .skill-groups {
-    display: grid;
-    gap: 16px;
-  }
-
-  .skill-label {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--bento-muted);
-    margin-bottom: 8px;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
     gap: 8px;
-  }
-
-  .skill-tag {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    padding: 6px 10px;
-    background: rgba(255,255,255,0.045);
-    border: 1px solid var(--bento-border-medium);
-    border-radius: 999px;
-    color: var(--bento-secondary);
-    letter-spacing: 0.02em;
-    transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
-  }
-
-  .skill-tags-core .skill-tag {
-    background: var(--bento-accent-soft);
-    border-color: var(--bento-accent-border);
-    color: var(--bento-text);
-  }
-
-  .skill-tag:hover {
-    border-color: var(--bento-border-strong);
-    color: var(--bento-text);
-    background: var(--bento-elevated);
-  }
-
-  .skill-secondary {
-    color: var(--bento-secondary);
-    font-size: 0.82rem;
-    line-height: 1.65;
-  }
-
-  .skill-secondary span {
-    color: var(--bento-text);
-  }
-
-  .skill-category hr {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--bento-border-medium), transparent);
-    margin: 2px 0 0;
-  }
-
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 24px;
-  }
-
-  .project-group {
-    margin-top: 38px;
-  }
-
-  #pursuitdesk,
-  #terragate,
-  #inspectiq {
-    scroll-margin-top: 96px;
-  }
-
-  .project-group:first-of-type {
-    margin-top: 0;
-  }
-
-  .project-group-heading {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 18px;
-    margin-bottom: 18px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .project-group-heading h3 {
-    color: var(--heading);
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.2rem, 2vw, 1.55rem);
-    letter-spacing: -0.02em;
-  }
-
-  .project-group-heading span {
-    color: var(--text-muted);
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .reviewer-path {
-    margin: 28px 0 30px;
-    padding: 22px;
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(126, 87, 194, 0.07));
-    border: 1px solid rgba(0, 212, 255, 0.24);
-    border-radius: 14px;
-  }
-
-  .reviewer-path-header {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 14px;
-  }
-
-  .reviewer-path-header strong {
-    color: var(--heading);
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.08rem, 1.7vw, 1.34rem);
-    letter-spacing: -0.02em;
-  }
-
-  .reviewer-path-header span {
-    color: var(--text-muted);
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .reviewer-path-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .reviewer-path-card {
-    display: grid;
-    gap: 8px;
-    padding: 15px;
-    color: var(--text-soft);
-    text-decoration: none;
-    background: rgba(10, 15, 25, 0.72);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    transition: all 0.2s;
-  }
-
-  .reviewer-path-card:hover,
-  .reviewer-path-card:focus-visible {
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
     color: var(--text);
-    border-color: var(--cyan);
-    background: rgba(0, 212, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  }
+
+  .button.primary {
+    color: #061018;
+    border-color: transparent;
+    background: var(--cyan);
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--line-strong);
     outline: none;
   }
 
-  .reviewer-path-card em {
-    color: var(--cyan);
+  .button.primary:hover,
+  .button.primary:focus-visible {
+    background: #34ddff;
+  }
+
+  .hero {
+    padding-top: 92px;
+    padding-bottom: 62px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+    gap: 42px;
+    align-items: center;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 24px;
+  }
+
+  .hero-panel {
+    display: grid;
+    gap: 14px;
+    padding: 18px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+      var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .portrait-row {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+  }
+
+  .portrait-row img {
+    width: 90px;
+    height: 102px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 8px;
+    border: 1px solid var(--line-strong);
+  }
+
+  .portrait-row strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.02rem;
+  }
+
+  .portrait-row span {
+    display: block;
+    color: var(--soft);
+    font-size: 0.9rem;
+  }
+
+  .signal-list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .signal-item {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    gap: 10px;
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(0, 0, 0, 0.16);
+  }
+
+  .signal-item dt {
+    color: var(--muted);
     font-family: var(--mono);
-    font-size: 0.66rem;
-    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  .reviewer-path-card strong {
-    color: var(--heading);
-    font-size: 0.98rem;
-    line-height: 1.35;
+  .signal-item dd {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.9rem;
   }
 
-  .reviewer-path-card span {
-    font-size: 0.82rem;
-    line-height: 1.5;
+  .section-head {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 30px;
   }
 
-  .reviewer-brief {
+  .start-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
-    margin: 24px 0 0;
   }
 
-  .reviewer-brief-card {
-    padding: 14px;
-    background: rgba(255,255,255,0.035);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+  .start-card {
+    padding: 18px;
+    min-height: 154px;
+    background: rgba(17, 23, 34, 0.86);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
   }
 
-  .reviewer-brief-card strong {
+  .start-card strong {
     display: block;
+    margin-bottom: 10px;
     color: var(--cyan);
     font-family: var(--mono);
-    font-size: 0.66rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-bottom: 6px;
   }
 
-  .reviewer-brief-card span {
-    display: block;
-    color: var(--text-soft);
-    font-size: 0.82rem;
-    line-height: 1.5;
+  .start-card p {
+    margin: 0;
+    color: var(--soft);
+    font-size: 0.92rem;
   }
 
-  .project-outcome {
+  .proof-stack {
     display: grid;
-    gap: 4px;
-    margin: 0 0 14px;
-    padding: 12px 14px;
-    background: rgba(0, 212, 255, 0.07);
-    border: 1px solid rgba(0, 212, 255, 0.16);
-    border-radius: 10px;
+    gap: 18px;
   }
 
-  .project-outcome strong {
+  .proof-project {
+    display: grid;
+    grid-template-columns: minmax(0, 1.26fr) minmax(270px, 0.74fr);
+    gap: 18px;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(157, 124, 255, 0.06) 34%, rgba(255, 255, 255, 0.02)),
+      var(--card);
+  }
+
+  .proof-project.lead-project {
+    border-color: rgba(0, 212, 255, 0.38);
+    background:
+      linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(255, 138, 76, 0.07) 42%, rgba(255, 255, 255, 0.02)),
+      var(--card);
+  }
+
+  .project-copy {
+    min-width: 0;
+  }
+
+  .project-topline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 12px;
+  }
+
+  .project-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
     color: var(--cyan);
+    background: var(--cyan-soft);
     font-family: var(--mono);
-    font-size: 0.66rem;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .project-title {
+    margin-bottom: 8px;
+    font-size: clamp(1.22rem, 2vw, 1.58rem);
+  }
+
+  .outcome {
+    margin-bottom: 12px;
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .problem {
+    margin-bottom: 14px;
+    color: var(--soft);
+    font-size: 0.95rem;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 25px;
+    padding: 4px 8px;
+    border: 1px solid rgba(0, 212, 255, 0.18);
+    border-radius: 999px;
+    color: var(--cyan);
+    background: var(--cyan-soft);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+
+  .proof-lines {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .proof-lines li {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+  }
+
+  .proof-lines strong {
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  .project-outcome span {
-    color: var(--heading);
-    font-size: 0.88rem;
-    line-height: 1.5;
+  .proof-lines span {
+    color: var(--soft);
+    font-size: 0.9rem;
   }
 
-  .project-outcome-featured {
-    max-width: 900px;
+  .project-media {
+    min-width: 0;
+    display: grid;
+    align-content: start;
+    gap: 12px;
   }
 
-  .supporting-disclosure {
+  .diagram-button {
+    display: grid;
+    width: 100%;
+    min-height: 214px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: var(--radius);
+    background: #f5f7fb;
+    cursor: zoom-in;
+  }
+
+  .diagram-button:hover,
+  .diagram-button:focus-visible {
+    border-color: var(--cyan);
+    outline: none;
+  }
+
+  .diagram-button img {
+    width: 100%;
+    height: 214px;
+    object-fit: contain;
     display: block;
   }
 
-  .supporting-disclosure > summary {
+  .diagram-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    color: var(--soft);
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+  }
+
+  .diagram-caption span {
+    color: var(--cyan);
+    white-space: nowrap;
+  }
+
+  .links-box {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .text-link,
+  .mini-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 8px 10px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .text-link:hover,
+  .text-link:focus-visible,
+  .mini-action:hover,
+  .mini-action:focus-visible {
+    color: var(--cyan);
+    border-color: var(--line-strong);
+    outline: none;
+  }
+
+  .compressed-section {
+    padding-top: 46px;
+  }
+
+  .operator-card,
+  .stack-card,
+  .contact-card {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: rgba(17, 23, 34, 0.86);
+  }
+
+  .operator-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
+    gap: 16px;
+  }
+
+  .operator-card p {
+    color: var(--soft);
+    margin-bottom: 12px;
+  }
+
+  .operator-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .principles {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .principles li {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 8px;
+    color: var(--soft);
+    font-size: 0.92rem;
+  }
+
+  .principles li::before {
+    content: ">";
+    color: var(--green);
+    font-family: var(--mono);
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .stack-card h3 {
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 1rem;
+  }
+
+  .stack-card p {
+    margin-bottom: 0;
+    color: var(--soft);
+    font-size: 0.9rem;
+  }
+
+  .support-groups {
+    display: grid;
+    gap: 12px;
+  }
+
+  details.support-group {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: rgba(17, 23, 34, 0.82);
+    overflow: clip;
+  }
+
+  .support-group summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
     cursor: pointer;
     list-style: none;
   }
 
-  .supporting-disclosure > summary::-webkit-details-marker {
+  .support-group summary::-webkit-details-marker {
     display: none;
   }
 
-  .supporting-disclosure > summary::after {
-    content: 'View supporting systems';
-    color: var(--cyan);
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .supporting-disclosure[open] > summary::after {
-    content: 'Hide supporting systems';
-  }
-
-  .supporting-disclosure[open] > summary {
-    margin-bottom: 18px;
-  }
-
-  .supporting-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  }
-
-  .supporting-grid .project-header {
-    padding: 22px 22px 0;
-  }
-
-  .supporting-grid .project-body {
-    padding: 18px 22px;
-  }
-
-  .supporting-grid .project-footer {
-    padding: 14px 22px;
-  }
-
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .project-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 212, 255, 0.1);
-  }
-
-  .project-header {
-    padding: 28px 28px 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .project-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    flex-shrink: 0;
-  }
-
-  .project-links {
-    display: flex;
-    gap: 10px;
-  }
-
-  .project-link {
-    min-width: 32px;
-    height: 32px;
-    padding: 0 10px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: all 0.2s;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-  }
-
-  .project-link:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    background: var(--cyan-dim);
-  }
-
-  .project-body {
-    padding: 20px 28px;
-    flex: 1;
-  }
-
-  .project-title {
-    font-family: 'Syne', sans-serif;
+  .summary-title {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text);
     font-weight: 700;
     font-size: 1.05rem;
-    color: var(--heading);
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
   }
 
-  .project-proof {
-    display: grid;
-    gap: 10px;
-    margin: 14px 0 18px;
-  }
-
-  .proof-row {
-    display: grid;
-    gap: 3px;
-    padding-left: 12px;
-    border-left: 2px solid rgba(0, 212, 255, 0.22);
-  }
-
-  .proof-row strong {
-    color: var(--cyan);
+  .summary-subtitle {
+    display: block;
+    margin-bottom: 0;
+    color: var(--muted);
     font-family: var(--mono);
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 
-  .proof-row span {
-    color: var(--text-soft);
-    font-size: 0.88rem;
-    line-height: 1.58;
-    overflow-wrap: anywhere;
+  .summary-action {
+    flex: 0 0 auto;
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
   }
 
-  .evidence-strip {
+  details[open] .summary-action {
+    color: var(--orange);
+  }
+
+  .compact-list {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .compact-project {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid rgba(180, 218, 235, 0.08);
+  }
+
+  .compact-project:first-child {
+    border-top: 0;
+  }
+
+  .compact-project h4 {
+    margin: 0 0 5px;
+    color: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.25;
+  }
+
+  .compact-project p {
+    margin: 0;
+    color: var(--soft);
+    font-size: 0.88rem;
+  }
+
+  .compact-meta {
+    margin-top: 6px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+  }
+
+  .compact-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin: 0 0 18px;
+    justify-content: flex-end;
+    gap: 7px;
   }
 
-  .evidence-chip {
-    display: inline-flex;
+  .contact-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
     align-items: center;
-    min-height: 24px;
-    padding: 4px 8px;
-    border: 1px solid rgba(0, 229, 160, 0.18);
-    border-radius: 999px;
-    background: rgba(0, 229, 160, 0.07);
-    color: var(--green);
+  }
+
+  .contact-card p {
+    margin-bottom: 0;
+    color: var(--soft);
+  }
+
+  footer {
+    padding: 28px 24px 38px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    text-align: center;
     font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
+    font-size: 0.72rem;
   }
 
-  .project-architecture {
-    margin: 0 28px 24px;
-    overflow: hidden;
-    background: #f4f7fb;
-    border: 1px solid rgba(0, 212, 255, 0.18);
-    border-radius: 10px;
-  }
-
-  .project-architecture-featured {
-    margin: 0 32px 24px;
-  }
-
-  .architecture-trigger {
-    display: block;
-    width: 100%;
-    padding: 0;
-    background: #f4f7fb;
-    border: 0;
-    cursor: zoom-in;
-  }
-
-  .project-architecture img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  .project-architecture figcaption {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 9px 12px;
-    background: var(--surface);
-    color: var(--text-soft);
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.03em;
-  }
-
-  .project-architecture figcaption span {
-    color: var(--cyan);
-    white-space: nowrap;
-  }
-
-  .project-screenshot {
-    margin: 0 28px 24px;
-    overflow: hidden;
-    background: #0b101a;
-    border: 1px solid rgba(0, 212, 255, 0.18);
-    border-radius: 10px;
-  }
-
-  .project-screenshot .architecture-trigger {
-    background: #0b101a;
-  }
-
-  .project-screenshot img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 540px;
-    object-fit: contain;
-    object-position: top center;
-    background: #090d16;
-  }
-
-  .project-screenshot figcaption {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 9px 12px;
-    background: var(--surface);
-    color: var(--text-soft);
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.03em;
-  }
-
-  .project-screenshot figcaption span {
-    color: var(--cyan);
-    white-space: nowrap;
-  }
-
-  body.modal-open {
-    overflow: hidden;
-  }
-
-  .architecture-lightbox {
+  .media-lightbox {
     width: min(96vw, 1440px);
     max-width: none;
     max-height: 94vh;
     padding: 0;
     color: var(--text);
     background: var(--surface);
-    border: 1px solid rgba(0, 212, 255, 0.35);
-    border-radius: 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
     box-shadow: 0 28px 90px rgba(0, 0, 0, 0.7);
     overflow: hidden;
   }
 
-  .architecture-lightbox::backdrop {
-    background: rgba(2, 6, 15, 0.88);
+  .media-lightbox::backdrop {
+    background: rgba(2, 4, 8, 0.84);
     backdrop-filter: blur(8px);
   }
 
-  .architecture-lightbox-shell {
+  .lightbox-shell {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr) auto;
     max-height: 94vh;
   }
 
-  .architecture-lightbox-header {
+  .lightbox-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
+    gap: 18px;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--line);
   }
 
-  .architecture-lightbox-header h3 {
-    color: var(--heading);
-    font-size: 1rem;
-    line-height: 1.35;
-  }
-
-  .architecture-lightbox-label,
-  .architecture-lightbox-hint {
-    color: var(--text-muted);
+  .lightbox-label {
+    margin-bottom: 2px;
+    color: var(--muted);
     font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  .architecture-lightbox-close {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 38px;
-    padding: 8px 12px;
-    color: var(--heading);
-    background: var(--card);
-    border: 1px solid var(--border-hover);
-    border-radius: 7px;
+  .lightbox-title {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .lightbox-close {
+    min-height: 36px;
+    padding: 8px 11px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
     font-family: var(--mono);
     cursor: pointer;
   }
 
-  .architecture-lightbox-close:hover,
-  .architecture-lightbox-close:focus-visible {
+  .lightbox-close:hover,
+  .lightbox-close:focus-visible {
     color: var(--cyan);
-    border-color: var(--cyan);
     outline: none;
   }
 
-  .architecture-lightbox-media {
+  .lightbox-media {
     display: grid;
     place-items: center;
     min-height: 0;
     padding: 12px;
-    background: #f4f7fb;
+    background: #f5f7fb;
     overflow: auto;
   }
 
-  .architecture-lightbox-media img {
+  .lightbox-media img {
     display: block;
     width: auto;
     max-width: 100%;
-    max-height: calc(94vh - 126px);
+    max-height: calc(94vh - 124px);
   }
 
-  .architecture-lightbox-hint {
-    padding: 9px 18px;
+  .lightbox-hint {
+    padding: 9px 16px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
     text-align: right;
-    border-top: 1px solid var(--border);
+    text-transform: uppercase;
   }
 
-  .project-desc {
-    font-size: 0.88rem;
-    color: var(--text-soft);
-    line-height: 1.65;
-    margin-bottom: 20px;
-    overflow-wrap: anywhere;
-  }
-
-  .project-metric {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--orange-dim);
-    border: 1px solid rgba(255, 112, 67, 0.2);
-    border-radius: 6px;
-    padding: 5px 12px;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--orange);
-    margin-bottom: 20px;
-    letter-spacing: 0.03em;
-    max-width: 100%;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    line-height: 1.45;
-  }
-
-  .project-footer {
-    padding: 16px 28px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .tech-pill {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    padding: 3px 10px;
-    background: var(--cyan-dim);
-    border: 1px solid rgba(0, 212, 255, 0.15);
-    border-radius: 3px;
-    color: var(--cyan);
-    letter-spacing: 0.03em;
-    overflow-wrap: anywhere;
-  }
-
-  /* EXPERIENCE */
-  .timeline {
-    position: relative;
-    padding-left: 40px;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--cyan), transparent);
-    opacity: 0.3;
-  }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 52px;
-    animation: fadeInUp 0.5s ease both;
-  }
-
-  .timeline-item:last-child { margin-bottom: 0; }
-
-  .timeline-dot {
-    position: absolute;
-    left: -44px;
-    top: 4px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--cyan);
-    border: 2px solid var(--bg);
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
-  }
-
-  .timeline-meta {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-  }
-
-  .timeline-role {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: var(--heading);
-  }
-
-  .timeline-period {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    padding: 3px 10px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.06);
-    letter-spacing: 0.04em;
-  }
-
-  .timeline-company {
-    font-size: 0.88rem;
-    color: var(--cyan);
-    margin-bottom: 14px;
-    font-weight: 500;
-  }
-
-  .timeline-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .timeline-list li {
-    display: flex;
-    gap: 12px;
-    font-size: 0.88rem;
-    color: var(--text-soft);
-    line-height: 1.6;
-  }
-
-  .timeline-list li::before {
-    content: '→';
-    color: var(--cyan);
-    opacity: 0.6;
-    flex-shrink: 0;
-    font-family: var(--mono);
-    margin-top: 1px;
-  }
-
-  .experience-bridge {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 22px;
-    color: var(--text-soft);
-    font-size: 0.92rem;
-    line-height: 1.65;
-    margin: -28px 0 48px;
-  }
-
-  .experience-bridge strong {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  /* CONTACT */
-  #contact {
-    text-align: center;
-  }
-
-  .contact-wrapper {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 64px 48px;
-    position: relative;
+  body.modal-open {
     overflow: hidden;
   }
 
-  .contact-wrapper::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cyan), var(--orange), transparent);
-  }
-
-  .contact-wrapper h2 {
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    margin-bottom: 16px;
-  }
-
-  .contact-wrapper p {
-    color: var(--text-soft);
-    font-size: 1rem;
-    max-width: 680px;
-    margin: 0 auto 26px;
-    line-height: 1.7;
-  }
-
-  .target-roles {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    max-width: 760px;
-    margin: 0 auto 26px;
-  }
-
-  .target-role {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--cyan);
-    background: var(--cyan-dim);
-    border: 1px solid rgba(0, 212, 255, 0.16);
-    border-radius: 4px;
-    padding: 6px 10px;
-    letter-spacing: 0.03em;
-  }
-
-  .contact-fit {
-    color: var(--text-soft);
-    font-size: 0.9rem;
-    line-height: 1.65;
-    max-width: 620px;
-    margin: 0 auto 36px;
-  }
-
-  .contact-fit strong {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 1px solid;
-  }
-
-  .contact-link.linkedin {
-    background: rgba(10, 102, 194, 0.12);
-    border-color: rgba(10, 102, 194, 0.3);
-    color: #5ba4e5;
-  }
-
-  .contact-link.linkedin:hover {
-    background: rgba(10, 102, 194, 0.22);
-    transform: translateY(-2px);
-  }
-
-  .contact-link.github {
-    background: rgba(255,255,255,0.05);
-    border-color: rgba(255,255,255,0.12);
-    color: var(--text);
-  }
-
-  .contact-link.github:hover {
-    background: rgba(255,255,255,0.1);
-    transform: translateY(-2px);
-  }
-
-  .contact-link.email {
-    background: var(--cyan-dim);
-    border-color: rgba(0, 212, 255, 0.25);
-    color: var(--cyan);
-  }
-
-  .contact-link.email:hover {
-    background: rgba(0, 212, 255, 0.15);
-    transform: translateY(-2px);
-  }
-
-  /* FOOTER */
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 32px 5%;
-    border-top: 1px solid var(--border);
-    color: var(--text-muted);
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate {
+  .reveal {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(16px);
+    transition: opacity 420ms ease, transform 420ms ease;
   }
 
-  .animate.visible {
+  .reveal.visible {
     opacity: 1;
     transform: none;
   }
 
-  /* TERMINAL BLOCK */
-  .terminal {
-    background: #060b16;
-    border: 1px solid rgba(0, 212, 255, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 60px;
-  }
-
-  .terminal-bar {
-    background: #0d1520;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .t-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .t-red { background: #ff5f57; }
-  .t-yellow { background: #ffbd2e; }
-  .t-green { background: #28ca41; }
-
-  .terminal-title {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    margin-left: auto;
-    margin-right: auto;
-    padding-right: 34px;
-    letter-spacing: 0.04em;
-  }
-
-  .terminal-body {
-    padding: 24px;
-    font-family: var(--mono);
-    font-size: 0.82rem;
-    line-height: 1.8;
-    overflow-wrap: anywhere;
-  }
-
-  .t-prompt { color: var(--green); }
-  .t-cmd { color: var(--text); }
-  .t-out { color: var(--text-muted); }
-  .t-cyan { color: var(--cyan); }
-  .t-orange { color: var(--orange); }
-  .t-cursor {
-    display: inline-block;
-    width: 8px;
-    height: 14px;
-    background: var(--cyan);
-    vertical-align: middle;
-    animation: blink 1.2s step-end infinite;
-  }
-
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
-  }
-
-  .about-text p {
-    color: var(--text-soft);
-    font-size: 0.95rem;
-    line-height: 1.75;
-    margin-bottom: 16px;
-  }
-
-  .about-text strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .operator-principles {
-    display: grid;
-    gap: 10px;
-    list-style: none;
-  }
-
-  .operator-principles li {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 10px;
-    align-items: start;
-    color: var(--text-soft);
-    font-size: 0.84rem;
-    line-height: 1.5;
-  }
-
-  .operator-principles li::before {
-    content: '>';
-    color: var(--green);
-    font-family: var(--mono);
-  }
-
-  @media (min-width: 901px) and (max-width: 1100px) {
-    #hero {
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
-      gap: 48px;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
     }
 
-    .photo-frame {
-      width: min(320px, 100%);
-    }
-
-    .photo-frame img {
-      height: 392px;
-    }
-
-    .photo-tag {
-      width: 100%;
-    }
-
-    .photo-tag-top {
-      right: 12px;
-    }
-
-    .hero-stats {
-      width: 100%;
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.001ms !important;
     }
   }
 
-  /* DIVIDER */
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    section {
-      scroll-margin-top: 132px;
-    }
-
-    #pursuitdesk,
-    #terragate,
-    #inspectiq {
-      scroll-margin-top: 132px;
-    }
-
-    nav {
-      height: auto;
-      min-height: 64px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 4px 16px;
-      padding-top: 10px;
-      padding-bottom: 8px;
-    }
-
-    .nav-logo {
-      line-height: 1.9;
-    }
-
-    .nav-links {
-      display: flex;
-      width: 100%;
-      gap: 0.45rem;
-      overflow-x: auto;
-      padding: 4px 0 2px;
-      scrollbar-width: none;
-    }
-
-    .nav-links a {
-      display: inline-flex;
-      min-height: 30px;
-      align-items: center;
-      padding: 5px 9px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.03);
-      white-space: nowrap;
-    }
-
-    #hero {
+  @media (max-width: 980px) {
+    .hero,
+    .proof-project,
+    .operator-grid,
+    .contact-card {
       grid-template-columns: 1fr;
-      padding-top: 148px;
-      padding-bottom: 48px;
-      min-height: auto;
-      gap: 48px;
     }
 
-    .hero-visual { display: none; }
+    .start-grid,
+    .stack-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-    .mobile-proof-grid {
+    .project-topline {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      margin: -8px 0 28px;
+      gap: 12px;
     }
 
-    .mobile-proof-grid .hero-stat {
-      min-height: 60px;
+    .links-box {
+      max-width: 420px;
     }
-
-    .about-grid { grid-template-columns: 1fr; }
-    .proof-cards { grid-template-columns: 1fr; }
-    .certifications-grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .skill-wide { grid-column: span 2; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .reviewer-brief { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .reviewer-path-grid { grid-template-columns: 1fr; }
   }
 
-  @media (max-width: 600px) {
-    section {
-      padding: 76px 20px;
-      scroll-margin-top: 156px;
-    }
-
-    #projects {
-      padding-top: 76px;
-    }
-
-    #pursuitdesk,
-    #terragate,
-    #inspectiq {
-      scroll-margin-top: 156px;
-    }
-
-    nav {
-      padding-left: 20px;
-      padding-right: 20px;
+  @media (max-width: 680px) {
+    .nav-inner {
+      padding: 10px 16px;
+      display: grid;
+      gap: 9px;
     }
 
     .nav-links {
-      gap: 0.35rem;
-      flex-wrap: wrap;
-      overflow: visible;
-      row-gap: 6px;
+      justify-content: start;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-links a {
-      min-height: 28px;
-      padding: 4px 8px;
-      font-size: 0.68rem;
+      min-height: 30px;
+      padding: 6px 9px;
+      font-size: 0.67rem;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
     }
 
-    #hero {
-      padding-top: 156px;
-      padding-bottom: 38px;
+    section {
+      padding: 52px 16px;
+      scroll-margin-top: 104px;
     }
 
-    h1 {
-      font-size: clamp(2.3rem, 14vw, 3rem);
+    .hero {
+      padding-top: 48px;
+      padding-bottom: 44px;
+      gap: 28px;
     }
 
-    h2 {
-      font-size: clamp(1.72rem, 9vw, 2.2rem);
+    .hero-panel {
+      display: none;
     }
 
-    .hero-subtitle {
-      font-size: 0.96rem;
-      line-height: 1.55;
-      margin-bottom: 20px;
+    .signal-item {
+      grid-template-columns: 1fr;
+      gap: 4px;
     }
 
-    .hero-cert-pills {
-      gap: 6px;
-      margin: -4px 0 18px;
+    .start-grid,
+    .stack-grid {
+      grid-template-columns: 1fr;
     }
 
-    .hero-cert-pill {
-      min-height: 28px;
-      padding: 5px 8px;
-      font-size: 0.68rem;
+    .start-card {
+      min-height: 0;
+      padding: 15px;
     }
 
-    .hero-actions {
+    .proof-project {
+      padding: 15px;
+      gap: 14px;
+    }
+
+    .proof-lines li {
+      grid-template-columns: 1fr;
+      gap: 3px;
+    }
+
+    .diagram-button {
+      min-height: 166px;
+    }
+
+    .diagram-button img {
+      height: 166px;
+    }
+
+    .links-box {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .support-group summary {
+      align-items: flex-start;
+      padding: 15px;
+    }
+
+    .compact-project {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 14px 15px;
+    }
+
+    .compact-actions {
+      justify-content: flex-start;
+    }
+
+    .contact-card {
+      padding: 18px;
+    }
+
+    .btn-row {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: 1fr 1fr;
     }
 
-    .hero-actions .btn-primary,
-    .hero-actions .btn-secondary {
-      width: 100%;
-      justify-content: center;
-      padding: 10px 12px;
-      font-size: 0.82rem;
-    }
-
-    .hero-actions .btn-primary {
+    .btn-row .button.primary {
       grid-column: 1 / -1;
     }
 
-    .mobile-proof-grid {
-      display: none;
-    }
-
-    .skills-grid { grid-template-columns: 1fr; }
-    .skill-wide { grid-column: span 1; }
-    .skill-category { padding: 22px; }
-    .skill-cat-header { align-items: flex-start; }
-    .reviewer-brief {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      margin-top: 20px;
-    }
-    .reviewer-brief-card {
-      padding: 10px;
-    }
-    .reviewer-brief-card strong {
-      font-size: 0.58rem;
-      margin-bottom: 5px;
-    }
-    .reviewer-brief-card span {
-      font-size: 0.72rem;
-      line-height: 1.42;
-    }
-    .project-group-heading {
-      display: grid;
-      align-items: start;
-      gap: 6px;
-    }
-    .reviewer-path {
-      margin: 20px 0 24px;
-      padding: 16px;
-    }
-    .reviewer-path-header {
-      display: grid;
-      gap: 5px;
-      margin-bottom: 12px;
-    }
-    .reviewer-path-card {
-      padding: 13px;
-    }
-
-    .project-links {
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-
-    .project-header,
-    .project-body,
-    .project-footer {
-      padding-left: 18px;
-      padding-right: 18px;
-    }
-    .project-body {
-      padding-top: 16px;
-      padding-bottom: 16px;
-    }
-    .project-title {
-      font-size: 1rem;
-      line-height: 1.36;
-    }
-    .project-proof {
-      gap: 8px;
-      margin: 10px 0 14px;
-    }
-    .proof-row {
+    .button {
       padding-left: 10px;
+      padding-right: 10px;
     }
-    .proof-row span,
-    .project-desc {
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
-    .evidence-strip {
-      gap: 4px;
-      margin-bottom: 12px;
-    }
-    .evidence-strip .evidence-chip:nth-child(n+5),
-    .project-footer .tech-pill:nth-child(n+7) {
-      display: none;
-    }
-    .evidence-chip {
-      min-height: 22px;
-      padding: 3px 7px;
-      font-size: 0.62rem;
-    }
-    .project-architecture,
-    .project-architecture-featured,
-    .project-screenshot {
-      margin-left: 18px;
-      margin-right: 18px;
-    }
-    .project-screenshot img {
-      max-height: none;
-    }
-    .architecture-lightbox {
-      width: calc(100vw - 24px);
+
+    .media-lightbox {
+      width: calc(100vw - 20px);
       max-height: 92vh;
     }
-    .architecture-lightbox-shell {
+
+    .lightbox-shell {
       max-height: 92vh;
     }
-    .architecture-lightbox-header {
+
+    .lightbox-header {
       align-items: flex-start;
-      gap: 12px;
       padding: 12px;
     }
-    .architecture-lightbox-header h3 {
-      font-size: 0.88rem;
+
+    .lightbox-title {
+      font-size: 0.9rem;
     }
-    .architecture-lightbox-close {
-      flex-shrink: 0;
-    }
-    .architecture-lightbox-media {
+
+    .lightbox-media {
       padding: 6px;
     }
-    .architecture-lightbox-hint {
+
+    .lightbox-media img {
+      max-height: calc(92vh - 126px);
+    }
+
+    .lightbox-hint {
       padding: 8px 12px;
       text-align: left;
     }
-    .terminal-body {
-      padding: 18px;
-      font-size: 0.76rem;
-      line-height: 1.72;
-    }
-    .contact-wrapper { padding: 40px 24px; }
   }
 
-  @media (max-width: 360px) {
-    section { padding-left: 16px; padding-right: 16px; }
-    .reviewer-brief { grid-template-columns: 1fr; }
-    .nav-links {
-      gap: 0.32rem;
+  @media (max-width: 420px) {
+    h1 {
+      font-size: clamp(2.32rem, 13vw, 3.05rem);
     }
-    .nav-links a {
-      min-height: 27px;
-      padding: 4px 7px;
-      font-size: 0.64rem;
+
+    .portrait-row {
+      grid-template-columns: 72px minmax(0, 1fr);
     }
-    .hero-cert-pill { white-space: normal; }
-    .project-header,
-    .project-body,
-    .project-footer,
-    .supporting-grid .project-header,
-    .supporting-grid .project-body,
-    .supporting-grid .project-footer {
-      padding-left: 18px;
-      padding-right: 18px;
+
+    .portrait-row img {
+      width: 72px;
+      height: 84px;
     }
-    .project-architecture,
-    .project-architecture-featured,
-    .project-screenshot {
-      margin-left: 18px;
-      margin-right: 18px;
+
+    .chip {
+      white-space: normal;
+    }
+
+    .btn-row,
+    .links-box {
+      grid-template-columns: 1fr;
     }
   }
 </style>
 </head>
 <body>
-
-<div class="grid-bg"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Aiden<span>Rhaa</span></div>
-  <ul class="nav-links">
-    <li><a href="#about">./story</a></li>
-    <li><a href="#certifications">./credentials</a></li>
-    <li><a href="#skills">./stack</a></li>
-    <li><a href="#projects">./systems</a></li>
-    <li><a href="#experience">./origin</a></li>
-    <li><a href="#contact" class="nav-cta">./connect</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div style="position:relative;z-index:1;">
-<section id="hero">
-  <div class="hero-content">
-    <h1>
-      Cloud &amp; DevOps<br>
-      <span class="line2">Engineer.</span>
-    </h1>
-    <p class="hero-subtitle">
-      I translate manual, disconnected business workflows into secure, repeatable AWS systems&mdash;combining operator context with Terraform, serverless APIs, containers, and automated delivery.
-    </p>
-    <div class="hero-cert-pills" aria-label="Certifications">
-      <span class="hero-cert-pill">AWS Solutions Architect</span>
-      <span class="hero-cert-pill">AWS Developer Associate</span>
-      <span class="hero-cert-pill">HashiCorp Terraform</span>
-    </div>
-    <div class="mobile-proof-grid" aria-label="Portfolio proof points">
-      <div class="hero-stat"><strong>AWS x2</strong><span>Certified</span></div>
-      <div class="hero-stat"><strong>Terraform</strong><span>Associate</span></div>
-      <div class="hero-stat"><strong>Deployed</strong><span>Systems</span></div>
-      <div class="hero-stat"><strong>200+</strong><span>Projects Delivered</span></div>
-    </div>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary">
-        View Cloud Systems
-      </a>
-      <a href="https://github.com/manynames3" target="_blank" class="btn-secondary">
-        GitHub
-      </a>
-      <a href="https://linkedin.com/in/aidenrhaa" target="_blank" class="btn-secondary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
-      </a>
-      <a href="Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf" target="_blank" class="btn-secondary">
-        ▣ Resume
-      </a>
-      <a href="mailto:aidenrhaacloud@gmail.com" class="btn-secondary">
-        ✉ Contact
-      </a>
-    </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="brand" href="#main" aria-label="Aiden Rhaa portfolio home">
+      <span class="brand-wordmark" aria-hidden="true">Aiden<span>Rhaa</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#start">Start</a></li>
+      <li><a href="#proof">Top Proof</a></li>
+      <li><a href="#supporting">More Systems</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
+</header>
 
-  <div class="hero-visual">
-    <div class="photo-frame">
-      <img src="aiden_rhaa_headshot__resized_.jpg" alt="Aiden Rhaa" />
-      <div class="photo-tag">
-        <div class="tag-label">Based in</div>
-        <div class="tag-value">Atlanta Metro, GA</div>
-      </div>
-      <div class="photo-tag-top">
-        AWS Cloud<br>Terraform IaC
-      </div>
-      <div class="hero-stats" aria-label="Portfolio proof points">
-        <div class="hero-stat"><strong>AWS x2</strong><span>Certified</span></div>
-        <div class="hero-stat"><strong>Terraform</strong><span>Associate</span></div>
-        <div class="hero-stat"><strong>Deployed</strong><span>Systems</span></div>
-        <div class="hero-stat"><strong>200+</strong><span>Projects Delivered</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-</div>
-
-<div class="section-divider"></div>
-
-<!-- WHY -->
-<section id="why" class="proof-band">
-  <div class="section-eyebrow">00 // Why Hiring Managers Should Care</div>
-  <h2>Operator context makes the cloud work sharper.</h2>
-  <p class="proof-intro">I do not start with services; I start with the workflow. Then I map manual steps, failure points, and handoffs into secure, cost-aware cloud systems with documentation, observability, teardown discipline, and clear ownership.</p>
-
-  <div class="proof-cards">
-    <article class="proof-card animate">
-      <span>Workflow Translation</span>
-      <h3>Translates business workflows into AWS systems.</h3>
-      <p>Lead operations, GovCon capture, bid qualification, inventory, OCR, transcription, and CloudOps workflows become concrete architecture instead of abstract demos.</p>
-    </article>
-
-    <article class="proof-card animate">
-      <span>Operational Discipline</span>
-      <h3>Builds with reviewability and operations in mind.</h3>
-      <p>Terraform, auth, audit trails, CloudWatch, cost controls, approval gates, private data paths, and teardown plans are treated as part of the product.</p>
-    </article>
-
-    <article class="proof-card animate">
-      <span>Inspectable Proof</span>
-      <h3>Documents enough for another engineer to inspect, run, and trust.</h3>
-      <p>Repos, live demos, architecture notes, tests, runbooks, and evidence labels make the systems easier to evaluate quickly.</p>
-    </article>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-eyebrow">01 // Story</div>
-  <h2>Real operations shaped how I build.</h2>
-
-  <div class="terminal animate">
-    <div class="terminal-bar">
-      <div class="t-dot t-red"></div>
-      <div class="t-dot t-yellow"></div>
-      <div class="t-dot t-green"></div>
-      <div class="terminal-title">aiden@cloud ~ whoami</div>
-    </div>
-    <div class="terminal-body">
-      <div><span class="t-prompt">➜ </span><span class="t-cmd">cat professional_summary.txt</span></div>
-      <div class="t-out" style="margin-top:8px;">
-        AWS Cloud Engineer with AWS Solutions Architect Associate,<br>
-        AWS Developer Associate, and Terraform Associate credentials -<br>
-        backed by operator experience across real estate, multimedia,<br>
-        business operations, automation, and deployed AWS systems.
-      </div>
-      <div style="margin-top:12px;"><span class="t-prompt">➜ </span><span class="t-cmd">cat portfolio_signal.json | jq '.proof'</span></div>
-      <div style="margin-top:8px;">
-        <span class="t-orange">"proof"</span><span class="t-out">: {</span><br>
-        &nbsp;&nbsp;<span class="t-orange">"business_validated_systems"</span><span class="t-out">: </span><span class="t-cyan">"GovCon, electrical bids, inventory, lead operations"</span><span class="t-out">,</span><br>
-        &nbsp;&nbsp;<span class="t-orange">"cloud_depth"</span><span class="t-out">: </span><span class="t-cyan">"Terraform, ECS Fargate, EKS/GitOps, Lambda, RDS, DynamoDB, Bedrock"</span><span class="t-out">,</span><br>
-        &nbsp;&nbsp;<span class="t-orange">"operating_standard"</span><span class="t-out">: </span><span class="t-cyan">"auth, audit logs, observability, cost controls, runbooks, teardown discipline"</span><br>
-        <span class="t-out">}</span>
-      </div>
-      <div style="margin-top:12px;"><span class="t-prompt">➜ </span><span class="t-cursor"></span></div>
-    </div>
-  </div>
-
-  <div class="about-grid">
-    <div class="about-text animate">
-      <p>My approach to cloud engineering was shaped through real estate, multimedia, and business operations. Those environments exposed me to practical systems problems: repetitive work, disconnected tools, duplicated data entry, missed handoffs, and information that became less reliable as it moved between people.</p>
-      <p>That experience taught me to begin with the operator and the workflow: <strong>what needs to happen, where time is being lost, where mistakes occur, and what the business needs to make more reliable</strong>.</p>
-      <p>I translate those requirements into APIs, queues, databases, containers, serverless functions, and deployment pipelines. The architecture should serve the workflow, not the other way around.</p>
-      <p>AWS provides the building blocks, Terraform makes systems repeatable and reviewable, and AI accelerates prototyping and learning. The engineering judgment stays grounded: <strong>What problem does this solve? Why this approach? Where can it fail? How will someone operate it?</strong></p>
-    </div>
-    <div class="animate" style="display:flex;flex-direction:column;gap:16px;">
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
-        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.1em;">Operating principles</div>
-        <ul class="operator-principles">
-          <li>Start with the workflow and the person responsible for it.</li>
-          <li>Reduce manual work, re-entry, and avoidable failure points.</li>
-          <li>Make systems observable, repeatable, and easier to hand off.</li>
-          <li>Use AI to accelerate the work without outsourcing judgment.</li>
-        </ul>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
-        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Location</div>
-        <div style="color:var(--text);font-weight:500;">Atlanta Metropolitan Area, GA</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
-        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Email</div>
-        <a href="mailto:aidenrhaacloud@gmail.com" style="color:var(--cyan);font-weight:500;text-decoration:none;">aidenrhaacloud@gmail.com</a>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
-        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.1em;">Credentials</div>
-        <div class="credential-list">
-          <div class="credential-row">
-            <span class="brand-mark brand-aws" aria-label="AWS logo">
-              <svg viewBox="0 0 64 42" role="img" aria-hidden="true">
-                <text x="4" y="22" fill="#ff9900" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">AWS</text>
-                <path d="M20 29c9 5 21 5 32-1" fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round"/>
-                <path d="M49 25l7 1-5 5" fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            AWS Certified Solutions Architect - Associate
-          </div>
-          <div class="credential-row">
-            <span class="brand-mark brand-aws" aria-label="AWS logo">
-              <svg viewBox="0 0 64 42" role="img" aria-hidden="true">
-                <text x="4" y="22" fill="#ff9900" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">AWS</text>
-                <path d="M20 29c9 5 21 5 32-1" fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round"/>
-                <path d="M49 25l7 1-5 5" fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            AWS Certified Developer - Associate
-          </div>
-          <div class="credential-row">
-            <span class="brand-mark brand-terraform" aria-label="Terraform logo">
-              <svg viewBox="0 0 64 42" role="img" aria-hidden="true">
-                <path d="M8 8l13 7v14L8 22V8zM24 16l13 7v14l-13-7V16zM24 2l13 7v12l-13-7V2zM40 23l13-7v14l-13 7V23z" fill="#7b42bc"/>
-              </svg>
-            </span>
-            HashiCorp Certified: Terraform Associate
-          </div>
-        </div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
-        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Education</div>
-        <div style="color:var(--text);font-weight:500;margin-bottom:4px;">Berklee College of Music — Songwriting</div>
-        <div style="color:var(--text);font-weight:500;">Saint Louis University — Engineering Physics</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
-        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">Languages</div>
-        <div style="color:var(--text);font-weight:500;">English &amp; Korean</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="section-eyebrow">02 // Credentials</div>
-  <h2>Certified foundation. Systems-first proof.</h2>
-  <p class="section-desc">The credentials establish the baseline. The public systems show how that baseline becomes architecture, automation, operating discipline, and business value.</p>
-
-  <div class="certifications-grid">
-    <article class="cert-card animate">
-      <div class="cert-provider">Amazon Web Services</div>
-      <h3>AWS Certified Solutions Architect - Associate</h3>
-      <p>Architecture, reliability, security, cost controls, and service selection across practical AWS systems.</p>
-    </article>
-
-    <article class="cert-card animate">
-      <div class="cert-provider">Amazon Web Services</div>
-      <h3>AWS Certified Developer - Associate</h3>
-      <p>Serverless APIs, application integration, observability, deployment workflows, and AWS service implementation.</p>
-    </article>
-
-    <article class="cert-card animate">
-      <div class="cert-provider">HashiCorp</div>
-      <h3>HashiCorp Certified: Terraform Associate</h3>
-      <p>Infrastructure as code, Terraform workflow discipline, plan review, modules, and repeatable cloud delivery.</p>
-    </article>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-eyebrow">03 // Stack</div>
-  <h2>Systems Toolkit</h2>
-  <p class="section-desc">The toolkit behind the systems: AWS services, infrastructure delivery, container platforms, application code, security operations, and real workflow domains.</p>
-
-  <div class="skills-grid">
-    <div class="skill-category skill-wide animate">
-      <div class="skill-cat-header">
-        <div>
-          <div class="skill-cat-name">AWS Services</div>
-          <p class="skill-note">Core AWS services used across public demos, validation runs, and cost-aware serverless/container backends.</p>
-        </div>
-        <div class="skill-cat-icon" aria-hidden="true">01</div>
-      </div>
-      <div class="skill-groups">
-        <div>
-          <div class="skill-label">Core</div>
-          <div class="skill-tags skill-tags-core">
-            <span class="skill-tag">VPC</span>
-            <span class="skill-tag">IAM</span>
-            <span class="skill-tag">ECS Fargate</span>
-            <span class="skill-tag">EKS</span>
-            <span class="skill-tag">Lambda</span>
-            <span class="skill-tag">API Gateway</span>
-            <span class="skill-tag">Step Functions</span>
-            <span class="skill-tag">S3</span>
-            <span class="skill-tag">S3 Vectors</span>
-            <span class="skill-tag">DynamoDB</span>
-            <span class="skill-tag">RDS PostgreSQL</span>
-            <span class="skill-tag">RDS Proxy</span>
-            <span class="skill-tag">Bedrock</span>
-            <span class="skill-tag">Textract</span>
-            <span class="skill-tag">Transcribe</span>
-            <span class="skill-tag">Cognito</span>
-            <span class="skill-tag">CloudFront</span>
-            <span class="skill-tag">WAF</span>
-            <span class="skill-tag">ALB</span>
-            <span class="skill-tag">ECR</span>
-            <span class="skill-tag">SQS</span>
-            <span class="skill-tag">EventBridge</span>
-            <span class="skill-tag">CloudWatch</span>
-            <span class="skill-tag">CloudTrail</span>
-            <span class="skill-tag">Secrets Manager</span>
-            <span class="skill-tag">SSM</span>
-            <span class="skill-tag">Cost Explorer</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="skill-category skill-compact animate">
-      <div class="skill-cat-header">
-        <div>
-          <div class="skill-cat-name">Infrastructure &amp; CI/CD</div>
-          <p class="skill-note">Reviewable delivery practices for repeatable infrastructure, policy checks, automation, and handoff discipline.</p>
-        </div>
-        <div class="skill-cat-icon" aria-hidden="true">02</div>
-      </div>
-      <div class="skill-groups">
-        <div>
-          <div class="skill-label">Core</div>
-          <div class="skill-tags skill-tags-core">
-            <span class="skill-tag">Terraform</span>
-            <span class="skill-tag">Terraform plan review</span>
-            <span class="skill-tag">Modular IaC</span>
-            <span class="skill-tag">GitHub Actions</span>
-            <span class="skill-tag">OIDC role assumption</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Docker Compose</span>
-            <span class="skill-tag">Checkov</span>
-            <span class="skill-tag">TFLint</span>
-            <span class="skill-tag">CI/CD pipelines</span>
-            <span class="skill-tag">Runbooks</span>
-            <span class="skill-tag">ADRs</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="skill-category skill-compact animate">
-      <div class="skill-cat-header">
-        <div>
-          <div class="skill-cat-name">Containers &amp; Platform</div>
-          <p class="skill-note">Validated platform paths for containerized services, GitOps, ingress, secrets, and observability.</p>
-        </div>
-        <div class="skill-cat-icon" aria-hidden="true">03</div>
-      </div>
-      <div class="skill-groups">
-        <div>
-          <div class="skill-label">Core</div>
-          <div class="skill-tags skill-tags-core">
-            <span class="skill-tag">Kubernetes</span>
-            <span class="skill-tag">Amazon EKS</span>
-            <span class="skill-tag">ECS Fargate</span>
-            <span class="skill-tag">Helm</span>
-            <span class="skill-tag">ArgoCD</span>
-            <span class="skill-tag">IRSA</span>
-            <span class="skill-tag">External Secrets</span>
-            <span class="skill-tag">Prometheus</span>
-            <span class="skill-tag">Grafana</span>
-            <span class="skill-tag">GitOps</span>
-            <span class="skill-tag">ALB ingress</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="skill-category skill-wide animate">
-      <div class="skill-cat-header">
-        <div>
-          <div class="skill-cat-name">Programming &amp; Data</div>
-          <p class="skill-note">Backend APIs, frontend apps, database workflows, public-source ingestion, vector search, and data handoff systems.</p>
-        </div>
-        <div class="skill-cat-icon" aria-hidden="true">04</div>
-      </div>
-      <div class="skill-groups">
-        <div>
-          <div class="skill-label">Core</div>
-          <div class="skill-tags skill-tags-core">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">Next.js</span>
-            <span class="skill-tag">Swift</span>
-            <span class="skill-tag">SwiftUI</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">Express</span>
-            <span class="skill-tag">FastAPI</span>
-            <span class="skill-tag">Zod</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">PostgreSQL</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">JSONB</span>
-            <span class="skill-tag">pgvector</span>
-            <span class="skill-tag">Bash</span>
-            <span class="skill-tag">REST APIs</span>
-            <span class="skill-tag">Data pipelines</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="skill-category skill-wide animate">
-      <div class="skill-cat-header">
-        <div>
-          <div class="skill-cat-name">Security &amp; Operations</div>
-          <p class="skill-note">Controls that make systems reviewable: least privilege, network boundaries, auth, auditing, telemetry, cost management, and approval gates.</p>
-        </div>
-        <div class="skill-cat-icon" aria-hidden="true">05</div>
-      </div>
-      <div class="skill-groups">
-        <div>
-          <div class="skill-label">Core</div>
-          <div class="skill-tags skill-tags-core">
-            <span class="skill-tag">Least-privilege IAM</span>
-            <span class="skill-tag">Private subnets</span>
-            <span class="skill-tag">Security groups</span>
-            <span class="skill-tag">Cognito/JWT auth</span>
-            <span class="skill-tag">OPA/Rego</span>
-            <span class="skill-tag">Presigned S3 URLs</span>
-            <span class="skill-tag">WAF/rate limiting</span>
-            <span class="skill-tag">Secrets management</span>
-            <span class="skill-tag">Audit logging</span>
-            <span class="skill-tag">OpenTelemetry</span>
-            <span class="skill-tag">Approval gates</span>
-            <span class="skill-tag">CloudWatch alarms</span>
-            <span class="skill-tag">Cost controls</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="skill-category skill-compact animate">
-      <div class="skill-cat-header">
-        <div>
-          <div class="skill-cat-name">Workflow Systems</div>
-          <p class="skill-note">Business domains used to validate that the cloud systems are built around real operator pressure.</p>
-        </div>
-        <div class="skill-cat-icon" aria-hidden="true">06</div>
-      </div>
-      <div class="skill-groups">
-        <div>
-          <div class="skill-label">Core</div>
-          <div class="skill-tags skill-tags-core">
-            <span class="skill-tag">macOS apps</span>
-            <span class="skill-tag">Storage auditing</span>
-            <span class="skill-tag">Market intelligence</span>
-            <span class="skill-tag">Vehicle inspection</span>
-            <span class="skill-tag">Condition reports</span>
-            <span class="skill-tag">GovCon capture</span>
-            <span class="skill-tag">Electrical bid qualification</span>
-            <span class="skill-tag">Inventory optimization</span>
-            <span class="skill-tag">Lead-intelligence APIs</span>
-            <span class="skill-tag">OCR workflows</span>
-            <span class="skill-tag">Transcription APIs</span>
-            <span class="skill-tag">CloudOps governance</span>
-            <span class="skill-tag">Infrastructure change review</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-  <!-- PROJECTS -->
-<section id="projects">
-  <div class="section-eyebrow">04 // Systems</div>
-  <h2>Built &amp; Shipped</h2>
-  <p class="section-desc">Start with the three systems below. They show the clearest hiring signal: business workflow mapping, AWS architecture, security controls, automation, observability, and reviewable handoff.</p>
-
-  <div class="reviewer-brief" aria-label="Hiring manager quick scan">
-    <div class="reviewer-brief-card">
-      <strong>Best fit</strong>
-      <span>AWS Cloud Engineer, DevOps, platform automation, and CloudOps governance roles.</span>
-    </div>
-    <div class="reviewer-brief-card">
-      <strong>Strongest proof</strong>
-      <span>Working demos, repos, AWS diagrams, Terraform, runbooks, observability, and teardown discipline.</span>
-    </div>
-    <div class="reviewer-brief-card">
-      <strong>Differentiator</strong>
-      <span>Operator background translated into systems that reduce manual work and decision drift.</span>
-    </div>
-    <div class="reviewer-brief-card">
-      <strong>Review order</strong>
-      <span>PursuitDesk first, then TerraGate, then InspectIQ. Everything else is supporting evidence.</span>
-    </div>
-  </div>
-
-  <div class="reviewer-path" aria-label="Recommended review path">
-    <div class="reviewer-path-header">
-      <strong>Start here if you only have five minutes.</strong>
-      <span>3-project proof path</span>
-    </div>
-    <div class="reviewer-path-grid">
-      <a href="#pursuitdesk" class="reviewer-path-card">
-        <em>01 / SaaS workflow</em>
-        <strong>PursuitDesk</strong>
-        <span>GovCon capture, proposal drafting, async jobs, RDS, Bedrock, and Terraform-backed AWS architecture.</span>
-      </a>
-      <a href="#terragate" class="reviewer-path-card">
-        <em>02 / CloudOps trust</em>
-        <strong>TerraGate</strong>
-        <span>Terraform PR risk review with plan parsing, redaction, policy checks, persistence, and GitHub gates.</span>
-      </a>
-      <a href="#inspectiq" class="reviewer-path-card">
-        <em>03 / AI governance</em>
-        <strong>InspectIQ</strong>
-        <span>Vehicle inspection workflow with advisory AI, human review, audit trail, report readiness, and AWS backend path.</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- FEATURED: PURSUITDESK -->
-  <div id="pursuitdesk" style="background:var(--card);border:1px solid rgba(0,212,255,0.25);border-radius:16px;overflow:hidden;margin-bottom:28px;transition:all 0.3s;" class="animate">
-    <div style="background:linear-gradient(135deg,rgba(0,212,255,0.07),rgba(126,87,194,0.07));padding:28px 32px 0;">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:14px;">
-          <div style="width:52px;height:52px;border-radius:12px;background:rgba(0,212,255,0.12);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">▣</div>
-          <div>
-            <div style="font-family:var(--mono);font-size:0.7rem;color:var(--cyan);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Featured Business-Validated AWS SaaS System</div>
-            <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--heading);letter-spacing:-0.02em;">PursuitDesk - GovCon Capture &amp; Proposal Platform</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://github.com/manynames3/pursuitdesk" target="_blank" class="btn-secondary" style="padding:9px 16px;font-size:0.82rem;">Repo</a>
-          <a href="https://pursuitdesk.pages.dev/" target="_blank" class="btn-secondary" style="padding:9px 16px;font-size:0.82rem;">Live demo</a>
-        </div>
-      </div>
-      <div class="project-outcome project-outcome-featured">
-        <strong>Outcome</strong>
-        <span>Turns scattered GovCon capture work into a traceable AWS-backed workflow from opportunity intake to proposal draft.</span>
-      </div>
-      <div class="project-proof" style="max-width:900px;">
-        <div class="proof-row">
-          <strong>Business problem</strong>
-          <span>GovCon consultants need a repeatable way to intake clients, score readiness, triage opportunities, make go/no-go decisions, and draft proposals without scattered spreadsheets and one-off handoffs.</span>
-        </div>
-        <div class="proof-row">
-          <strong>Cloud system built</strong>
-          <span>Serverless AWS backend with FastAPI Lambda, API Gateway, RDS PostgreSQL/pgvector, DynamoDB async jobs, Bedrock workflows, EventBridge, Terraform, CloudWatch, and Cloudflare Pages.</span>
-        </div>
-        <div class="proof-row">
-          <strong>Confidence signals</strong>
-          <span>Live demo, repo, public data ingestion, async jobs, proposal exports, Terraform infrastructure, and documented architecture paths.</span>
-        </div>
-      </div>
-      <div class="evidence-strip">
-        <span class="evidence-chip">Live demo</span>
-        <span class="evidence-chip">Repo</span>
-        <span class="evidence-chip">Public ingestion</span>
-        <span class="evidence-chip">Async jobs</span>
-        <span class="evidence-chip">Exports</span>
-        <span class="evidence-chip">Terraform</span>
-        <span class="evidence-chip">CloudWatch</span>
-      </div>
-    </div>
-    <figure class="project-architecture project-architecture-featured">
-      <button type="button" class="architecture-trigger" data-title="PursuitDesk AWS architecture" aria-label="View the PursuitDesk AWS architecture diagram">
-        <img src="assets/architecture/pursuitdesk-aws-architecture.png" alt="PursuitDesk AWS architecture showing Cloudflare Pages, API Gateway, Lambda, PostgreSQL, DynamoDB, Bedrock, and supporting services" width="2465" height="1440" loading="lazy" decoding="async">
-      </button>
-      <figcaption>PursuitDesk AWS architecture <span>View diagram</span></figcaption>
-    </figure>
-    <div style="padding:16px 32px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;">
-      <span class="tech-pill">AWS Lambda</span>
-      <span class="tech-pill">API Gateway</span>
-      <span class="tech-pill">RDS PostgreSQL</span>
-      <span class="tech-pill">pgvector</span>
-      <span class="tech-pill">DynamoDB</span>
-      <span class="tech-pill">Bedrock</span>
-      <span class="tech-pill">EventBridge</span>
-      <span class="tech-pill">Secrets Manager</span>
-      <span class="tech-pill">CloudWatch</span>
-      <span class="tech-pill">Terraform</span>
-      <span class="tech-pill">FastAPI</span>
-      <span class="tech-pill">Cloudflare Pages</span>
-    </div>
-  </div>
-
-  <div class="project-group">
-    <div class="project-group-heading">
-      <h3>Platform &amp; CloudOps Proof</h3>
-      <span>Terraform review, AI governance, containers, GitOps</span>
-    </div>
-
-    <div class="projects-grid">
-      <div id="terragate" class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,212,255,0.1);">▧</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/terragate" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://terragate.hangi87.workers.dev/" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">TerraGate - Terraform PR Risk Gate</div>
-          <div class="project-outcome">
-            <strong>Outcome</strong>
-            <span>Makes infrastructure changes reviewable before merge by converting Terraform plans into risk, policy, and audit signals.</span>
-          </div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>Infrastructure PRs are hard to trust when cost, security, reliability, sensitive values, and blast radius are buried inside raw Terraform plans.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Cloud system built</strong>
-              <span>Deterministic-first Terraform review platform that parses plan JSON, redacts secrets, runs policy checks, persists findings, and gates GitHub checks/comments.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Live demo, repo, Terraform plan parsing, approval gates, audit persistence, redaction, and repeatable CI workflows.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">Terraform</span>
-            <span class="evidence-chip">GitHub checks</span>
-            <span class="evidence-chip">Audit persistence</span>
-          </div>
-        </div>
-        <figure class="project-architecture">
-          <button type="button" class="architecture-trigger" data-title="TerraGate AWS architecture" aria-label="View the TerraGate AWS architecture diagram">
-            <img src="assets/architecture/terragate-aws-architecture.png" alt="TerraGate AWS architecture showing Cloudflare, GitHub, API Gateway, Lambda, RDS PostgreSQL, CodeBuild, ECR, and CloudWatch" width="1844" height="1995" loading="lazy" decoding="async">
-          </button>
-          <figcaption>TerraGate AWS architecture <span>View diagram</span></figcaption>
-        </figure>
-        <div class="project-footer">
-          <span class="tech-pill">FastAPI</span>
-          <span class="tech-pill">Next.js</span>
-          <span class="tech-pill">PostgreSQL</span>
-          <span class="tech-pill">LangGraph</span>
-          <span class="tech-pill">Terraform</span>
-          <span class="tech-pill">GitHub Actions</span>
-          <span class="tech-pill">Docker</span>
-          <span class="tech-pill">Alembic</span>
-        </div>
-      </div>
-
-      <div id="inspectiq" class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,212,255,0.1);">IQ</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/inspectiq" target="_blank" class="project-link" title="GitHub">Repo access</a>
-            <a href="https://inspectiq.pages.dev" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">InspectIQ - AI-Assisted Vehicle Inspection Workbench</div>
-          <div class="project-outcome">
-            <strong>Outcome</strong>
-            <span>Turns photo-heavy vehicle inspections into evidence-backed review workflows where AI advises and humans approve.</span>
-          </div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>Wholesale and offsite inspection teams need consistent photo evidence, clear damage facts, CR/VDP readiness, buyer trust, seller disclosure, and accountable review without letting AI silently become the source of truth.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Cloud system built</strong>
-              <span>Inspection workflow with React/TypeScript, Node Lambda/API Gateway, shared Zod schemas, Neon Postgres, private S3 image storage, SQS/Lambda image analysis, Bedrock, Cognito, CloudWatch, Terraform, and a Java grading boundary.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Live walkthrough, repo access on request, browser E2E coverage, strict AI output validation, human-in-the-loop review, audit trail, operational docs, CloudWatch alarms, and runbooks.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo access</span>
-            <span class="evidence-chip">AWS diagram</span>
-            <span class="evidence-chip">Human review</span>
-            <span class="evidence-chip">Audit trail</span>
-            <span class="evidence-chip">Bedrock</span>
-            <span class="evidence-chip">Terraform</span>
-          </div>
-        </div>
-        <figure class="project-architecture">
-          <button type="button" class="architecture-trigger" data-title="InspectIQ AWS architecture" aria-label="View the InspectIQ AWS architecture diagram">
-            <img src="assets/architecture/inspectiq-aws-architecture.png" alt="InspectIQ AWS architecture showing Cloudflare Pages, Cognito, API Gateway, Lambda, SQS image analysis, Bedrock, S3 vehicle images, CloudWatch, Secrets Manager, Neon Postgres, Terraform, and GitHub Actions" width="3027" height="1608" loading="lazy" decoding="async">
-          </button>
-          <figcaption>InspectIQ AWS architecture <span>View diagram</span></figcaption>
-        </figure>
-        <div class="project-footer">
-          <span class="tech-pill">React</span>
-          <span class="tech-pill">TypeScript</span>
-          <span class="tech-pill">Node.js</span>
-          <span class="tech-pill">API Gateway</span>
-          <span class="tech-pill">Lambda</span>
-          <span class="tech-pill">S3</span>
-          <span class="tech-pill">SQS</span>
-          <span class="tech-pill">Bedrock</span>
-          <span class="tech-pill">Neon Postgres</span>
-          <span class="tech-pill">Cognito</span>
-          <span class="tech-pill">CloudWatch</span>
-          <span class="tech-pill">Terraform</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,212,255,0.08);">⚙</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/aegisdesk-cloudops-control-plane" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://d27myiy7bbj1rz.cloudfront.net/marketing" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">AegisDesk - Self-Hosted CloudOps AI Control Plane</div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>CloudOps work gets fragmented across tickets, incidents, cost reviews, access requests, policies, and tribal knowledge.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Cloud system built</strong>
-              <span>Governed AI control plane for incident triage, access requests, cost review, policy enforcement, redaction, audit replay, and trusted-source answers.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Live demo, repo, Cognito/JWKS auth, OPA/Rego policy checks, Bedrock workflows, audit replay, OpenTelemetry, and Terraform.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">OPA/Rego</span>
-            <span class="evidence-chip">Audit replay</span>
-            <span class="evidence-chip">Terraform</span>
-          </div>
-        </div>
-        <figure class="project-architecture">
-          <button type="button" class="architecture-trigger" data-title="AegisDesk AWS architecture" aria-label="View the AegisDesk AWS architecture diagram">
-            <img src="assets/architecture/aegisdesk-aws-architecture.png" alt="AegisDesk AWS architecture showing CloudFront, API Gateway, Lambda, Bedrock, Cognito, DynamoDB, and CI/CD services" width="2771" height="1248" loading="lazy" decoding="async">
-          </button>
-          <figcaption>AegisDesk AWS architecture <span>View diagram</span></figcaption>
-        </figure>
-        <div class="project-footer">
-          <span class="tech-pill">Next.js</span>
-          <span class="tech-pill">FastAPI</span>
-          <span class="tech-pill">Cognito</span>
-          <span class="tech-pill">OPA/Rego</span>
-          <span class="tech-pill">Bedrock</span>
-          <span class="tech-pill">DynamoDB</span>
-          <span class="tech-pill">Cost Explorer</span>
-          <span class="tech-pill">OpenTelemetry</span>
-          <span class="tech-pill">Terraform</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,229,160,0.1);">☁</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/clearpath-fargate-api" target="_blank" class="project-link" title="GitHub">Repo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Clearpath - AWS Fargate Lead Intelligence API</div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>Acquisition workflows need dependable lead intake, source quality scoring, county resolution, CRM events, and structured handoff instead of scattered manual research.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Cloud system built</strong>
-              <span>ECS Fargate API with FastAPI, private RDS PostgreSQL, RDS Proxy, ALB, CloudFront/WAF, Secrets Manager, CloudWatch, Terraform, and Checkov.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Repo, real workflow mapping, Terraform, Checkov validation, CloudWatch alarms, private database path, and teardown discipline.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">Terraform</span>
-            <span class="evidence-chip">Checkov</span>
-            <span class="evidence-chip">CloudWatch</span>
-            <span class="evidence-chip">Runbook</span>
-          </div>
-        </div>
-        <figure class="project-architecture">
-          <button type="button" class="architecture-trigger" data-title="Clearpath AWS architecture" aria-label="View the Clearpath AWS architecture diagram">
-            <img src="assets/architecture/clearpath-aws-architecture.png" alt="Clearpath AWS architecture showing WAF, CloudFront, ALB, ECS Fargate, RDS Proxy, PostgreSQL, security, and observability services" width="2350" height="1056" loading="lazy" decoding="async">
-          </button>
-          <figcaption>Clearpath AWS architecture <span>View diagram</span></figcaption>
-        </figure>
-        <div class="project-footer">
-          <span class="tech-pill">FastAPI</span>
-          <span class="tech-pill">ECS Fargate</span>
-          <span class="tech-pill">Docker</span>
-          <span class="tech-pill">ALB</span>
-          <span class="tech-pill">CloudFront</span>
-          <span class="tech-pill">WAF</span>
-          <span class="tech-pill">RDS PostgreSQL</span>
-          <span class="tech-pill">RDS Proxy</span>
-          <span class="tech-pill">Secrets Manager</span>
-          <span class="tech-pill">CloudWatch</span>
-          <span class="tech-pill">Terraform</span>
-          <span class="tech-pill">Checkov</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(255,153,0,0.1);">⬡</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/pulpit-v2" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://pulpit-v2.pages.dev/" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Pulpit V2 - Validated EKS/GitOps Platform</div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>A working serverless Bedrock RAG product needs a credible platform migration path without losing observability, secrets discipline, tenant boundaries, or cost control.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Cloud system built</strong>
-              <span>Validated EKS/GitOps path with Terraform-managed EKS/ECR, Helm workloads, ArgoCD app-of-apps, External Secrets from SSM, Prometheus/Grafana, tenant ALB ingress, CI validation, and teardown discipline.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Repo, live demo, EKS validation, ArgoCD, Prometheus/Grafana, Terraform, External Secrets, and explicit teardown discipline.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">Terraform</span>
-            <span class="evidence-chip">ArgoCD</span>
-            <span class="evidence-chip">Runbook</span>
-          </div>
-        </div>
-        <figure class="project-architecture">
-          <button type="button" class="architecture-trigger" data-title="Pulpit V2 AWS architecture" aria-label="View the Pulpit V2 AWS architecture diagram">
-            <img src="assets/architecture/pulpit-v2-aws-architecture.png" alt="Pulpit V2 AWS architecture showing Cloudflare Pages, Cognito, API Gateway, Lambda, S3, DynamoDB, Bedrock, ingestion, and operations services" width="2860" height="1668" loading="lazy" decoding="async">
-          </button>
-          <figcaption>Pulpit V2 AWS architecture <span>View diagram</span></figcaption>
-        </figure>
-        <div class="project-footer">
-          <span class="tech-pill">EKS</span>
-          <span class="tech-pill">Kubernetes</span>
-          <span class="tech-pill">Terraform</span>
-          <span class="tech-pill">Helm</span>
-          <span class="tech-pill">ArgoCD</span>
-          <span class="tech-pill">External Secrets</span>
-          <span class="tech-pill">SSM</span>
-          <span class="tech-pill">Prometheus</span>
-          <span class="tech-pill">Grafana</span>
-          <span class="tech-pill">Cloudflare Pages</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="project-group">
-    <div class="project-group-heading">
-      <h3>Business-Validated Cloud Systems</h3>
-      <span>Bids, inventory, grid intelligence</span>
-    </div>
-
-    <div class="projects-grid">
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(255,153,0,0.1);">▤</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/elecbidspec-ai" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://elecbidspec-ai.pages.dev" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">ElecBidSpec AI - Electrical Bid Intelligence Platform</div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>Electrical infrastructure teams need a faster way to evaluate public opportunities, parse RFP/spec language, score fit, and produce proposal-ready artifacts.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Cloud system built</strong>
-              <span>Bid intelligence platform with public-source ingestion, RFP/spec upload, scope extraction, fit scoring, compliance matrix, alerts, optional Bedrock enhancement, AWS Lambda Function URL, S3, PostgreSQL, and Terraform.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Live demo, repo, 49 backend tests, proposal artifacts, saved searches, watched opportunities, Terraform, and Cloudflare Pages deployment.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">Tests</span>
-            <span class="evidence-chip">Terraform</span>
-            <span class="evidence-chip">Artifacts</span>
-          </div>
-        </div>
-        <div class="project-footer">
-          <span class="tech-pill">Next.js</span>
-          <span class="tech-pill">FastAPI</span>
-          <span class="tech-pill">PostgreSQL</span>
-          <span class="tech-pill">SQLAlchemy</span>
-          <span class="tech-pill">Alembic</span>
-          <span class="tech-pill">AWS Lambda Function URL</span>
-          <span class="tech-pill">S3</span>
-          <span class="tech-pill">Bedrock</span>
-          <span class="tech-pill">Terraform</span>
-          <span class="tech-pill">Cloudflare Pages</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,229,160,0.1);">◧</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/ott-inventory-ai" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://otokistocksense.pages.dev" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">StockSense AI - Expiration-Aware Inventory Optimization</div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>Food and CPG teams need to reduce expiration waste, avoid stockouts, and make reorder decisions from messy product, lot, order, customer, and inbound shipment exports.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Cloud system built</strong>
-              <span>Inventory optimization MVP that turns CSV/XLSX exports into FEFO priorities, waste-risk alerts, forecasts, reorder recommendations, ROI metrics, and safe natural-language planning answers.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Live demo, repo, low-idle AWS backend, import workflows, executive metrics, EventBridge, DynamoDB, S3, SSM, and Terraform.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">MVP</span>
-            <span class="evidence-chip">Imports</span>
-            <span class="evidence-chip">Terraform</span>
-          </div>
-        </div>
-        <div class="project-footer">
-          <span class="tech-pill">Next.js</span>
-          <span class="tech-pill">FastAPI</span>
-          <span class="tech-pill">PostgreSQL</span>
-          <span class="tech-pill">Pandas</span>
-          <span class="tech-pill">CSV/XLSX imports</span>
-          <span class="tech-pill">Lambda Function URL</span>
-          <span class="tech-pill">S3</span>
-          <span class="tech-pill">DynamoDB</span>
-          <span class="tech-pill">EventBridge</span>
-          <span class="tech-pill">SSM</span>
-          <span class="tech-pill">Terraform</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,212,255,0.1);">↯</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/queuewatch" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://queuewatch.pages.dev" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">QueueWatch - Serverless Grid-Capacity Intelligence</div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>Energy and infrastructure research workflows need source-backed signals from changing ISO/RTO interconnection queues without manually checking official documents.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Cloud system built</strong>
-              <span>AWS serverless data product that monitors official sources, detects changed documents, captures S3 evidence, normalizes project rows, stores DynamoDB signals, and uses Bedrock/Textract fallback paths.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Live demo, repo, official-source monitoring, S3 evidence capture, EventBridge scheduling, DynamoDB signals, CloudWatch, Terraform, and SQS DLQ.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">S3 evidence</span>
-            <span class="evidence-chip">CloudWatch</span>
-            <span class="evidence-chip">Terraform</span>
-          </div>
-        </div>
-        <div class="project-footer">
-          <span class="tech-pill">AWS Lambda</span>
-          <span class="tech-pill">EventBridge</span>
-          <span class="tech-pill">S3</span>
-          <span class="tech-pill">DynamoDB</span>
-          <span class="tech-pill">Bedrock</span>
-          <span class="tech-pill">Textract</span>
-          <span class="tech-pill">SQS DLQ</span>
-          <span class="tech-pill">CloudWatch</span>
-          <span class="tech-pill">Terraform</span>
-          <span class="tech-pill">Cloudflare Pages</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="project-group">
-    <div class="project-group-heading">
-      <h3>macOS &amp; Operator Tools</h3>
-      <span>Desktop utilities and market workflows</span>
-    </div>
-
-    <div class="projects-grid">
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,229,160,0.1);">MS</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/market-scout" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://market-scout-anl.pages.dev/" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Market Scout - Web + macOS Real Estate Market Intelligence</div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>Real estate operators need quick local-market comparisons across cities, ZIPs, and counties from both browser and desktop workflows without manually checking raw market trackers or rebuilding shortlists by hand.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Product built</strong>
-              <span>Web and macOS market intelligence app that turns Redfin market-tracker data into sortable comparisons, seller/buyer market labels, shortlist workflows, external research links, and downloadable results.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Live web demo, repo, macOS app surface, screenshot evidence, Python data build pipeline, static deployment path, bulk shortlist workflow, and operator-first market metrics.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">macOS app</span>
-            <span class="evidence-chip">Screenshot</span>
-            <span class="evidence-chip">Market data</span>
-            <span class="evidence-chip">CSV export</span>
-          </div>
-        </div>
-        <figure class="project-screenshot">
-          <button type="button" class="architecture-trigger" data-title="Market Scout app screenshot" aria-label="View the Market Scout app screenshot">
-            <img src="assets/screenshots/market-scout-results.png" alt="Market Scout interface showing bulk market analysis, searchable results, and sortable real estate market comparison table" width="1919" height="1997" loading="lazy" decoding="async">
-          </button>
-          <figcaption>Market Scout screenshot <span>View screenshot</span></figcaption>
-        </figure>
-        <div class="project-footer">
-          <span class="tech-pill">Python</span>
-          <span class="tech-pill">macOS</span>
-          <span class="tech-pill">HTML</span>
-          <span class="tech-pill">CSS</span>
-          <span class="tech-pill">JavaScript</span>
-          <span class="tech-pill">Redfin data</span>
-          <span class="tech-pill">CSV export</span>
-          <span class="tech-pill">Cloudflare Pages</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(126,87,194,0.15);">NS</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/nomospace" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://nomospace.pages.dev" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Nomo Space - Local Mac Storage Auditor</div>
-          <div class="project-proof">
-            <div class="proof-row">
-              <strong>Business problem</strong>
-              <span>Mac users run out of disk space because System Data, app caches, developer artifacts, and cleanup risk are hard to inspect before deleting files.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Product built</strong>
-              <span>Local-first Swift macOS app that audits storage, labels cleanup risk, explains findings, supports evaluation mode, and keeps cleanup decisions on the user's machine.</span>
-            </div>
-            <div class="proof-row">
-              <strong>Confidence signals</strong>
-              <span>Repo, landing page, screenshot evidence, local-only scan posture, risk-labeled findings, access-code cleanup flow, and report-oriented UX.</span>
-            </div>
-          </div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">macOS app</span>
-            <span class="evidence-chip">Swift</span>
-            <span class="evidence-chip">Local-first</span>
-            <span class="evidence-chip">Screenshot</span>
-            <span class="evidence-chip">Risk labels</span>
-          </div>
-        </div>
-        <figure class="project-screenshot">
-          <button type="button" class="architecture-trigger" data-title="Nomo Space macOS app screenshot" aria-label="View the Nomo Space macOS app screenshot">
-            <img src="assets/screenshots/nomospace-evaluation-mode.png" alt="Nomo Space macOS app showing storage audit summary, evaluation mode, reclaimable storage, safe storage, review storage, and findings count" width="1065" height="747" loading="lazy" decoding="async">
-          </button>
-          <figcaption>Nomo Space macOS screenshot <span>View screenshot</span></figcaption>
-        </figure>
-        <div class="project-footer">
-          <span class="tech-pill">Swift</span>
-          <span class="tech-pill">SwiftUI</span>
-          <span class="tech-pill">macOS</span>
-          <span class="tech-pill">Local storage audit</span>
-          <span class="tech-pill">Risk labels</span>
-          <span class="tech-pill">Cloudflare Pages</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <details class="project-group supporting-disclosure">
-    <summary class="project-group-heading">
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
       <div>
-        <h3>Supporting AWS Patterns</h3>
-        <span>More proof systems</span>
+        <h1 id="hero-title">AWS systems for messy operator workflows.</h1>
+        <p class="lead">I turn manual handoffs, review drift, and fragmented business data into Terraform-managed cloud systems that are observable, auditable, and easier to operate.</p>
       </div>
-    </summary>
-
-    <div class="projects-grid supporting-grid">
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,229,160,0.1);">▣</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/photoscribe-ai" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://photoscribe-ai.pages.dev/" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">PhotoScribe AI - Governed Serverless Media Search</div>
-          <div class="project-desc">Serverless media search platform with S3, Lambda, API Gateway, Cognito, Bedrock Nova/Titan, S3 Vectors, DynamoDB policy/audit tables, SQS/DLQ, CloudWatch, Terraform, and Cloudflare Pages.</div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">Terraform</span>
-            <span class="evidence-chip">Audit tables</span>
-          </div>
-        </div>
-        <div class="project-footer">
-          <span class="tech-pill">Lambda</span>
-          <span class="tech-pill">API Gateway</span>
-          <span class="tech-pill">Cognito</span>
-          <span class="tech-pill">Bedrock</span>
-          <span class="tech-pill">S3 Vectors</span>
-          <span class="tech-pill">DynamoDB</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(255,153,0,0.1);">□</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/docuflow-ocr" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://docuflow-ocr.pages.dev/" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">DocuFlow OCR - Step Functions + Textract Workflow</div>
-          <div class="project-desc">Invoice OCR workflow with S3 presigned uploads, API Gateway, Step Functions, Textract, Python Lambda parsing/scoring, DynamoDB jobs/audit, review queue, SQS DLQ, CloudWatch alarms, and Terraform.</div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">Step Functions</span>
-            <span class="evidence-chip">Terraform</span>
-          </div>
-        </div>
-        <div class="project-footer">
-          <span class="tech-pill">S3</span>
-          <span class="tech-pill">API Gateway</span>
-          <span class="tech-pill">Step Functions</span>
-          <span class="tech-pill">Textract</span>
-          <span class="tech-pill">Lambda</span>
-          <span class="tech-pill">DynamoDB</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(126,87,194,0.15);">◇</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/super-transcriber-api" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://super-transcriber-api.pages.dev" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Super Transcriber API - API-First Serverless Transcription Backend</div>
-          <div class="project-desc">Developer-facing transcription API with API-key auth, SQS workers, Amazon Transcribe, EventBridge completion handling, DynamoDB usage limits, webhooks, OpenAPI contract, TypeScript SDK, Terraform, and Cloudflare Pages docs.</div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">OpenAPI</span>
-            <span class="evidence-chip">SDK</span>
-          </div>
-        </div>
-        <div class="project-footer">
-          <span class="tech-pill">SQS</span>
-          <span class="tech-pill">Transcribe</span>
-          <span class="tech-pill">EventBridge</span>
-          <span class="tech-pill">DynamoDB</span>
-          <span class="tech-pill">OpenAPI</span>
-          <span class="tech-pill">Terraform</span>
-        </div>
-      </div>
-
-      <div class="project-card animate">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(255,112,67,0.1);">◉</div>
-          <div class="project-links">
-            <a href="https://github.com/manynames3/pulpit" target="_blank" class="project-link" title="GitHub">Repo</a>
-            <a href="https://pulpit.pages.dev/" target="_blank" class="project-link" title="Demo">Live demo</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Pulpit V1 - Serverless Bedrock RAG Application</div>
-          <div class="project-desc">Korean-English sermon search app with API Gateway, Lambda, Cognito, DynamoDB, S3 index, Bedrock, audit records, Guardrails, Terraform, GitHub Actions, and Cloudflare Pages.</div>
-          <div class="evidence-strip">
-            <span class="evidence-chip">Live demo</span>
-            <span class="evidence-chip">Repo</span>
-            <span class="evidence-chip">Terraform</span>
-            <span class="evidence-chip">Audit records</span>
-          </div>
-        </div>
-        <div class="project-footer">
-          <span class="tech-pill">Bedrock</span>
-          <span class="tech-pill">API Gateway</span>
-          <span class="tech-pill">Lambda</span>
-          <span class="tech-pill">Cognito</span>
-          <span class="tech-pill">DynamoDB</span>
-          <span class="tech-pill">Terraform</span>
-        </div>
+      <p class="credential-line">AWS Solutions Architect + AWS Developer + Terraform Associate</p>
+      <div class="btn-row" role="group" aria-label="Primary actions">
+        <a class="button primary" href="#proof">Review top projects</a>
+        <a class="button" href="https://github.com/manynames3" target="_blank" rel="noopener">GitHub</a>
+        <a class="button" href="https://linkedin.com/in/aidenrhaa" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="button" href="Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
     </div>
-  </details>
-</section>
-<div class="section-divider"></div>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-eyebrow">05 // Origin</div>
-  <h2>Where the operator lens came from.</h2>
-  <p class="section-desc">Business ownership and client delivery experience became the foundation for building practical cloud infrastructure, automation, and operational workflows.</p>
-  <div class="experience-bridge animate">
-    <strong>Business ownership background</strong> with hands-on technical responsibility across automation, web infrastructure, CRM/API workflows, and operational systems.
-  </div>
-
-  <div class="timeline">
-
-    <div class="timeline-item animate">
-      <div class="timeline-dot"></div>
-      <div class="timeline-meta">
-        <div class="timeline-role">Founder / Automation &amp; Systems Lead</div>
-        <div class="timeline-period">Dec 2016 – Present</div>
+    <aside class="hero-panel reveal" aria-label="Portfolio scan summary">
+      <div class="portrait-row">
+        <img src="aiden-rhaa-headshot-360.jpg" alt="Aiden Rhaa" width="360" height="360" loading="lazy" decoding="async">
+        <div>
+          <strong>Cloud &amp; DevOps Engineer</strong>
+          <span>Atlanta Metro, GA</span>
+          <span>AWS, Terraform, serverless, containers, platform automation</span>
+        </div>
       </div>
-      <div class="timeline-company">Clearpath Property Group / Boston Probate Solutions · Atlanta Metropolitan Area</div>
-      <ul class="timeline-list">
-        <li>Owned real-world acquisition and operations workflows across lead intake, public-record research, market data, CRM integration, seller communication, and automation</li>
-        <li>Built Python ingestion and scraping workflows that normalized county/public-record data into structured research outputs</li>
-        <li>Designed CRM/API automation and AI-assisted handoff workflows for lead qualification, voice AI guardrails, transcript summaries, and structured data routing</li>
-        <li>Translated real workflow requirements into AWS portfolio systems including Clearpath Fargate API and related lead-intelligence architecture</li>
-      </ul>
+      <dl class="signal-list">
+        <div class="signal-item">
+          <dt>Best fit</dt>
+          <dd>AWS Cloud Engineer, DevOps, platform automation, CloudOps governance.</dd>
+        </div>
+        <div class="signal-item">
+          <dt>First review</dt>
+          <dd>PursuitDesk, TerraGate, InspectIQ. Then scan supporting systems.</dd>
+        </div>
+        <div class="signal-item">
+          <dt>Difference</dt>
+          <dd>Operator background translated into repeatable, reviewable cloud workflows.</dd>
+        </div>
+      </dl>
+    </aside>
+  </section>
+
+  <section id="start" aria-labelledby="start-title">
+    <div class="section-head">
+      <p class="eyebrow">Start here</p>
+      <h2 id="start-title">A five-minute review path.</h2>
+      <p class="lead">This version prioritizes the strongest proof first, then keeps the rest available without forcing a long card-by-card read.</p>
+    </div>
+    <div class="start-grid">
+      <article class="start-card reveal">
+        <strong>Best role fit</strong>
+        <p>AWS Cloud Engineer, DevOps, infrastructure automation, CloudOps governance, and platform-adjacent backend roles.</p>
+      </article>
+      <article class="start-card reveal">
+        <strong>Strongest projects</strong>
+        <p>PursuitDesk for SaaS workflow depth, TerraGate for IaC review discipline, InspectIQ for AI-assisted review governance.</p>
+      </article>
+      <article class="start-card reveal">
+        <strong>Review first</strong>
+        <p>Open each live demo, inspect the AWS diagram, then use repos to verify Terraform, runbooks, and operating notes.</p>
+      </article>
+      <article class="start-card reveal">
+        <strong>Differentiator</strong>
+        <p>Real estate, media, and operations experience focused the systems on reducing manual work and preventing drift.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="proof" aria-labelledby="proof-title">
+    <div class="section-head">
+      <p class="eyebrow">Top proof</p>
+      <h2 id="proof-title">Three primary systems, built for fast inspection.</h2>
+      <p class="lead">Each project keeps the same scan shape: outcome, problem, architecture proof, verification links, and three operating bullets.</p>
     </div>
 
-    <div class="timeline-item animate">
-      <div class="timeline-dot"></div>
-      <div class="timeline-meta">
-        <div class="timeline-role">Creative Director / Operations</div>
-        <div class="timeline-period">Oct 2010 – Present</div>
+    <div class="proof-stack">
+      <article id="pursuitdesk" class="proof-project lead-project reveal">
+        <div class="project-copy">
+          <div class="project-topline">
+            <div>
+              <span class="project-number">01</span>
+              <h3 class="project-title">PursuitDesk - GovCon Capture &amp; Proposal Platform</h3>
+            </div>
+          </div>
+          <p class="outcome">Turns scattered GovCon capture work into a traceable AWS-backed workflow from opportunity intake to proposal draft.</p>
+          <p class="problem">GovCon consultants need repeatable intake, readiness scoring, opportunity triage, go/no-go decisions, and proposal drafting without spreadsheets and one-off handoffs.</p>
+          <ul class="chips">
+            <li class="chip">Terraform-managed</li>
+            <li class="chip">Lambda/API Gateway</li>
+            <li class="chip">RDS + pgvector</li>
+            <li class="chip">Bedrock</li>
+            <li class="chip">CloudWatch</li>
+          </ul>
+          <ul class="proof-lines">
+            <li><strong>Cloud architecture</strong><span>Cloudflare Pages, FastAPI Lambda, API Gateway, RDS PostgreSQL/pgvector, DynamoDB async jobs, Bedrock, and EventBridge.</span></li>
+            <li><strong>Security/Ops</strong><span>Secrets Manager, least-privilege paths, observable async workflow, documented architecture, and teardown discipline.</span></li>
+            <li><strong>Delivery</strong><span>Live demo, public repo, Terraform infrastructure, ingestion workflow, proposal exports, and reviewable handoff notes.</span></li>
+          </ul>
+        </div>
+        <div class="project-media">
+          <button type="button" class="diagram-button media-trigger" data-title="PursuitDesk AWS architecture" aria-label="View the PursuitDesk AWS architecture diagram">
+            <img src="assets/architecture/pursuitdesk-aws-architecture.png" alt="PursuitDesk AWS architecture showing Cloudflare Pages, API Gateway, Lambda, PostgreSQL, DynamoDB, Bedrock, and supporting services" width="2465" height="1440" loading="lazy" decoding="async">
+            <span class="diagram-caption">AWS architecture <span>Open lightbox</span></span>
+          </button>
+          <div class="links-box">
+            <a class="text-link" href="https://pursuitdesk.pages.dev/" target="_blank" rel="noopener">Live demo</a>
+            <a class="text-link" href="https://github.com/manynames3/pursuitdesk" target="_blank" rel="noopener">Repo</a>
+          </div>
+        </div>
+      </article>
+
+      <article id="terragate" class="proof-project reveal">
+        <div class="project-copy">
+          <span class="project-number">02</span>
+          <h3 class="project-title">TerraGate - Terraform PR Risk Gate</h3>
+          <p class="outcome">Makes infrastructure changes reviewable before merge by converting Terraform plans into risk, policy, and audit signals.</p>
+          <p class="problem">Infrastructure PRs are hard to trust when cost, security, reliability, sensitive values, and blast radius are buried inside raw Terraform plan output.</p>
+          <ul class="chips">
+            <li class="chip">Terraform plan review</li>
+            <li class="chip">GitHub Checks</li>
+            <li class="chip">Policy checks</li>
+            <li class="chip">Redaction</li>
+            <li class="chip">PostgreSQL</li>
+          </ul>
+          <ul class="proof-lines">
+            <li><strong>Cloud architecture</strong><span>Cloudflare/Next.js front end, FastAPI review service, AWS Lambda/API Gateway path, RDS PostgreSQL, CodeBuild, ECR, and CloudWatch.</span></li>
+            <li><strong>Security/Ops</strong><span>Secret redaction, deterministic checks first, persisted audit trail, least-privilege review posture, and approval gates.</span></li>
+            <li><strong>Delivery</strong><span>Live demo, repo, repeatable CI flow, GitHub comments/checks, review artifacts, and parseable plan evidence.</span></li>
+          </ul>
+        </div>
+        <div class="project-media">
+          <button type="button" class="diagram-button media-trigger" data-title="TerraGate AWS architecture" aria-label="View the TerraGate AWS architecture diagram">
+            <img src="assets/architecture/terragate-aws-architecture.png" alt="TerraGate AWS architecture showing Cloudflare, GitHub, API Gateway, Lambda, RDS PostgreSQL, CodeBuild, ECR, and CloudWatch" width="1844" height="1995" loading="lazy" decoding="async">
+            <span class="diagram-caption">AWS architecture <span>Open lightbox</span></span>
+          </button>
+          <div class="links-box">
+            <a class="text-link" href="https://terragate.hangi87.workers.dev/" target="_blank" rel="noopener">Live demo</a>
+            <a class="text-link" href="https://github.com/manynames3/terragate" target="_blank" rel="noopener">Repo</a>
+          </div>
+        </div>
+      </article>
+
+      <article id="inspectiq" class="proof-project reveal">
+        <div class="project-copy">
+          <span class="project-number">03</span>
+          <h3 class="project-title">InspectIQ - AI-Assisted Vehicle Inspection Workbench</h3>
+          <p class="outcome">Turns photo-heavy vehicle inspections into evidence-backed review workflows where AI advises and humans approve.</p>
+          <p class="problem">Inspection teams need consistent photo evidence, report readiness, buyer trust, seller disclosure, and accountable review without letting AI silently become the source of truth.</p>
+          <ul class="chips">
+            <li class="chip">Human review</li>
+            <li class="chip">S3 + SQS</li>
+            <li class="chip">Bedrock</li>
+            <li class="chip">Cognito</li>
+            <li class="chip">Audit trail</li>
+          </ul>
+          <ul class="proof-lines">
+            <li><strong>Cloud architecture</strong><span>React/TypeScript, API Gateway, Node Lambda, S3 image storage, SQS analysis queue, Bedrock, Neon Postgres, and shared Zod schemas.</span></li>
+            <li><strong>Security/Ops</strong><span>Cognito auth, private image paths, strict AI output validation, human-in-the-loop review, audit history, and CloudWatch alarms.</span></li>
+            <li><strong>Delivery</strong><span>Live walkthrough, repo access path, browser E2E coverage, Terraform, runbooks, and operational documentation.</span></li>
+          </ul>
+        </div>
+        <div class="project-media">
+          <button type="button" class="diagram-button media-trigger" data-title="InspectIQ AWS architecture" aria-label="View the InspectIQ AWS architecture diagram">
+            <img src="assets/architecture/inspectiq-aws-architecture.png" alt="InspectIQ AWS architecture showing Cloudflare Pages, Cognito, API Gateway, Lambda, SQS image analysis, Bedrock, S3 vehicle images, CloudWatch, Secrets Manager, Neon Postgres, Terraform, and GitHub Actions" width="3027" height="1608" loading="lazy" decoding="async">
+            <span class="diagram-caption">AWS architecture <span>Open lightbox</span></span>
+          </button>
+          <div class="links-box">
+            <a class="text-link" href="https://inspectiq.pages.dev" target="_blank" rel="noopener">Live demo</a>
+            <a class="text-link" href="https://github.com/manynames3/inspectiq" target="_blank" rel="noopener">Repo access</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="supporting" class="compressed-section" aria-labelledby="supporting-title">
+    <div class="section-head">
+      <p class="eyebrow">Supporting depth</p>
+      <h2 id="supporting-title">Everything else is compact by design.</h2>
+      <p class="lead">Secondary builds stay available for deeper review, but they no longer compete with the three strongest systems.</p>
+    </div>
+
+    <div class="support-groups">
+      <details class="support-group">
+        <summary>
+          <span class="summary-copy">
+            <span class="summary-title">Additional AWS Systems</span>
+            <span class="summary-subtitle">6 systems: CloudOps, Fargate, GitOps, bids, inventory, grid intelligence</span>
+          </span>
+          <span class="summary-action">Open</span>
+        </summary>
+        <div class="compact-list">
+          <article class="compact-project">
+            <div>
+              <h4>AegisDesk - CloudOps AI Control Plane</h4>
+              <p>Governed incident, access, cost, policy, and trusted-answer workflows.</p>
+              <div class="compact-meta">Cognito, Bedrock, DynamoDB, OPA/Rego, OpenTelemetry, Terraform</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://d27myiy7bbj1rz.cloudfront.net/marketing" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/aegisdesk-cloudops-control-plane" target="_blank" rel="noopener">Repo</a>
+              <button type="button" class="mini-action media-trigger" data-title="AegisDesk AWS architecture" data-src="assets/architecture/aegisdesk-aws-architecture.png" data-alt="AegisDesk AWS architecture showing CloudFront, API Gateway, Lambda, Bedrock, Cognito, DynamoDB, and CI/CD services">Diagram</button>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>Clearpath - AWS Fargate Lead Intelligence API</h4>
+              <p>Lead intake, source quality, county resolution, CRM events, and structured handoff.</p>
+              <div class="compact-meta">ECS Fargate, FastAPI, RDS Proxy, CloudFront/WAF, Checkov, Terraform</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://github.com/manynames3/clearpath-fargate-api" target="_blank" rel="noopener">Repo</a>
+              <button type="button" class="mini-action media-trigger" data-title="Clearpath AWS architecture" data-src="assets/architecture/clearpath-aws-architecture.png" data-alt="Clearpath AWS architecture showing WAF, CloudFront, ALB, ECS Fargate, RDS Proxy, PostgreSQL, security, and observability services">Diagram</button>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>Pulpit V2 - Validated EKS/GitOps Platform</h4>
+              <p>Migration path from serverless RAG to Kubernetes without losing observability or secrets discipline.</p>
+              <div class="compact-meta">EKS, Helm, ArgoCD, External Secrets, Prometheus/Grafana, Terraform</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://pulpit-v2.pages.dev/" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/pulpit-v2" target="_blank" rel="noopener">Repo</a>
+              <button type="button" class="mini-action media-trigger" data-title="Pulpit V2 AWS architecture" data-src="assets/architecture/pulpit-v2-aws-architecture.png" data-alt="Pulpit V2 AWS architecture showing Cloudflare Pages, Cognito, API Gateway, Lambda, S3, DynamoDB, Bedrock, ingestion, and operations services">Diagram</button>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>ElecBidSpec AI - Electrical Bid Intelligence</h4>
+              <p>Public opportunity ingestion, RFP/spec extraction, fit scoring, compliance matrix, and proposal artifacts.</p>
+              <div class="compact-meta">Next.js, FastAPI, PostgreSQL, Lambda Function URL, S3, Bedrock, Terraform</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://elecbidspec-ai.pages.dev" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/elecbidspec-ai" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>StockSense AI - Expiration-Aware Inventory</h4>
+              <p>CSV/XLSX imports into FEFO priorities, waste-risk alerts, forecasts, reorder recommendations, and ROI metrics.</p>
+              <div class="compact-meta">FastAPI, PostgreSQL, Pandas, S3, DynamoDB, EventBridge, SSM, Terraform</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://otokistocksense.pages.dev" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/ott-inventory-ai" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>QueueWatch - Serverless Grid-Capacity Intelligence</h4>
+              <p>Official-source monitoring, changed-document detection, S3 evidence capture, and DynamoDB signal storage.</p>
+              <div class="compact-meta">Lambda, EventBridge, S3, DynamoDB, Bedrock, Textract, SQS DLQ, CloudWatch, Terraform</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://queuewatch.pages.dev" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/queuewatch" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+        </div>
+      </details>
+
+      <details class="support-group">
+        <summary>
+          <span class="summary-copy">
+            <span class="summary-title">macOS &amp; Operator Tools</span>
+            <span class="summary-subtitle">2 systems: market workflows and local-first cleanup review</span>
+          </span>
+          <span class="summary-action">Open</span>
+        </summary>
+        <div class="compact-list">
+          <article class="compact-project">
+            <div>
+              <h4>Market Scout - Web + macOS Market Intelligence</h4>
+              <p>Redfin market data into sortable comparisons, seller/buyer labels, shortlist workflows, and exports.</p>
+              <div class="compact-meta">Python, macOS, HTML/CSS/JS, Redfin data, CSV export, Cloudflare Pages</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://market-scout-anl.pages.dev/" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/market-scout" target="_blank" rel="noopener">Repo</a>
+              <button type="button" class="mini-action media-trigger" data-title="Market Scout app screenshot" data-src="assets/screenshots/market-scout-results.png" data-alt="Market Scout interface showing bulk market analysis, searchable results, and sortable real estate market comparison table">Screenshot</button>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>Nomo Space - Local Mac Storage Auditor</h4>
+              <p>Local-first storage audit with risk-labeled cleanup findings, evaluation mode, and user-controlled decisions.</p>
+              <div class="compact-meta">Swift, SwiftUI, macOS, local storage scan, risk labels, Cloudflare Pages</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://nomospace.pages.dev" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/nomospace" target="_blank" rel="noopener">Repo</a>
+              <button type="button" class="mini-action media-trigger" data-title="Nomo Space macOS app screenshot" data-src="assets/screenshots/nomospace-evaluation-mode.png" data-alt="Nomo Space macOS app showing storage audit summary, evaluation mode, reclaimable storage, safe storage, review storage, and findings count">Screenshot</button>
+            </div>
+          </article>
+        </div>
+      </details>
+
+      <details class="support-group">
+        <summary>
+          <span class="summary-copy">
+            <span class="summary-title">Earlier / Supporting Builds</span>
+            <span class="summary-subtitle">4 systems: media search, OCR, transcription, and RAG</span>
+          </span>
+          <span class="summary-action">Open</span>
+        </summary>
+        <div class="compact-list">
+          <article class="compact-project">
+            <div>
+              <h4>PhotoScribe AI - Governed Serverless Media Search</h4>
+              <p>Serverless media search with S3, Lambda, Cognito, Bedrock, S3 Vectors, audit tables, SQS/DLQ, and Terraform.</p>
+              <div class="compact-meta">API Gateway, Cognito, Bedrock Nova/Titan, DynamoDB, CloudWatch</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://photoscribe-ai.pages.dev/" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/photoscribe-ai" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>DocuFlow OCR - Step Functions + Textract Workflow</h4>
+              <p>Invoice OCR path with presigned uploads, Step Functions, Textract, parsing/scoring Lambda, review queue, DLQ, and alarms.</p>
+              <div class="compact-meta">S3, API Gateway, Step Functions, Textract, Lambda, DynamoDB, Terraform</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://docuflow-ocr.pages.dev/" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/docuflow-ocr" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>Super Transcriber API - Serverless Transcription Backend</h4>
+              <p>API-first transcription backend with API-key auth, SQS workers, Amazon Transcribe, webhooks, OpenAPI, SDK, and Terraform.</p>
+              <div class="compact-meta">SQS, Transcribe, EventBridge, DynamoDB, OpenAPI, TypeScript SDK</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://super-transcriber-api.pages.dev" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/super-transcriber-api" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+          <article class="compact-project">
+            <div>
+              <h4>Pulpit V1 - Serverless Bedrock RAG Application</h4>
+              <p>Korean-English sermon search with API Gateway, Lambda, Cognito, DynamoDB, S3 index, Bedrock, Guardrails, and Terraform.</p>
+              <div class="compact-meta">Bedrock, API Gateway, Lambda, Cognito, DynamoDB, S3, GitHub Actions</div>
+            </div>
+            <div class="compact-actions">
+              <a class="mini-action" href="https://pulpit.pages.dev/" target="_blank" rel="noopener">Live</a>
+              <a class="mini-action" href="https://github.com/manynames3/pulpit" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="operator" class="compressed-section" aria-labelledby="operator-title">
+    <div class="section-head">
+      <p class="eyebrow">Operator lens</p>
+      <h2 id="operator-title">The story, compressed.</h2>
+    </div>
+    <div class="operator-grid">
+      <article class="operator-card reveal">
+        <p>Real estate, multimedia, and business operations exposed the same pattern: work spread across files, tools, vendors, approvals, and handoffs gets slower and less reliable as it scales.</p>
+        <p>That is the through-line in the cloud work. The systems start with who owns the workflow, where errors appear, what must be repeatable, and what evidence another person needs to trust the result.</p>
+      </article>
+      <article class="operator-card reveal">
+        <ul class="principles">
+          <li>Reduce manual re-entry and fragile handoffs.</li>
+          <li>Make infrastructure reviewable before it changes production.</li>
+          <li>Keep auth, audit, telemetry, and teardown in scope.</li>
+          <li>Use AI for acceleration while keeping human judgment explicit.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack" class="compressed-section" aria-labelledby="stack-title">
+    <div class="section-head">
+      <p class="eyebrow">Credentials &amp; stack</p>
+      <h2 id="stack-title">The baseline is easy to verify.</h2>
+    </div>
+    <div class="stack-grid">
+      <article class="stack-card reveal">
+        <h3>Certifications</h3>
+        <p>AWS Solutions Architect Associate, AWS Developer Associate, HashiCorp Terraform Associate.</p>
+      </article>
+      <article class="stack-card reveal">
+        <h3>Cloud build path</h3>
+        <p>Terraform, Lambda, API Gateway, ECS/Fargate, EKS/GitOps, RDS, DynamoDB, S3, SQS, Bedrock, CloudWatch.</p>
+      </article>
+      <article class="stack-card reveal">
+        <h3>Delivery posture</h3>
+        <p>Least-privilege IAM, auth, redaction, audit trails, runbooks, CI/CD, cost controls, and observable handoff.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="compressed-section" aria-labelledby="contact-title">
+    <div class="contact-card reveal">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Cloud systems with operator context.</h2>
+        <p>Open the top three projects first. If the role needs AWS infrastructure, automation, observability, or workflow-heavy platform work, the supporting systems provide the deeper trail.</p>
       </div>
-      <div class="timeline-company">Aiden Rhaa Photography / Visual Impact Studios · Atlanta Metropolitan Area</div>
-      <ul class="timeline-list">
-        <li>Delivered 200+ client projects across a 15-year service business, balancing technical execution, vendor coordination, customer communication, and budget constraints</li>
-        <li>Managed client-facing web properties, DNS records, SSL/TLS certificates, Cloudflare configuration, hosting, GitHub-based deployments, Supabase/Netlify workflows, cPanel, SFTP/SSH access, and WordPress administration</li>
-        <li>Directed cross-functional creative, technical, and contractor workflows for deadline-driven client projects with high service expectations</li>
-        <li>Built, rebuilt, or maintained static and CMS websites with focus on performance, SEO, image optimization, mobile responsiveness, and low operating cost</li>
-        <li>Translated client and business requirements into working web infrastructure, publishing workflows, and operational processes</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item animate">
-      <div class="timeline-dot"></div>
-      <div class="timeline-meta">
-        <div class="timeline-role">Multimedia Producer / Technical Workflow Lead</div>
-        <div class="timeline-period">May 2009 – Dec 2016</div>
+      <div class="btn-row">
+        <a class="button primary" href="mailto:aidenrhaacloud@gmail.com">Email</a>
+        <a class="button" href="https://linkedin.com/in/aidenrhaa" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="button" href="https://github.com/manynames3" target="_blank" rel="noopener">GitHub</a>
       </div>
-      <div class="timeline-company">ProMedia Productions · Boston, MA</div>
-      <ul class="timeline-list">
-        <li>Managed full project lifecycle for audio and video productions across small business, corporate, and education sectors</li>
-        <li>Built a macOS Automator workflow to bulk sort and rename thousands of media files by structured naming conventions, reducing manual file-management work</li>
-        <li>Designed custom recording studio configurations including acoustic treatment planning, noise reduction analysis, and equipment layout</li>
-        <li>Sourced and coordinated per-project freelance crews across diverse production scopes</li>
-      </ul>
     </div>
-
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- CONTACT -->
-<section id="contact" style="padding-bottom:80px;">
-  <div class="contact-wrapper animate">
-    <div class="section-eyebrow" style="justify-content:center;text-align:center;">06 // Connect</div>
-    <h2>Cloud systems with operator context.</h2>
-    <p>I build AWS infrastructure, automation, and platform workflows for teams that care about reliability, cost awareness, security, and ownership.</p>
-    <div class="target-roles">
-      <span class="target-role">AWS Systems</span>
-      <span class="target-role">Platform Automation</span>
-      <span class="target-role">DevOps Reliability</span>
-      <span class="target-role">CloudOps Governance</span>
-    </div>
-    <div class="contact-fit">
-      The through-line: connect <strong>operator workflows</strong> to <strong>AWS architecture</strong>, automation, reliability, runbooks, and working deployments.
-    </div>
-    <div class="contact-links">
-      <a href="https://linkedin.com/in/aidenrhaa" target="_blank" class="contact-link linkedin">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/manynames3" target="_blank" class="contact-link github">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-        GitHub
-      </a>
-      <a href="Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf" target="_blank" class="contact-link email">
-        ▣
-        Resume
-      </a>
-      <a href="mailto:aidenrhaacloud@gmail.com" class="contact-link email">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Email
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
-  <span style="color:var(--cyan)">Aiden Rhaa</span> &nbsp;·&nbsp; Cloud &amp; DevOps Engineer &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; <span style="opacity:0.5;">Built with intent.</span>
+  Aiden Rhaa - Cloud &amp; DevOps Engineer - Atlanta, GA - compressed portfolio
 </footer>
 
-<dialog class="architecture-lightbox" id="architecture-lightbox" aria-labelledby="architecture-lightbox-title">
-  <div class="architecture-lightbox-shell">
-    <div class="architecture-lightbox-header">
+<dialog class="media-lightbox" id="media-lightbox" aria-labelledby="media-lightbox-title">
+  <div class="lightbox-shell">
+    <div class="lightbox-header">
       <div>
-        <div class="architecture-lightbox-label">Project media</div>
-        <h3 id="architecture-lightbox-title"></h3>
+        <div class="lightbox-label">Project media</div>
+        <h3 class="lightbox-title" id="media-lightbox-title">Project media</h3>
       </div>
-      <button type="button" class="architecture-lightbox-close" aria-label="Close project media">
-        Close <span aria-hidden="true">&times;</span>
-      </button>
+      <button type="button" class="lightbox-close" aria-label="Close project media">Close <span aria-hidden="true">&times;</span></button>
     </div>
-    <div class="architecture-lightbox-media">
-      <img id="architecture-lightbox-image" alt="">
+    <div class="lightbox-media">
+      <img id="media-lightbox-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="">
     </div>
-    <div class="architecture-lightbox-hint">Press Esc or click outside the media to close</div>
+    <div class="lightbox-hint">Press Esc or click outside the media to close</div>
   </div>
 </dialog>
 
 <script>
-  // Keep hash links aligned after late font/image layout shifts.
-  const scrollToCurrentHash = () => {
-    if (!window.location.hash) return;
-    const target = document.querySelector(window.location.hash);
-    if (target) target.scrollIntoView({ block: 'start' });
-  };
+  const revealObserver = "IntersectionObserver" in window
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -32px 0px" })
+    : null;
 
-  window.addEventListener('load', () => {
-    window.setTimeout(scrollToCurrentHash, 120);
-    window.setTimeout(scrollToCurrentHash, 600);
-  });
-
-  window.addEventListener('hashchange', () => {
-    window.setTimeout(scrollToCurrentHash, 0);
-  });
-
-  // Intersection Observer for scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
-
-  // Stagger children of grid containers
-  document.querySelectorAll('.skills-grid, .projects-grid').forEach(grid => {
-    grid.querySelectorAll('.animate').forEach((child, i) => {
-      child.style.transitionDelay = `${i * 80}ms`;
-    });
-  });
-
-  const architectureDialog = document.querySelector('#architecture-lightbox');
-  const architectureDialogImage = document.querySelector('#architecture-lightbox-image');
-  const architectureDialogTitle = document.querySelector('#architecture-lightbox-title');
-  const architectureDialogClose = document.querySelector('.architecture-lightbox-close');
-  let architectureLastTrigger = null;
-
-  document.querySelectorAll('.architecture-trigger').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const previewImage = trigger.querySelector('img');
-      architectureLastTrigger = trigger;
-      architectureDialogImage.src = previewImage.currentSrc || previewImage.src;
-      architectureDialogImage.alt = previewImage.alt;
-      architectureDialogTitle.textContent = trigger.dataset.title;
-      document.body.classList.add('modal-open');
-      architectureDialog.showModal();
-      architectureDialogClose.focus();
-    });
-  });
-
-  architectureDialogClose.addEventListener('click', () => architectureDialog.close());
-
-  architectureDialog.addEventListener('click', event => {
-    if (event.target === architectureDialog) architectureDialog.close();
-  });
-
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && architectureDialog.open) {
-      event.preventDefault();
-      architectureDialog.close();
+  document.querySelectorAll(".reveal").forEach((element) => {
+    if (revealObserver) {
+      revealObserver.observe(element);
+    } else {
+      element.classList.add("visible");
     }
   });
 
-  architectureDialog.addEventListener('close', () => {
-    document.body.classList.remove('modal-open');
-    architectureLastTrigger?.focus();
+  document.querySelectorAll(".support-group").forEach((group) => {
+    const action = group.querySelector(".summary-action");
+    const syncLabel = () => {
+      if (action) action.textContent = group.open ? "Close" : "Open";
+    };
+    group.addEventListener("toggle", syncLabel);
+    syncLabel();
   });
+
+  const dialog = document.querySelector("#media-lightbox");
+  const dialogImage = document.querySelector("#media-lightbox-image");
+  const dialogTitle = document.querySelector("#media-lightbox-title");
+  const dialogClose = document.querySelector(".lightbox-close");
+  const dialogShell = document.querySelector(".lightbox-shell");
+  let lastTrigger = null;
+
+  const closeDialog = () => {
+    if (!dialog) return;
+    if (dialog.open && typeof dialog.close === "function") {
+      dialog.close();
+    } else {
+      dialog.removeAttribute("open");
+      document.body.classList.remove("modal-open");
+      if (lastTrigger) lastTrigger.focus();
+    }
+  };
+
+  if (dialog && dialogImage && dialogTitle && dialogClose) {
+    document.querySelectorAll(".media-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const previewImage = trigger.querySelector("img");
+        const src = trigger.dataset.src || (previewImage ? (previewImage.currentSrc || previewImage.src) : "");
+        const alt = trigger.dataset.alt || (previewImage ? previewImage.alt : "");
+
+        if (!src) return;
+        lastTrigger = trigger;
+        dialogImage.src = src;
+        dialogImage.alt = alt;
+        dialogTitle.textContent = trigger.dataset.title || "Project media";
+        document.body.classList.add("modal-open");
+
+        if (typeof dialog.showModal === "function") {
+          dialog.showModal();
+        } else {
+          dialog.setAttribute("open", "");
+        }
+        dialogClose.focus();
+      });
+    });
+
+    dialogClose.addEventListener("click", closeDialog);
+
+    dialog.addEventListener("click", (event) => {
+      if (!dialogShell || event.target !== dialog) return;
+      closeDialog();
+    });
+
+    dialog.addEventListener("close", () => {
+      document.body.classList.remove("modal-open");
+      if (lastTrigger) lastTrigger.focus();
+    });
+  }
 </script>
 </body>
 </html>
