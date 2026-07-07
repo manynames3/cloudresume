@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manynames3.github.io/cloudresume/sitemap.xml
