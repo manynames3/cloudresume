@@ -275,7 +275,10 @@ test("renders exact homepage positioning and résumé-derived profile content", 
     "Cloud Platform & Reliability Engineer",
     "Cloud systems people can operate, inspect, and trust.",
     "I turn customer and operational workflows into reusable AWS systems—designed to deploy cleanly, surface failure, recover predictably, and hand off well.",
-    "Previously earned credentials, not currently active",
+    "Cloud credential history",
+    "Solutions Architect – Associate",
+    "Developer – Associate",
+    "Terraform Associate",
     "Live AWS-backed application · public walkthrough read-only",
     "Live constrained demo · deterministic checks · external writes mocked",
     "Short-lived AWS validation · torn down after validation",
@@ -289,6 +292,8 @@ test("renders exact homepage positioning and résumé-derived profile content", 
     "automotive inspection application",
   ];
   for (const value of required) assert.match(home, new RegExp(value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
+  assert.doesNotMatch(home, /Previously earned credentials, not currently active/i);
+  assert.ok(home.indexOf("Solutions Architect – Associate") < home.indexOf("Berklee College of Music"));
   assert.doesNotMatch(home, /document-inspection|search visibility/i);
 });
 

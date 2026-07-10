@@ -1,6 +1,6 @@
 import { caseStudies, caseStudySlugs } from "@/content/case-studies";
 import {
-  credentialStatement,
+  credentials,
   education,
   experience,
   principles,
@@ -218,18 +218,33 @@ export function HomePage() {
           </ol>
         </div>
         <aside className="history-section__education" aria-labelledby="education-title">
-          <p className="eyebrow">Education & credentials</p>
-          <h2 id="education-title">Study and prior credentials</h2>
-          <ul className="education-list">
-            {education.map((item) => (
-              <li key={item.institution}>
-                <h3>{item.institution}</h3>
-                <p>{item.study}</p>
-                <p className="history-meta">{item.period}</p>
+          <p className="eyebrow">Credentials & education</p>
+          <h2 id="education-title">Cloud credential history</h2>
+          <ol className="credential-list">
+            {credentials.map((credential, index) => (
+              <li key={`${credential.issuer}-${credential.title}`}>
+                <p className="credential-index" aria-hidden="true">
+                  0{index + 1}
+                </p>
+                <div>
+                  <p className="credential-issuer">{credential.issuer}</p>
+                  <h3>{credential.title}</h3>
+                </div>
               </li>
             ))}
-          </ul>
-          <p className="credential-statement">{credentialStatement}</p>
+          </ol>
+          <div className="education-block">
+            <p className="subsection-label">Education</p>
+            <ul className="education-list">
+              {education.map((item) => (
+                <li key={item.institution}>
+                  <h3>{item.institution}</h3>
+                  <p>{item.study}</p>
+                  <p className="history-meta">{item.period}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </aside>
       </section>
 

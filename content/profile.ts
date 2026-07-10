@@ -119,5 +119,17 @@ export const education = [
   },
 ] as const;
 
-export const credentialStatement =
-  "Previously earned credentials, not currently active: AWS Certified Solutions Architect – Associate; AWS Certified Developer – Associate; HashiCorp Certified: Terraform Associate.";
+export const credentials = [
+  {
+    issuer: "Amazon Web Services",
+    title: "AWS Certified Solutions Architect – Associate",
+  },
+  {
+    issuer: "Amazon Web Services",
+    title: "AWS Certified Developer – Associate",
+  },
+  {
+    issuer: "HashiCorp",
+    title: "HashiCorp Certified: Terraform Associate",
+  },
+] as const;

@@ -344,6 +344,7 @@ main > section,
 .principles-list,
 .supporting-list,
 .history-list,
+.credential-list,
 .education-list,
 .decision-list,
 .evidence-list,
@@ -513,20 +514,65 @@ main > section,
   color: var(--muted-ink);
 }
 
+.credential-list {
+  margin: 0;
+  padding: 0;
+  border-top: 3px solid var(--signal);
+  list-style: none;
+}
+
+.credential-list > li {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 0.8rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.credential-list p {
+  margin-bottom: 0;
+}
+
+.credential-index,
+.credential-issuer,
+.subsection-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.credential-index,
+.credential-issuer {
+  color: var(--signal);
+}
+
+.credential-list h3 {
+  margin-bottom: 0;
+  font-size: clamp(1.3rem, 1.7vw, 1.7rem);
+  line-height: 1.12;
+}
+
+.education-block {
+  margin-top: clamp(3rem, 5vw, 5rem);
+}
+
+.subsection-label {
+  margin-bottom: 0.8rem;
+  color: var(--muted-ink);
+}
+
 .education-list h3 {
-  font-size: 1.35rem;
+  font-size: 1.15rem;
 }
 
 .education-list p {
   margin-bottom: 0.25rem;
 }
 
-.credential-statement {
-  padding-top: 1.5rem;
-  border-top: 3px solid var(--signal);
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  line-height: 1.25;
+.education-list > li {
+  padding-block: 1.25rem;
 }
 
 .contact-section > div:first-child {
