@@ -233,6 +233,15 @@ test("provides landmarks, one H1, request-aware metadata, and intended JSON-LD",
     assert.equal(pageTitle, expectedTitles.get(route));
     assert.ok(!seenTitles.has(pageTitle), `${route} title should be unique`);
     seenTitles.add(pageTitle);
+    const metaTags = tags(html, "meta");
+    const openGraph = (property) => metaTags.find((tag) => attr(tag, "property") === property);
+    const twitter = (name) => metaTags.find((tag) => attr(tag, "name") === name);
+    assert.equal(attr(openGraph("og:title"), "content")?.replaceAll("&amp;", "&"), pageTitle);
+    assert.equal(attr(openGraph("og:image"), "content"), "/og.png");
+    assert.equal(attr(openGraph("og:image:width"), "content"), "1200");
+    assert.equal(attr(openGraph("og:image:height"), "content"), "630");
+    assert.equal(attr(twitter("twitter:card"), "content"), "summary_large_image");
+    assert.equal(attr(twitter("twitter:image"), "content"), "/og.png");
     assert.equal(canonical(html), route);
     assert.equal(
       new URL(canonical(html), `https://folio.example${route}`).href,
@@ -347,10 +356,15 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
     "public/case-studies/terragate-architecture.png",
     "public/case-studies/clearpath-architecture.png",
     "public/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
+    "public/og.png",
   ];
   for (const asset of publicAssets) {
     await assert.doesNotReject(access(new URL(asset, projectRoot)), `${asset} should exist`);
   }
+  const socialImage = await readFile(new URL("public/og.png", projectRoot));
+  assert.equal(socialImage.subarray(1, 4).toString(), "PNG");
+  assert.equal(socialImage.readUInt32BE(16), 1200);
+  assert.equal(socialImage.readUInt32BE(20), 630);
 
   const sitemap = await render("/sitemap.xml");
   assert.equal(sitemap.status, 200);
