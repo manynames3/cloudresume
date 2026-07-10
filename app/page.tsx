@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { SkeletonPreview } from "./_sites-preview/SkeletonPreview";
+import { HomePage } from "@/components/home-page";
+
+const description =
+  "Aiden Rhaa builds inspectable AWS systems with explicit operating boundaries, evidence, recovery paths, and handoff artifacts.";
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Your site is taking shape",
-  description:
-    "Codex is building the first version. It’ll appear here automatically when it’s ready.",
-  other: {
-    "codex-preview": "development",
-  },
+  title: "Aiden Rhaa — Cloud Platform & Reliability Engineer",
+  description,
 };
 
 export default function Home() {
-  return <SkeletonPreview />;
+  return <HomePage />;
 }
