@@ -3,6 +3,7 @@ import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
 const projectRoot = new URL("../", import.meta.url);
+const canonicalOrigin = "https://aiden-rhaa-cloud-platform.lush-mars-9564.chatgpt.site";
 const routes = [
   "/",
   "/case-studies/inspectiq",
@@ -237,16 +238,12 @@ test("provides landmarks, one H1, request-aware metadata, and intended JSON-LD",
     const openGraph = (property) => metaTags.find((tag) => attr(tag, "property") === property);
     const twitter = (name) => metaTags.find((tag) => attr(tag, "name") === name);
     assert.equal(attr(openGraph("og:title"), "content")?.replaceAll("&amp;", "&"), pageTitle);
-    assert.equal(attr(openGraph("og:image"), "content"), "/og.png");
+    assert.equal(attr(openGraph("og:image"), "content"), `${canonicalOrigin}/og.png`);
     assert.equal(attr(openGraph("og:image:width"), "content"), "1200");
     assert.equal(attr(openGraph("og:image:height"), "content"), "630");
     assert.equal(attr(twitter("twitter:card"), "content"), "summary_large_image");
-    assert.equal(attr(twitter("twitter:image"), "content"), "/og.png");
-    assert.equal(canonical(html), route);
-    assert.equal(
-      new URL(canonical(html), `https://folio.example${route}`).href,
-      `https://folio.example${route}`,
-    );
+    assert.equal(attr(twitter("twitter:image"), "content"), `${canonicalOrigin}/og.png`);
+    assert.equal(canonical(html), new URL(route, canonicalOrigin).href);
     assert.doesNotMatch(response.headers.get("cache-control") ?? "", /no-store/i);
 
     const documents = jsonLd(html);
@@ -261,8 +258,8 @@ test("provides landmarks, one H1, request-aware metadata, and intended JSON-LD",
       const article = documents
         .flatMap((document) => document["@graph"] ?? [document])
         .find((entry) => entry["@type"] === "TechArticle");
-      assert.equal(article.author["@id"], "/#aiden-rhaa");
-      assert.equal(article.isPartOf["@id"], "/#website");
+      assert.equal(article.author["@id"], `${canonicalOrigin}/#aiden-rhaa`);
+      assert.equal(article.isPartOf["@id"], `${canonicalOrigin}/#website`);
     }
   }
 });
@@ -375,15 +372,22 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
 
   const robots = await render("/robots.txt");
   assert.equal(robots.status, 200);
-  assert.match(await robots.text(), /Sitemap: https:\/\/portfolio\.test\/sitemap\.xml/);
-  assert.match(home, /<link\b[^>]*rel="icon"[^>]*href="\/favicon\.png"/i);
+  assert.match(
+    await robots.text(),
+    /Sitemap: https:\/\/aiden-rhaa-cloud-platform\.lush-mars-9564\.chatgpt\.site\/sitemap\.xml/,
+  );
+  assert.match(
+    home,
+    /<link\b[^>]*rel="icon"[^>]*href="https:\/\/aiden-rhaa-cloud-platform\.lush-mars-9564\.chatgpt\.site\/favicon\.png"/i,
+  );
 });
 
 test("removes the starter and keeps the site static-first and progressively enhanced", async () => {
-  const [caseRoute, homeRoute, caseSource, css, packageJson] = await Promise.all([
+  const [caseRoute, homeRoute, caseSource, siteUrlSource, css, packageJson] = await Promise.all([
     source("app/case-studies/[slug]/page.tsx"),
     source("app/page.tsx"),
     source("content/case-studies.ts"),
+    source("lib/site-url.ts"),
     source("app/globals.css"),
     source("package.json"),
   ]);
@@ -396,6 +400,8 @@ test("removes the starter and keeps the site static-first and progressively enha
   assert.doesNotMatch(homeRoute, /Cloud systems people can operate/);
   assert.match(caseSource, /export interface CaseStudy/);
   assert.doesNotMatch(`${caseRoute}\n${homeRoute}\n${caseSource}`, /["']use client["']/);
+  assert.doesNotMatch(siteUrlSource, /next\/headers|requestOrigin/);
+  assert.match(siteUrlSource, /https:\/\/aiden-rhaa-cloud-platform\.lush-mars-9564\.chatgpt\.site/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.doesNotMatch(packageJson, /"codex-preview"/);
   assert.match(css, /@font-face/);

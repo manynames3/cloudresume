@@ -12,6 +12,7 @@ import {
 import { homeStructuredData } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { ExternalLink, SiteFrame } from "@/components/site-frame";
+import { absoluteUrl } from "@/lib/site-url";
 
 const lifecycle = {
   inspectiq: "Live AWS-backed application · public walkthrough read-only",
@@ -42,7 +43,7 @@ function SectionHeading({
 export function HomePage() {
   return (
     <SiteFrame currentPage="work">
-      <link rel="canonical" href="/" />
+      <link rel="canonical" href={absoluteUrl("/")} />
       <JsonLd value={homeStructuredData()} />
 
       <section className="hero grid" data-section="hero" aria-labelledby="hero-title">

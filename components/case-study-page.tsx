@@ -9,6 +9,7 @@ import {
 import { caseStructuredData } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { ExternalLink, SiteFrame } from "@/components/site-frame";
+import { absoluteUrl } from "@/lib/site-url";
 
 function DemoBoundary({ study }: { study: CaseStudy }) {
   const { demo } = study;
@@ -129,7 +130,7 @@ export function CaseStudyPage({
 
   return (
     <SiteFrame>
-      <link rel="canonical" href={`/case-studies/${study.slug}`} />
+      <link rel="canonical" href={absoluteUrl(`/case-studies/${study.slug}`)} />
       <JsonLd value={caseStructuredData(study)} />
 
       <article className="case-study">

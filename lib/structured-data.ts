@@ -1,9 +1,7 @@
 import type { CaseStudy } from "@/content/case-studies";
 import { caseStudies, caseStudySlugs } from "@/content/case-studies";
 import { profile } from "@/content/profile";
-
-const personId = "/#aiden-rhaa";
-const websiteId = "/#website";
+import { absoluteUrl, personId, websiteId } from "@/lib/site-url";
 
 export function serializeJsonLd(value: unknown): string {
   return JSON.stringify(value).replaceAll("<", "\\u003c");
@@ -17,28 +15,28 @@ export function homeStructuredData() {
         "@type": "Person",
         "@id": personId,
         name: profile.name,
-        url: "/",
+        url: absoluteUrl("/"),
         jobTitle: profile.role,
         email: `mailto:${profile.email}`,
-        image: profile.portrait.src,
+        image: absoluteUrl(profile.portrait.src),
         sameAs: [profile.linkedin, profile.github],
       },
       {
         "@type": "WebSite",
         "@id": websiteId,
-        url: "/",
+        url: absoluteUrl("/"),
         name: `${profile.name} — ${profile.role}`,
         publisher: { "@id": personId },
       },
       {
         "@type": "ItemList",
-        "@id": "/#work",
+        "@id": absoluteUrl("/#work"),
         name: "Selected cloud systems",
         itemListElement: caseStudySlugs.map((slug, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: caseStudies[slug].title,
-          url: `/case-studies/${slug}`,
+          url: absoluteUrl(`/case-studies/${slug}`),
         })),
       },
     ],
@@ -46,7 +44,7 @@ export function homeStructuredData() {
 }
 
 export function caseStructuredData(study: CaseStudy) {
-  const caseUrl = `/case-studies/${study.slug}`;
+  const caseUrl = absoluteUrl(`/case-studies/${study.slug}`);
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -69,7 +67,7 @@ export function caseStructuredData(study: CaseStudy) {
             "@type": "ListItem",
             position: 1,
             name: "Work",
-            item: "/#work",
+            item: absoluteUrl("/#work"),
           },
           {
             "@type": "ListItem",

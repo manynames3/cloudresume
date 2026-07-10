@@ -1,13 +1,12 @@
 import type { MetadataRoute } from "next";
-import { absoluteUrl, requestOrigin } from "@/lib/site-url";
+import { absoluteUrl } from "@/lib/site-url";
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  const origin = await requestOrigin();
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: absoluteUrl(origin, "/sitemap.xml"),
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }
