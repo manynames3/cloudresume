@@ -135,11 +135,12 @@ export const inspectiq = {
     {
       id: "inspectiq-architecture",
       kind: "architecture",
-      title: "AWS architecture and system boundary",
+      title:
+        'Source architecture diagram — its "JWT authorizer" label is not used as evidence of gateway enforcement',
       href: "https://github.com/manynames3/inspectiq/blob/main/docs/architecture.md",
       image: {
         src: "/case-studies/inspectiq-architecture.png",
-        alt: "InspectIQ AWS architecture showing the application, identity, processing, storage, and observability boundaries",
+        alt: 'InspectIQ source architecture diagram. A "JWT authorizer" label appears in the source image, but the supported end-user authorization claim is app-level Cognito JWT/RBAC.',
         width: 3027,
         height: 1608,
       },

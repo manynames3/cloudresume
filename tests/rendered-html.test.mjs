@@ -173,6 +173,10 @@ test("renders each demo boundary without widening its claims", async () => {
   assert.match(inspectiqBoundary, /data-demo-href="https:\/\/inspectiq\.pages\.dev"/);
   assert.match(inspectiq, /does not prove API Gateway authorizer enforcement/);
   assert.match(inspectiq, /does not establish Bedrock model accuracy/);
+  assert.match(
+    inspectiq,
+    /its &quot;JWT authorizer&quot; label is not used as evidence of gateway enforcement/,
+  );
 
   const terragate = (await htmlFor("/case-studies/terragate")).html;
   const terragateBoundary = section(terragate, 'id=["\']demo-boundary["\']');
