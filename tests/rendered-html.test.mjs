@@ -323,6 +323,13 @@ test("omits forbidden claims and personal phone data from every rendered route",
 
 test("resolves internal routes, public assets, sitemap, robots, and favicon", async () => {
   const home = (await htmlFor("/")).html;
+  const resumeLinks = tags(home, "a").filter(
+    (tag) => attr(tag, "href") === "/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
+  );
+  assert.equal(resumeLinks.length, 1);
+  assert.equal(attr(resumeLinks[0], "target"), "_blank");
+  assert.equal(attr(resumeLinks[0], "rel"), "noreferrer");
+
   const internalCaseLinks = tags(home, "a")
     .map((tag) => attr(tag, "href"))
     .filter((href) => href?.startsWith("/case-studies/"));
@@ -339,6 +346,7 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
     "public/case-studies/inspectiq-architecture.png",
     "public/case-studies/terragate-architecture.png",
     "public/case-studies/clearpath-architecture.png",
+    "public/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
   ];
   for (const asset of publicAssets) {
     await assert.doesNotReject(access(new URL(asset, projectRoot)), `${asset} should exist`);

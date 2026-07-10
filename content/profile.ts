@@ -4,8 +4,7 @@ export const profile = {
   email: "aidenrhaacloud@gmail.com",
   github: "https://github.com/manynames3",
   linkedin: "https://linkedin.com/in/aidenrhaa",
-  resume:
-    "https://manynames3.github.io/cloudresume/Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf",
+  resume: "/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
   portrait: {
     src: "/case-studies/aiden-rhaa-portrait.jpg",
     alt: "Portrait of Aiden Rhaa",
