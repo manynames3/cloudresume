@@ -1,6 +1,4 @@
 import type { CaseStudy } from "@/content/case-studies";
-import Image from "next/image";
-import Link from "next/link";
 import {
   caseOperations,
   caseRepositories,
@@ -136,7 +134,7 @@ export function CaseStudyPage({
       <article className="case-study">
         <div className="case-hero">
           <nav className="breadcrumbs" aria-label="Breadcrumb">
-            <Link href="/#work">Work</Link>
+            <a href="/#work">Work</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{study.title}</span>
           </nav>
@@ -186,14 +184,13 @@ export function CaseStudyPage({
             <p className="eyebrow">02 / System</p>
             <h2 id="architecture-title">Real architecture, retained as review evidence.</h2>
             <figure>
-              <Image
+              <img
                 src={architecture.image.src}
                 alt={architecture.image.alt}
                 width={architecture.image.width}
                 height={architecture.image.height}
                 loading="lazy"
-                sizes="(max-width: 1536px) 100vw, 1536px"
-                unoptimized
+                decoding="async"
               />
               <figcaption>
                 {architecture.title}. The diagram is reused from the public project record;
@@ -329,10 +326,10 @@ export function CaseStudyPage({
 
         <nav className="next-case" aria-label="Next case study">
           <p className="eyebrow">Next project</p>
-          <Link href={`/case-studies/${nextStudy.slug}`}>
+          <a href={`/case-studies/${nextStudy.slug}`}>
             <span>{nextStudy.title}</span>
             <span aria-hidden="true">→</span>
-          </Link>
+          </a>
         </nav>
       </article>
     </SiteFrame>

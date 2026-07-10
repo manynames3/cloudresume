@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { profile } from "@/content/profile";
 
 export function ExternalLink({
@@ -34,22 +33,22 @@ function Header({ currentPage }: { currentPage?: "work" }) {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <Link className="wordmark" href="/" aria-label="Aiden Rhaa, portfolio home">
+        <a className="wordmark" href="/" aria-label="Aiden Rhaa, portfolio home">
           <span>{profile.name}</span>
           <span>{profile.role}</span>
-        </Link>
+        </a>
         <nav aria-label="Primary navigation">
-          <Link href="/#work" aria-current={currentPage === "work" ? "page" : undefined}>
+          <a href="/#work" aria-current={currentPage === "work" ? "page" : undefined}>
             Work
-          </Link>
-          <Link href="/#profile">Profile</Link>
+          </a>
+          <a href="/#profile">Profile</a>
           <ExternalLink
             href={profile.resume}
             label="Open Aiden Rhaa résumé PDF in a new tab"
           >
             Résumé
           </ExternalLink>
-          <Link href="/#contact">Contact</Link>
+          <a href="/#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -63,7 +62,7 @@ function Footer() {
         <span className="folio">AR / 2026</span>
         <span>Cloud systems, operating evidence, and honest boundaries.</span>
       </p>
-      <Link href="#top">Back to top</Link>
+      <a href="#top">Back to top</a>
     </footer>
   );
 }

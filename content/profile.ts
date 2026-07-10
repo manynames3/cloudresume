@@ -6,7 +6,7 @@ export const profile = {
   linkedin: "https://linkedin.com/in/aidenrhaa",
   resume: "/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
   portrait: {
-    src: "/case-studies/aiden-rhaa-portrait.jpg",
+    src: "/case-studies/aiden-rhaa-portrait.webp",
     alt: "Portrait of Aiden Rhaa",
     width: 360,
     height: 360,

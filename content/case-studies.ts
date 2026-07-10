@@ -139,10 +139,10 @@ export const inspectiq = {
         'Source architecture diagram — its "JWT authorizer" label is not used as evidence of gateway enforcement',
       href: "https://github.com/manynames3/inspectiq/blob/main/docs/architecture.md",
       image: {
-        src: "/case-studies/inspectiq-architecture.png",
+        src: "/case-studies/inspectiq-architecture.webp",
         alt: 'InspectIQ source architecture diagram. A "JWT authorizer" label appears in the source image, but the supported end-user authorization claim is app-level Cognito JWT/RBAC.',
-        width: 3027,
-        height: 1608,
+        width: 1536,
+        height: 816,
       },
     },
     {
@@ -150,6 +150,18 @@ export const inspectiq = {
       kind: "iac",
       title: "Terraform infrastructure",
       href: "https://github.com/manynames3/inspectiq/tree/main/infra/terraform",
+    },
+    {
+      id: "inspectiq-ci",
+      kind: "ci",
+      title: "Application CI workflow",
+      href: "https://github.com/manynames3/inspectiq/blob/main/.github/workflows/ci.yml",
+    },
+    {
+      id: "inspectiq-evaluation",
+      kind: "tests",
+      title: "Deterministic evaluation harness — not model-accuracy evidence",
+      href: "https://github.com/manynames3/inspectiq/tree/main/evals",
     },
     {
       id: "inspectiq-runtime-proof",
@@ -276,10 +288,10 @@ export const terragate = {
       title: "Review-flow architecture",
       href: "https://github.com/manynames3/terragate/blob/main/docs/architecture.md",
       image: {
-        src: "/case-studies/terragate-architecture.png",
+        src: "/case-studies/terragate-architecture.webp",
         alt: "TerraGate architecture showing the constrained public interface, deterministic review services, data store, and mocked external boundaries",
-        width: 1844,
-        height: 1995,
+        width: 1200,
+        height: 1299,
       },
     },
     {
@@ -287,6 +299,24 @@ export const terragate = {
       kind: "iac",
       title: "AWS public-demo Terraform",
       href: "https://github.com/manynames3/terragate/tree/main/infra/terraform/aws-public-demo",
+    },
+    {
+      id: "terragate-ci",
+      kind: "ci",
+      title: "Repository CI workflow",
+      href: "https://github.com/manynames3/terragate/blob/main/.github/workflows/ci.yml",
+    },
+    {
+      id: "terragate-tests",
+      kind: "tests",
+      title: "Testing strategy and commands",
+      href: "https://github.com/manynames3/terragate/blob/main/docs/testing.md",
+    },
+    {
+      id: "terragate-runbook",
+      kind: "runbook",
+      title: "Operator runbook",
+      href: "https://github.com/manynames3/terragate/blob/main/docs/runbook.md",
     },
     {
       id: "terragate-threat-model",
@@ -404,10 +434,10 @@ export const clearpath = {
       title: "AWS container architecture",
       href: "https://github.com/manynames3/clearpath-fargate-api/blob/main/docs/architecture.md",
       image: {
-        src: "/case-studies/clearpath-architecture.png",
+        src: "/case-studies/clearpath-architecture.webp",
         alt: "Clearpath AWS architecture showing edge protection, load balancing, Fargate services, private data services, secrets, and observability",
-        width: 2350,
-        height: 1056,
+        width: 1536,
+        height: 691,
       },
     },
     {
@@ -415,6 +445,12 @@ export const clearpath = {
       kind: "iac",
       title: "Terraform infrastructure",
       href: "https://github.com/manynames3/clearpath-fargate-api/tree/main/terraform",
+    },
+    {
+      id: "clearpath-ci",
+      kind: "ci",
+      title: "Terraform validation CI",
+      href: "https://github.com/manynames3/clearpath-fargate-api/blob/main/.github/workflows/terraform-validate.yml",
     },
     {
       id: "clearpath-validation",
@@ -509,9 +545,9 @@ export const caseOperations: Readonly<Record<CaseStudySlug, CaseOperations>> = {
       artifactId: "inspectiq-security",
     },
     recovery: {
-      heading: "The runbook makes failure ownership concrete.",
+      heading: "A failed image job has a bounded recovery path.",
       copy:
-        "The retained operator path covers diagnosis, service checks, and the next action a new owner can take, while readiness notes keep unproven recovery work visible.",
+        "When image analysis reaches failed or dead-letter state, the runbook traces audit events, the job row, queue payload, provider and object checksum. A transient provider or schema issue can be retried; an unusable image triggers a retake while buyer-visible release stays blocked.",
       artifactId: "inspectiq-runbook",
     },
   },
@@ -523,10 +559,10 @@ export const caseOperations: Readonly<Record<CaseStudySlug, CaseOperations>> = {
       artifactId: "terragate-threat-model",
     },
     recovery: {
-      heading: "Fail closed before a write path exists.",
+      heading: "A stalled review recovers without gaining write authority.",
       copy:
-        "Unsupported or unsafe review paths stop at findings rather than gaining execution authority. The public-boundary record is the recovery reference for restoring a known constrained state.",
-      artifactId: "terragate-public-boundary",
+        "If a review remains queued because the worker and execution mode disagree, the runbook checks REVIEW_EXECUTION_MODE, starts the worker or restores the intended safe mode, and keeps external writes mocked throughout the recovery.",
+      artifactId: "terragate-runbook",
     },
   },
   clearpath: {
@@ -537,10 +573,10 @@ export const caseOperations: Readonly<Record<CaseStudySlug, CaseOperations>> = {
       artifactId: "clearpath-tests",
     },
     recovery: {
-      heading: "Recovery includes a documented way out.",
+      heading: "Early task failures became a corrected startup path.",
       copy:
-        "The runbook describes operating response, while the teardown record proves the stack could be removed after validation instead of accruing idle cost.",
-      artifactId: "clearpath-runbook",
+        "Initial ECS tasks failed health checks during early revisions. After the image and startup path were corrected, the service stabilized at two healthy tasks for validation; the record preserves that sequence without turning it into a long-term availability claim.",
+      artifactId: "clearpath-validation",
     },
   },
 };

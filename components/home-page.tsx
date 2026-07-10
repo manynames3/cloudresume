@@ -1,6 +1,4 @@
 import { caseStudies, caseStudySlugs } from "@/content/case-studies";
-import Image from "next/image";
-import Link from "next/link";
 import {
   credentialStatement,
   education,
@@ -56,9 +54,9 @@ export function HomePage() {
             I turn customer and operational workflows into reusable AWS systems—designed
             to deploy cleanly, surface failure, recover predictably, and hand off well.
           </p>
-          <Link className="text-link" href="#work">
+          <a className="text-link" href="#work">
             Read the project index <span aria-hidden="true">↓</span>
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -84,13 +82,13 @@ export function HomePage() {
                   </div>
                   <div className="project-entry__copy">
                     <p>{study.summary}</p>
-                    <Link
+                    <a
                       className="text-link"
                       href={`/case-studies/${slug}`}
                       aria-label={`Read the ${study.title} case study`}
                     >
                       Read case study <span aria-hidden="true">→</span>
-                    </Link>
+                    </a>
                   </div>
                 </article>
               </li>
@@ -126,14 +124,13 @@ export function HomePage() {
 
       <section id="profile" className="profile-section grid" aria-labelledby="profile-title">
         <div className="profile-section__portrait">
-          <Image
+          <img
             src={profile.portrait.src}
             alt={profile.portrait.alt}
             width={profile.portrait.width}
             height={profile.portrait.height}
             loading="lazy"
-            sizes="(max-width: 700px) 272px, (max-width: 1024px) 25vw, 360px"
-            unoptimized
+            decoding="async"
           />
           <p className="image-caption">Aiden Rhaa / independent builder and operator</p>
         </div>

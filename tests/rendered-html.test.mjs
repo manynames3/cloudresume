@@ -152,6 +152,7 @@ test("defines exactly three typed case studies with valid artifact links", async
 
     const artifactLinks = tags(html, "a").filter((tag) => attr(tag, "data-artifact-link"));
     assert.equal(artifactLinks.length, artifactTags.length);
+    assert.match(html, /<span class="artifact-kind">ci<\/span>/);
     for (const link of artifactLinks) {
       assert.doesNotThrow(() => {
         const url = new URL(attr(link, "href"));
@@ -294,8 +295,8 @@ test("renders exact homepage positioning and résumé-derived profile content", 
 test("renders project-specific reliability and recovery analysis", async () => {
   const expected = new Map([
     ["/case-studies/inspectiq", ["inspectiq-security", "inspectiq-runbook"]],
-    ["/case-studies/terragate", ["terragate-threat-model", "terragate-public-boundary"]],
-    ["/case-studies/clearpath", ["clearpath-tests", "clearpath-runbook"]],
+    ["/case-studies/terragate", ["terragate-threat-model", "terragate-runbook"]],
+    ["/case-studies/clearpath", ["clearpath-tests", "clearpath-validation"]],
   ]);
 
   for (const [route, [reliabilityArtifact, recoveryArtifact]] of expected) {
@@ -304,6 +305,13 @@ test("renders project-specific reliability and recovery analysis", async () => {
     assert.match(operations, new RegExp(`data-reliability-artifact="${reliabilityArtifact}"`));
     assert.match(operations, new RegExp(`data-recovery-artifact="${recoveryArtifact}"`));
   }
+
+  const inspectiq = (await htmlFor("/case-studies/inspectiq")).html;
+  assert.match(inspectiq, /failed or dead-letter state/);
+  const terragate = (await htmlFor("/case-studies/terragate")).html;
+  assert.match(terragate, /worker and execution mode disagree/);
+  const clearpath = (await htmlFor("/case-studies/clearpath")).html;
+  assert.match(clearpath, /Initial ECS tasks failed health checks/);
 });
 
 test("omits forbidden claims and personal phone data from every rendered route", async () => {
@@ -352,10 +360,10 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
     "public/favicon.png",
     "public/fonts/newsreader-latin-variable.woff2",
     "public/fonts/OFL.txt",
-    "public/case-studies/aiden-rhaa-portrait.jpg",
-    "public/case-studies/inspectiq-architecture.png",
-    "public/case-studies/terragate-architecture.png",
-    "public/case-studies/clearpath-architecture.png",
+    "public/case-studies/aiden-rhaa-portrait.webp",
+    "public/case-studies/inspectiq-architecture.webp",
+    "public/case-studies/terragate-architecture.webp",
+    "public/case-studies/clearpath-architecture.webp",
     "public/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
     "public/og.png",
   ];
@@ -387,10 +395,25 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
 });
 
 test("removes the starter and keeps the site static-first and progressively enhanced", async () => {
-  const [caseRoute, homeRoute, caseSource, siteUrlSource, css, packageJson] = await Promise.all([
+  const [
+    caseRoute,
+    homeRoute,
+    caseSource,
+    profileSource,
+    siteFrameSource,
+    homeComponent,
+    caseComponent,
+    siteUrlSource,
+    css,
+    packageJson,
+  ] = await Promise.all([
     source("app/case-studies/[slug]/page.tsx"),
     source("app/page.tsx"),
     source("content/case-studies.ts"),
+    source("content/profile.ts"),
+    source("components/site-frame.tsx"),
+    source("components/home-page.tsx"),
+    source("components/case-study-page.tsx"),
     source("lib/site-url.ts"),
     source("app/globals.css"),
     source("package.json"),
@@ -404,6 +427,12 @@ test("removes the starter and keeps the site static-first and progressively enha
   assert.doesNotMatch(homeRoute, /Cloud systems people can operate/);
   assert.match(caseSource, /export interface CaseStudy/);
   assert.doesNotMatch(`${caseRoute}\n${homeRoute}\n${caseSource}`, /["']use client["']/);
+  assert.doesNotMatch(
+    `${siteFrameSource}\n${homeComponent}\n${caseComponent}`,
+    /next\/(?:link|image)|\bunoptimized\b/,
+  );
+  assert.doesNotMatch(`${caseSource}\n${profileSource}`, /case-studies\/[^"']+\.(?:png|jpe?g)/i);
+  assert.match(`${caseSource}\n${profileSource}`, /case-studies\/[^"']+\.webp/i);
   assert.doesNotMatch(siteUrlSource, /next\/headers|requestOrigin/);
   assert.match(siteUrlSource, /https:\/\/aiden-rhaa-cloud-platform\.lush-mars-9564\.chatgpt\.site/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
