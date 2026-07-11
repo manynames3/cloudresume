@@ -368,7 +368,6 @@ main > section,
 }
 
 .project-index,
-.voice-section,
 .profile-section,
 .principles-section,
 .supporting-section,
@@ -431,15 +430,6 @@ main > section,
   font-size: 1.05rem;
 }
 
-.voice-section__heading {
-  grid-column: 1 / span 6;
-}
-
-.voice-section__copy {
-  grid-column: 8 / span 4;
-  padding-top: 0.5rem;
-}
-
 .prose p,
 .split-section p {
   color: var(--muted-ink);
@@ -464,6 +454,23 @@ main > section,
 .profile-section__copy {
   grid-column: 6 / span 6;
   align-self: center;
+}
+
+.operational-context {
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+
+.operational-context h3 {
+  max-width: 24ch;
+  margin-bottom: 0.9rem;
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+}
+
+.operational-context > p:not(.subsection-label) {
+  max-width: 39rem;
+  margin-bottom: 1rem;
 }
 
 .large-copy {
@@ -1028,8 +1035,6 @@ main > section,
   .project-entry__number,
   .project-entry__title,
   .project-entry__copy,
-  .voice-section__heading,
-  .voice-section__copy,
   .profile-section__portrait,
   .profile-section__copy,
   .history-section__experience,
@@ -1052,7 +1057,6 @@ main > section,
   .section-heading h2,
   .hero__heading,
   .project-entry__title,
-  .voice-section__heading,
   .profile-section__copy,
   .case-hero__title > div,
   .demo-boundary > div,
@@ -1064,7 +1068,6 @@ main > section,
   .section-dek,
   .hero__dek,
   .project-entry__copy,
-  .voice-section__copy,
   .profile-section__portrait,
   .case-role,
   .demo-actions,
@@ -1079,7 +1082,6 @@ main > section,
 
   .hero__dek,
   .project-entry__copy,
-  .voice-section__copy,
   .split-section > div:last-child,
   .tradeoff {
     grid-column: 3 / -1;
@@ -1202,8 +1204,6 @@ main > section,
   .project-entry__number,
   .project-entry__title,
   .project-entry__copy,
-  .voice-section__heading,
-  .voice-section__copy,
   .profile-section__portrait,
   .profile-section__copy,
   .history-section__experience,

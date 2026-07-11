@@ -111,31 +111,6 @@ export function HomePage() {
         </ol>
       </section>
 
-      <section className="voice-section grid" aria-labelledby="voice-title">
-        <div className="voice-section__heading">
-          <p className="eyebrow">02 / Voice & customer experience</p>
-          <h2 id="voice-title">The workflow starts before the cloud diagram.</h2>
-        </div>
-        <div className="voice-section__copy prose">
-          <p>
-            Super Transcriber turns uploads, queued work, completion events, usage records,
-            and webhooks into an API-shaped operating path.
-          </p>
-          <p>
-            That technical work is informed by direct CRM and webhook operations, voice-AI
-            guardrails, intent capture, transcript summaries, and structured data handoff in
-            customer-facing service workflows.
-          </p>
-          <ExternalLink
-            href="https://github.com/manynames3/super-transcriber-api"
-            className="text-link"
-            label="Review the Super Transcriber repository in a new tab"
-          >
-            Review Super Transcriber
-          </ExternalLink>
-        </div>
-      </section>
-
       <section id="profile" className="profile-section grid" aria-labelledby="profile-title">
         <div className="profile-section__portrait">
           <img
@@ -149,7 +124,7 @@ export function HomePage() {
           <p className="image-caption">Aiden Rhaa / independent builder and operator</p>
         </div>
         <div className="profile-section__copy prose">
-          <p className="eyebrow">03 / Operator profile</p>
+          <p className="eyebrow">02 / Operator profile</p>
           <h2 id="profile-title">Built from the operator’s side of the handoff.</h2>
           <p className="large-copy">
             15+ years of delivery and 200+ client projects taught me to read a system as
@@ -160,12 +135,27 @@ export function HomePage() {
             CI, observability, security boundaries, and the artifacts that help someone else
             take over responsibly.
           </p>
+          <aside className="operational-context" aria-labelledby="operational-context-title">
+            <p className="subsection-label">Operational context</p>
+            <h3 id="operational-context-title">
+              Infrastructure shaped by the workflow it serves.
+            </h3>
+            <p>
+              Direct CRM operations, webhooks, intent capture, transcript summaries, and
+              structured handoff inform how I design integrations and failure paths. In the
+              supporting systems index, that operating model appears in uploads, queues,
+              completion events, usage records, and callbacks.
+            </p>
+            <a className="text-link" href="#supporting">
+              See the supporting systems <span aria-hidden="true">↓</span>
+            </a>
+          </aside>
         </div>
       </section>
 
       <section className="principles-section" aria-labelledby="principles-title">
         <SectionHeading
-          folio="04 / Operating principles"
+          folio="03 / Operating principles"
           title="Deploy. Defend. Observe. Recover. Hand Off."
           titleId="principles-title"
           copy="Each principle points to an artifact, because an operating claim should be inspectable."
@@ -188,9 +178,9 @@ export function HomePage() {
         </ol>
       </section>
 
-      <section className="supporting-section" aria-labelledby="supporting-title">
+      <section id="supporting" className="supporting-section" aria-labelledby="supporting-title">
         <SectionHeading
-          folio="05 / Supporting index"
+          folio="04 / Supporting index"
           title="More systems, kept in their proper register."
           titleId="supporting-title"
         />
@@ -216,7 +206,7 @@ export function HomePage() {
 
       <section className="history-section grid" aria-labelledby="experience-title">
         <div className="history-section__experience">
-          <p className="eyebrow">06 / Experience</p>
+          <p className="eyebrow">05 / Experience</p>
           <h2 id="experience-title">Professional experience</h2>
           <ol className="history-list">
             {experience.map((item) => (
@@ -264,7 +254,7 @@ export function HomePage() {
 
       <section id="contact" className="contact-section grid" aria-labelledby="contact-title">
         <div>
-          <p className="eyebrow">07 / Contact</p>
+          <p className="eyebrow">06 / Contact</p>
           <h2 id="contact-title">Need a system the next person can actually operate?</h2>
         </div>
         <div className="contact-section__links">

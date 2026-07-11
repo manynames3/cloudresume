@@ -300,6 +300,33 @@ test("renders exact homepage positioning and résumé-derived profile content", 
   assert.doesNotMatch(home, /document-inspection|search visibility/i);
 });
 
+test("keeps customer-workflow context subordinate to the operator profile", async () => {
+  const { html } = await htmlFor("/");
+  const home = visibleText(html);
+
+  assert.doesNotMatch(html, /voice-section/);
+  assert.doesNotMatch(home, /Voice & customer experience/);
+  assert.match(home, /Operational context/);
+  assert.match(home, /Infrastructure shaped by the workflow it serves\./);
+  assert.match(
+    home,
+    /Direct CRM operations, webhooks, intent capture, transcript summaries, and structured handoff inform how I design integrations and failure paths\./,
+  );
+  assert.match(html, /href="#supporting"/);
+  assert.equal((home.match(/Super Transcriber/g) ?? []).length, 1);
+
+  for (const folio of [
+    "01 / Independent cloud reference systems",
+    "02 / Operator profile",
+    "03 / Operating principles",
+    "04 / Supporting index",
+    "05 / Experience",
+    "06 / Contact",
+  ]) {
+    assert.match(home, new RegExp(folio.replace("/", "\\/")));
+  }
+});
+
 test("renders project-specific reliability and recovery analysis", async () => {
   const expected = new Map([
     ["/case-studies/inspectiq", ["inspectiq-security", "inspectiq-runbook"]],
