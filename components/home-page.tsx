@@ -84,6 +84,12 @@ export function HomePage() {
         <ol className="project-list">
           {caseStudySlugs.map((slug, index) => {
             const study = caseStudies[slug];
+            const architecture = study.artifacts.find((artifact) => artifact.image);
+
+            if (!architecture?.image) {
+              throw new Error(`Missing architecture preview for ${study.slug}`);
+            }
+
             return (
               <li key={slug}>
                 <article className="project-entry grid">
@@ -104,6 +110,38 @@ export function HomePage() {
                       Read case study <span aria-hidden="true">→</span>
                     </a>
                   </div>
+                  <figure
+                    className="project-entry__architecture"
+                    data-architecture-preview={slug}
+                  >
+                    <figcaption className="architecture-preview__meta">
+                      <p className="label">Architecture / retained review evidence</p>
+                      <p>{study.title}</p>
+                      <div className="architecture-preview__links">
+                        <a className="text-link" href={`/case-studies/${slug}`}>
+                          Read system case <span aria-hidden="true">→</span>
+                        </a>
+                        <ExternalLink
+                          href={architecture.href}
+                          className="text-link"
+                          label={`Open the ${study.title} architecture source in a new tab`}
+                          dataArtifactLink={architecture.id}
+                        >
+                          Architecture source
+                        </ExternalLink>
+                      </div>
+                    </figcaption>
+                    <div className="architecture-preview__image">
+                      <img
+                        src={architecture.image.src}
+                        alt={architecture.image.alt}
+                        width={architecture.image.width}
+                        height={architecture.image.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </figure>
                 </article>
               </li>
             );

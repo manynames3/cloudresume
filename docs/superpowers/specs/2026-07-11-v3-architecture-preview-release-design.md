@@ -45,8 +45,8 @@ Add a dependency-free Pages staging script and `build:pages` command:
 
 1. Run the existing Vinext production build.
 2. Copy `dist/client` into `dist/pages`.
-3. Copy the Vinext Worker bundle and companion server modules into `dist/pages`.
-4. Rename the Worker entry to `dist/pages/_worker.js` for Pages advanced mode.
+3. Prebundle the Vinext Worker entry into one self-contained module with the pinned `esbuild` development dependency.
+4. Copy the client output and bundled Worker to `dist/pages/_worker.js` for Pages advanced mode.
 5. Preserve relative imports, client assets, `_headers`, and the résumé PDF.
 
 The deployment uses Cloudflare Pages advanced mode with `nodejs_compat` and the project’s existing compatibility date. The public Pages project is `cloudresumev3` with production branch `main`.
@@ -67,7 +67,7 @@ Canonical URLs, structured-data identifiers, Open Graph image URLs, sitemap entr
 - Every preview uses the typed case-study image, alt text, width, height, case link, and architecture-source link.
 - No architecture preview appears in the hero.
 - All existing claim-boundary and route tests remain green.
-- The Pages staging test proves client assets and Worker companion modules are copied and the Worker is renamed to `_worker.js`.
+- The Pages staging tests prove client assets and a self-contained `_worker.js` are produced without deploy-time relative module dependencies.
 - `npm test`, lint, typecheck, `npm run build:pages`, and `git diff --check` pass.
 - Rendered metadata and structured data use `https://cloudresumev3.pages.dev` as the canonical origin.
 - Desktop, tablet, 390px mobile, and 320px reflow show complete diagrams without horizontal overflow.

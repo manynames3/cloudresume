@@ -1,5 +1,4 @@
-export const siteOrigin =
-  "https://aiden-rhaa-cloud-platform.lush-mars-9564.chatgpt.site";
+export const siteOrigin = "https://cloudresumev3.pages.dev";
 
 export function absoluteUrl(pathname: string): string {
   return new URL(pathname, `${siteOrigin}/`).toString();

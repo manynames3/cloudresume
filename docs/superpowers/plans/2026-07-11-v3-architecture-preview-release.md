@@ -124,7 +124,7 @@ Run `node --test tests/prepare-pages.test.mjs` and expect failure because the mo
 
 - [ ] **Step 3: Implement staging**
 
-Export `preparePagesBundle({ clientDir, serverDir, outputDir })`. Remove the output, copy client and server trees with `fs/promises.cp`, rename `index.js` to `_worker.js`, and verify `_worker.js` and `_headers`. When executed directly, stage `dist/client` and `dist/server` into `dist/pages`.
+Export `preparePagesBundle({ clientDir, workerBundleFile, outputDir })` and `bundleWorker({ esbuildPath, entryFile, outputFile })`. Prebundle `dist/server/index.js` into one Worker module, remove the output, copy the client tree, place the bundled file at `_worker.js`, and verify `_worker.js` and `_headers`. When executed directly, stage the result into `dist/pages`.
 
 - [ ] **Step 4: Add package commands**
 
@@ -135,7 +135,7 @@ Export `preparePagesBundle({ clientDir, serverDir, outputDir })`. Remove the out
 
 - [ ] **Step 5: Verify staging GREEN**
 
-Run `node --test tests/prepare-pages.test.mjs` and `npm run build:pages`. Confirm `_worker.js`, `_headers`, assets, diagrams, and the résumé exist under `dist/pages`.
+Run `node --test tests/prepare-pages.test.mjs` and `npm run build:pages`. Confirm the single self-contained `_worker.js`, `_headers`, assets, diagrams, and the résumé exist under `dist/pages`.
 
 ### Task 4: Move canonical metadata and validate v3
 

@@ -3,7 +3,7 @@ import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
 const projectRoot = new URL("../", import.meta.url);
-const canonicalOrigin = "https://aiden-rhaa-cloud-platform.lush-mars-9564.chatgpt.site";
+const canonicalOrigin = "https://cloudresumev3.pages.dev";
 const routes = [
   "/",
   "/case-studies/inspectiq",
@@ -78,6 +78,14 @@ function title(html) {
 function section(html, selector) {
   const pattern = new RegExp(
     `<section\\b(?=[^>]*${selector})[^>]*>[\\s\\S]*?<\\/section>`,
+    "i",
+  );
+  return html.match(pattern)?.[0] ?? "";
+}
+
+function element(html, tagName, selector) {
+  const pattern = new RegExp(
+    `<${tagName}\\b(?=[^>]*${selector})[^>]*>[\\s\\S]*?<\\/${tagName}>`,
     "i",
   );
   return html.match(pattern)?.[0] ?? "";
@@ -327,6 +335,31 @@ test("keeps customer-workflow context subordinate to the operator profile", asyn
   }
 });
 
+test("shows all three flagship architecture diagrams in the homepage project index", async () => {
+  const { html } = await htmlFor("/");
+  const previews = tags(html, "figure").filter((tag) => attr(tag, "data-architecture-preview"));
+  const expected = new Map([
+    ["inspectiq", ["/case-studies/inspectiq-architecture.webp", "inspectiq-architecture"]],
+    ["terragate", ["/case-studies/terragate-architecture.webp", "terragate-architecture"]],
+    ["clearpath", ["/case-studies/clearpath-architecture.webp", "clearpath-architecture"]],
+  ]);
+
+  assert.equal(previews.length, 3);
+  assert.doesNotMatch(section(html, 'data-section=["\']hero["\']'), /data-architecture-preview/);
+
+  for (const [slug, [src, artifactId]] of expected) {
+    const preview = element(html, "figure", `data-architecture-preview=["']${slug}["']`);
+    assert.notEqual(preview, "", `${slug} architecture preview should render`);
+    assert.match(preview, new RegExp(`src=["']${src.replaceAll("/", "\\/")}["']`));
+    assert.match(preview, /alt=["'][^"']+["']/);
+    assert.match(preview, /width=["']\d+["']/);
+    assert.match(preview, /height=["']\d+["']/);
+    assert.match(preview, /loading=["']lazy["']/);
+    assert.match(preview, new RegExp(`href=["']\\/case-studies\\/${slug}["']`));
+    assert.match(preview, new RegExp(`data-artifact-link=["']${artifactId}["']`));
+  }
+});
+
 test("renders project-specific reliability and recovery analysis", async () => {
   const expected = new Map([
     ["/case-studies/inspectiq", ["inspectiq-security", "inspectiq-runbook"]],
@@ -421,11 +454,11 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
   assert.equal(robots.status, 200);
   assert.match(
     await robots.text(),
-    /Sitemap: https:\/\/aiden-rhaa-cloud-platform\.lush-mars-9564\.chatgpt\.site\/sitemap\.xml/,
+    /Sitemap: https:\/\/cloudresumev3\.pages\.dev\/sitemap\.xml/,
   );
   assert.match(
     home,
-    /<link\b[^>]*rel="icon"[^>]*href="https:\/\/aiden-rhaa-cloud-platform\.lush-mars-9564\.chatgpt\.site\/favicon\.png"/i,
+    /<link\b[^>]*rel="icon"[^>]*href="https:\/\/cloudresumev3\.pages\.dev\/favicon\.png"/i,
   );
 });
 
@@ -469,7 +502,7 @@ test("removes the starter and keeps the site static-first and progressively enha
   assert.doesNotMatch(`${caseSource}\n${profileSource}`, /case-studies\/[^"']+\.(?:png|jpe?g)/i);
   assert.match(`${caseSource}\n${profileSource}`, /case-studies\/[^"']+\.webp/i);
   assert.doesNotMatch(siteUrlSource, /next\/headers|requestOrigin/);
-  assert.match(siteUrlSource, /https:\/\/aiden-rhaa-cloud-platform\.lush-mars-9564\.chatgpt\.site/);
+  assert.match(siteUrlSource, /https:\/\/cloudresumev3\.pages\.dev/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.doesNotMatch(packageJson, /"codex-preview"/);
   assert.match(css, /@font-face/);
