@@ -124,7 +124,7 @@ Run `node --test tests/prepare-pages.test.mjs` and expect failure because the mo
 
 - [ ] **Step 3: Implement staging**
 
-Export `preparePagesBundle({ clientDir, workerBundleFile, outputDir })` and `bundleWorker({ esbuildPath, entryFile, outputFile })`. Prebundle `dist/server/index.js` into one Worker module, remove the output, copy the client tree, place the bundled file at `_worker.js`, and verify `_worker.js` and `_headers`. When executed directly, stage the result into `dist/pages`.
+Export `preparePagesBundle({ clientDir, workerBundleFile, outputDir })` and `bundleWorker({ esbuildPath, entryFile, outputFile })`. Wrap the Vinext Worker with a Pages shell that sends `/assets/*` through `env.ASSETS.fetch`, prebundle the result into one Worker module, remove the output, copy the client tree, place the bundled file at `_worker.js`, and verify `_worker.js` and `_headers`. When executed directly, stage the result into `dist/pages`.
 
 - [ ] **Step 4: Add package commands**
 

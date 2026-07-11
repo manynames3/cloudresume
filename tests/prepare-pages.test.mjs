@@ -5,6 +5,7 @@ import { join } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { bundleWorker, preparePagesBundle } from "../scripts/prepare-pages.mjs";
+import { createPagesWorker } from "../scripts/pages-worker-shell.mjs";
 
 const projectRoot = fileURLToPath(new URL("../", import.meta.url));
 
@@ -57,4 +58,34 @@ test("prebundles relative Worker modules into one Pages entry file", async () =>
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("serves hashed client assets through the Pages ASSETS binding", async () => {
+  const calls = [];
+  const app = {
+    fetch(request) {
+      calls.push(["app", new URL(request.url).pathname]);
+      return new Response("app");
+    },
+  };
+  const assets = {
+    fetch(request) {
+      calls.push(["assets", new URL(request.url).pathname]);
+      return new Response("asset");
+    },
+  };
+  const worker = createPagesWorker(app);
+
+  assert.equal(
+    await (await worker.fetch(new Request("https://example.com/assets/site.css"), { ASSETS: assets })).text(),
+    "asset",
+  );
+  assert.equal(
+    await (await worker.fetch(new Request("https://example.com/case-studies/inspectiq"), { ASSETS: assets })).text(),
+    "app",
+  );
+  assert.deepEqual(calls, [
+    ["assets", "/assets/site.css"],
+    ["app", "/case-studies/inspectiq"],
+  ]);
 });

@@ -45,7 +45,7 @@ Add a dependency-free Pages staging script and `build:pages` command:
 
 1. Run the existing Vinext production build.
 2. Copy `dist/client` into `dist/pages`.
-3. Prebundle the Vinext Worker entry into one self-contained module with the pinned `esbuild` development dependency.
+3. Wrap the Vinext Worker so hashed `/assets/*` requests are served through the Pages `ASSETS` binding, then prebundle the entry into one self-contained module with the pinned `esbuild` development dependency.
 4. Copy the client output and bundled Worker to `dist/pages/_worker.js` for Pages advanced mode.
 5. Preserve relative imports, client assets, `_headers`, and the résumé PDF.
 
@@ -67,7 +67,7 @@ Canonical URLs, structured-data identifiers, Open Graph image URLs, sitemap entr
 - Every preview uses the typed case-study image, alt text, width, height, case link, and architecture-source link.
 - No architecture preview appears in the hero.
 - All existing claim-boundary and route tests remain green.
-- The Pages staging tests prove client assets and a self-contained `_worker.js` are produced without deploy-time relative module dependencies.
+- The Pages staging tests prove client assets and a self-contained `_worker.js` are produced without deploy-time relative module dependencies, and that hashed client assets bypass application routing through `env.ASSETS.fetch`.
 - `npm test`, lint, typecheck, `npm run build:pages`, and `git diff --check` pass.
 - Rendered metadata and structured data use `https://cloudresumev3.pages.dev` as the canonical origin.
 - Desktop, tablet, 390px mobile, and 320px reflow show complete diagrams without horizontal overflow.

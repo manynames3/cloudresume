@@ -41,7 +41,7 @@ if (invokedPath === import.meta.url) {
   await rm(workerBundleDir, { recursive: true, force: true });
   await bundleWorker({
     esbuildPath: join(projectRoot, "node_modules", ".bin", "esbuild"),
-    entryFile: join(projectRoot, "dist", "server", "index.js"),
+    entryFile: join(projectRoot, "scripts", "pages-worker-entry.mjs"),
     outputFile: workerBundleFile,
   });
   await preparePagesBundle({
