@@ -1,7 +1,8 @@
 # Aiden Rhaa — Cloud Platform Portfolio
 
 The Precision Monograph cloud engineering portfolio, built with
-[vinext](https://github.com/cloudflare/vinext) for Cloudflare Pages.
+[vinext](https://github.com/cloudflare/vinext). The `v3` branch produces a
+no-JavaScript static export for the `/cloudresume/` GitHub Pages project path.
 
 ## Prerequisites
 
@@ -85,6 +86,7 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 
 - `npm run dev`: start local development
 - `npm run build`: verify the vinext build output
+- `npm run build:github-pages`: generate the static GitHub Pages artifact
 - `npm test`: build and verify the rendered portfolio routes and content boundaries
 
 ## Learn More
