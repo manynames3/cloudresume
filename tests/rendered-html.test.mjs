@@ -12,7 +12,7 @@ const routes = [
 ];
 const cases = routes.slice(1);
 const expectedTitles = new Map([
-  ["/", "Aiden Rhaa — Cloud Platform & Reliability Engineer"],
+  ["/", "Aiden Rhaa — AWS Infrastructure & Platform Engineer"],
   ["/case-studies/inspectiq", "InspectIQ — Inspectable AWS application | Aiden Rhaa"],
   ["/case-studies/terragate", "TerraGate — Safer Terraform review | Aiden Rhaa"],
   ["/case-studies/clearpath", "Clearpath — Recoverable lead operations | Aiden Rhaa"],
@@ -272,9 +272,12 @@ test("provides landmarks, one H1, request-aware metadata, and intended JSON-LD",
 test("renders exact homepage positioning and résumé-derived profile content", async () => {
   const home = visibleText((await htmlFor("/")).html);
   const required = [
-    "Cloud Platform & Reliability Engineer",
+    "AWS Infrastructure & Platform Engineer",
     "Cloud systems people can operate, inspect, and trust.",
-    "I turn customer and operational workflows into reusable AWS systems—designed to deploy cleanly, surface failure, recover predictably, and hand off well.",
+    "I design and build AWS infrastructure, delivery pipelines, and platform workflows with Terraform, GitHub Actions, containers, observability, and explicit recovery paths.",
+    "The work starts with real operating needs and ends with systems another team can inspect, run, and own.",
+    "Independent cloud reference systems",
+    "ECS & Serverless",
     "Cloud credential history",
     "Solutions Architect – Associate",
     "Developer – Associate",

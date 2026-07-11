@@ -45,24 +45,38 @@ export function HomePage() {
       <JsonLd value={homeStructuredData()} />
 
       <section className="hero grid" data-section="hero" aria-labelledby="hero-title">
-        <p className="eyebrow hero__folio">Independent systems practice / Atlanta</p>
+        <p className="eyebrow hero__folio">Product-minded cloud engineering / Atlanta</p>
         <div className="hero__heading">
+          <p className="hero__role">AWS Infrastructure &amp; Platform Engineer</p>
           <h1 id="hero-title">Cloud systems people can operate, inspect, and trust.</h1>
         </div>
         <div className="hero__dek">
           <p>
-            I turn customer and operational workflows into reusable AWS systems—designed
-            to deploy cleanly, surface failure, recover predictably, and hand off well.
+            I design and build AWS infrastructure, delivery pipelines, and platform
+            workflows with Terraform, GitHub Actions, containers, observability, and
+            explicit recovery paths.
           </p>
+          <p className="hero__handoff">
+            The work starts with real operating needs and ends with systems another team
+            can inspect, run, and own.
+          </p>
+          <ul className="hero__capabilities" aria-label="Core cloud engineering capabilities">
+            <li>AWS</li>
+            <li>Terraform</li>
+            <li>CI/CD</li>
+            <li>ECS &amp; Serverless</li>
+            <li>DevSecOps</li>
+            <li>Observability</li>
+          </ul>
           <a className="text-link" href="#work">
-            Read the project index <span aria-hidden="true">↓</span>
+            Review the cloud systems <span aria-hidden="true">↓</span>
           </a>
         </div>
       </section>
 
       <section id="work" className="project-index" aria-labelledby="work-title">
         <SectionHeading
-          folio="01 / Selected work"
+          folio="01 / Independent cloud reference systems"
           title="Three systems, three explicit operating boundaries."
           titleId="work-title"
           copy="The index stays qualitative. Open a case for measured evidence, tradeoffs, and the artifacts behind each claim."

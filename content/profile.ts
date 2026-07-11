@@ -1,6 +1,6 @@
 export const profile = {
   name: "Aiden Rhaa",
-  role: "Cloud Platform & Reliability Engineer",
+  role: "AWS Infrastructure & Platform Engineer",
   email: "aidenrhaacloud@gmail.com",
   github: "https://github.com/manynames3",
   linkedin: "https://linkedin.com/in/aidenrhaa",
