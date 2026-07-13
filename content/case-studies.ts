@@ -33,6 +33,7 @@ export interface Artifact {
   id: string;
   kind:
     | "architecture"
+    | "product"
     | "iac"
     | "ci"
     | "tests"
@@ -43,6 +44,21 @@ export interface Artifact {
   title: string;
   href: `https://${string}`;
   image?: { src: string; alt: string; width: number; height: number };
+}
+
+export interface WorkflowStep {
+  title: string;
+  copy: string;
+}
+
+export interface ProductVisual {
+  id: string;
+  title: string;
+  copy: string;
+  href: `https://${string}`;
+  layout: "portrait" | "landscape" | "wide";
+  focalPoint: "top" | "capture" | "center";
+  image: { src: string; alt: string; width: number; height: number };
 }
 
 export interface CaseStudy {
@@ -56,6 +72,14 @@ export interface CaseStudy {
     eyebrow: string;
     problemHeading: string;
     constraintsHeading: string;
+  };
+  workflow?: {
+    heading: string;
+    steps: readonly WorkflowStep[];
+  };
+  visuals?: {
+    heading: string;
+    items: readonly ProductVisual[];
   };
   problem: readonly string[];
   constraints: readonly string[];
@@ -99,62 +123,149 @@ export const inspectiq = {
     "Original photos, model output, and reviewer decisions must remain separate and traceable when a condition is questioned.",
     "Offline capture, failed analysis jobs, and incomplete evidence must recover visibly without losing inspection state or releasing an unfinished report.",
   ],
+  workflow: {
+    heading: "From field capture to a report a buyer can rely on.",
+    steps: [
+      {
+        title: "Capture",
+        copy: "An Inspector gathers the required angles on web or mobile; offline capture stays queued until a connection returns.",
+      },
+      {
+        title: "Protect",
+        copy: "Photos upload to private S3 with stable operation IDs, checksums, and short-lived preview access.",
+      },
+      {
+        title: "Analyze",
+        copy: "SQS and a Lambda worker isolate model latency before Bedrock output is accepted through a strict schema.",
+      },
+      {
+        title: "Decide",
+        copy: "A Reviewer compares each suggestion with its source image, then accepts, edits, rejects, or requests a retake.",
+      },
+      {
+        title: "Release",
+        copy: "Confirmed evidence drives grading and report approval; unresolved blockers keep the condition report from release.",
+      },
+      {
+        title: "Operate",
+        copy: "Audit records, outbox events, queue health, projections, alarms, and replay controls keep the workflow inspectable.",
+      },
+    ],
+  },
+  visuals: {
+    heading: "The workflow exists in the product, not only in the diagram.",
+    items: [
+      {
+        id: "inspectiq-mobile-capture",
+        title: "Inspector capture",
+        copy: "Required-angle evidence, offline-aware upload state, retake guidance, and workflow status in the mobile path.",
+        href: "https://github.com/manynames3/inspectiq/blob/main/docs/images/regression/mobile-capture.png",
+        layout: "portrait",
+        focalPoint: "capture",
+        image: {
+          src: "/case-studies/inspectiq-mobile-capture.webp",
+          alt: "InspectIQ mobile inspection view showing required evidence, workflow status, uploaded vehicle images, and review actions",
+          width: 390,
+          height: 6810,
+        },
+      },
+      {
+        id: "inspectiq-review-queue",
+        title: "Reviewer decisioning",
+        copy: "A prioritized queue keeps the source evidence, confidence, owner, SLA, and accept-or-reject decision together.",
+        href: "https://github.com/manynames3/inspectiq/blob/main/docs/images/regression/suggestions-queue.png",
+        layout: "landscape",
+        focalPoint: "top",
+        image: {
+          src: "/case-studies/inspectiq-review-queue.webp",
+          alt: "InspectIQ reviewer suggestions queue with evidence, confidence, status, SLA, and accept or reject controls",
+          width: 1440,
+          height: 1393,
+        },
+      },
+      {
+        id: "inspectiq-platform-health",
+        title: "Platform Health",
+        copy: "Runtime mode, role separation, queues, service levels, alerts, cost controls, and failed-work recovery are visible to operators.",
+        href: "https://github.com/manynames3/inspectiq/blob/main/docs/images/regression/platform-health.png",
+        layout: "wide",
+        focalPoint: "top",
+        image: {
+          src: "/case-studies/inspectiq-platform-health.webp",
+          alt: "InspectIQ Platform Health view showing runtime proof, role separation, queue metrics, service levels, alerts, and recovery controls",
+          width: 1440,
+          height: 3920,
+        },
+      },
+    ],
+  },
   decisions: [
     {
-      title: "Separate the public walkthrough from write paths",
+      title: "Keep AI advisory and human decisions authoritative",
       rationale:
-        "A read-only public surface lets reviewers inspect the workflow without opening a shared mutation boundary.",
+        "Bedrock can accelerate angle, quality, OCR, and damage review, but only a Reviewer can turn a suggestion into a buyer-visible fact.",
       tradeoff:
-        "The public walkthrough demonstrates navigation and evidence, not the complete authoring lifecycle.",
+        "Human review adds time and operating cost, but it prevents model output from silently becoming disclosure truth.",
     },
     {
-      title: "Keep authorization language at the proven layer",
+      title: "Keep business truth in Postgres and operations state disposable",
       rationale:
-        "Cognito identities and app-level JWT/RBAC are documented without extending that claim to gateway enforcement.",
+        "Neon Postgres owns inspections, evidence, decisions, reports, and audit facts; EventBridge and DynamoDB support projections, idempotency, and model-usage reservations.",
       tradeoff:
-        "A stronger edge boundary remains an explicit upgrade rather than an implied capability.",
+        "Projected operational views can lag and require replay, so they must never become a second business system of record.",
     },
     {
-      title: "Publish operating artifacts beside the application",
+      title: "Move image analysis behind a durable queue",
       rationale:
-        "Architecture, runtime proof, security notes, and a runbook let reviewers trace the system beyond screenshots.",
+        "Private S3 uploads, SQS jobs, and a bounded Lambda worker keep model latency and provider failure outside the interactive capture request.",
       tradeoff:
-        "Maintaining evidence as the system changes becomes part of the delivery work.",
+        "The workflow becomes eventually consistent and needs idempotency, job states, DLQs, visible blockers, and recovery controls.",
     },
   ],
   evidence: [
     {
-      value: "Live",
-      label: "AWS-backed walkthrough",
-      qualifier: "Public access is intentionally read-only.",
+      value: "No fallback",
+      label: "Marketplace damage workflow",
+      qualifier: "One Ford photo reached Bedrock, schema validation, and Reviewer acceptance; this is not an accuracy benchmark.",
+      href: "https://github.com/manynames3/inspectiq/blob/main/evals/marketplace-bedrock-proof.json",
+    },
+    {
+      value: "108 / 12",
+      label: "Inputs / independent sources",
+      qualifier: "Controlled contract and promotion-gate evidence; deterministic results do not establish Bedrock model accuracy.",
+      href: "https://github.com/manynames3/inspectiq/blob/main/docs/model-evaluation-report.md",
+    },
+    {
+      value: "3 roles",
+      label: "Inspector, Reviewer, Admin",
+      qualifier: "Capture, approval, and recovery responsibilities are separated in the UI, API permissions, and proof path.",
+      href: "https://github.com/manynames3/inspectiq/blob/main/docs/role-separated-proof.md",
+    },
+    {
+      value: "Live path",
+      label: "AWS-backed evidence processing",
+      qualifier: "Cognito, S3, SQS, Lambda, Bedrock, Neon, audit events, and operational projections are documented together.",
       href: "https://github.com/manynames3/inspectiq/blob/main/docs/live-production-proof.md",
-    },
-    {
-      value: "App-level",
-      label: "Cognito JWT/RBAC boundary",
-      qualifier: "No gateway-authorizer enforcement claim is made.",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/security.md",
-    },
-    {
-      value: "Documented",
-      label: "Recovery and readiness path",
-      qualifier: "Runbook and readiness notes are review artifacts, not availability guarantees.",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/runbook.md",
     },
   ],
   artifacts: [
     {
       id: "inspectiq-architecture",
       kind: "architecture",
-      title:
-        'Source architecture diagram — its "JWT authorizer" label is not used as evidence of gateway enforcement',
+      title: "Current serverless AWS architecture",
       href: "https://github.com/manynames3/inspectiq/blob/main/docs/architecture.md",
       image: {
         src: "/case-studies/inspectiq-architecture.webp",
-        alt: 'InspectIQ source architecture diagram. A "JWT authorizer" label appears in the source image, but the supported end-user authorization claim is app-level Cognito JWT/RBAC.',
-        width: 1536,
-        height: 816,
+        alt: "InspectIQ architecture showing web and mobile clients, Cognito, API Gateway, Lambda, Neon Postgres, private S3, SQS and DLQ, Bedrock, EventBridge, a Python projector, DynamoDB, CloudWatch, X-Ray, SNS, Terraform, and GitHub Actions",
+        width: 2000,
+        height: 1148,
       },
+    },
+    {
+      id: "inspectiq-product-workflow",
+      kind: "product",
+      title: "Product workflow and mobile capture boundary",
+      href: "https://github.com/manynames3/inspectiq#workflow",
     },
     {
       id: "inspectiq-infrastructure",
@@ -171,8 +282,20 @@ export const inspectiq = {
     {
       id: "inspectiq-evaluation",
       kind: "tests",
-      title: "Deterministic evaluation harness — not model-accuracy evidence",
-      href: "https://github.com/manynames3/inspectiq/tree/main/evals",
+      title: "Model evaluation report and accuracy boundary",
+      href: "https://github.com/manynames3/inspectiq/blob/main/docs/model-evaluation-report.md",
+    },
+    {
+      id: "inspectiq-marketplace-proof",
+      kind: "runtime",
+      title: "No-fallback marketplace Bedrock trace",
+      href: "https://github.com/manynames3/inspectiq/blob/main/evals/marketplace-bedrock-proof.json",
+    },
+    {
+      id: "inspectiq-role-proof",
+      kind: "security",
+      title: "Role-separated workflow proof",
+      href: "https://github.com/manynames3/inspectiq/blob/main/docs/role-separated-proof.md",
     },
     {
       id: "inspectiq-runtime-proof",
@@ -200,28 +323,44 @@ export const inspectiq = {
     },
   ],
   limitations: [
-    "The public walkthrough is read-only.",
-    "The documented application authorization boundary does not prove API Gateway authorizer enforcement.",
-    "Local deterministic evaluation does not establish Bedrock model accuracy.",
+    "The 108-image challenge set derives from 12 independent sources, and one marketplace result does not establish Bedrock precision or recall.",
+    "Mobile angle selection remains Inspector-driven; there is no deployed on-device classifier or reviewer-adjustable damage region.",
+    "The buyer export is not yet a polished PDF and photo package, and generic CSV or signed-webhook integrations are not implemented.",
+    "The system has not accumulated sustained production workload, SLO, cost, or real-inspector pilot evidence.",
+    "Some Postgres flows still hydrate the in-memory domain store; high-concurrency use needs aggregate-specific DB-first repositories.",
+    "The public walkthrough is read-only, and the documented application boundary does not prove API Gateway authorizer enforcement.",
   ],
   productionPath: [
-    "Add and verify gateway-level authorization before describing an edge-enforced identity boundary.",
-    "Establish versioned evaluation datasets and monitored quality thresholds for model behavior.",
-    "Exercise recovery procedures on a schedule and retain dated evidence with the runbook.",
+    "Build an independently adjudicated field corpus and measure precision, recall, calibration, override rate, latency, and cost by model and prompt version.",
+    "Replace the hydration bridge with aggregate-specific repositories and prove transaction, concurrency, and tenant-isolation behavior under load.",
+    "Run soak tests, controlled queue and event recovery drills, rollback exercises, and a seven-day idle-cost and SLO observation window.",
+    "Pilot with working Inspectors and Reviewers, then refine capture speed, reports, photo packages, and the integrations customers actually require.",
+    "Split public and protected gateway routes, attach the JWT authorizer to protected routes, and complete a production security and data-retention review.",
   ],
   technologies: [
     "AWS",
-    "Cognito",
-    "Terraform",
+    "Cloudflare Pages",
+    "React",
     "TypeScript",
+    "Expo / React Native",
+    "Cognito",
+    "API Gateway",
+    "Lambda",
+    "S3",
+    "SQS",
     "Bedrock",
+    "Neon Postgres",
+    "EventBridge",
     "DynamoDB",
-    "CloudWatch",
+    "CloudWatch / X-Ray",
+    "Python",
+    "Terraform",
+    "GitHub Actions",
   ],
   seo: {
-    title: "InspectIQ — Inspectable AWS application | Aiden Rhaa",
+    title: "InspectIQ — AWS vehicle inspection platform | Aiden Rhaa",
     description:
-      "InspectIQ case study: a read-only AWS-backed walkthrough with explicit app-level Cognito JWT/RBAC, architecture, runtime proof, and operator artifacts.",
+      "InspectIQ case study: a production-shaped AWS vehicle inspection platform with mobile capture, asynchronous Bedrock analysis, human review, Postgres state, and recovery controls.",
   },
 } satisfies CaseStudy;
 
@@ -550,15 +689,15 @@ export interface CaseOperations {
 export const caseOperations: Readonly<Record<CaseStudySlug, CaseOperations>> = {
   inspectiq: {
     reliability: {
-      heading: "App-level authorization paired with inspectable runtime evidence.",
+      heading: "No model finding becomes a buyer-visible fact without human approval.",
       copy:
-        "Cognito identities and application JWT/RBAC are documented at the layer they were verified. Runtime proof is kept separate, so neither artifact silently widens the other.",
+        "Raw and validated output remain separate, invalid output fails closed, and Reviewer decisions, corrections, and report finalization stay in the audit history. Cognito roles and object authorization restrict who can act on each inspection.",
       artifactId: "inspectiq-security",
     },
     recovery: {
-      heading: "A failed image job has a bounded recovery path.",
+      heading: "Incomplete evidence and failed analysis block release, then route to the right recovery.",
       copy:
-        "When image analysis reaches failed or dead-letter state, the runbook traces audit events, the job row, queue payload, provider and object checksum. A transient provider or schema issue can be retried; an unusable image triggers a retake while buyer-visible release stays blocked.",
+        "A low-quality image requests a field retake; a provider or schema failure can be retried or moved through DLQ and replay controls. Platform Health exposes queues, outbox delivery, projections, alarms, and recovery state so the operator sees the right next action.",
       artifactId: "inspectiq-runbook",
     },
   },

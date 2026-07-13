@@ -13,7 +13,7 @@ const routes = [
 const cases = routes.slice(1);
 const expectedTitles = new Map([
   ["/", "Aiden Rhaa — AWS Infrastructure & Platform Engineer"],
-  ["/case-studies/inspectiq", "InspectIQ — Inspectable AWS application | Aiden Rhaa"],
+  ["/case-studies/inspectiq", "InspectIQ — AWS vehicle inspection platform | Aiden Rhaa"],
   ["/case-studies/terragate", "TerraGate — Safer Terraform review | Aiden Rhaa"],
   ["/case-studies/clearpath", "Clearpath — Recoverable lead operations | Aiden Rhaa"],
 ]);
@@ -181,11 +181,9 @@ test("renders each demo boundary without widening its claims", async () => {
   assert.match(inspectiqBoundary, /Cognito JWT\/RBAC/);
   assert.match(inspectiqBoundary, /data-demo-href="https:\/\/inspectiq\.pages\.dev"/);
   assert.match(inspectiq, /does not prove API Gateway authorizer enforcement/);
-  assert.match(inspectiq, /does not establish Bedrock model accuracy/);
-  assert.match(
-    inspectiq,
-    /its &quot;JWT authorizer&quot; label is not used as evidence of gateway enforcement/,
-  );
+  assert.match(inspectiq, /do not establish Bedrock model accuracy/);
+  assert.match(inspectiq, /Current architecture, with every major boundary visible/);
+  assert.doesNotMatch(inspectiq, /its &quot;JWT authorizer&quot; label/);
 
   const terragate = (await htmlFor("/case-studies/terragate")).html;
   const terragateBoundary = section(terragate, 'id=["\']demo-boundary["\']');
@@ -219,6 +217,65 @@ test("frames InspectIQ around the customer problem before its engineering bounda
   assert.match(frame, /What the system must protect/);
   assert.match(frame, /reviewer remains accountable for every buyer-visible fact/i);
   assert.doesNotMatch(frame, /Authorization claims must remain at the application layer/);
+});
+
+test("presents the complete InspectIQ product, system, proof, and operating story", async () => {
+  const inspectiq = (await htmlFor("/case-studies/inspectiq")).html;
+  const text = visibleText(inspectiq);
+  const workflow = section(inspectiq, 'aria-labelledby=["\']workflow-title["\']');
+  const visuals = section(inspectiq, 'aria-labelledby=["\']visuals-title["\']');
+  const evidence = section(inspectiq, 'id=["\']evidence["\']');
+
+  for (const step of ["Capture", "Protect", "Analyze", "Decide", "Release", "Operate"]) {
+    assert.match(workflow, new RegExp(`>${step}<`));
+  }
+  assert.match(workflow, /private S3/);
+  assert.match(workflow, /Reviewer compares each suggestion/);
+
+  const productVisuals = tags(visuals, "figure").filter((tag) => attr(tag, "data-product-visual"));
+  assert.equal(productVisuals.length, 3);
+  for (const id of ["inspectiq-mobile-capture", "inspectiq-review-queue", "inspectiq-platform-health"]) {
+    assert.match(visuals, new RegExp(`data-product-visual=["']${id}["']`));
+  }
+  for (const src of [
+    "/case-studies/inspectiq-mobile-capture.webp",
+    "/case-studies/inspectiq-review-queue.webp",
+    "/case-studies/inspectiq-platform-health.webp",
+  ]) {
+    assert.match(visuals, new RegExp(`src=["']${src.replaceAll("/", "\\/")}["']`));
+  }
+  assert.equal(tags(visuals, "img").filter((tag) => attr(tag, "loading") === "lazy").length, 3);
+
+  for (const decision of [
+    "Keep AI advisory and human decisions authoritative",
+    "Keep business truth in Postgres and operations state disposable",
+    "Move image analysis behind a durable queue",
+  ]) {
+    assert.match(text, new RegExp(decision));
+  }
+
+  for (const proof of ["No fallback", "108 / 12", "3 roles", "Live path"]) {
+    assert.match(visibleText(evidence), new RegExp(proof.replace("/", "\\/")));
+  }
+  assert.match(text, /No model finding becomes a buyer-visible fact without human approval/);
+  assert.match(text, /one marketplace result does not establish Bedrock precision or recall/i);
+  assert.match(text, /Expo \/ React Native/);
+  assert.match(text, /Neon Postgres/);
+  assert.match(text, /GitHub Actions/);
+
+  for (const folio of [
+    "01 / Product",
+    "02 / Workflow",
+    "03 / System",
+    "04 / Product in use",
+    "05 / Decisions",
+    "06 / Evidence",
+    "07 / Reliability & security",
+    "08 / Limits",
+    "09 / Artifact index",
+  ]) {
+    assert.match(text, new RegExp(folio.replace("/", "\\/")));
+  }
 });
 
 test("keeps quantitative Clearpath evidence on the detail route and out of the hero", async () => {
@@ -389,7 +446,8 @@ test("renders project-specific reliability and recovery analysis", async () => {
   }
 
   const inspectiq = (await htmlFor("/case-studies/inspectiq")).html;
-  assert.match(inspectiq, /failed or dead-letter state/);
+  assert.match(inspectiq, /low-quality image requests a field retake/);
+  assert.match(inspectiq, /DLQ and replay controls/);
   const terragate = (await htmlFor("/case-studies/terragate")).html;
   assert.match(terragate, /worker and execution mode disagree/);
   const clearpath = (await htmlFor("/case-studies/clearpath")).html;
@@ -444,6 +502,9 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
     "public/fonts/OFL.txt",
     "public/case-studies/aiden-rhaa-portrait.webp",
     "public/case-studies/inspectiq-architecture.webp",
+    "public/case-studies/inspectiq-mobile-capture.webp",
+    "public/case-studies/inspectiq-review-queue.webp",
+    "public/case-studies/inspectiq-platform-health.webp",
     "public/case-studies/terragate-architecture.webp",
     "public/case-studies/clearpath-architecture.webp",
     "public/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",

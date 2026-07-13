@@ -9,6 +9,10 @@ import { JsonLd } from "@/components/json-ld";
 import { ExternalLink, SiteFrame } from "@/components/site-frame";
 import { absoluteUrl } from "@/lib/site-url";
 
+function chapter(number: number, label: string) {
+  return `${String(number).padStart(2, "0")} / ${label}`;
+}
+
 function DemoBoundary({ study }: { study: CaseStudy }) {
   const { demo } = study;
   const repository = caseRepositories[study.slug];
@@ -121,6 +125,14 @@ export function CaseStudyPage({
   const recoveryArtifact = study.artifacts.find(
     (artifact) => artifact.id === operations.recovery.artifactId,
   );
+  const workflowShift = study.workflow ? 1 : 0;
+  const visualShift = study.visuals ? 1 : 0;
+  const architectureChapter = 2 + workflowShift;
+  const decisionsChapter = 3 + workflowShift + visualShift;
+  const evidenceChapter = 4 + workflowShift + visualShift;
+  const operationsChapter = 5 + workflowShift + visualShift;
+  const limitsChapter = 6 + workflowShift + visualShift;
+  const artifactsChapter = 7 + workflowShift + visualShift;
 
   if (!reliabilityArtifact || !recoveryArtifact) {
     throw new Error(`Missing operating artifact for ${study.slug}`);
@@ -179,10 +191,26 @@ export function CaseStudyPage({
           </div>
         </section>
 
+        {study.workflow ? (
+          <section className="case-section workflow-section" aria-labelledby="workflow-title">
+            <p className="eyebrow">{chapter(2, "Workflow")}</p>
+            <h2 id="workflow-title">{study.workflow.heading}</h2>
+            <ol className="workflow-list">
+              {study.workflow.steps.map((step, index) => (
+                <li key={step.title}>
+                  <p className="workflow-number">{String(index + 1).padStart(2, "0")}</p>
+                  <h3>{step.title}</h3>
+                  <p>{step.copy}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ) : null}
+
         {architecture?.image ? (
           <section className="case-section architecture-section" aria-labelledby="architecture-title">
-            <p className="eyebrow">02 / System</p>
-            <h2 id="architecture-title">Real architecture, retained as review evidence.</h2>
+            <p className="eyebrow">{chapter(architectureChapter, "System")}</p>
+            <h2 id="architecture-title">Current architecture, with every major boundary visible.</h2>
             <figure>
               <img
                 src={architecture.image.src}
@@ -193,8 +221,8 @@ export function CaseStudyPage({
                 decoding="async"
               />
               <figcaption>
-                {architecture.title}. The diagram is reused from the public project record;
-                inspect the source for the maintained context. {" "}
+                {architecture.title}. The source record explains data ownership, failure
+                handling, and why deferred services remain outside this version. {" "}
                 <ExternalLink
                   href={architecture.href}
                   className="caption-link"
@@ -207,8 +235,53 @@ export function CaseStudyPage({
           </section>
         ) : null}
 
+        {study.visuals ? (
+          <section className="case-section product-visuals-section" aria-labelledby="visuals-title">
+            <p className="eyebrow">{chapter(3 + workflowShift, "Product in use")}</p>
+            <h2 id="visuals-title">{study.visuals.heading}</h2>
+            <div className="product-visuals">
+              {study.visuals.items.map((visual) => (
+                <figure
+                  key={visual.id}
+                  className={`product-visual product-visual--${visual.layout}`}
+                  data-product-visual={visual.id}
+                >
+                  <a
+                    href={visual.href}
+                    className="product-visual__frame"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open the full-resolution ${visual.title} source in a new tab`}
+                  >
+                    <img
+                      src={visual.image.src}
+                      alt={visual.image.alt}
+                      width={visual.image.width}
+                      height={visual.image.height}
+                      loading="lazy"
+                      decoding="async"
+                      data-focal-point={visual.focalPoint}
+                    />
+                  </a>
+                  <figcaption>
+                    <h3>{visual.title}</h3>
+                    <p>{visual.copy}</p>
+                    <ExternalLink
+                      href={visual.href}
+                      className="caption-link"
+                      label={`Open the full-resolution ${visual.title} source in a new tab`}
+                    >
+                      Full-resolution source
+                    </ExternalLink>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <section className="case-section" aria-labelledby="decisions-title">
-          <p className="eyebrow">03 / Decisions</p>
+          <p className="eyebrow">{chapter(decisionsChapter, "Decisions")}</p>
           <h2 id="decisions-title">Three decisions and the cost of each.</h2>
           <ol className="decision-list">
             {study.decisions.map((decision, index) => (
@@ -228,7 +301,7 @@ export function CaseStudyPage({
         </section>
 
         <section id="evidence" className="case-section evidence-section" aria-labelledby="evidence-title">
-          <p className="eyebrow">04 / Evidence</p>
+          <p className="eyebrow">{chapter(evidenceChapter, "Evidence")}</p>
           <h2 id="evidence-title">What the record supports—and how far it goes.</h2>
           <ul className="evidence-list">
             {study.evidence.map((item) => (
@@ -256,7 +329,7 @@ export function CaseStudyPage({
           data-recovery-artifact={recoveryArtifact.id}
         >
           <div>
-            <p className="eyebrow">05 / Reliability & security</p>
+            <p className="eyebrow">{chapter(operationsChapter, "Reliability & security")}</p>
             <h2 id="reliability-title">{operations.reliability.heading}</h2>
             <p>{operations.reliability.copy}</p>
             <ExternalLink
@@ -282,7 +355,7 @@ export function CaseStudyPage({
 
         <section className="case-section split-section" aria-labelledby="limits-title">
           <div>
-            <p className="eyebrow">06 / Limits</p>
+            <p className="eyebrow">{chapter(limitsChapter, "Limits")}</p>
             <h2 id="limits-title">Known limits</h2>
             <ul className="prose-list">
               {study.limitations.map((item) => (
@@ -301,7 +374,7 @@ export function CaseStudyPage({
         </section>
 
         <section className="case-section artifact-section" aria-labelledby="artifacts-title">
-          <p className="eyebrow">07 / Artifact index</p>
+          <p className="eyebrow">{chapter(artifactsChapter, "Artifact index")}</p>
           <h2 id="artifacts-title">Follow the work into the repository.</h2>
           <ul className="artifact-list">
             {study.artifacts.map((artifact) => (
