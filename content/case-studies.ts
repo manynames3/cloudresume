@@ -52,6 +52,11 @@ export interface CaseStudy {
   summary: string;
   role: "Independent builder";
   demo: DemoBoundary;
+  frame?: {
+    eyebrow: string;
+    problemHeading: string;
+    constraintsHeading: string;
+  };
   problem: readonly string[];
   constraints: readonly string[];
   decisions: readonly { title: string; rationale: string; tradeoff: string }[];
@@ -66,9 +71,9 @@ export interface CaseStudy {
 export const inspectiq = {
   slug: "inspectiq",
   title: "InspectIQ",
-  benefitHeading: "Make inspection evidence visible before trust is assumed.",
+  benefitHeading: "Turn vehicle evidence into condition reports people can trust.",
   summary:
-    "An AWS-backed automotive inspection application shaped around reviewable workflows, explicit authorization boundaries, and operational evidence a new owner can follow.",
+    "A production-shaped platform for wholesale, auction, fleet, and offsite inspection teams. It connects guided photo capture, AI-assisted review, human-confirmed damage, grading, and buyer-ready condition reporting.",
   role: "Independent builder",
   demo: {
     kind: "live-readonly",
@@ -77,16 +82,22 @@ export const inspectiq = {
     authorization: "app-level JWT/RBAC",
     writes: "read-only",
     disclosure:
-      "Live AWS-backed application. The public walkthrough is read-only and uses app-level Cognito JWT/RBAC; it does not establish API Gateway authorizer enforcement.",
+      "Live AWS-backed application. The public Evaluation Workspace requires no login and is read-only. Cognito JWT/RBAC protects authenticated workflow actions at the application layer; this does not establish API Gateway authorizer enforcement.",
+  },
+  frame: {
+    eyebrow: "01 / Product",
+    problemHeading: "What InspectIQ is for",
+    constraintsHeading: "What the system must protect",
   },
   problem: [
-    "Inspection workflows can hide how a result was produced, leaving reviewers with an answer but little operating context.",
-    "A handoff needs more than a UI: reviewers need architecture, security boundaries, runtime proof, and a recovery path in one index.",
+    "Wholesale, auction, fleet, and offsite teams need complete, consistent photo evidence before a vehicle can be graded, routed to reconditioning, or presented to a buyer.",
+    "Missing angles, unreadable VIN or odometer photos, poor image quality, and inconsistent damage review create retakes, slower reports, recon uncertainty, and avoidable disputes.",
+    "InspectIQ turns capture, AI-assisted inspection, human review, grading, and report release into one accountable workflow with an audit trail.",
   ],
   constraints: [
-    "The public experience must not create or modify application data.",
-    "Local deterministic evaluation can validate workflow behavior, but it cannot establish model accuracy.",
-    "Authorization claims must remain at the application layer unless gateway enforcement is separately evidenced.",
+    "AI can suggest required angles, image-quality problems, OCR values, and visible damage, but a reviewer remains accountable for every buyer-visible fact.",
+    "Original photos, model output, and reviewer decisions must remain separate and traceable when a condition is questioned.",
+    "Offline capture, failed analysis jobs, and incomplete evidence must recover visibly without losing inspection state or releasing an unfinished report.",
   ],
   decisions: [
     {

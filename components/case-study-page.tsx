@@ -161,8 +161,8 @@ export function CaseStudyPage({
 
         <section className="case-section split-section" aria-labelledby="problem-title">
           <div>
-            <p className="eyebrow">01 / Frame</p>
-            <h2 id="problem-title">Problem</h2>
+            <p className="eyebrow">{study.frame?.eyebrow ?? "01 / Frame"}</p>
+            <h2 id="problem-title">{study.frame?.problemHeading ?? "Problem"}</h2>
             <ul className="prose-list">
               {study.problem.map((item) => (
                 <li key={item}>{item}</li>
@@ -170,7 +170,7 @@ export function CaseStudyPage({
             </ul>
           </div>
           <div>
-            <h3>Constraints</h3>
+            <h3>{study.frame?.constraintsHeading ?? "Constraints"}</h3>
             <ul className="prose-list">
               {study.constraints.map((item) => (
                 <li key={item}>{item}</li>

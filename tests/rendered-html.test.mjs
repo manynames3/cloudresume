@@ -207,6 +207,20 @@ test("renders each demo boundary without widening its claims", async () => {
   assert.match(clearpath, /point-in-time deployment evidence/i);
 });
 
+test("frames InspectIQ around the customer problem before its engineering boundaries", async () => {
+  const inspectiq = (await htmlFor("/case-studies/inspectiq")).html;
+  const frame = section(inspectiq, 'aria-labelledby=["\']problem-title["\']');
+
+  assert.match(inspectiq, /Turn vehicle evidence into condition reports people can trust/);
+  assert.match(frame, /01 \/ Product/);
+  assert.match(frame, /What InspectIQ is for/);
+  assert.match(frame, /wholesale, auction, fleet, and offsite teams/i);
+  assert.match(frame, /retakes, slower reports, recon uncertainty, and avoidable disputes/i);
+  assert.match(frame, /What the system must protect/);
+  assert.match(frame, /reviewer remains accountable for every buyer-visible fact/i);
+  assert.doesNotMatch(frame, /Authorization claims must remain at the application layer/);
+});
+
 test("keeps quantitative Clearpath evidence on the detail route and out of the hero", async () => {
   const home = (await htmlFor("/")).html;
   const hero = section(home, 'data-section=["\']hero["\']');
@@ -300,7 +314,7 @@ test("renders exact homepage positioning and résumé-derived profile content", 
     "DocuFlow OCR",
     "Berklee College of Music",
     "Saint Louis University",
-    "automotive inspection application",
+    "production-shaped platform for wholesale, auction, fleet, and offsite inspection teams",
   ];
   for (const value of required) assert.match(home, new RegExp(value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
   assert.doesNotMatch(home, /Previously earned credentials, not currently active/i);
