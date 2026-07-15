@@ -53,12 +53,12 @@ export function HomePage() {
         <div className="hero__dek">
           <p>
             I design and build AWS infrastructure, delivery pipelines, and platform
-            workflows with Terraform, GitHub Actions, containers, observability, and
-            explicit recovery paths.
+            workflows with Terraform, GitHub Actions, serverless architecture,
+            containers, observability, and explicit recovery paths.
           </p>
           <p className="hero__handoff">
             The work starts with real operating needs and ends with systems another team
-            can inspect, run, and own.
+            can understand, operate, and own.
           </p>
           <ul className="hero__capabilities" aria-label="Core cloud engineering capabilities">
             <li>AWS</li>
@@ -69,7 +69,8 @@ export function HomePage() {
             <li>Observability</li>
           </ul>
           <a className="text-link" href="#work">
-            Review the cloud systems <span aria-hidden="true">↓</span>
+            Review the cloud systems and decisions behind the work{" "}
+            <span aria-hidden="true">↓</span>
           </a>
         </div>
       </section>
