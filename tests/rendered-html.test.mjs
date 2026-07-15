@@ -488,6 +488,8 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
   assert.equal(resumeLinks.length, 1);
   assert.equal(attr(resumeLinks[0], "target"), "_blank");
   assert.equal(attr(resumeLinks[0], "rel"), "noreferrer");
+  assert.match(home, />RESUME<span aria-hidden="true"> ↗<\/span><\/a>/);
+  assert.doesNotMatch(home, /Résumé|résumé/);
 
   const internalCaseLinks = tags(home, "a")
     .map((tag) => attr(tag, "href"))

@@ -44,9 +44,9 @@ function Header({ currentPage }: { currentPage?: "work" }) {
           <a href="/#profile">Profile</a>
           <ExternalLink
             href={profile.resume}
-            label="Open Aiden Rhaa résumé PDF in a new tab"
+            label="Open Aiden Rhaa resume PDF in a new tab"
           >
-            Résumé
+            RESUME
           </ExternalLink>
           <a href="/#contact">Contact</a>
         </nav>
