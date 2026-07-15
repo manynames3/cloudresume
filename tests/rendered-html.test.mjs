@@ -356,7 +356,8 @@ test("renders exact homepage positioning and résumé-derived profile content", 
     "I design and build AWS infrastructure, delivery pipelines, and platform workflows with Terraform, GitHub Actions, serverless architecture, containers, observability, and explicit recovery paths.",
     "The work starts with real operating needs and ends with systems another team can understand, operate, and own.",
     "Review the cloud systems and decisions behind the work",
-    "Independent cloud reference systems",
+    "SELECTED CLOUD SYSTEMS",
+    "Each case study shows the architecture, key decisions, tradeoffs, and implementation behind the system.",
     "ECS & Serverless",
     "Cloud credential history",
     "Solutions Architect – Associate",
@@ -396,7 +397,7 @@ test("keeps customer-workflow context subordinate to the operator profile", asyn
   assert.equal((home.match(/Super Transcriber/g) ?? []).length, 1);
 
   for (const folio of [
-    "01 / Independent cloud reference systems",
+    "01 / SELECTED CLOUD SYSTEMS",
     "02 / Operator profile",
     "03 / Operating principles",
     "04 / Supporting index",

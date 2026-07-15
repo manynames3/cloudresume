@@ -77,10 +77,10 @@ export function HomePage() {
 
       <section id="work" className="project-index" aria-labelledby="work-title">
         <SectionHeading
-          folio="01 / Independent cloud reference systems"
+          folio="01 / SELECTED CLOUD SYSTEMS"
           title="Three systems, three explicit operating boundaries."
           titleId="work-title"
-          copy="The index stays qualitative. Open a case for measured evidence, tradeoffs, and the artifacts behind each claim."
+          copy="Each case study shows the architecture, key decisions, tradeoffs, and implementation behind the system."
         />
         <ol className="project-list">
           {caseStudySlugs.map((slug, index) => {
