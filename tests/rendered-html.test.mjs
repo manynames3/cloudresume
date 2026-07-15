@@ -352,7 +352,7 @@ test("renders exact homepage positioning and résumé-derived profile content", 
   const home = visibleText((await htmlFor("/")).html);
   const required = [
     "AWS Infrastructure & Platform Engineer",
-    "Cloud systems people can operate, inspect, and trust.",
+    "Cloud systems people can understand, operate, and trust.",
     "I design and build AWS infrastructure, delivery pipelines, and platform workflows with Terraform, GitHub Actions, serverless architecture, containers, observability, and explicit recovery paths.",
     "The work starts with real operating needs and ends with systems another team can understand, operate, and own.",
     "Review the cloud systems and decisions behind the work",

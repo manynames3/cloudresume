@@ -48,7 +48,7 @@ export function HomePage() {
         <p className="eyebrow hero__folio">Product-minded cloud engineering / Atlanta</p>
         <div className="hero__heading">
           <p className="hero__role">AWS Infrastructure &amp; Platform Engineer</p>
-          <h1 id="hero-title">Cloud systems people can operate, inspect, and trust.</h1>
+          <h1 id="hero-title">Cloud systems people can understand, operate, and trust.</h1>
         </div>
         <div className="hero__dek">
           <p>
