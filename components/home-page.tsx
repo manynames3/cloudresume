@@ -18,6 +18,12 @@ const lifecycle = {
   clearpath: "Short-lived AWS validation · torn down after validation",
 } as const;
 
+const architectureCaptions = {
+  inspectiq: "From inspection photos to reviewed condition reports.",
+  terragate: "From Terraform plans to explainable review findings.",
+  clearpath: "From lead intake to scoring and reporting on AWS Fargate.",
+} as const;
+
 function SectionHeading({
   folio,
   title,
@@ -99,40 +105,22 @@ export function HomePage() {
                   </p>
                   <div className="project-entry__title">
                     <h3>{study.title}</h3>
-                    <p className="status-text">{lifecycle[slug]}</p>
                   </div>
                   <div className="project-entry__copy">
                     <p>{study.summary}</p>
-                    <a
-                      className="text-link"
-                      href={`/case-studies/${slug}`}
-                      aria-label={`Read the ${study.title} case study`}
-                    >
-                      Read case study <span aria-hidden="true">→</span>
-                    </a>
+                    <p className="status-text">{lifecycle[slug]}</p>
                   </div>
                   <figure
                     className="project-entry__architecture"
                     data-architecture-preview={slug}
                   >
-                    <figcaption className="architecture-preview__meta">
-                      <p className="label">Architecture / retained review evidence</p>
-                      <p>{study.title}</p>
-                      <div className="architecture-preview__links">
-                        <a className="text-link" href={`/case-studies/${slug}`}>
-                          Read system case <span aria-hidden="true">→</span>
-                        </a>
-                        <ExternalLink
-                          href={architecture.href}
-                          className="text-link"
-                          label={`Open the ${study.title} architecture source in a new tab`}
-                          dataArtifactLink={architecture.id}
-                        >
-                          Architecture source
-                        </ExternalLink>
-                      </div>
-                    </figcaption>
-                    <div className="architecture-preview__image">
+                    <a
+                      className="architecture-preview__image"
+                      href={architecture.image.src}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`View the full-size ${study.title} architecture diagram in a new tab`}
+                    >
                       <img
                         src={architecture.image.src}
                         alt={architecture.image.alt}
@@ -141,7 +129,27 @@ export function HomePage() {
                         loading="lazy"
                         decoding="async"
                       />
-                    </div>
+                    </a>
+                    <figcaption className="architecture-preview__meta">
+                      <p>{architectureCaptions[slug]}</p>
+                      <div className="architecture-preview__links">
+                        <a
+                          className="text-link"
+                          href={`/case-studies/${slug}`}
+                          aria-label={`Explore the ${study.title} case study`}
+                        >
+                          Explore the case study <span aria-hidden="true">→</span>
+                        </a>
+                        <ExternalLink
+                          href={architecture.image.src}
+                          className="architecture-preview__full-size"
+                          label={`View the full-size ${study.title} architecture diagram in a new tab`}
+                          dataArtifactLink={architecture.id}
+                        >
+                          View full-size architecture
+                        </ExternalLink>
+                      </div>
+                    </figcaption>
                   </figure>
                 </article>
               </li>

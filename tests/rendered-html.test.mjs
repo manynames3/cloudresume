@@ -418,6 +418,7 @@ test("shows all three flagship architecture diagrams in the homepage project ind
   ]);
 
   assert.equal(previews.length, 3);
+  assert.doesNotMatch(html, /Architecture \/ retained review evidence|Read system case/);
   assert.doesNotMatch(section(html, 'data-section=["\']hero["\']'), /data-architecture-preview/);
 
   for (const [slug, [src, artifactId]] of expected) {
@@ -430,6 +431,14 @@ test("shows all three flagship architecture diagrams in the homepage project ind
     assert.match(preview, /loading=["']lazy["']/);
     assert.match(preview, new RegExp(`href=["']\\/case-studies\\/${slug}["']`));
     assert.match(preview, new RegExp(`data-artifact-link=["']${artifactId}["']`));
+    assert.match(preview, new RegExp(`href=["']${src.replaceAll("/", "\\/")}["']`));
+    assert.match(preview, /View full-size architecture/);
+    const entry = (html.match(/<article\b[^>]*class="project-entry grid"[^>]*>[\s\S]*?<\/article>/g) ?? [])
+      .find((article) => article.includes(`data-architecture-preview="${slug}"`));
+    assert.ok(entry, `${slug} should have one cohesive project entry`);
+    assert.equal(tags(entry, "h3").length, 1, `${slug} should have one project heading`);
+    assert.equal(tags(entry, "a").filter((tag) => attr(tag, "href") === `/case-studies/${slug}`).length, 1);
+    assert.match(preview, /From (inspection photos|Terraform plans|lead intake) to/);
   }
 });
 
@@ -513,7 +522,7 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
 
   const internalCaseLinks = tags(home, "a")
     .map((tag) => attr(tag, "href"))
-    .filter((href) => href?.startsWith("/case-studies/"));
+    .filter((href) => href?.startsWith("/case-studies/") && !href.endsWith(".webp"));
   assert.deepEqual([...new Set(internalCaseLinks)].sort(), [...cases].sort());
   for (const href of internalCaseLinks) {
     assert.equal((await render(href)).status, 200);
