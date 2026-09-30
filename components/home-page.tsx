@@ -161,6 +161,11 @@ export function HomePage() {
             decoding="async"
           />
           <p className="image-caption">Aiden Rhaa / independent builder and operator</p>
+          <aside className="personal-note" aria-label="Outside work">
+            <p className="subsection-label">Outside work</p>
+            <p>In my spare time, I enjoy creating games with my children and playing guitar at church.</p>
+            <a className="text-link" href="/games/">Explore the games we’ve built</a>
+          </aside>
         </div>
         <div className="profile-section__copy prose">
           <p className="eyebrow">02 / Operator profile</p>

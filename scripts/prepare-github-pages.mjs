@@ -79,6 +79,7 @@ export async function prepareGitHubPages({ projectRoot, outputDir }) {
   ]);
 
   await writeRoute(worker, outputDir, "/", "index.html");
+  await writeRoute(worker, outputDir, "/games", "games/index.html");
   await writeRoute(
     worker,
     outputDir,

@@ -481,6 +481,25 @@ test("omits forbidden claims and personal phone data from every rendered route",
   }
 });
 
+test("renders the five-game gallery with native 2.5D Resonance and a profile link", async () => {
+  const { response, html } = await htmlFor("/games");
+  assert.equal(response.status, 200);
+  assert.equal(canonical(html), `${canonicalOrigin}/games`);
+  assert.equal(tags(html, "section").filter(tag => attr(tag, "class") === "game-entry").length, 5);
+  assert.match(html, /2\.5D gameplay capture/);
+  assert.match(html, /Melody Lab/);
+  assert.doesNotMatch(html, /Unity camera capture|rendered Unity scene/);
+  for (const tag of tags(html, "img")) {
+    const src = attr(tag, "src");
+    await assert.doesNotReject(access(new URL(`public${src}`, projectRoot)));
+    assert.ok(Number(attr(tag, "width")) > 0);
+    assert.ok(Number(attr(tag, "height")) > 0);
+  }
+  const home = (await htmlFor("/")).html;
+  assert.match(home, /href="\/games\/"/);
+  assert.match(home, /creating games with my children and playing guitar at church/);
+});
+
 test("resolves internal routes, public assets, sitemap, robots, and favicon", async () => {
   const home = (await htmlFor("/")).html;
   const resumeLinks = tags(home, "a").filter(

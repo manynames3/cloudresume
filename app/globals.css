@@ -1,3 +1,38 @@
+.games-page{padding-inline:var(--page-pad)}
+.games-page .games-hero{padding-top:clamp(3rem,6vw,6rem);padding-bottom:clamp(3rem,5vw,5rem)}
+.games-breadcrumb{margin-bottom:clamp(2.5rem,5vw,5rem);font:13px var(--mono);text-transform:uppercase;letter-spacing:.04em;display:flex;gap:1rem;align-items:center}
+.games-title-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1rem,2vw,2.5rem)}
+.games-title-row>.eyebrow{grid-column:1/span 2;margin-top:.7rem}
+.games-title-row h1{grid-column:3/span 6;font-size:clamp(3.4rem,6.5vw,7rem);max-width:11ch;line-height:.95;margin-bottom:0}
+.games-intro{grid-column:9/-1;align-self:end;color:var(--muted-ink);font-size:1.125rem;line-height:1.65}
+.games-intro p:last-child{margin-bottom:0}
+.games-jump{display:flex;gap:1.25rem 2rem;flex-wrap:wrap;padding-top:2rem;margin-top:3rem;border-top:1px solid var(--rule)}
+.games-jump a{font-size:14px;font-family:var(--mono);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;border-bottom:1px solid var(--rule)}
+.games-page .game-entry{padding-block:clamp(3rem,6vw,6rem);border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1.25rem,3vw,3rem);scroll-margin-top:2rem}
+.game-copy{grid-column:1/span 4;padding-right:clamp(0rem,2vw,2rem)}
+.game-copy .eyebrow{font-size:13px;margin-bottom:1.5rem}
+.game-copy h2{font-size:clamp(2.65rem,4.5vw,4.8rem);max-width:12ch;margin-bottom:1rem}
+.game-description{font-size:1.125rem;color:var(--ink);line-height:1.65}
+.game-detail{color:var(--muted-ink);font-size:1rem;line-height:1.65}
+.game-status{font:13px/1.6 var(--mono);color:var(--muted-ink);margin-top:1.7rem;margin-bottom:.65rem}
+.game-links{display:flex;gap:.75rem 1.25rem;flex-wrap:wrap}
+.game-links a{display:inline-flex;align-items:center;min-height:44px;font:14px var(--mono);color:var(--signal)}
+.game-figure{grid-column:5/-1;align-self:center;margin-bottom:0}
+.game-image-link{display:block;border:1px solid var(--rule);background:rgba(255,255,255,.25);padding:clamp(.5rem,1vw,.85rem)}
+.game-image-link img{width:100%;height:auto}
+.game-figure figcaption{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:.8rem;color:var(--muted-ink);font:13px/1.6 var(--mono)}
+.game-figure figcaption a{color:var(--signal);min-height:44px;display:inline-flex;align-items:flex-start}
+.gallery-close{border-top:1px solid var(--rule);padding-block:3rem!important}
+.gallery-close p{max-width:62ch;color:var(--muted-ink)}
+.gallery-close a{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:1024px){.games-title-row>.eyebrow{grid-column:1/-1}.games-title-row h1{grid-column:1/span 7}.games-intro{grid-column:8/-1}.game-copy{grid-column:1/span 5}.game-figure{grid-column:6/-1}}
+@media(max-width:700px){.games-title-row{grid-template-columns:1fr}.games-title-row>.eyebrow,.games-title-row h1,.games-intro{grid-column:1}.games-title-row h1{max-width:12ch;margin-bottom:1rem}.games-intro{font-size:1rem}.games-jump{margin-top:2rem;gap:.5rem 1.2rem}.games-page .game-entry{grid-template-columns:1fr}.game-copy,.game-figure{grid-column:1}.game-copy{padding-right:0}.game-copy .eyebrow{margin-bottom:1rem}.game-copy h2{font-size:3rem}.game-status{margin-top:1rem}.game-description{font-size:1.0625rem}.game-figure figcaption{font-size:12px}}
+
+
+.personal-note{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--rule);color:var(--muted-ink)}
+.personal-note .subsection-label{color:var(--signal)}
+.personal-note a{display:inline-flex;align-items:center;min-height:44px}
+
 @font-face {
   font-family: "Newsreader";
   src: url("/fonts/newsreader-latin-variable.woff2") format("woff2");
