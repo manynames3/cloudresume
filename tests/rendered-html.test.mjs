@@ -502,7 +502,20 @@ test("renders the six-game gallery with Belly Float last, native 2.5D Resonance,
   assert.match(bellyFloat, /Play in browser/);
   assert.match(bellyFloat, /href="https:\/\/bellyfloat\.pages\.dev\/"/);
   assert.match(bellyFloat, /Little Tide Cove/);
-  assert.doesNotMatch(bellyFloat, /github\.com|Mac release/);
+  assert.doesNotMatch(bellyFloat, /Mac release/);
+  for (const [id, repo] of [
+    ["lumen", "lumen-and-the-lost-lanterns"],
+    ["resonance", "resonance"],
+    ["lunchbox", "lunchbox-game"],
+    ["belly-float", "bellyfloat"],
+  ]) {
+    const entry = section(html, `id=["']${id}["']`);
+    const projectLink = tags(entry, "a").find(tag => attr(tag, "href") === `https://github.com/manynames3/${repo}`);
+    assert.ok(projectLink, `${id} should link to its project`);
+    assert.equal(attr(projectLink, "target"), "_blank");
+    assert.equal(attr(projectLink, "rel"), "noreferrer");
+    assert.match(entry, /View project/);
+  }
   assert.doesNotMatch(html, /These are five/);
   assert.match(html, /href="#belly-float"/);
   assert.match(html, /2\.5D gameplay capture/);

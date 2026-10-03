@@ -38,6 +38,7 @@ export const games: readonly Game[] = [
   },
   {
     "id": "lumen",
+    "project": "https://github.com/manynames3/lumen-and-the-lost-lanterns",
     "title": "Lumen",
     "category": "Lumen and the Lost Lanterns",
     "description": "A small lantern-bearer and a black cat explore forgotten floating ruins. Reveal hidden paths, awaken mechanisms, and bring light back to quiet places.",
@@ -52,6 +53,7 @@ export const games: readonly Game[] = [
   },
   {
     "id": "resonance",
+    "project": "https://github.com/manynames3/resonance",
     "title": "Resonance",
     "category": "Music-led adventure",
     "description": "A guitar-led adventure where musical call-and-response becomes the language of encounters. Melody practice and a keyboard preview sit alongside the developing guitar-input path.",
@@ -66,6 +68,7 @@ export const games: readonly Game[] = [
   },
   {
     "id": "lunchbox",
+    "project": "https://github.com/manynames3/lunchbox-game",
     "title": "Lunchbox",
     "category": "Lunchbox Rush",
     "description": "Fit an illustrated school lunch into an impossible little box. Rotate food pieces, keep hot food away from cold desserts, and solve one small packing puzzle at a time.",
@@ -80,6 +83,7 @@ export const games: readonly Game[] = [
   },
   {
     "id": "belly-float",
+    "project": "https://github.com/manynames3/bellyfloat",
     "title": "Belly Float",
     "category": "A watercolor otter adventure",
     "description": "Drift through watercolor coves as a playful otter. Crack shellfish to gentle rhythms, solve tidepool and pebble puzzles, and help your neighbors prepare a sunset picnic.",
