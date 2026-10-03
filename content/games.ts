@@ -1,7 +1,7 @@
 export interface Game {
   id: string; title: string; category: string; description: string; detail: string;
   alt: string; caption: string; status: string; original: string; image: string;
-  width: number; height: number; project?: string; release?: string;
+  width: number; height: number; project?: string; release?: string; play?: string;
 }
 
 export const games: readonly Game[] = [
@@ -77,5 +77,20 @@ export const games: readonly Game[] = [
     "image": "/games/lunchbox.webp",
     "width": 1280,
     "height": 739
+  },
+  {
+    "id": "belly-float",
+    "title": "Belly Float",
+    "category": "A watercolor otter adventure",
+    "description": "Drift through watercolor coves as a playful otter. Crack shellfish to gentle rhythms, solve tidepool and pebble puzzles, and help your neighbors prepare a sunset picnic.",
+    "detail": "A cozy browser game built around curiosity and forgiving play: missed taps get another chance, discoveries stay, and small seaside activities invite you to linger.",
+    "alt": "Belly Float gameplay in Little Tide Cove, with a floating otter, Pip resting in kelp, shellfish, and activity markers surrounded by watercolor rocks and blue water",
+    "caption": "Live browser gameplay capture / Little Tide Cove",
+    "status": "Playable browser game / in development",
+    "play": "https://bellyfloat.pages.dev/",
+    "original": "/games/originals/belly-float.png",
+    "image": "/games/belly-float.webp",
+    "width": 1280,
+    "height": 800
   }
 ];

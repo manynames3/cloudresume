@@ -490,11 +490,21 @@ test("omits forbidden claims and personal phone data from every rendered route",
   }
 });
 
-test("renders the five-game gallery with native 2.5D Resonance and a profile link", async () => {
+test("renders the six-game gallery with Belly Float last, native 2.5D Resonance, and a profile link", async () => {
   const { response, html } = await htmlFor("/games");
   assert.equal(response.status, 200);
   assert.equal(canonical(html), `${canonicalOrigin}/games`);
-  assert.equal(tags(html, "section").filter(tag => attr(tag, "class") === "game-entry").length, 5);
+  const entries = tags(html, "section").filter(tag => attr(tag, "class") === "game-entry");
+  assert.equal(entries.length, 6);
+  assert.equal(attr(entries.at(-1), "id"), "belly-float");
+  const bellyFloat = section(html, 'id=["\']belly-float["\']');
+  assert.match(bellyFloat.replaceAll("<!-- -->", ""), /06 \/ A watercolor otter adventure/);
+  assert.match(bellyFloat, /Play in browser/);
+  assert.match(bellyFloat, /href="https:\/\/bellyfloat\.pages\.dev\/"/);
+  assert.match(bellyFloat, /Little Tide Cove/);
+  assert.doesNotMatch(bellyFloat, /github\.com|Mac release/);
+  assert.doesNotMatch(html, /These are five/);
+  assert.match(html, /href="#belly-float"/);
   assert.match(html, /2\.5D gameplay capture/);
   assert.match(html, /Melody Lab/);
   assert.doesNotMatch(html, /Unity camera capture|rendered Unity scene/);
