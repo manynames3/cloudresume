@@ -20,7 +20,7 @@ export function ExternalLink({
       className={className}
       target="_blank"
       rel="noreferrer"
-      aria-label={label}
+      title={label}
       data-artifact-link={dataArtifactLink}
     >
       {children}
@@ -33,7 +33,7 @@ function Header({ currentPage }: { currentPage?: "work" }) {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <a className="wordmark" href="/" aria-label="Aiden Rhaa, portfolio home">
+        <a className="wordmark" href="/" title="Portfolio home">
           <span>{profile.name}</span>
           <span>{profile.role}</span>
         </a>

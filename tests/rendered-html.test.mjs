@@ -177,9 +177,11 @@ test("renders each demo boundary without widening its claims", async () => {
   assert.match(inspectiqBoundary, /data-demo-infrastructure="AWS-backed"/);
   assert.match(inspectiqBoundary, /data-demo-authorization="app-level JWT\/RBAC"/);
   assert.match(inspectiqBoundary, /data-demo-writes="read-only"/);
-  assert.match(inspectiqBoundary, /Public walkthrough is read-only/);
+  assert.match(inspectiqBoundary, /Session-only walkthrough \/ persistent data read-only/);
+  assert.match(inspectiqBoundary, /do not modify persistent inspection records/);
+  assert.match(inspectiqBoundary, /Open sandbox walkthrough/);
   assert.match(inspectiqBoundary, /Cognito JWT\/RBAC/);
-  assert.match(inspectiqBoundary, /data-demo-href="https:\/\/inspectiq\.pages\.dev"/);
+  assert.match(inspectiqBoundary, /data-demo-href="https:\/\/inspectiq\.pages\.dev\/\?review=1"/);
   assert.match(inspectiq, /does not prove API Gateway authorizer enforcement/);
   assert.match(inspectiq, /do not establish Bedrock model accuracy/);
   assert.match(inspectiq, /Current architecture, with every major boundary visible/);
@@ -278,6 +280,69 @@ test("presents the complete InspectIQ product, system, proof, and operating stor
   }
 });
 
+test("labels InspectIQ QC as development, not deployed or field-validated evidence", async () => {
+  const html = (await htmlFor("/case-studies/inspectiq")).html;
+  const development = section(html, 'data-development-status=["\']deployment-unverified["\']');
+  assert.ok(development);
+  assert.match(development, /October 2, 2026/);
+  assert.match(development, /deployment of these QC changes has not been verified/);
+  assert.match(development, /Missing views and incomplete uploads block release/);
+  assert.match(development, /Changed facts require a fresh grade or report approval/i);
+  assert.match(development, /does not claim achieved accuracy or time savings/);
+  assert.match(development, /Local security fixes are not presented as a deployed release/);
+  assert.match(development, /b4b7b3ea9baa3209709f2cf1930bedeb5d856d8b\/docs\/condition-qc-product\.md/);
+  assert.match(html, /ec5474c543ab1e069533e19f85d63c5e0c239136\/docs\/architecture\.md/);
+  assert.doesNotMatch(visibleText(development), /95%|security cleared|field validated/i);
+});
+
+test("presents TerraGate evidence and decisions without implying deployment authority", async () => {
+  const html = (await htmlFor("/case-studies/terragate")).html;
+  const text = visibleText(html);
+  for (const phrase of [
+    "evidence-first Terraform review workspace",
+    "Neon PostgreSQL",
+    "shared dev identities",
+    "different administrator",
+    "Risk acceptance does not lower raw risk",
+    "GitHub writes are mocked",
+    "Terraform execution is disabled",
+    "HTTP 410",
+    "not a production restore",
+    "RDS/VPC Terraform stack is a reference alternative",
+  ]) assert.match(text, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
+  assert.match(html, /data-product-visual="terragate-review-workspace"/);
+  assert.match(html, /data-product-visual="terragate-finding-evidence"/);
+  assert.match(text, /Local controlled capture/);
+  assert.match(text, /confidence is not a measured accuracy result/);
+  const diagram = await source("public/case-studies/originals/terragate-live-architecture.svg");
+  assert.match(diagram, /Lambda outside a VPC/);
+  assert.match(diagram, /Neon PostgreSQL/);
+  assert.match(diagram, /not this live deployment/);
+});
+
+test("keeps new supporting systems qualified and separate from paid experience", async () => {
+  const html = (await htmlFor("/")).html;
+  const supporting = section(html, 'id=["\']supporting["\']');
+  const text = visibleText(supporting);
+  for (const phrase of [
+    "Pulpit / Serverless", "Pulpit V2", "October 7 migration", "360 sermons and 8,191 chunks",
+    "not a relevance or performance benchmark", "not a durable job system", "Ingestion runs locally",
+    "Jira and CloudWatch integrations are unconfigured", "hosted case writes and real ticket execution were not verified",
+    "Controlled local incident fixture", "WorshipCue", "published source checkpoints are earlier builds",
+    "no App Store release or fully qualified multi-iPad rehearsal pilot",
+  ]) assert.match(text, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
+  for (const src of ["/case-studies/pulpit-serverless-architecture.webp", "/case-studies/aegisdesk-incident.webp"]) {
+    const imageTag = tags(supporting, "img").find(tag => attr(tag, "src") === src);
+    assert.ok(imageTag);
+    assert.equal(attr(imageTag, "loading"), "lazy");
+    assert.ok(Number(attr(imageTag, "width")) > 0);
+    await access(new URL(`public${src}`, projectRoot));
+  }
+  assert.match(supporting, /docs\/s3-vectors-migration\.md/);
+  assert.match(supporting, /docs\/evidence\/live-operations\.md/);
+  assert.match(supporting, /verification\/STATUS\.md/);
+});
+
 test("keeps quantitative Clearpath evidence on the detail route and out of the hero", async () => {
   const home = (await htmlFor("/")).html;
   const hero = section(home, 'data-section=["\']hero["\']');
@@ -292,7 +357,7 @@ test("keeps quantitative Clearpath evidence on the detail route and out of the h
   const homeText = visibleText(home);
   for (const value of ["93", "36", "339", "0 failed"]) {
     assert.match(evidenceText, new RegExp(value));
-    assert.doesNotMatch(homeText, new RegExp(value));
+    assert.doesNotMatch(homeText, new RegExp(`(?<!\\d)${value}(?!\\d)`));
   }
 });
 
@@ -363,11 +428,13 @@ test("renders exact homepage positioning and résumé-derived profile content", 
     "Solutions Architect – Associate",
     "Developer – Associate",
     "Terraform Associate",
-    "Live AWS-backed application · public walkthrough read-only",
+    "Live AWS-backed application · session-only public walkthrough",
     "Live constrained demo · deterministic checks · external writes mocked",
     "Short-lived AWS validation · torn down after validation",
     "AegisDesk",
     "Pulpit V2",
+    "Pulpit / Serverless",
+    "WorshipCue",
     "Super Transcriber",
     "PhotoScribe AI",
     "DocuFlow OCR",
@@ -445,7 +512,7 @@ test("shows all three flagship architecture diagrams in the homepage project ind
 test("renders project-specific reliability and recovery analysis", async () => {
   const expected = new Map([
     ["/case-studies/inspectiq", ["inspectiq-security", "inspectiq-runbook"]],
-    ["/case-studies/terragate", ["terragate-threat-model", "terragate-runbook"]],
+    ["/case-studies/terragate", ["terragate-threat-model", "terragate-release"]],
     ["/case-studies/clearpath", ["clearpath-tests", "clearpath-validation"]],
   ]);
 
@@ -460,7 +527,8 @@ test("renders project-specific reliability and recovery analysis", async () => {
   assert.match(inspectiq, /low-quality image requests a field retake/);
   assert.match(inspectiq, /DLQ and replay controls/);
   const terragate = (await htmlFor("/case-studies/terragate")).html;
-  assert.match(terragate, /worker and execution mode disagree/);
+  assert.match(terragate, /returned HTTP 500 despite building successfully/);
+  assert.match(terragate, /Worker-runtime smoke check/);
   const clearpath = (await htmlFor("/case-studies/clearpath")).html;
   assert.match(clearpath, /Initial ECS tasks failed health checks/);
 });
@@ -490,13 +558,14 @@ test("omits forbidden claims and personal phone data from every rendered route",
   }
 });
 
-test("renders the six-game gallery with Belly Float last, native 2.5D Resonance, and a profile link", async () => {
+test("renders seven games with current browser editions and native 2.5D Resonance", async () => {
   const { response, html } = await htmlFor("/games");
   assert.equal(response.status, 200);
   assert.equal(canonical(html), `${canonicalOrigin}/games`);
   const entries = tags(html, "section").filter(tag => attr(tag, "class") === "game-entry");
-  assert.equal(entries.length, 6);
-  assert.equal(attr(entries.at(-1), "id"), "belly-float");
+  assert.equal(entries.length, 7);
+  assert.equal(attr(entries.at(-2), "id"), "belly-float");
+  assert.equal(attr(entries.at(-1), "id"), "neighborhood-tails");
   const bellyFloat = section(html, 'id=["\']belly-float["\']');
   assert.match(bellyFloat.replaceAll("<!-- -->", ""), /06 \/ A watercolor otter adventure/);
   assert.match(bellyFloat, /Play in browser/);
@@ -508,6 +577,7 @@ test("renders the six-game gallery with Belly Float last, native 2.5D Resonance,
     ["resonance", "resonance"],
     ["lunchbox", "lunchbox-game"],
     ["belly-float", "bellyfloat"],
+    ["neighborhood-tails", "neighborhood-tails"],
   ]) {
     const entry = section(html, `id=["']${id}["']`);
     const projectLink = tags(entry, "a").find(tag => attr(tag, "href") === `https://github.com/manynames3/${repo}`);
@@ -518,6 +588,16 @@ test("renders the six-game gallery with Belly Float last, native 2.5D Resonance,
   }
   assert.doesNotMatch(html, /These are five/);
   assert.match(html, /href="#belly-float"/);
+  assert.match(html, /href="#neighborhood-tails"/);
+  const lunchbox = section(html, 'id=["\']lunchbox["\']');
+  assert.match(lunchbox, /href="https:\/\/lunchbox-rush\.pages\.dev\/"/);
+  assert.match(lunchbox, /desktop landscape is recommended/);
+  assert.match(lunchbox, /about 71 MB/);
+  const neighborhood = section(html, 'id=["\']neighborhood-tails["\']');
+  assert.match(neighborhood.replaceAll("<!-- -->", ""), /07 \/ A little cat, a big world/);
+  assert.match(neighborhood, /href="https:\/\/neighborhood-tails\.pages\.dev\/"/);
+  assert.match(html, /Lumen and Resonance remain development previews without public downloads/);
+  assert.doesNotMatch(html, /Lumen, Resonance, and Lunchbox.*rather than public downloads/);
   assert.match(html, /2\.5D gameplay capture/);
   assert.match(html, /Melody Lab/);
   assert.doesNotMatch(html, /Unity camera capture|rendered Unity scene/);
@@ -640,6 +720,9 @@ test("removes the starter and keeps the site static-first and progressively enha
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /min-height:\s*44px/);
+  assert.match(css, /overflow-wrap:\s*anywhere/);
+  assert.match(siteFrameSource, /title=\{label\}/);
+  assert.doesNotMatch(siteFrameSource, /aria-label=\{label\}/);
   assert.doesNotMatch(css, /gradient\(/i);
 
   await assert.rejects(access(new URL("app/_sites-preview", projectRoot)));

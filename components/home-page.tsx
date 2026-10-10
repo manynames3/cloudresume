@@ -13,14 +13,14 @@ import { ExternalLink, SiteFrame } from "@/components/site-frame";
 import { absoluteUrl } from "@/lib/site-url";
 
 const lifecycle = {
-  inspectiq: "Live AWS-backed application · public walkthrough read-only",
+  inspectiq: "Live AWS-backed application · session-only public walkthrough",
   terragate: "Live constrained demo · deterministic checks · external writes mocked",
   clearpath: "Short-lived AWS validation · torn down after validation",
 } as const;
 
 const architectureCaptions = {
   inspectiq: "From inspection photos to reviewed condition reports.",
-  terragate: "From Terraform plans to explainable review findings.",
+  terragate: "From Terraform plans to evidence-backed review decisions. Live deployment shown; RDS/VPC is a separate reference stack.",
   clearpath: "From lead intake to scoring and reporting on AWS Fargate.",
 } as const;
 
@@ -136,7 +136,7 @@ export function HomePage() {
                         <a
                           className="text-link"
                           href={`/case-studies/${slug}`}
-                          aria-label={`Explore the ${study.title} case study`}
+                          aria-label={`Explore the case study: ${study.title}`}
                         >
                           Explore the case study <span aria-hidden="true">→</span>
                         </a>
@@ -239,18 +239,29 @@ export function HomePage() {
         <ul className="supporting-list">
           {supportingProjects.map((project) => (
             <li key={project.title} className="supporting-entry grid">
-              <div>
+              <div className="supporting-entry__heading">
                 <h3>{project.title}</h3>
                 <p className="status-text">{project.category}</p>
               </div>
-              <p>{project.copy}</p>
-              <ExternalLink
-                href={project.href}
-                className="text-link"
-                label={`Review the ${project.title} repository in a new tab`}
-              >
-                Repository
-              </ExternalLink>
+              <div className="supporting-entry__copy">
+                <p>{project.copy}</p>
+                {project.boundary ? <p className="supporting-boundary">{project.boundary}</p> : null}
+              </div>
+              <div className="supporting-entry__links">
+                {(project.links ?? [{ label: "Repository", href: project.href }]).map((link) => (
+                  <ExternalLink key={link.href} href={link.href} className="text-link" label={`${project.title}: ${link.label} in a new tab`}>
+                    {link.label}
+                  </ExternalLink>
+                ))}
+              </div>
+              {project.visual ? (
+                <figure className="supporting-entry__visual">
+                  <a href={project.visual.src} target="_blank" rel="noreferrer" aria-label={`View the full-size ${project.title} visual in a new tab`}>
+                    <img src={project.visual.src} alt={project.visual.alt} width={project.visual.width} height={project.visual.height} loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption>{project.visual.caption} <ExternalLink href={project.visual.href} className="caption-link" label={`Review the ${project.title} visual source in a new tab`}>Source record</ExternalLink></figcaption>
+                </figure>
+              ) : null}
             </li>
           ))}
         </ul>

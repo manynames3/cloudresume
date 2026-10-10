@@ -81,6 +81,12 @@ export interface CaseStudy {
     heading: string;
     items: readonly ProductVisual[];
   };
+  development?: {
+    heading: string;
+    boundary: string;
+    items: readonly string[];
+    href: `https://${string}`;
+  };
   problem: readonly string[];
   constraints: readonly string[];
   decisions: readonly { title: string; rationale: string; tradeoff: string }[];
@@ -101,12 +107,12 @@ export const inspectiq = {
   role: "Independent builder",
   demo: {
     kind: "live-readonly",
-    href: "https://inspectiq.pages.dev",
+    href: "https://inspectiq.pages.dev/?review=1",
     infrastructure: "AWS-backed",
     authorization: "app-level JWT/RBAC",
     writes: "read-only",
     disclosure:
-      "Live AWS-backed application. The public Evaluation Workspace requires no login and is read-only. Cognito JWT/RBAC protects authenticated workflow actions at the application layer; this does not establish API Gateway authorizer enforcement.",
+      "Live AWS-backed application. The no-login Evaluation Workspace lets reviewers accept, edit, or reject findings within their browser session; those interactions do not modify persistent inspection records. Cognito JWT/RBAC protects authenticated workflow actions at the application layer; this does not establish API Gateway authorizer enforcement.",
   },
   frame: {
     eyebrow: "01 / Product",
@@ -159,7 +165,7 @@ export const inspectiq = {
         id: "inspectiq-mobile-capture",
         title: "Inspector capture",
         copy: "Required-angle evidence, offline-aware upload state, retake guidance, and workflow status in the mobile path.",
-        href: "https://github.com/manynames3/inspectiq/blob/main/docs/images/regression/mobile-capture.png",
+        href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/images/regression/mobile-capture.png",
         layout: "portrait",
         focalPoint: "capture",
         image: {
@@ -173,7 +179,7 @@ export const inspectiq = {
         id: "inspectiq-review-queue",
         title: "Reviewer decisioning",
         copy: "A prioritized queue keeps the source evidence, confidence, owner, SLA, and accept-or-reject decision together.",
-        href: "https://github.com/manynames3/inspectiq/blob/main/docs/images/regression/suggestions-queue.png",
+        href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/images/regression/suggestions-queue.png",
         layout: "landscape",
         focalPoint: "top",
         image: {
@@ -187,7 +193,7 @@ export const inspectiq = {
         id: "inspectiq-platform-health",
         title: "Platform Health",
         copy: "Runtime mode, role separation, queues, service levels, alerts, cost controls, and failed-work recovery are visible to operators.",
-        href: "https://github.com/manynames3/inspectiq/blob/main/docs/images/regression/platform-health.png",
+        href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/images/regression/platform-health.png",
         layout: "wide",
         focalPoint: "top",
         image: {
@@ -227,25 +233,25 @@ export const inspectiq = {
       value: "No fallback",
       label: "Marketplace damage workflow",
       qualifier: "One Ford photo reached Bedrock, schema validation, and Reviewer acceptance; this is not an accuracy benchmark.",
-      href: "https://github.com/manynames3/inspectiq/blob/main/evals/marketplace-bedrock-proof.json",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/evals/marketplace-bedrock-proof.json",
     },
     {
       value: "108 / 12",
       label: "Inputs / independent sources",
       qualifier: "Controlled contract and promotion-gate evidence; deterministic results do not establish Bedrock model accuracy.",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/model-evaluation-report.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/model-evaluation-report.md",
     },
     {
       value: "3 roles",
       label: "Inspector, Reviewer, Admin",
       qualifier: "Capture, approval, and recovery responsibilities are separated in the UI, API permissions, and proof path.",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/role-separated-proof.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/role-separated-proof.md",
     },
     {
       value: "Live path",
       label: "AWS-backed evidence processing",
       qualifier: "Cognito, S3, SQS, Lambda, Bedrock, Neon, audit events, and operational projections are documented together.",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/live-production-proof.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/live-production-proof.md",
     },
   ],
   artifacts: [
@@ -253,7 +259,7 @@ export const inspectiq = {
       id: "inspectiq-architecture",
       kind: "architecture",
       title: "Current serverless AWS architecture",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/architecture.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/architecture.md",
       image: {
         src: "/case-studies/inspectiq-architecture.webp",
         alt: "InspectIQ architecture showing web and mobile clients, Cognito, API Gateway, Lambda, Neon Postgres, private S3, SQS and DLQ, Bedrock, EventBridge, a Python projector, DynamoDB, CloudWatch, X-Ray, SNS, Terraform, and GitHub Actions",
@@ -271,55 +277,55 @@ export const inspectiq = {
       id: "inspectiq-infrastructure",
       kind: "iac",
       title: "Terraform infrastructure",
-      href: "https://github.com/manynames3/inspectiq/tree/main/infra/terraform",
+      href: "https://github.com/manynames3/inspectiq/tree/ec5474c543ab1e069533e19f85d63c5e0c239136/infra/terraform",
     },
     {
       id: "inspectiq-ci",
       kind: "ci",
       title: "Application CI workflow",
-      href: "https://github.com/manynames3/inspectiq/blob/main/.github/workflows/ci.yml",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/.github/workflows/ci.yml",
     },
     {
       id: "inspectiq-evaluation",
       kind: "tests",
       title: "Model evaluation report and accuracy boundary",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/model-evaluation-report.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/model-evaluation-report.md",
     },
     {
       id: "inspectiq-marketplace-proof",
       kind: "runtime",
       title: "No-fallback marketplace Bedrock trace",
-      href: "https://github.com/manynames3/inspectiq/blob/main/evals/marketplace-bedrock-proof.json",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/evals/marketplace-bedrock-proof.json",
     },
     {
       id: "inspectiq-role-proof",
       kind: "security",
       title: "Role-separated workflow proof",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/role-separated-proof.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/role-separated-proof.md",
     },
     {
       id: "inspectiq-runtime-proof",
       kind: "runtime",
       title: "Live runtime proof",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/live-production-proof.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/live-production-proof.md",
     },
     {
       id: "inspectiq-security",
       kind: "security",
       title: "Security boundary notes",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/security.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/security.md",
     },
     {
       id: "inspectiq-runbook",
       kind: "runbook",
       title: "Operator runbook",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/runbook.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/runbook.md",
     },
     {
       id: "inspectiq-readiness",
       kind: "limitations",
       title: "Readiness and remaining work",
-      href: "https://github.com/manynames3/inspectiq/blob/main/docs/production-readiness.md",
+      href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/production-readiness.md",
     },
   ],
   limitations: [
@@ -328,8 +334,19 @@ export const inspectiq = {
     "The buyer export is not yet a polished PDF and photo package, and generic CSV or signed-webhook integrations are not implemented.",
     "The system has not accumulated sustained production workload, SLO, cost, or real-inspector pilot evidence.",
     "Some Postgres flows still hydrate the in-memory domain store; high-concurrency use needs aggregate-specific DB-first repositories.",
-    "The public walkthrough is read-only, and the documented application boundary does not prove API Gateway authorizer enforcement.",
+    "Public review interactions are session-only; persistent inspection data remains read-only. The documented application boundary does not prove API Gateway authorizer enforcement.",
+    "The October 2 condition-report QC source checkpoint is implemented development work, not a verified deployed release. No field-run results or measured reviewer-time savings are published.",
   ],
+  development: {
+    heading: "Condition-report quality control, before a report leaves the system.",
+    boundary: "Development checkpoint / October 2, 2026. Implemented on the published development branch; deployment of these QC changes has not been verified. Local security fixes are not presented as a deployed release.",
+    items: [
+      "Missing views and incomplete uploads block release rather than becoming overridable model judgments. VIN and mileage retain separate verified, discrepancy, and unable-to-verify states.",
+      "Reviewers record reasons for acknowledged limitations or overridden judgments. Evidence fingerprints preserve what each decision applied to; changed facts require a fresh grade or report approval.",
+      "The field protocol separates held-out vehicles, independent labels, real inference, and paired reviewer time. It defines how to measure value; it does not claim achieved accuracy or time savings.",
+    ],
+    href: "https://github.com/manynames3/inspectiq/blob/b4b7b3ea9baa3209709f2cf1930bedeb5d856d8b/docs/condition-qc-product.md",
+  },
   productionPath: [
     "Build an independently adjudicated field corpus and measure precision, recall, calibration, override rate, latency, and cost by model and prompt version.",
     "Replace the hydration bridge with aggregate-specific repositories and prove transaction, concurrency, and tenant-isolation behavior under load.",
@@ -367,9 +384,9 @@ export const inspectiq = {
 export const terragate = {
   slug: "terragate",
   title: "TerraGate",
-  benefitHeading: "Review infrastructure change before it becomes infrastructure risk.",
+  benefitHeading: "Terraform reviews, grounded in evidence.",
   summary:
-    "A constrained Terraform review demo that turns plan JSON into explainable findings, while keeping execution and external writes outside the public boundary.",
+    "An evidence-first Terraform review workspace. Inspect plan changes, understand deterministic findings, and record scoped human decisions against the exact review snapshot—without giving the public demo permission to deploy infrastructure.",
   role: "Independent builder",
   demo: {
     kind: "live-constrained",
@@ -377,77 +394,115 @@ export const terragate = {
     checks: "deterministic Python",
     writes: "mocked",
     disclosure:
-      "Live constrained demo. Deterministic Python checks run against sample plans; external writes are mocked and Terraform execution is disabled.",
+      "Live constrained demo on Cloudflare Workers, AWS API Gateway/Lambda, and Neon PostgreSQL. Deterministic Python checks assess bounded uploaded or sample plans. Public authentication uses shared dev identities; GitHub writes are mocked and Terraform execution is disabled. Risk exceptions and comment approvals do not authorize merge or deployment.",
+  },
+  frame: {
+    eyebrow: "01 / Product",
+    problemHeading: "What a Terraform reviewer needs to know",
+    constraintsHeading: "What a review must not authorize",
   },
   problem: [
-    "Terraform plans are dense review objects, and high-impact changes can be easy to miss in an unstructured diff.",
-    "A useful review gate must explain findings without gaining permission to execute the plan it examines.",
+    "A dense Terraform diff can hide exposed services, excessive permissions, destructive changes, or uncertain inputs. A score alone does not explain which resource changed or why it matters.",
+    "Teams need findings tied to saved evidence, a record of who accepted which risk, and a visible distinction between reviewing a change and authorizing it to ship.",
+    "TerraGate brings the plan, findings, provenance, scoped exceptions, comment approval, and audit history into one review workspace.",
   ],
   constraints: [
-    "The public demo accepts bounded sample inputs rather than arbitrary infrastructure execution.",
-    "External comments, checks, and approval writes remain mocked.",
-    "Findings shown publicly come from deterministic Python checks.",
+    "Deterministic Python checks establish findings. Unknown or redacted inputs require verification rather than an invented pass or failure.",
+    "Raw risk, policy decisions, comment approval, and external GitHub checks remain separate; none is a verified merge-enforcement signal.",
+    "The public environment uses shared dev identities and mocked GitHub writes. Terraform execution and infrastructure-changing credentials stay outside the demo.",
   ],
+  workflow: {
+    heading: "From a plan diff to an accountable review.",
+    steps: [
+      { title: "Intake", copy: "Upload a bounded Terraform plan JSON or choose a sample. The review queue makes incomplete and failed work visible." },
+      { title: "Assess", copy: "Deterministic rules evaluate normalized inputs and save findings, evaluated policy inputs, and source hashes." },
+      { title: "Inspect", copy: "Trace each finding to redacted before/after values, unknown inputs, and the integrity-checked saved plan." },
+      { title: "Decide", copy: "Request an expiring exception for one finding in one snapshot; a different administrator records the decision." },
+      { title: "Approve", copy: "Approve the exact saved comment separately. Changed review content invalidates stale approval rather than inheriting it." },
+      { title: "Hand off", copy: "Export review evidence or remediation snippets. Public GitHub posting stays mocked; merge and apply are not authorized." },
+    ],
+  },
+  visuals: {
+    heading: "The evidence stays beside the decision.",
+    items: [
+      {
+        id: "terragate-review-workspace",
+        title: "An actionable review queue",
+        copy: "Local controlled capture / October 10. Search, filters, status, and scoped review context organize the next decision; repository context is not a verified GitHub installation.",
+        href: "https://github.com/manynames3/terragate/blob/main/docs/screenshots/reviews-desktop.png",
+        layout: "landscape", focalPoint: "top",
+        image: { src: "/case-studies/terragate-reviews.webp", alt: "TerraGate review workspace with a searchable Terraform review queue, status filters, and saved review rows", width: 1440, height: 1000 },
+      },
+      {
+        id: "terragate-finding-evidence",
+        title: "A finding with inspectable evidence",
+        copy: "Local controlled capture / October 10. A sample security finding keeps its rule, resource, evidence excerpt, and blocked policy state visible. Displayed confidence is not a measured accuracy result.",
+        href: "https://github.com/manynames3/terragate/blob/main/docs/screenshots/finding-desktop.png",
+        layout: "landscape", focalPoint: "top",
+        image: { src: "/case-studies/terragate-finding.webp", alt: "TerraGate sample security review showing an exposed RDS finding, its deterministic rule, redacted evidence, and a blocked policy decision", width: 1440, height: 1000 },
+      },
+    ],
+  },
   decisions: [
     {
-      title: "Make deterministic checks the public source of findings",
+      title: "Keep the evidence and its provenance with the finding",
       rationale:
-        "Repeatable Python rules make the same plan produce the same result and keep the evaluation inspectable.",
+        "Saved redacted values, unknown masks, artifact digests, and rule-source hashes let a reviewer inspect what was evaluated rather than trust a score in isolation.",
       tradeoff:
-        "The demo covers encoded checks rather than every organization-specific policy.",
+        "Encoded checks cover only their defined scope. Free-form secrets can evade redaction, and the live Lambda's plan files remain ephemeral rather than durable evidence storage.",
     },
     {
-      title: "Disable Terraform execution",
+      title: "Bind human decisions to the exact review snapshot",
       rationale:
-        "Separating review from apply keeps the public surface from holding infrastructure-changing authority.",
+        "Finding-specific exceptions require justification, expiry, and a different administrator. Comment approval applies to its saved snapshot; changed content cannot reuse an old decision.",
       tradeoff:
-        "The demo proves review flow, not end-to-end deployment.",
+        "More explicit decisions add review steps. Risk acceptance does not lower raw risk, synchronize a GitHub check, or authorize merge and apply.",
     },
     {
-      title: "Mock external write integrations",
+      title: "Separate useful review from deployment authority",
       rationale:
-        "Reviewers can inspect the intended handoff without exposing repository or approval credentials.",
+        "The public workflow can assess plans, retain audit history, and demonstrate approval without holding live repository write credentials or executing Terraform.",
       tradeoff:
-        "Live GitHub comments and checks require a separately controlled installation path.",
+        "Shared dev identities and mocked writes are a demonstration boundary. Private identity, durable workers, and trusted GitHub installation ownership need separate qualification.",
     },
   ],
   evidence: [
     {
-      value: "Live",
-      label: "Constrained public review flow",
-      qualifier: "Sample inputs only; Terraform execution is disabled.",
-      href: "https://github.com/manynames3/terragate/blob/main/docs/public-demo.md",
+      value: "Hosted",
+      label: "October 10 review journey",
+      qualifier: "Fixture-based hosted checks covered plan upload, redacted evidence, a scoped exception, separate comment approval, and mocked posting—not live GitHub writes.",
+      href: "https://github.com/manynames3/terragate/blob/main/docs/deployment.md#workspace-and-stratum-release-october-10-2026",
     },
     {
-      value: "Deterministic",
-      label: "Python findings",
-      qualifier: "No active external policy-engine execution is claimed.",
-      href: "https://github.com/manynames3/terragate/blob/main/docs/architecture.md",
+      value: "One snapshot",
+      label: "Scoped, expiring risk acceptance",
+      qualifier: "An exception belongs to one finding and immutable snapshot. Expiry, revocation, or changed content removes acceptance; it is not deployment approval.",
+      href: "https://github.com/manynames3/terragate/blob/main/docs/enterprise-workspace.md#decisions-are-different",
     },
     {
-      value: "Mocked",
-      label: "External writes",
-      qualifier: "Repository checks, comments, and approvals are outside the public boundary.",
-      href: "https://github.com/manynames3/terragate/blob/main/docs/threat-model.md",
+      value: "13 tables",
+      label: "Isolated recovery rehearsal",
+      qualifier: "A hosted-database backup was restored into local PostgreSQL; upgrade, downgrade, and re-upgrade preserved row digests in the 13 existing tables. Not a production restore or concurrent migration test.",
+      href: "https://github.com/manynames3/terragate/blob/main/docs/deployment.md#workspace-and-stratum-release-october-10-2026",
     },
   ],
   artifacts: [
     {
       id: "terragate-architecture",
       kind: "architecture",
-      title: "Review-flow architecture",
-      href: "https://github.com/manynames3/terragate/blob/main/docs/architecture.md",
+      title: "Verified live deployment / October 10",
+      href: "https://github.com/manynames3/terragate/blob/main/docs/deployment.md#verified-public-demo-release",
       image: {
         src: "/case-studies/terragate-architecture.webp",
-        alt: "TerraGate architecture showing the constrained public interface, deterministic review services, data store, and mocked external boundaries",
-        width: 1200,
-        height: 1299,
+        alt: "Verified TerraGate deployment: Cloudflare Workers and OpenNext call AWS API Gateway and Lambda outside a VPC; Neon stores review state, Lambda temporary files can expire, GitHub writes are mocked, and Terraform execution is disabled",
+        width: 1600,
+        height: 960,
       },
     },
     {
       id: "terragate-infrastructure",
       kind: "iac",
-      title: "AWS public-demo Terraform",
+      title: "RDS/VPC Terraform reference—not the live inventory",
       href: "https://github.com/manynames3/terragate/tree/main/infra/terraform/aws-public-demo",
     },
     {
@@ -459,7 +514,7 @@ export const terragate = {
     {
       id: "terragate-tests",
       kind: "tests",
-      title: "Testing strategy and commands",
+      title: "Workspace, integrity, and migration validation",
       href: "https://github.com/manynames3/terragate/blob/main/docs/testing.md",
     },
     {
@@ -480,29 +535,47 @@ export const terragate = {
       title: "Public-demo boundary",
       href: "https://github.com/manynames3/terragate/blob/main/docs/public-demo.md",
     },
+    {
+      id: "terragate-workspace", kind: "product",
+      title: "Evidence workspace and scoped decision contract",
+      href: "https://github.com/manynames3/terragate/blob/main/docs/enterprise-workspace.md",
+    },
+    {
+      id: "terragate-release", kind: "runtime",
+      title: "Exact release, runtime recovery, and backup rehearsal",
+      href: "https://github.com/manynames3/terragate/blob/main/docs/deployment.md#workspace-and-stratum-release-october-10-2026",
+    },
   ],
   limitations: [
-    "Terraform execution is disabled in the public demo.",
-    "External repository writes are mocked.",
-    "The public path does not execute an external policy engine.",
+    "The public demo uses shared dev identities, deterministic Python checks, mocked GitHub writes, and disabled Terraform execution. Private Cognito and live GitHub integrations were not verified in the hosted release.",
+    "Findings and audit history persist in Neon, but raw/redacted plans in Lambda /tmp can expire with HTTP 410. Successful retrieval in one run does not establish durable artifact storage.",
+    "The GitHub installation-to-CI-plan lifecycle and merge enforcement remain incomplete. Remediation snippets are export-only; policy decisions do not authorize deployment.",
+    "Cost estimates are heuristic, not measured bills. Compliance mappings are review context, not certification; no sustained workload or service SLO is established.",
+    "The RDS/VPC Terraform stack is a reference alternative. Reconcile it with the live Neon/outside-VPC configuration before any future apply.",
   ],
   productionPath: [
-    "Run evaluation inside an isolated worker with bounded time, memory, and input size.",
-    "Use a narrowly scoped repository installation for checks and comments, with approval required for writes.",
-    "Version rule packs and retain the rule version with every decision record.",
+    "Move plan artifacts to private durable object storage with retention, deletion, encryption, and integrity checks; qualify expired and missing evidence recovery.",
+    "Qualify private identity and organization membership, trusted GitHub installation ownership, revision reconciliation, and delivery deduplication before enabling live writes.",
+    "Use durable review workers with lease/retry recovery, alarms, bounded workloads, and separately tested migration concurrency.",
+    "Introduce organization-owned approved policy revisions and evaluate rule coverage against representative plans; retain the input snapshot and rule provenance with each decision.",
   ],
   technologies: [
     "Python",
     "FastAPI",
     "Next.js",
     "Terraform plan JSON",
-    "PostgreSQL",
+    "Neon PostgreSQL",
     "Cloudflare Workers",
+    "OpenNext",
+    "API Gateway",
+    "Lambda / Mangum",
+    "CodeBuild / ECR",
+    "GitHub Actions",
   ],
   seo: {
     title: "TerraGate — Safer Terraform review | Aiden Rhaa",
     description:
-      "TerraGate case study: deterministic Python review of Terraform plans in a constrained live demo with execution disabled and external writes mocked.",
+      "TerraGate case study: evidence-backed Terraform review, snapshot-scoped decisions, and a verified Cloudflare/AWS/Neon demo with GitHub writes mocked and execution disabled.",
   },
 } satisfies CaseStudy;
 
@@ -703,16 +776,16 @@ export const caseOperations: Readonly<Record<CaseStudySlug, CaseOperations>> = {
   },
   terragate: {
     reliability: {
-      heading: "Deterministic review inside a constrained boundary.",
+      heading: "A decision never outlives the evidence it applies to.",
       copy:
-        "Repeatable Python checks evaluate bounded inputs while Terraform execution stays disabled and external writes remain mocked. The threat model documents what the public surface cannot do.",
+        "Integrity-checked redacted artifacts and saved policy inputs support deterministic findings. Exceptions are scoped, expiring, independently decided, and audited. Risk, policy state, comment approval, and GitHub checks remain separate; the public environment has no merge or apply authority.",
       artifactId: "terragate-threat-model",
     },
     recovery: {
-      heading: "A stalled review recovers without gaining write authority.",
+      heading: "A successful build was not enough to prove a working deployment.",
       copy:
-        "If a review remains queued because the worker and execution mode disagree, the runbook checks REVIEW_EXECUTION_MODE, starts the worker or restores the intended safe mode, and keeps external writes mocked throughout the recovery.",
-      artifactId: "terragate-runbook",
+        "The October 10 frontend initially returned HTTP 500 despite building successfully. It was rolled back, a compatible bundle was deployed, and CI gained a Worker-runtime smoke check. An isolated backup/migration rehearsal preserved existing table digests. Neither result removes the live /tmp artifact-expiry limitation or establishes sustained availability.",
+      artifactId: "terragate-release",
     },
   },
   clearpath: {

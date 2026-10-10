@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-labelledby="title desc">
+  <title id="title">Pulpit — serverless retrieval and snapshot publication</title>
+  <desc id="desc">Cognito-authenticated queries reach API Gateway and Lambda. Lambda retrieves semantic candidates from S3 Vectors, lexical candidates and selected source chunks from S3, caches and audits in DynamoDB, and calls Bedrock. A local ingestion runner verifies a versioned snapshot and publishes the active S3 manifest last. This diagram shows the query and active publication paths, not the legacy AWS ingestion path.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5d5a52"/></marker></defs>
+  <rect width="1600" height="960" fill="#fbfaf5"/>
+  <g font-family="Arial, sans-serif" fill="#11100d">
+    <text x="70" y="74" font-size="34" font-weight="700">Pulpit / serverless retrieval + snapshot publication</text>
+    <text x="70" y="112" font-size="20" fill="#5d5a52">October 7, 2026 migration record · Korean-English archive · cited answers</text>
+    <g fill="#fff" stroke="#b7b2a6" stroke-width="2">
+      <rect x="70" y="200" width="300" height="140"/><rect x="430" y="200" width="300" height="140"/>
+      <rect x="790" y="200" width="300" height="140"/><rect x="1150" y="200" width="350" height="140"/>
+      <rect x="70" y="490" width="300" height="150"/><rect x="430" y="490" width="300" height="150"/>
+      <rect x="790" y="490" width="300" height="150"/><rect x="1150" y="490" width="350" height="150"/>
+    </g>
+    <g font-size="26" font-weight="700"><text x="95" y="245">Browser</text><text x="455" y="245">API Gateway</text><text x="815" y="245">Query Lambda</text><text x="1175" y="245">Amazon Bedrock</text><text x="95" y="535">Cognito</text><text x="455" y="535">S3 snapshots</text><text x="815" y="535">S3 Vectors</text><text x="1175" y="535">DynamoDB</text></g>
+    <g font-size="20" fill="#5d5a52">
+      <text x="95" y="283">Cloudflare Pages UI</text><text x="95" y="315">Answers + source citations</text>
+      <text x="455" y="283">Cognito authorizer</text><text x="455" y="315">Authenticated query + catalog</text>
+      <text x="815" y="283">Hydrate selected sources</text><text x="815" y="315">Embeddings outside memory</text>
+      <text x="1175" y="283">Answer generation</text><text x="1175" y="315">Configured guardrails</text>
+      <text x="95" y="574">Sign-in + group claims</text><text x="95" y="606">No browser AWS credentials</text>
+      <text x="455" y="574">Manifest + lexical shards</text><text x="455" y="606">Selected source chunks</text>
+      <text x="815" y="574">Semantic candidates</text><text x="815" y="606">Snapshot-filtered queries</text>
+      <text x="1175" y="574">Version-aware answer cache</text><text x="1175" y="606">Audit + retrieval config</text>
+    </g>
+    <g fill="none" stroke="#5d5a52" stroke-width="2.5" marker-end="url(#arrow)">
+      <path d="M 370 270 H 430"/><path d="M 730 270 H 790"/><path d="M 1090 270 H 1150"/>
+      <path d="M 220 340 V 490"/><path d="M 370 563 H 398 V 360 H 580 V 340" stroke-dasharray="8 7"/>
+      <path d="M 835 340 V 404 H 580 V 490"/><path d="M 940 340 V 490"/>
+      <path d="M 1045 340 V 404 H 1325 V 490"/>
+    </g>
+    <rect x="70" y="740" width="1430" height="100" fill="#f1eddf" stroke="#b7b2a6"/>
+    <text x="95" y="776" font-size="22" font-weight="700">Local ingestion / verified versioned publication</text>
+    <text x="95" y="815" font-size="21" fill="#5d5a52">Captions → reuse embeddings → upload + verify vectors and snapshot files → publish active S3 manifest last</text>
+    <g fill="none" stroke="#5d5a52" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 7"><path d="M 580 740 V 640"/><path d="M 940 740 V 640"/></g>
+    <path d="M 70 868 H 1500" stroke="#c52b22" stroke-width="3"/>
+    <text x="70" y="902" font-size="20" fill="#c52b22">BOUNDARIES: local ingest · manual snapshot cleanup · cache-only timeout recovery, not durable jobs</text>
+    <text x="70" y="935" font-size="18" fill="#5d5a52">Focused query/publication view. Legacy AWS ingest is separate. Smoke observations do not establish relevance or benchmarks.</text>
+  </g>
+</svg>

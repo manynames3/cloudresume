@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-labelledby="title desc">
+  <title id="title">TerraGate — verified public deployment</title>
+  <desc id="desc">October 10, 2026: Cloudflare Workers/OpenNext, API Gateway, Lambda outside a VPC, Neon PostgreSQL, ephemeral Lambda plan artifacts, mocked GitHub writes, and disabled Terraform execution. Manual releases use verified CodeBuild/ECR image digests. RDS/VPC is a separate reference stack.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5d5a52"/></marker></defs>
+  <rect width="1600" height="960" fill="#fbfaf5"/>
+  <g font-family="Arial, sans-serif" fill="#11100d">
+    <text x="70" y="74" font-size="34" font-weight="700">TerraGate / verified public deployment</text>
+    <text x="70" y="112" font-size="20" fill="#5d5a52">October 10, 2026 · Cloudflare + AWS + external managed data</text>
+    <rect x="765" y="165" width="765" height="235" rx="0" fill="#f1eddf" stroke="#b7b2a6"/>
+    <text x="790" y="196" font-size="17" fill="#5d5a52">AWS · Lambda outside a VPC</text>
+    <g fill="#fff" stroke="#b7b2a6" stroke-width="2">
+      <rect x="70" y="230" width="300" height="130"/><rect x="430" y="230" width="300" height="130"/>
+      <rect x="790" y="230" width="300" height="130"/><rect x="1150" y="230" width="350" height="130"/>
+      <rect x="1150" y="490" width="350" height="150"/><rect x="790" y="490" width="300" height="150"/>
+      <rect x="430" y="490" width="300" height="150"/>
+    </g>
+    <g font-size="26" font-weight="700"><text x="95" y="275">Reviewer</text><text x="455" y="275">Cloudflare Workers</text><text x="815" y="275">API Gateway</text><text x="1175" y="275">Lambda / FastAPI</text><text x="1175" y="535">Neon PostgreSQL</text><text x="815" y="535">Lambda /tmp</text><text x="455" y="535">GitHub writes</text></g>
+    <g font-size="20" fill="#5d5a52">
+      <text x="95" y="312">Bounded plan upload</text><text x="95" y="338">Shared dev identities</text>
+      <text x="455" y="312">Next.js + OpenNext</text><text x="455" y="338">Review + evidence UI</text>
+      <text x="815" y="312">HTTPS API boundary</text><text x="815" y="338">No Terraform apply</text>
+      <text x="1175" y="312">Mangum · inline review</text><text x="1175" y="338">Deterministic Python checks</text>
+      <text x="1175" y="574">TLS · external managed DB</text><text x="1175" y="606">Findings, decisions, audit</text>
+      <text x="815" y="574">Instance-local plan files</text><text x="815" y="606">Expired evidence → HTTP 410</text>
+      <text x="455" y="574">Mocked in public demo</text><text x="455" y="606">No verified merge authority</text>
+    </g>
+    <g fill="none" stroke="#5d5a52" stroke-width="2.5" marker-end="url(#arrow)">
+      <path d="M 370 295 H 430"/><path d="M 730 295 H 790"/><path d="M 1090 295 H 1150"/>
+      <path d="M 1325 360 V 490"/><path d="M 1245 360 V 440 H 940 V 490"/>
+      <path d="M 1175 360 V 420 H 580 V 490" stroke-dasharray="8 7"/>
+    </g>
+    <text x="1340" y="445" font-size="18" fill="#5d5a52">Persistent state</text>
+    <rect x="70" y="700" width="1430" height="118" fill="#f1eddf" stroke="#b7b2a6"/>
+    <text x="95" y="740" font-size="22" font-weight="700">Release path / human-controlled</text>
+    <text x="95" y="780" font-size="21" fill="#5d5a52">GitHub CI validates → CodeBuild creates image → ECR digest → manual Lambda release</text>
+    <text x="95" y="806" font-size="17" fill="#5d5a52">Cloudflare release is separate; CI includes a Worker-runtime smoke check, not automatic deployment.</text>
+    <path d="M 1500 759 H 1538 V 295 H 1500" fill="none" stroke="#5d5a52" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 70 861 H 1500" stroke="#c52b22" stroke-width="3"/>
+    <text x="70" y="894" font-size="21" fill="#c52b22">PUBLIC BOUNDARY: shared dev auth · mocked GitHub writes · Terraform execution disabled</text>
+    <text x="70" y="927" font-size="19" fill="#5d5a52">RDS + private VPC are a Terraform reference alternative—not this live deployment.</text>
+  </g>
+</svg>

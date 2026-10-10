@@ -32,16 +32,16 @@ function DemoBoundary({ study }: { study: CaseStudy }) {
         <div>
           <p className="eyebrow">Demo boundary</p>
           <h2 id="demo-title">Live AWS-backed application</h2>
-          <p className="status-text">Public walkthrough is read-only</p>
+          <p className="status-text">Session-only walkthrough / persistent data read-only</p>
           <p>{demo.disclosure}</p>
         </div>
         <div className="demo-actions">
           <ExternalLink
             href={demo.href}
             className="button-link"
-            label={`Open the ${study.title} read-only live walkthrough in a new tab`}
+            label={`Open the ${study.title} sandbox walkthrough in a new tab`}
           >
-            Open read-only live walkthrough
+            Open sandbox walkthrough
           </ExternalLink>
           <ExternalLink href={repository} className="text-link" label={`Open the ${study.title} repository in a new tab`}>
             Review repository
@@ -352,6 +352,20 @@ export function CaseStudyPage({
             </ExternalLink>
           </div>
         </section>
+
+        {study.development ? (
+          <section className="case-section" aria-labelledby="development-title" data-development-status="deployment-unverified">
+            <p className="eyebrow">Development / separate from live proof</p>
+            <h2 id="development-title">{study.development.heading}</h2>
+            <p className="section-dek">{study.development.boundary}</p>
+            <ul className="prose-list">
+              {study.development.items.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+            <ExternalLink href={study.development.href} className="text-link" label="Review the InspectIQ QC source checkpoint and field protocol in a new tab">
+              Review the QC contract and field protocol
+            </ExternalLink>
+          </section>
+        ) : null}
 
         <section className="case-section split-section" aria-labelledby="limits-title">
           <div>
