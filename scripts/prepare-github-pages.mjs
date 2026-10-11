@@ -7,10 +7,17 @@ export const githubPagesOrigin = `https://manynames3.github.io${githubPagesBaseP
 
 const cloudflareOrigin = "https://cloudresumev3.pages.dev";
 
+// The one authored, optional motion script. Everything else (React, Vinext,
+// hydration, inline data) is still stripped from the static export.
+const portfolioMotionScript =
+  /^\s*<script\b(?=[^>]*\sdata-portfolio-motion(?=[\s=>\/]))(?=[^>]*\ssrc=(["'])\/motion\/portfolio-motion\.js\1)[^>]*>\s*<\/script>$/i;
+
 export function transformHtmlForGitHubPages(html) {
   return html
     .replaceAll(cloudflareOrigin, githubPagesOrigin)
-    .replace(/\s*<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
+    .replace(/\s*<script\b[^>]*>[\s\S]*?<\/script>/gi, (script) =>
+      portfolioMotionScript.test(script) ? script : "",
+    )
     .replace(
       /\s*<link\b(?=[^>]*\brel=["']modulepreload["'])[^>]*\/?\s*>/gi,
       "",

@@ -1631,6 +1631,360 @@ main > section,
   }
 }
 
+/* Registration proof: the motion language.
+   Resting styles are the finished composition. Anything that starts displaced
+   is keyed to html[data-motion="on"], which /motion/portfolio-motion.js sets
+   only after it initialises, so the page is complete without it. */
+
+.hero__title {
+  position: relative;
+}
+
+.hero__title h1 {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__plate {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+@keyframes plate-settle {
+  0% {
+    text-shadow: -0.1em 0.04em 0 rgba(197, 43, 34, 0);
+  }
+
+  14% {
+    text-shadow: -0.1em 0.04em 0 rgba(197, 43, 34, 1);
+  }
+
+  42% {
+    text-shadow: 0.035em -0.014em 0 rgba(197, 43, 34, 1);
+  }
+
+  66% {
+    text-shadow: -0.014em 0.005em 0 rgba(197, 43, 34, 1);
+  }
+
+  84% {
+    text-shadow: 0.004em -0.001em 0 rgba(197, 43, 34, 0.6);
+  }
+
+  100% {
+    text-shadow: 0 0 0 rgba(197, 43, 34, 0);
+  }
+}
+
+@keyframes rule-comet {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  50% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+
+@keyframes arrow-nod {
+  0% {
+    transform: none;
+  }
+
+  40% {
+    transform: translateY(0.28em);
+  }
+
+  70% {
+    transform: translateY(-0.08em);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+/* Hero hand-off: after the headline locks, the signal reads the dek. */
+.hero__capabilities {
+  position: relative;
+}
+
+.hero__capabilities::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--signal);
+  clip-path: inset(0 100% 0 0);
+  pointer-events: none;
+}
+
+.hero[data-hero="play"] .hero__capabilities::before {
+  animation: rule-comet 1300ms cubic-bezier(0.6, 0, 0.2, 1) 1100ms both;
+}
+
+.hero[data-hero="play"] .hero__dek > p:first-child {
+  animation: plate-settle 1400ms ease-in-out 900ms both;
+}
+
+.hero[data-hero="play"] .hero__dek .text-link span {
+  animation: arrow-nod 1000ms ease-in-out 2300ms both;
+}
+
+/* Flagship entries: rule, numeral, title plate and diagram crop marks. */
+.project-list > li {
+  position: relative;
+}
+
+.project-list > li::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--signal);
+  clip-path: inset(0 100% 0 0);
+  pointer-events: none;
+}
+
+.project-list > li[data-reg-head="in"]::before {
+  animation: rule-comet 1300ms cubic-bezier(0.6, 0, 0.2, 1) both;
+}
+
+.project-list > li[data-reg-head="in"] .project-entry__title h3 {
+  animation: plate-settle 1500ms ease-in-out 180ms both;
+}
+
+.project-entry__number {
+  clip-path: inset(0);
+  transition: clip-path 560ms cubic-bezier(0.2, 0.8, 0.2, 1) 160ms;
+}
+
+html[data-motion="on"] .project-list > li[data-reg-head="pending"] .project-entry__number {
+  clip-path: inset(0 0 100% 0);
+}
+
+.architecture-preview__image {
+  position: relative;
+}
+
+.registration {
+  /* Keep the initial marks inside the page gutter even on narrow screens. */
+  --registration-travel: min(26px, max(4px, calc(var(--page-pad) - 10px)));
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.registration__corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0 solid var(--signal);
+  transition:
+    transform 780ms cubic-bezier(0.22, 1.3, 0.36, 1) var(--delay, 0ms),
+    opacity 240ms linear var(--delay, 0ms),
+    width 260ms cubic-bezier(0.2, 0.9, 0.3, 1),
+    height 260ms cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.registration__corner--tl {
+  --delay: 0ms;
+  top: -7px;
+  left: -7px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.registration__corner--tr {
+  --delay: 50ms;
+  top: -7px;
+  right: -7px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.registration__corner--br {
+  --delay: 100ms;
+  right: -7px;
+  bottom: -7px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.registration__corner--bl {
+  --delay: 150ms;
+  bottom: -7px;
+  left: -7px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+html[data-motion="on"] .project-list > li[data-reg-frame="pending"] .registration__corner {
+  opacity: 0;
+}
+
+html[data-motion="on"] .project-list > li[data-reg-frame="pending"] .registration__corner--tl {
+  transform: translate(calc(-1 * var(--registration-travel)), calc(-1 * var(--registration-travel)));
+}
+
+html[data-motion="on"] .project-list > li[data-reg-frame="pending"] .registration__corner--tr {
+  transform: translate(var(--registration-travel), calc(-1 * var(--registration-travel)));
+}
+
+html[data-motion="on"] .project-list > li[data-reg-frame="pending"] .registration__corner--br {
+  transform: translate(var(--registration-travel), var(--registration-travel));
+}
+
+html[data-motion="on"] .project-list > li[data-reg-frame="pending"] .registration__corner--bl {
+  transform: translate(calc(-1 * var(--registration-travel)), var(--registration-travel));
+}
+
+.architecture-preview__image:hover .registration__corner {
+  width: 26px;
+  height: 26px;
+}
+
+/* Keyboard focus keeps the strong outline; the marks step aside. */
+.architecture-preview__image:focus-visible .registration__corner {
+  opacity: 0;
+}
+
+.registration__tick {
+  position: absolute;
+  background: var(--signal);
+  opacity: 0;
+  transition: opacity 180ms linear;
+}
+
+.registration__tick--x {
+  top: -9px;
+  left: 0;
+  width: 1px;
+  height: 17px;
+  transform: translate3d(var(--cx, 0px), 0, 0);
+}
+
+.registration__tick--y {
+  top: 0;
+  left: -9px;
+  width: 17px;
+  height: 1px;
+  transform: translate3d(0, var(--cy, 0px), 0);
+}
+
+html[data-motion="on"] .architecture-preview__image:hover .registration__tick,
+html[data-motion="on"] .architecture-preview__image:focus-visible .registration__tick {
+  opacity: 1;
+}
+
+/* Link feedback: crop marks close around the label; rows are ruled by the signal.
+   Pseudo-elements only, so hit targets never move. */
+.site-header nav a,
+.text-link {
+  position: relative;
+}
+
+.site-header nav a::before,
+.site-header nav a::after,
+.text-link::before,
+.text-link::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 0 solid var(--signal);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.9, 0.3, 1),
+    opacity 160ms linear;
+}
+
+.site-header nav a::before,
+.text-link::before {
+  top: 12px;
+  left: -6px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  transform: translate(-5px, -5px);
+}
+
+.site-header nav a::after,
+.text-link::after {
+  right: -6px;
+  bottom: 12px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  transform: translate(5px, 5px);
+}
+
+.text-link::before {
+  top: 8px;
+}
+
+.text-link::after {
+  bottom: 8px;
+}
+
+.site-header nav a:hover::before,
+.site-header nav a:hover::after,
+.site-header nav a:focus-visible::before,
+.site-header nav a:focus-visible::after,
+.text-link:hover::before,
+.text-link:hover::after,
+.text-link:focus-visible::before,
+.text-link:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+
+.contact-section__links a {
+  position: relative;
+}
+
+.contact-section__links a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--signal);
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 520ms cubic-bezier(0.6, 0, 0.2, 1);
+}
+
+.contact-section__links a:hover::after,
+.contact-section__links a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+@media (max-width: 43.75rem) {
+  .site-header nav a::before {
+    left: 2px;
+  }
+
+  .site-header nav a::after {
+    right: 2px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1639,9 +1993,11 @@ main > section,
   *,
   *::before,
   *::after {
+    animation-delay: 0s !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+    transition-delay: 0s !important;
     transition-duration: 0.01ms !important;
   }
 }

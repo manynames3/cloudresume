@@ -34,6 +34,26 @@ test("rewrites the static portfolio for the GitHub Pages project path", () => {
   assert.doesNotMatch(transformed, /data-rsc-css-href|data-precedence/i);
 });
 
+test("keeps only the exact optional motion script and rewrites its path", () => {
+  const html = `<main>
+    <script src="/motion/portfolio-motion.js" defer="" data-portfolio-motion=""></script>
+    <script type="module" src="/assets/site.js"></script>
+    <script src="/motion/other.js" data-portfolio-motion=""></script>
+    <script src="/motion/portfolio-motion.js" defer="" data-portfolio-motion="">window.injected = true;</script>
+    <script src="/motion/portfolio-motion.js" defer=""></script>
+    <script>window.__data = { href: "/" };</script>
+  </main>`;
+
+  const transformed = transformHtmlForGitHubPages(html);
+
+  assert.equal(transformed.match(/<script\b/gi)?.length, 1);
+  assert.match(
+    transformed,
+    /<script src="\/cloudresume\/motion\/portfolio-motion\.js" defer="" data-portfolio-motion=""><\/script>/,
+  );
+  assert.doesNotMatch(transformed, /assets\/site\.js|other\.js|injected|__data/);
+});
+
 test("rewrites root-relative font assets in the generated stylesheet", () => {
   const css = "@font-face{src:url(/fonts/newsreader.woff2)}";
   assert.equal(

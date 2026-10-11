@@ -44,6 +44,21 @@ function SectionHeading({
   );
 }
 
+// Decorative crop marks and graduations around each architecture preview. They
+// sit outside the diagram, ignore the pointer, and are styled by globals.css.
+function RegistrationMarks() {
+  return (
+    <span className="registration" aria-hidden="true">
+      <span className="registration__corner registration__corner--tl" />
+      <span className="registration__corner registration__corner--tr" />
+      <span className="registration__corner registration__corner--br" />
+      <span className="registration__corner registration__corner--bl" />
+      <span className="registration__tick registration__tick--x" />
+      <span className="registration__tick registration__tick--y" />
+    </span>
+  );
+}
+
 export function HomePage() {
   return (
     <SiteFrame currentPage="work">
@@ -54,7 +69,10 @@ export function HomePage() {
         <p className="eyebrow hero__folio">Product-minded cloud engineering / Atlanta</p>
         <div className="hero__heading">
           <p className="hero__role">AWS Infrastructure &amp; Platform Engineer</p>
-          <h1 id="hero-title">Cloud systems people can understand, operate, and trust.</h1>
+          <div className="hero__title">
+            <canvas className="hero__plate" aria-hidden="true" />
+            <h1 id="hero-title">Cloud systems people can understand, operate, and trust.</h1>
+          </div>
         </div>
         <div className="hero__dek">
           <p>
@@ -129,6 +147,7 @@ export function HomePage() {
                         loading="lazy"
                         decoding="async"
                       />
+                      <RegistrationMarks />
                     </a>
                     <figcaption className="architecture-preview__meta">
                       <p>{architectureCaptions[slug]}</p>
@@ -336,6 +355,9 @@ export function HomePage() {
           </ExternalLink>
         </div>
       </section>
+
+      {/* Optional enhancement: the page is complete without it. */}
+      <script src="/motion/portfolio-motion.js" defer data-portfolio-motion="" />
     </SiteFrame>
   );
 }
