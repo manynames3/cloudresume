@@ -43,13 +43,7 @@ export interface Artifact {
     | "limitations";
   title: string;
   href: `https://${string}`;
-  image?: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-    mobile?: { src: string; width: number; height: number };
-  };
+  image?: { src: string; alt: string; width: number; height: number };
 }
 
 export interface WorkflowStep {
@@ -264,14 +258,13 @@ export const inspectiq = {
     {
       id: "inspectiq-architecture",
       kind: "architecture",
-      title: "System map / guided capture to a human-confirmed report",
+      title: "Current serverless AWS architecture",
       href: "https://github.com/manynames3/inspectiq/blob/ec5474c543ab1e069533e19f85d63c5e0c239136/docs/architecture.md",
       image: {
-        src: "/case-studies/originals/inspectiq-system-map.svg",
-        alt: "InspectIQ system map from guided vehicle photo capture through application-layer JWT and role checks, private S3 evidence, queued Bedrock suggestions, human review, and report release; Neon owns inspection records, while separate event projections and monitoring support operations",
-        width: 1600,
-        height: 1120,
-        mobile: { src: "/case-studies/originals/inspectiq-system-map-mobile.svg", width: 720, height: 2550 },
+        src: "/case-studies/inspectiq-architecture.webp",
+        alt: "InspectIQ architecture showing web and mobile clients, Cognito, API Gateway, Lambda, Neon Postgres, private S3, SQS and DLQ, Bedrock, EventBridge, a Python projector, DynamoDB, CloudWatch, X-Ray, SNS, Terraform, and GitHub Actions",
+        width: 2000,
+        height: 1148,
       },
     },
     {
@@ -497,14 +490,13 @@ export const terragate = {
     {
       id: "terragate-architecture",
       kind: "architecture",
-      title: "System map / snapshot-bound review without deployment authority",
+      title: "Verified live deployment / October 10",
       href: "https://github.com/manynames3/terragate/blob/main/docs/deployment.md#verified-public-demo-release",
       image: {
-        src: "/case-studies/originals/terragate-system-map.svg",
-        alt: "TerraGate system map: a bounded Terraform plan moves from the Cloudflare review UI through API Gateway and deterministic Python checks to snapshot-bound Neon records, separate human decisions, and an export-only handoff; the public demo mocks GitHub writes and disables Terraform execution",
+        src: "/case-studies/terragate-architecture.webp",
+        alt: "Verified TerraGate deployment: Cloudflare Workers and OpenNext call AWS API Gateway and Lambda outside a VPC; Neon stores review state, Lambda temporary files can expire, GitHub writes are mocked, and Terraform execution is disabled",
         width: 1600,
-        height: 1120,
-        mobile: { src: "/case-studies/originals/terragate-system-map-mobile.svg", width: 720, height: 2580 },
+        height: 960,
       },
     },
     {
@@ -662,14 +654,13 @@ export const clearpath = {
     {
       id: "clearpath-architecture",
       kind: "architecture",
-      title: "System map / lead analytics and the temporary AWS validation topology",
+      title: "AWS container architecture",
       href: "https://github.com/manynames3/clearpath-fargate-api/blob/main/docs/architecture.md",
       image: {
-        src: "/case-studies/originals/clearpath-system-map.svg",
-        alt: "Clearpath system map from paid lead sources and existing CRM workflows to FastAPI intake, PostgreSQL analytics, and read-focused reporting, followed by the documented CloudFront, WAF, ALB, private ECS Fargate, RDS Proxy, and RDS PostgreSQL topology that was torn down after validation",
-        width: 1600,
-        height: 1220,
-        mobile: { src: "/case-studies/originals/clearpath-system-map-mobile.svg", width: 720, height: 3280 },
+        src: "/case-studies/clearpath-architecture.webp",
+        alt: "Clearpath AWS architecture showing edge protection, load balancing, Fargate services, private data services, secrets, and observability",
+        width: 1536,
+        height: 691,
       },
     },
     {

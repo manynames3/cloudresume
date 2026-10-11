@@ -212,24 +212,14 @@ export function CaseStudyPage({
             <p className="eyebrow">{chapter(architectureChapter, "System")}</p>
             <h2 id="architecture-title">Current architecture, with every major boundary visible.</h2>
             <figure>
-              <picture>
-                {architecture.image.mobile ? (
-                  <source
-                    media="(max-width: 42rem)"
-                    srcSet={architecture.image.mobile.src}
-                    width={architecture.image.mobile.width}
-                    height={architecture.image.mobile.height}
-                  />
-                ) : null}
-                <img
-                  src={architecture.image.src}
-                  alt={architecture.image.alt}
-                  width={architecture.image.width}
-                  height={architecture.image.height}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
+              <img
+                src={architecture.image.src}
+                alt={architecture.image.alt}
+                width={architecture.image.width}
+                height={architecture.image.height}
+                loading="lazy"
+                decoding="async"
+              />
               <figcaption>
                 {architecture.title}. The source record explains data ownership, failure
                 handling, and why deferred services remain outside this version. {" "}

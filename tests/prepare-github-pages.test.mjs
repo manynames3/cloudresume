@@ -15,8 +15,7 @@ test("rewrites the static portfolio for the GitHub Pages project path", () => {
     <a href="/#work">Work</a>
     <a href="/case-studies/inspectiq">InspectIQ</a>
     <a href="https://github.com/manynames3/inspectiq">Source</a>
-    <picture><source media="(max-width: 42rem)" srcset="/case-studies/originals/inspectiq-system-map-mobile.svg"></picture>
-    <img src="/case-studies/originals/inspectiq-system-map.svg">
+    <img src="/case-studies/inspectiq-architecture.webp">
     <script type="module" src="/assets/site.js"></script>
     <script>window.__data = { href: "/case-studies/inspectiq" };</script>`;
 
@@ -28,8 +27,7 @@ test("rewrites the static portfolio for the GitHub Pages project path", () => {
   assert.match(transformed, /href="https:\/\/manynames3\.github\.io\/cloudresume\/case-studies\/inspectiq"/);
   assert.match(transformed, /href="\/cloudresume\/#work"/);
   assert.match(transformed, /href="\/cloudresume\/case-studies\/inspectiq"/);
-  assert.match(transformed, /srcset="\/cloudresume\/case-studies\/originals\/inspectiq-system-map-mobile\.svg"/);
-  assert.match(transformed, /src="\/cloudresume\/case-studies\/originals\/inspectiq-system-map\.svg"/);
+  assert.match(transformed, /src="\/cloudresume\/case-studies\/inspectiq-architecture\.webp"/);
   assert.match(transformed, /href="https:\/\/github\.com\/manynames3\/inspectiq"/);
   assert.doesNotMatch(transformed, /<script\b/i);
   assert.doesNotMatch(transformed, /rel="modulepreload"/i);
