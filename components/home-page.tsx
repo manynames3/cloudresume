@@ -19,9 +19,9 @@ const lifecycle = {
 } as const;
 
 const architectureCaptions = {
-  inspectiq: "From inspection photos to reviewed condition reports.",
-  terragate: "From Terraform plans to evidence-backed review decisions. Live deployment shown; RDS/VPC is a separate reference stack.",
-  clearpath: "From lead intake to scoring and reporting on AWS Fargate.",
+  inspectiq: "From guided capture to human-confirmed condition reports, with private evidence and separate operational state.",
+  terragate: "Findings and human decisions stay bound to one plan snapshot; deployment remains outside the public demo.",
+  clearpath: "Lead and CSV intake feed a read-focused analytics store; the AWS validation topology has been torn down.",
 } as const;
 
 function SectionHeading({
@@ -121,14 +121,24 @@ export function HomePage() {
                       rel="noreferrer"
                       aria-label={`View the full-size ${study.title} architecture diagram in a new tab`}
                     >
-                      <img
-                        src={architecture.image.src}
-                        alt={architecture.image.alt}
-                        width={architecture.image.width}
-                        height={architecture.image.height}
-                        loading="lazy"
-                        decoding="async"
-                      />
+                      <picture>
+                        {architecture.image.mobile ? (
+                          <source
+                            media="(max-width: 42rem)"
+                            srcSet={architecture.image.mobile.src}
+                            width={architecture.image.mobile.width}
+                            height={architecture.image.mobile.height}
+                          />
+                        ) : null}
+                        <img
+                          src={architecture.image.src}
+                          alt={architecture.image.alt}
+                          width={architecture.image.width}
+                          height={architecture.image.height}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
                     </a>
                     <figcaption className="architecture-preview__meta">
                       <p>{architectureCaptions[slug]}</p>

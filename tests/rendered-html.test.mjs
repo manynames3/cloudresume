@@ -479,16 +479,16 @@ test("shows all three flagship architecture diagrams in the homepage project ind
   const { html } = await htmlFor("/");
   const previews = tags(html, "figure").filter((tag) => attr(tag, "data-architecture-preview"));
   const expected = new Map([
-    ["inspectiq", ["/case-studies/inspectiq-architecture.webp", "inspectiq-architecture"]],
-    ["terragate", ["/case-studies/terragate-architecture.webp", "terragate-architecture"]],
-    ["clearpath", ["/case-studies/clearpath-architecture.webp", "clearpath-architecture"]],
+    ["inspectiq", ["/case-studies/originals/inspectiq-system-map.svg", "inspectiq-architecture", "From guided capture to human-confirmed condition reports"]],
+    ["terragate", ["/case-studies/originals/terragate-system-map.svg", "terragate-architecture", "Findings and human decisions stay bound to one plan snapshot"]],
+    ["clearpath", ["/case-studies/originals/clearpath-system-map.svg", "clearpath-architecture", "Lead and CSV intake feed a read-focused analytics store"]],
   ]);
 
   assert.equal(previews.length, 3);
   assert.doesNotMatch(html, /Architecture \/ retained review evidence|Read system case/);
   assert.doesNotMatch(section(html, 'data-section=["\']hero["\']'), /data-architecture-preview/);
 
-  for (const [slug, [src, artifactId]] of expected) {
+  for (const [slug, [src, artifactId, caption]] of expected) {
     const preview = element(html, "figure", `data-architecture-preview=["']${slug}["']`);
     assert.notEqual(preview, "", `${slug} architecture preview should render`);
     assert.match(preview, new RegExp(`src=["']${src.replaceAll("/", "\\/")}["']`));
@@ -505,7 +505,7 @@ test("shows all three flagship architecture diagrams in the homepage project ind
     assert.ok(entry, `${slug} should have one cohesive project entry`);
     assert.equal(tags(entry, "h3").length, 1, `${slug} should have one project heading`);
     assert.equal(tags(entry, "a").filter((tag) => attr(tag, "href") === `/case-studies/${slug}`).length, 1);
-    assert.match(preview, /From (inspection photos|Terraform plans|lead intake) to/);
+    assert.ok(preview.includes(caption), `${slug} should explain the system outcome in its caption`);
   }
 });
 
@@ -625,7 +625,7 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
 
   const internalCaseLinks = tags(home, "a")
     .map((tag) => attr(tag, "href"))
-    .filter((href) => href?.startsWith("/case-studies/") && !href.endsWith(".webp"));
+    .filter((href) => href?.startsWith("/case-studies/") && !/\.(?:webp|svg)$/.test(href));
   assert.deepEqual([...new Set(internalCaseLinks)].sort(), [...cases].sort());
   for (const href of internalCaseLinks) {
     assert.equal((await render(href)).status, 200);
@@ -636,12 +636,15 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
     "public/fonts/newsreader-latin-variable.woff2",
     "public/fonts/OFL.txt",
     "public/case-studies/aiden-rhaa-portrait.webp",
-    "public/case-studies/inspectiq-architecture.webp",
+    "public/case-studies/originals/inspectiq-system-map.svg",
+    "public/case-studies/originals/inspectiq-system-map-mobile.svg",
     "public/case-studies/inspectiq-mobile-capture.webp",
     "public/case-studies/inspectiq-review-queue.webp",
     "public/case-studies/inspectiq-platform-health.webp",
-    "public/case-studies/terragate-architecture.webp",
-    "public/case-studies/clearpath-architecture.webp",
+    "public/case-studies/originals/terragate-system-map.svg",
+    "public/case-studies/originals/terragate-system-map-mobile.svg",
+    "public/case-studies/originals/clearpath-system-map.svg",
+    "public/case-studies/originals/clearpath-system-map-mobile.svg",
     "public/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
     "public/og.png",
   ];

@@ -16,6 +16,13 @@ export function transformHtmlForGitHubPages(html) {
       "",
     )
     .replace(/\sdata-(?:rsc-css-href|precedence)=["'][^"']*["']/gi, "")
+    .replace(/(\ssrcset)=(['"])(.*?)\2/gi, (_match, attribute, quote, sources) => {
+      const basePathedSources = sources.replace(
+        /(^|,\s*)\/(?!\/)/g,
+        (_path, separator) => `${separator}${githubPagesBasePath}/`,
+      );
+      return `${attribute}=${quote}${basePathedSources}${quote}`;
+    })
     .replace(
       /(\s)(href|src)=(["'])\/(?!\/)/gi,
       (_match, whitespace, attribute, quote) =>
