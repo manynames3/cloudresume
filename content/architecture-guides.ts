@@ -6,6 +6,15 @@ interface ArchitectureGuide {
 }
 
 export const architectureGuides = {
+  shiftclarity: {
+    caption: "From approved work and dated terms to evidence-backed review. Deployed synthetic pilot / fictional records only; the standalone demo is a separate memory-only mode.",
+    points: [
+      { label: "Entry", title: "Identity is not permission", copy: "Cognito MFA identifies a person; server-side memberships govern the persistent workspace." },
+      { label: "Processing", title: "One calculation contract", copy: "React and FastAPI share the exact-decimal engine. Private imports feed Lambda/SQS jobs." },
+      { label: "Data ownership", title: "Sources stay with the decision", copy: "Neon transactions preserve revisions, rules, immutable runs and audit. S3 retains private originals." },
+      { label: "Recovery", title: "Publish once, recover explicitly", copy: "Job claims, lease fencing, retries and a matched restore rehearsal support the synthetic workflow—not a production RPO/RTO." },
+    ],
+  },
   inspectiq: {
     caption: "From inspection photos to reviewed condition reports.",
     points: [
@@ -16,7 +25,7 @@ export const architectureGuides = {
     ],
   },
   terragate: {
-    caption: "Earlier service-icon reference diagram, not the current live inventory. The live demo uses Cloudflare Workers, API Gateway, Lambda outside a VPC, and Neon. The pictured RDS/private-VPC stack is a reference alternative; GitHub writes are mocked and Terraform execution is disabled.",
+    caption: "From Terraform plans to evidence-linked decisions. The deployed path is Cloudflare Workers → API Gateway → Lambda outside a VPC → Neon. Plan files remain ephemeral; GitHub writes are mocked and Terraform execution is disabled. The RDS/private-VPC alternative is not shown as live infrastructure.",
     points: [
       { label: "Entry", title: "A bounded review workspace", copy: "Cloudflare Workers serves the UI. The public demo uses shared dev identities." },
       { label: "Processing", title: "Deterministic checks", copy: "API Gateway → Python Lambda. Encoded Python rules produce the findings." },

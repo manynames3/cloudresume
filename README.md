@@ -1,8 +1,8 @@
-# Aiden Rhaa — AWS Infrastructure & Platform Engineer
+# Aiden Rhaa — AI Applications & Cloud Engineer
 
 > Cloud systems people can understand, operate, and trust.
 
-A product-minded engineering portfolio connecting real operating needs with AWS infrastructure, delivery pipelines, and platform workflows. The case studies explain how each system works, why key decisions were made, and what another engineer needs to operate or extend it.
+A product-minded engineering portfolio connecting business requirements with tested applications, AI-assisted review, web/native data contracts, and the cloud infrastructure beneath them. The case studies explain how each system works, why key decisions were made, and what another engineer needs to operate or extend it.
 
 [Portfolio](https://manynames3.github.io/cloudresume/) · [Current source · v3](https://github.com/manynames3/cloudresume/tree/v3)
 
@@ -12,11 +12,14 @@ The current implementation and release workflow live on `v3`; `master` retains t
 
 These are independent cloud reference systems, presented separately from paid professional experience. Each case study includes product context, architecture, consequential decisions, security and reliability boundaries, recovery paths, implementation artifacts, and known limitations.
 
+- [ShiftClarity](https://manynames3.github.io/cloudresume/case-studies/shiftclarity/) — Contract-to-invoice review with exact calculations, source lineage, independent rule approval, and a deployed synthetic AWS pilot. The public demo is memory-only; the persistent pilot requires an assigned account and authenticator. Fictional results establish no collected revenue, customer adoption, compliance certification, or production RPO/RTO.
 - [InspectIQ](https://manynames3.github.io/cloudresume/case-studies/inspectiq/) — A vehicle inspection platform connecting guided photo evidence, asynchronous AI-assisted analysis, human review, grading, and condition reports. The application is live and AWS-backed. Public evaluation decisions stay within the browser session and do not change persistent records. Cognito JWT/RBAC enforcement is at the application layer; API Gateway authorizer enforcement and model-accuracy benchmarks are not claimed.
 - [TerraGate](https://manynames3.github.io/cloudresume/case-studies/terragate/) — An evidence-first Terraform review workspace with deterministic Python findings and snapshot-scoped decisions. The hosted Cloudflare/AWS/Neon demo uses shared dev identities and mocked GitHub writes; Terraform execution is disabled. A review decision does not authorize merge or deployment.
-- [Clearpath](https://manynames3.github.io/cloudresume/case-studies/clearpath/) — A Fargate API reference system demonstrating infrastructure provisioning, container delivery, validation, observability, and recovery. AWS resources were torn down after a short-lived validation. The case study retains contextual test and runtime evidence; it is not a live service or a long-term availability claim.
+- [Clearpath](https://manynames3.github.io/cloudresume/case-studies/clearpath/) is retained in supporting work with its original case-study URL. AWS resources were torn down after short-lived validation; this is not a live service or a long-term availability claim.
 
-Supporting systems cover incident operations, retrieval, transcription, document processing, and offline-first workflows. The separate [games page](https://manynames3.github.io/cloudresume/games/) collects personal creative projects without replacing the engineering work.
+Supporting systems cover incident operations, retrieval, transcription, document processing, and offline-first workflows. Market Scout's merged native Android client shares the web data contract and retains research on-device; its linked JVM/emulator CI is not a Google Play release. AegisDesk's draft Helm/Kind evaluation and TerraGate's draft repair harness are labeled as local Kubernetes and synthetic harness experiments, not deployed platform features or measured agent performance. The separate [games page](https://manynames3.github.io/cloudresume/games/) collects personal creative projects without replacing the engineering work.
+
+InspectIQ's October 13 source record distinguishes its newer deployed frontend, older deployed AWS backend, and unmerged QC/recon/reinspection work. Earlier evaluation and runtime artifacts remain historical proof. TerraGate's prominent diagram now follows the deployed Cloudflare → API Gateway → Lambda → Neon path; the RDS/VPC Terraform alternative remains a separately labeled artifact.
 
 ## Portfolio implementation
 
@@ -29,6 +32,7 @@ Supporting systems cover incident operations, retrieval, transcription, document
 ## Routes
 
 - `/` — selected systems, operator profile, supporting work, experience, credentials, and contact.
+- `/case-studies/shiftclarity/`
 - `/case-studies/inspectiq/`
 - `/case-studies/terragate/`
 - `/case-studies/clearpath/`
@@ -66,7 +70,7 @@ npm run build:github-pages
 - `content/games.ts` — personal game entries and links.
 - `components/` — page renderers and the shared architecture figure.
 - `app/globals.css` — responsive layout and visual system.
-- `public/` — original imagery, self-hosted fonts, resume, and optional enhancement scripts.
+- `public/` — original imagery, self-hosted fonts, and optional enhancement scripts. The resume PDF is currently withdrawn.
 - `scripts/prepare-github-pages.mjs` — static routes, base-path rewriting, and script allowlist.
 - `tests/` — content, rendering, export, and enhancement checks.
 
@@ -85,4 +89,4 @@ Local previews and review branches do not publish changes. An approved push to `
 - Link claims to architecture, code, tests, runtime records, and operating documentation.
 - Do not turn deterministic tests into AI-accuracy claims, short validation runs into availability claims, or historical credentials into current certification.
 - Preserve recovery paths, known limitations, and human authorization boundaries when editing copy.
-- Keep the phone number in the PDF only. Never commit credentials, environment secrets, API keys, certificates, or Terraform state.
+- Never publish the phone number in page content. Never commit credentials, environment secrets, API keys, certificates, or Terraform state.

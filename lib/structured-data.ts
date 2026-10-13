@@ -1,5 +1,5 @@
 import type { CaseStudy } from "@/content/case-studies";
-import { caseStudies, caseStudySlugs } from "@/content/case-studies";
+import { caseStudies, selectedCaseStudySlugs } from "@/content/case-studies";
 import { profile } from "@/content/profile";
 import { absoluteUrl, personId, websiteId } from "@/lib/site-url";
 
@@ -31,8 +31,8 @@ export function homeStructuredData() {
       {
         "@type": "ItemList",
         "@id": absoluteUrl("/#work"),
-        name: "Selected cloud systems",
-        itemListElement: caseStudySlugs.map((slug, index) => ({
+        name: "Selected systems",
+        itemListElement: selectedCaseStudySlugs.map((slug, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: caseStudies[slug].title,

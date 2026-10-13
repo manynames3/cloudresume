@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { HomePage } from "@/components/home-page";
 
 const description =
-  "Aiden Rhaa designs and builds product-minded AWS infrastructure and platform systems with Terraform, CI/CD, observability, recovery paths, and explicit operating boundaries.";
-const title = "Aiden Rhaa — AWS Infrastructure & Platform Engineer";
+  "Aiden Rhaa turns business requirements into tested AI-assisted applications and cloud systems, with shared data contracts, AWS infrastructure, explicit decision boundaries and recovery paths.";
+const title = "Aiden Rhaa — AI Applications & Cloud Engineer";
 
 export const dynamic = "force-static";
 

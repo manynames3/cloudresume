@@ -1,4 +1,4 @@
-import { caseStudies, caseStudySlugs } from "@/content/case-studies";
+import { caseStudies, selectedCaseStudySlugs } from "@/content/case-studies";
 import {
   credentials,
   education,
@@ -14,6 +14,7 @@ import { absoluteUrl } from "@/lib/site-url";
 import { ArchitectureFigure } from "@/components/architecture-figure";
 
 const lifecycle = {
+  shiftclarity: "Independent synthetic AWS pilot · fictional records · assigned-account workspace",
   inspectiq: "Live AWS-backed application · session-only public walkthrough",
   terragate: "Live constrained demo · deterministic checks · external writes mocked",
   clearpath: "Short-lived AWS validation · torn down after validation",
@@ -46,9 +47,9 @@ export function HomePage() {
       <JsonLd value={homeStructuredData()} />
 
       <section className="hero grid" data-section="hero" aria-labelledby="hero-title">
-        <p className="eyebrow hero__folio">Product-minded cloud engineering / Atlanta</p>
+        <p className="eyebrow hero__folio">Product-minded engineering / Atlanta</p>
         <div className="hero__heading">
-          <p className="hero__role">AWS Infrastructure &amp; Platform Engineer</p>
+          <p className="hero__role">{profile.role}</p>
           <div className="hero__title">
             <canvas className="hero__plate" aria-hidden="true" />
             <h1 id="hero-title">Cloud systems people can understand, operate, and trust.</h1>
@@ -59,15 +60,17 @@ export function HomePage() {
         </div>
         <div className="hero__dek">
           <p>
-            I design and build AWS infrastructure, delivery pipelines, and platform
-            workflows with Terraform, GitHub Actions, serverless architecture,
-            containers, observability, and explicit recovery paths.
+            I turn business requirements into AI-assisted applications and cloud systems
+            that teams can test, deploy, and operate—with clear data contracts,
+            human decision boundaries, and explicit recovery paths.
           </p>
           <p className="hero__handoff">
             The work starts with real operating needs and ends with systems another team
             can understand, operate, and own.
           </p>
           <ul className="hero__capabilities" aria-label="Core cloud engineering capabilities">
+            <li>AI review</li>
+            <li>Web &amp; native</li>
             <li>AWS</li>
             <li>Terraform</li>
             <li>CI/CD</li>
@@ -81,12 +84,12 @@ export function HomePage() {
       <section id="work" className="project-index" aria-labelledby="work-title">
         <SectionHeading
           folio="01 / SELECTED CLOUD SYSTEMS"
-          title="Selected AWS systems."
+          title="Selected systems."
           titleId="work-title"
-          copy="Each case study shows the architecture, key decisions, tradeoffs, and implementation behind the system."
+          copy="Independent projects. Each case study shows the architecture, key decisions, tradeoffs, and implementation behind the system."
         />
         <ol className="project-list">
-          {caseStudySlugs.map((slug, index) => {
+          {selectedCaseStudySlugs.map((slug, index) => {
             const study = caseStudies[slug];
             const architecture = study.artifacts.find((artifact) => artifact.image);
 
@@ -141,9 +144,10 @@ export function HomePage() {
             ownership, failure, recovery, communication, and cost—not just implementation.
           </p>
           <p>
-            I bring that perspective to AWS, Terraform, containers, serverless workflows,
-            CI, observability, security boundaries, and the artifacts that help someone else
-            take over responsibly.
+            I bring that perspective to application workflows, AI-assisted review, shared
+            web/native contracts, and the AWS infrastructure beneath them. Terraform,
+            serverless and container delivery, CI, observability, and security boundaries
+            give the next engineer a concrete path to take over responsibly.
           </p>
           <aside className="operational-context" aria-labelledby="operational-context-title">
             <p className="subsection-label">Operational context</p>
@@ -287,8 +291,8 @@ export function HomePage() {
       <section id="contact" className="contact-section grid" aria-labelledby="contact-title">
         <div>
           <p className="eyebrow">06 / Contact</p>
-          <h2 id="contact-title">Let’s talk about your cloud engineering team.</h2>
-          <p className="contact-dek">AWS infrastructure, delivery pipelines, platform workflows—and the operating context behind them.</p>
+          <h2 id="contact-title">Let’s talk about your engineering team.</h2>
+          <p className="contact-dek">AI-assisted applications, business workflows, and the cloud infrastructure that makes them operable.</p>
         </div>
         <div className="contact-section__links">
           <a href={`mailto:${profile.email}`}>Email Aiden Rhaa</a>

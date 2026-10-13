@@ -35,12 +35,12 @@ test("CareFrame retains its source identity and separates pilot checks from hosp
   assert.match(row, /https:\/\/github\.com\/manynames3\/photoscribe-ai/);
 });
 
-test("adds only ShiftClarity with synthetic financial and recovery boundaries", async () => {
+test("promotes ShiftClarity to selected work while keeping a retained Clearpath case", async () => {
   const html = await home();
-  const row = entry(html, "ShiftClarity");
-  for (const phrase of ["Hosted synthetic pilot", "assigned account and authenticator", "shared calculation engine", "immutable runs", "restore rehearsal", "Fictional records only", "not recovered or collected revenue", "production RPO/RTO commitment"]) assert.ok(row.includes(phrase), phrase);
-  assert.match(row, /docs\/VERIFICATION\.md/);
-  assert.match(row, /https:\/\/shiftclarity\.pages\.dev\/demo\//);
+  assert.match(html, /href="\/case-studies\/shiftclarity"/);
+  const row = entry(html, "Clearpath");
+  assert.match(row, /torn down after validation/);
+  assert.match(row, /https:\/\/manynames3\.github\.io\/cloudresume\/case-studies\/clearpath\//);
   assert.doesNotMatch(html, /DriftGuard|inspectiq-walkthrough|scrollcraft/i);
   const profile = await readFile(new URL("../content/profile.ts", import.meta.url), "utf8");
   const paidExperience = profile.slice(profile.indexOf("export const experience"));

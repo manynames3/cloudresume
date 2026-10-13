@@ -1,6 +1,14 @@
-export type CaseStudySlug = "inspectiq" | "terragate" | "clearpath";
+export type CaseStudySlug = "shiftclarity" | "inspectiq" | "terragate" | "clearpath";
 
 export type DemoBoundary =
+  | {
+      kind: "synthetic-pilot";
+      href: `https://${string}`;
+      workspaceHref: `https://${string}`;
+      data: "fictional records";
+      writes: "session-only public demo";
+      disclosure: string;
+    }
   | {
       kind: "live-readonly";
       href: `https://${string}`;
@@ -86,6 +94,7 @@ export interface CaseStudy {
     boundary: string;
     items: readonly string[];
     href: `https://${string}`;
+    links?: readonly { label: string; href: `https://${string}` }[];
   };
   problem: readonly string[];
   constraints: readonly string[];
@@ -335,17 +344,24 @@ export const inspectiq = {
     "The system has not accumulated sustained production workload, SLO, cost, or real-inspector pilot evidence.",
     "Some Postgres flows still hydrate the in-memory domain store; high-concurrency use needs aggregate-specific DB-first repositories.",
     "Public review interactions are session-only; persistent inspection data remains read-only. The documented application boundary does not prove API Gateway authorizer enforcement.",
-    "The October 2 condition-report QC source checkpoint is implemented development work, not a verified deployed release. No field-run results or measured reviewer-time savings are published.",
+    "The newer frontend and older AWS backend have different release revisions. Unmerged QC, recon, audited reinspection, and concurrency fixes are not verified deployed backend features; the source release-status record is authoritative.",
   ],
   development: {
-    heading: "Condition-report quality control, before a report leaves the system.",
-    boundary: "Development checkpoint / October 2, 2026. Implemented on the published development branch; deployment of these QC changes has not been verified. Local security fixes are not presented as a deployed release.",
+    heading: "What is live, what is tested, and what has not shipped.",
+    boundary: "Release status checked October 13, 2026. Frontend delivery, AWS backend deployment, and unmerged source are separate evidence classes. The earlier October 2 QC checkpoint remains historical evidence, not the current release summary.",
     items: [
-      "Missing views and incomplete uploads block release rather than becoming overridable model judgments. VIN and mileage retain separate verified, discrepancy, and unable-to-verify states.",
-      "Reviewers record reasons for acknowledged limitations or overridden judgments. Evidence fingerprints preserve what each decision applied to; changed facts require a fresh grade or report approval.",
-      "The field protocol separates held-out vehicles, independent labels, real inference, and paired reviewer time. It defines how to measure value; it does not claim achieved accuracy or time savings.",
+      "Deployed frontend: revision 9d10913 delivers the newer evidence workbench and compatible history surfaces. Its October 13 read-only smoke passed. Reports from the older API are explicitly current-QC unverified; unsupported reinspection actions remain unavailable.",
+      "Deployed AWS backend: the last successful apply remains f0c8697. The newer reviewed plan proposed three in-place Lambda code updates, but apply was skipped. A passing frontend smoke does not establish that cold-start concurrency or new authenticated workflows have been repaired in production.",
+      "Unmerged draft PR #1: condition-report QC, recon authorization, audited reinspection with immutable history, and Postgres runtime recovery have branch/local verification. The recorded full local check includes real Postgres upgrades and rollback; physical-device and authenticated production reinspection remain unverified. Deterministic tests do not establish model accuracy.",
+      "Historical October 2 QC work introduced evidence fingerprints, explicit review reasons, and a field-measurement protocol. Missing views and incomplete uploads block release; changed facts require a fresh grade or report approval. No achieved accuracy or reviewer-time savings are claimed.",
     ],
-    href: "https://github.com/manynames3/inspectiq/blob/b4b7b3ea9baa3209709f2cf1930bedeb5d856d8b/docs/condition-qc-product.md",
+    href: "https://github.com/manynames3/inspectiq/blob/62f6e931cc1832dd76142d855dc741b22a04fa1b/docs/release-status.md",
+    links: [
+      { label: "Verified frontend deployment", href: "https://github.com/manynames3/inspectiq/actions/runs/38370130534" },
+      { label: "Last successful AWS apply", href: "https://github.com/manynames3/inspectiq/actions/runs/30098914862" },
+      { label: "Unmerged inspection/recon draft PR", href: "https://github.com/manynames3/inspectiq/pull/1" },
+      { label: "Historical October 2 QC checkpoint", href: "https://github.com/manynames3/inspectiq/blob/b4b7b3ea9baa3209709f2cf1930bedeb5d856d8b/docs/condition-qc-product.md" },
+    ],
   },
   productionPath: [
     "Build an independently adjudicated field corpus and measure precision, recall, calibration, override rate, latency, and cost by model and prompt version.",
@@ -490,13 +506,13 @@ export const terragate = {
     {
       id: "terragate-architecture",
       kind: "architecture",
-      title: "Earlier service-icon reference architecture—not the current live inventory",
+      title: "Verified Cloudflare / AWS / Neon deployment",
       href: "https://github.com/manynames3/terragate/blob/main/docs/deployment.md#verified-public-demo-release",
       image: {
         src: "/case-studies/terragate-architecture.webp",
-        alt: "Earlier TerraGate reference diagram with Cloudflare, GitHub Actions, Terraform, API Gateway, Lambda, RDS, CodeBuild, ECR, and CloudWatch service icons. The illustrated RDS/private-VPC stack is not the live demo; the live runtime uses Neon and Lambda outside a VPC.",
-        width: 1200,
-        height: 1299,
+        alt: "TerraGate deployed request flow: Cloudflare Workers and OpenNext to API Gateway, Python Lambda outside a VPC, and Neon Postgres over TLS. Plan files use ephemeral Lambda storage; GitHub writes are mocked and Terraform execution is disabled.",
+        width: 1600,
+        height: 960,
       },
     },
     {
@@ -545,7 +561,19 @@ export const terragate = {
       title: "Exact release, runtime recovery, and backup rehearsal",
       href: "https://github.com/manynames3/terragate/blob/main/docs/deployment.md#workspace-and-stratum-release-october-10-2026",
     },
+    { id: "terragate-draft-harness", kind: "tests", title: "Draft repair harness / synthetic tests—not real agent performance", href: "https://github.com/manynames3/terragate/blob/2ee5dc25067cb5a9af36cb7b041d69c90921e0f0/docs/agent-harness-evidence.md" },
   ],
+  development: {
+    heading: "Verify the repair path before trusting the agent.",
+    boundary: "Engineering experiment / unmerged draft PR #8. Separate from TerraGate's deployed review product. Recorded synthetic harness tests establish pipeline behavior, not real coding-agent performance.",
+    items: [
+      "Four versioned fault-injection cases exercise a green control, failing regression, bounded repair, and focused plus cross-module verification in disposable Git worktrees.",
+      "The recorded CI uses deterministic fixture repairs and makes no AI calls. It validates harness safety/reporting and the four-case red/green pipeline—not a measured Codex repair rate, cost improvement, or model comparison.",
+      "File-change limits, environment hygiene, timeouts and provenance make each attempt inspectable. A Git worktree is not hardened OS isolation; real agent benchmarks and external-action prevention remain unverified.",
+    ],
+    href: "https://github.com/manynames3/terragate/blob/2ee5dc25067cb5a9af36cb7b041d69c90921e0f0/docs/agent-harness-evidence.md",
+    links: [{ label: "Draft repair-harness PR", href: "https://github.com/manynames3/terragate/pull/8" }, { label: "Recorded synthetic CI checkpoint", href: "https://github.com/manynames3/terragate/actions/runs/38369770486" }],
+  },
   limitations: [
     "The public demo uses shared dev identities, deterministic Python checks, mocked GitHub writes, and disabled Terraform execution. Private Cognito and live GitHub integrations were not verified in the hosted release.",
     "Findings and audit history persist in Neon, but raw/redacted plans in Lambda /tmp can expire with HTTP 410. Successful retrieval in one run does not establish durable artifact storage.",
@@ -734,13 +762,100 @@ export const clearpath = {
   },
 } satisfies CaseStudy;
 
+export const shiftclarity = {
+  slug: "shiftclarity",
+  title: "ShiftClarity",
+  benefitHeading: "Find where approved work, contract terms, and invoices stop agreeing.",
+  summary: "A contract-to-invoice review workspace for healthcare staffing teams. It traces potential billing differences to approved terms and source records, preserves review decisions, and keeps unsupported work visible without inventing a financial answer.",
+  role: "Independent builder",
+  demo: {
+    kind: "synthetic-pilot",
+    href: "https://shiftclarity.pages.dev/demo/",
+    workspaceHref: "https://shiftclarity.pages.dev/pilot/",
+    data: "fictional records",
+    writes: "session-only public demo",
+    disclosure: "Independent synthetic AWS pilot using fictional records only. The public standalone demo keeps changes in memory and resets on refresh; its roles are simulated. The separate persistent workspace requires an assigned Cognito account, authenticator MFA, and server-side membership. No customer adoption, recovered revenue, compliance certification, or production service commitment is claimed.",
+  },
+  frame: { eyebrow: "01 / Business workflow", problemHeading: "The invoice is not the whole story.", constraintsHeading: "What a reliable review must preserve" },
+  problem: [
+    "Staffing teams can approve a rate amendment while an invoice still uses the old rate. Approved work may be absent from billing, and a contract term may lack enough support for a reliable calculation.",
+    "A difference is only actionable when the reviewer can identify the applicable dated terms, approved work, posted invoice lines, and the assumptions behind the amount.",
+    "ShiftClarity brings those records into one review: inspect the calculation, confirm or dismiss a finding with a reason, and separate potential financial discrepancies from coverage gaps.",
+  ],
+  constraints: [
+    "Fictional normalized JSON is the input boundary. No live vendor connector, arbitrary PDF/OCR ingestion, real patient data, or source-invoice editing is included.",
+    "Money calculations must be exact and reproducible. Missing terms produce an unknown value, not an estimated recovery opportunity.",
+    "A rule author cannot approve their own change. Historical source revisions, rule versions, completed runs, and human decisions must remain inspectable after later changes.",
+  ],
+  workflow: {
+    heading: "From source records to a decision someone can defend.",
+    steps: [
+      { title: "Prepare", copy: "Import bounded fictional records with registered sources, approved work, and posted invoice lines. Private originals retain their lineage." },
+      { title: "Approve terms", copy: "An author proposes effective-dated terms; a different permitted account approves the version against its source." },
+      { title: "Calculate", copy: "The shared exact-decimal engine selects applicable rules and allocates invoices. Unsupported or pending records remain coverage tasks." },
+      { title: "Inspect", copy: "Open a finding to see expected versus invoiced amounts, source excerpts, affected work, and the calculation." },
+      { title: "Decide", copy: "Confirm, dismiss, or mark evidence as needed with a recorded reason. Evidence changes reopen affected findings without erasing prior decisions." },
+      { title: "Publish", copy: "Durable jobs publish immutable completed runs transactionally. Reloaded reviews retain their source and version context." },
+    ],
+  },
+  visuals: {
+    heading: "Potential differences, their evidence, and the unresolved work.",
+    items: [
+      { id: "shiftclarity-workspace", title: "Review workspace", copy: "Recorded synthetic pilot capture. Finding amounts and coverage describe fictional records, not customer savings or collected revenue.", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/images/review-workspace.png", layout: "landscape", focalPoint: "top", image: { src: "/case-studies/shiftclarity-workspace.webp", alt: "ShiftClarity synthetic review workspace with billing findings, review statuses and checked coverage", width: 1440, height: 1260 } },
+      { id: "shiftclarity-evidence", title: "Evidence-linked calculation", copy: "A fictional approved-rate amendment produces a potential discrepancy. The source, calculation, and human review history stay together; payment outcomes are unknown.", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/images/finding-evidence.png", layout: "landscape", focalPoint: "top", image: { src: "/case-studies/shiftclarity-evidence.webp", alt: "ShiftClarity fictional finding detail with expected and invoiced values, source lineage and persisted review history", width: 1440, height: 2035 } },
+    ],
+  },
+  decisions: [
+    { title: "Use one calculation engine on both sides of the boundary", rationale: "A shared TypeScript engine with exact decimal arithmetic keeps browser explanations and backend publication aligned on effective dates, allocations, and coverage.", tradeoff: "FastAPI invokes a Node adapter, adding a runtime boundary. The versioned container packages both runtimes and tests the same engine instead of maintaining competing financial implementations." },
+    { title: "Make uncertainty a first-class result", rationale: "Unsupported terms, pending approvals, and missing records retain their reason and unknown value. A finding remains potential until an accountable reviewer evaluates it.", tradeoff: "This produces fewer headline financial totals, but it avoids fabricating value from incomplete evidence. Independent value measurement still requires a real-data pilot." },
+    { title: "Separate identity, workspace permission, and rule approval", rationale: "Cognito establishes identity and MFA; server-side memberships authorize actions. A different permitted actor must approve a proposed rule version.", tradeoff: "Account provisioning and explicit approval add operational steps. A synthetic single-workspace pilot does not establish multi-customer isolation or enterprise readiness." },
+    { title: "Publish immutable results through durable jobs", rationale: "SQS notifies a worker; PostgreSQL job claims, lease fencing, and transactions govern completed-run publication, lineage, and audit history.", tradeoff: "Queues, retries, and interrupted workers require explicit reconciliation. A matched restore rehearsal supports recoverability, not a production RPO/RTO promise." },
+  ],
+  evidence: [
+    { value: "52", label: "Backend / PostgreSQL tests", qualifier: "Recorded October 13 synthetic release: permissions, separate approval, immutable evidence, jobs, conflicts and recovery. These are historical full-suite results, not a full rerun for the subsequent Pages-origin change.", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/VERIFICATION.md" },
+    { value: "70", label: "Domain / component tests", qualifier: "Exact calculations, effective dates, invoice allocation, coverage and review state using controlled fixtures—not measured business value.", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/VERIFICATION.md" },
+    { value: "8", label: "Live AWS browser journeys", qualifier: "Recorded before the final wording-only UI update: Cognito OTP, persisted reviews, private imports, SQS publication and denied actions. The later origin change has its own focused verification record.", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/CLOUDFLARE.md" },
+    { value: "Matched", label: "Database + source-object restore", qualifier: "Isolated Neon/S3-to-local rehearsal compared original bytes, lineage, rule/run history and review state. No production recovery-time or recovery-point commitment.", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/VERIFICATION.md" },
+  ],
+  artifacts: [
+    { id: "shiftclarity-architecture", kind: "architecture", title: "Deployed synthetic pilot / C4 and trust boundaries", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/architecture/README.md", image: { src: "/case-studies/shiftclarity-architecture.webp", alt: "ShiftClarity synthetic pilot: Cloudflare Pages proxy, API Gateway, FastAPI web Lambda and shared TypeScript calculation engine, Cognito MFA, private S3, SQS FIFO worker, and Neon PostgreSQL with transactional publication", width: 1600, height: 960 } },
+    { id: "shiftclarity-decisions", kind: "architecture", title: "Shared engine, identity and evidence ADRs", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/adr/README.md" },
+    { id: "shiftclarity-terraform", kind: "iac", title: "AWS Terraform infrastructure", href: "https://github.com/manynames3/ShiftClarity/tree/4728b0b998948c13d1218380642098cdd5c748ab/infra" },
+    { id: "shiftclarity-local-checks", kind: "tests", title: "Local verification commands / no hosted CI pipeline claimed", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/DEVELOPMENT.md" },
+    { id: "shiftclarity-tests", kind: "tests", title: "Synthetic-release verification and incomplete gates", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/VERIFICATION.md" },
+    { id: "shiftclarity-runtime", kind: "runtime", title: "Pages-origin release and live checks", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/CLOUDFLARE.md" },
+    { id: "shiftclarity-security", kind: "security", title: "Threat model and synthetic data boundary", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/THREAT_MODEL.md" },
+    { id: "shiftclarity-runbook", kind: "runbook", title: "AWS and database operating guide", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/AWS_AND_DATABASE.md" },
+    { id: "shiftclarity-limits", kind: "limitations", title: "Real-data and production acceptance gates", href: "https://github.com/manynames3/ShiftClarity/blob/4728b0b998948c13d1218380642098cdd5c748ab/docs/PILOT_GATES.md" },
+  ],
+  limitations: [
+    "Fictional records only. No customer-data permission, hospital adoption, compliance certification, or recovered/collected revenue is established.",
+    "The standalone demo simulates roles and stores changes in memory. The persistent AWS pilot is a separate assigned-account experience with server permissions.",
+    "Vendor connectors, arbitrary CSV/PDF/OCR ingestion, source-invoice edits and outgoing evidence requests are not included.",
+    "This is a single-workspace synthetic pilot. Representative load, independent security/accessibility review, customer retention policies and production approval remain open.",
+    "Full-suite evidence predates the final Pages-origin update; its focused cloud journey is separate, not a claim that all backend tests were rerun.",
+  ],
+  productionPath: [
+    "Validate source semantics and supported billing terms with an authorized customer; agree data-use, retention, incident and legal boundaries before importing real records.",
+    "Measure finding validity, reviewer effort and actual resolution outcomes independently. Potential discrepancies must never be equated with collected money.",
+    "Qualify representative capacity, multi-workspace isolation, cost and recovery targets with the approved environment and workload.",
+    "Add only the approved source connectors and ingestion formats, with independent security/accessibility review and explicit production acceptance.",
+  ],
+  technologies: ["React", "TypeScript", "Exact decimal arithmetic", "FastAPI", "AWS Lambda", "API Gateway", "Cognito MFA", "S3", "SQS FIFO", "Neon PostgreSQL", "Terraform", "Cloudflare Pages"],
+  seo: { title: "ShiftClarity — Evidence-backed billing review | Aiden Rhaa", description: "An independent contract-to-invoice review case study: exact calculations, source lineage, separate approval, AWS processing and verified synthetic pilot boundaries." },
+} satisfies CaseStudy;
+
+export const selectedCaseStudySlugs = ["shiftclarity", "inspectiq", "terragate"] as const;
+
 export const caseStudySlugs = [
+  "shiftclarity",
   "inspectiq",
   "terragate",
   "clearpath",
 ] as const;
 
 export const caseStudies: Readonly<Record<CaseStudySlug, CaseStudy>> = {
+  shiftclarity,
   inspectiq,
   terragate,
   clearpath,
@@ -760,6 +875,10 @@ export interface CaseOperations {
 }
 
 export const caseOperations: Readonly<Record<CaseStudySlug, CaseOperations>> = {
+  shiftclarity: {
+    reliability: { heading: "A financial answer must retain the evidence and rules that produced it.", copy: "Exact calculations, separate approval, immutable source/rule/run history, object permissions and transactionally published results keep findings inspectable. Unknown terms stay unknown. Forced RLS and server memberships have synthetic checks; they are not a multi-customer certification.", artifactId: "shiftclarity-security" },
+    recovery: { heading: "Interrupted work is recoverable without publishing half a result.", copy: "The recorded synthetic tests exercised killed workers, lease fencing, retries and stale requests. Completed-run publication is atomic; an isolated database and original-object restore matched lineage and review state. These checks do not establish a production RPO/RTO or sustained service reliability.", artifactId: "shiftclarity-tests" },
+  },
   inspectiq: {
     reliability: {
       heading: "No model finding becomes a buyer-visible fact without human approval.",
@@ -807,6 +926,7 @@ export const caseOperations: Readonly<Record<CaseStudySlug, CaseOperations>> = {
 export const caseRepositories: Readonly<
   Record<CaseStudySlug, `https://${string}`>
 > = {
+  shiftclarity: "https://github.com/manynames3/ShiftClarity",
   inspectiq: "https://github.com/manynames3/inspectiq",
   terragate: "https://github.com/manynames3/terragate",
   clearpath: "https://github.com/manynames3/clearpath-fargate-api",
@@ -821,7 +941,7 @@ export function getCaseStudy(value: string): CaseStudy | undefined {
 }
 
 export function getNextCaseStudy(slug: CaseStudySlug): CaseStudy {
-  const currentIndex = caseStudySlugs.indexOf(slug);
-  const nextSlug = caseStudySlugs[(currentIndex + 1) % caseStudySlugs.length];
+  const currentIndex = selectedCaseStudySlugs.findIndex(value => value === slug);
+  const nextSlug = selectedCaseStudySlugs[(currentIndex + 1) % selectedCaseStudySlugs.length];
   return caseStudies[nextSlug];
 }

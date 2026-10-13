@@ -6,13 +6,15 @@ const projectRoot = new URL("../", import.meta.url);
 const canonicalOrigin = "https://cloudresumev3.pages.dev";
 const routes = [
   "/",
+  "/case-studies/shiftclarity",
   "/case-studies/inspectiq",
   "/case-studies/terragate",
   "/case-studies/clearpath",
 ];
 const cases = routes.slice(1);
 const expectedTitles = new Map([
-  ["/", "Aiden Rhaa — AWS Infrastructure & Platform Engineer"],
+  ["/", "Aiden Rhaa — AI Applications & Cloud Engineer"],
+  ["/case-studies/shiftclarity", "ShiftClarity — Evidence-backed billing review | Aiden Rhaa"],
   ["/case-studies/inspectiq", "InspectIQ — AWS vehicle inspection platform | Aiden Rhaa"],
   ["/case-studies/terragate", "TerraGate — Safer Terraform review | Aiden Rhaa"],
   ["/case-studies/clearpath", "Clearpath — Recoverable lead operations | Aiden Rhaa"],
@@ -120,7 +122,7 @@ async function source(pathname) {
   return readFile(file, "utf8");
 }
 
-test("renders the four portfolio routes and a branded unknown-case 404", async () => {
+test("renders all current and retained case routes and a branded unknown-case 404", async () => {
   for (const route of routes) {
     const { response, html } = await htmlFor(route);
     assert.equal(response.status, 200, `${route} should render`);
@@ -134,14 +136,14 @@ test("renders the four portfolio routes and a branded unknown-case 404", async (
   assert.match(html, /Return to the project index/);
 });
 
-test("defines exactly three typed case studies with valid artifact links", async () => {
+test("defines four typed case studies and three selected systems with valid artifact links", async () => {
   const caseSource = await source("content/case-studies.ts");
   assert.match(
     caseSource,
-    /export const caseStudySlugs\s*=\s*\[\s*"inspectiq",\s*"terragate",\s*"clearpath",?\s*\]\s*as const/,
+    /export const caseStudySlugs\s*=\s*\[\s*"shiftclarity",\s*"inspectiq",\s*"terragate",\s*"clearpath",?\s*\]\s*as const/,
   );
-  assert.equal((caseSource.match(/satisfies CaseStudy/g) ?? []).length, 3);
-  for (const record of ["inspectiq", "terragate", "clearpath"]) {
+  assert.equal((caseSource.match(/satisfies CaseStudy/g) ?? []).length, 4);
+  for (const record of ["shiftclarity", "inspectiq", "terragate", "clearpath"]) {
     assert.match(caseSource, new RegExp(`export const ${record}\\s*=`));
   }
 
@@ -160,7 +162,7 @@ test("defines exactly three typed case studies with valid artifact links", async
 
     const artifactLinks = tags(html, "a").filter((tag) => attr(tag, "data-artifact-link"));
     assert.equal(artifactLinks.length, artifactTags.length);
-    assert.match(html, /<span class="artifact-kind">ci<\/span>/);
+    if (!route.endsWith("shiftclarity")) assert.match(html, /<span class="artifact-kind">ci<\/span>/);
     for (const link of artifactLinks) {
       assert.doesNotThrow(() => {
         const url = new URL(attr(link, "href"));
@@ -280,16 +282,18 @@ test("presents the complete InspectIQ product, system, proof, and operating stor
   }
 });
 
-test("labels InspectIQ QC as development, not deployed or field-validated evidence", async () => {
+test("separates InspectIQ deployed frontend, older backend, and historical/unmerged work", async () => {
   const html = (await htmlFor("/case-studies/inspectiq")).html;
-  const development = section(html, 'data-development-status=["\']deployment-unverified["\']');
+  const development = section(html, 'data-development-status=["\']mixed-release-status["\']');
   assert.ok(development);
-  assert.match(development, /October 2, 2026/);
-  assert.match(development, /deployment of these QC changes has not been verified/);
+  assert.match(development, /October 13, 2026/);
+  assert.match(development, /Deployed frontend: revision 9d10913/);
+  assert.match(development, /last successful apply remains f0c8697/);
+  assert.match(development, /Unmerged draft PR #1/);
   assert.match(development, /Missing views and incomplete uploads block release/);
   assert.match(development, /Changed facts require a fresh grade or report approval/i);
-  assert.match(development, /does not claim achieved accuracy or time savings/);
-  assert.match(development, /Local security fixes are not presented as a deployed release/);
+  assert.match(development, /No achieved accuracy or reviewer-time savings are claimed/);
+  assert.match(development, /cold-start concurrency.*repaired in production/);
   assert.match(development, /b4b7b3ea9baa3209709f2cf1930bedeb5d856d8b\/docs\/condition-qc-product\.md/);
   assert.match(html, /ec5474c543ab1e069533e19f85d63c5e0c239136\/docs\/architecture\.md/);
   assert.doesNotMatch(visibleText(development), /95%|security cleared|field validated/i);
@@ -316,8 +320,9 @@ test("presents TerraGate evidence and decisions without implying deployment auth
   assert.match(text, /confidence is not a measured accuracy result/);
   const diagram = await source("public/case-studies/originals/terragate-live-architecture.svg");
   assert.match(diagram, /Lambda outside a VPC/);
-  assert.match(diagram, /Neon PostgreSQL/);
-  assert.match(diagram, /not this live deployment/);
+  assert.match(diagram, /Neon/);
+  assert.match(diagram, /PostgreSQL/);
+  assert.match(diagram, /Mocked in public demo/);
 });
 
 test("keeps new supporting systems qualified and separate from paid experience", async () => {
@@ -416,9 +421,9 @@ test("provides landmarks, one H1, request-aware metadata, and intended JSON-LD",
 test("renders exact homepage positioning and résumé-derived profile content", async () => {
   const home = visibleText((await htmlFor("/")).html);
   const required = [
-    "AWS Infrastructure & Platform Engineer",
+    "AI Applications & Cloud Engineer",
     "Cloud systems people can understand, operate, and trust.",
-    "I design and build AWS infrastructure, delivery pipelines, and platform workflows with Terraform, GitHub Actions, serverless architecture, containers, observability, and explicit recovery paths.",
+    "I turn business requirements into AI-assisted applications and cloud systems that teams can test, deploy, and operate—with clear data contracts, human decision boundaries, and explicit recovery paths.",
     "The work starts with real operating needs and ends with systems another team can understand, operate, and own.",
     "Explore the work",
     "SELECTED CLOUD SYSTEMS",
@@ -430,7 +435,9 @@ test("renders exact homepage positioning and résumé-derived profile content", 
     "Terraform Associate",
     "Live AWS-backed application · session-only public walkthrough",
     "Live constrained demo · deterministic checks · external writes mocked",
-    "Short-lived AWS validation · torn down after validation",
+    "Short-lived AWS validation; torn down after validation",
+    "ShiftClarity",
+    "Market Scout Android",
     "AegisDesk",
     "Pulpit V2",
     "Pulpit / Serverless",
@@ -479,9 +486,9 @@ test("shows all three flagship architecture diagrams in the homepage project ind
   const { html } = await htmlFor("/");
   const previews = tags(html, "figure").filter((tag) => attr(tag, "data-architecture-preview"));
   const expected = new Map([
+    ["shiftclarity", ["/case-studies/shiftclarity-architecture.webp", "shiftclarity-architecture"]],
     ["inspectiq", ["/case-studies/inspectiq-architecture.webp", "inspectiq-architecture"]],
     ["terragate", ["/case-studies/terragate-architecture.webp", "terragate-architecture"]],
-    ["clearpath", ["/case-studies/clearpath-architecture.webp", "clearpath-architecture"]],
   ]);
 
   assert.equal(previews.length, 3);
@@ -506,24 +513,24 @@ test("shows all three flagship architecture diagrams in the homepage project ind
     assert.ok(entry, `${slug} should have one cohesive project entry`);
     assert.equal(tags(entry, "h3").length, 1, `${slug} should have one project heading`);
     assert.equal(tags(entry, "a").filter((tag) => attr(tag, "href") === `/case-studies/${slug}`).length, 1);
-    assert.match(preview, slug === "terragate" ? /Earlier service-icon reference diagram/ : /From (inspection photos|lead intake) to/);
+    assert.match(preview, /From (inspection photos|Terraform plans|approved work and dated terms) to/);
   }
 });
 
-test("restored TerraGate icon diagram stays separate from verified live-runtime claims", async () => {
+test("TerraGate diagram now reflects the documented Cloudflare/AWS/Neon runtime", async () => {
   for (const route of ["/", "/case-studies/terragate"]) {
     const html = (await htmlFor(route)).html;
-    assert.match(html, /Earlier service-icon reference diagram, not the current live inventory/);
-    assert.match(html, /Lambda outside a VPC, and Neon/);
+    assert.match(html, /Cloudflare Workers → API Gateway → Lambda outside a VPC → Neon/);
     const diagrams = tags(html, "img").filter(tag => attr(tag, "src") === "/case-studies/terragate-architecture.webp");
     assert.ok(diagrams.length > 0);
     for (const diagram of diagrams) {
-      assert.equal(attr(diagram, "width"), "1200");
-      assert.equal(attr(diagram, "height"), "1299");
-      assert.match(attr(diagram, "alt"), /not the live demo/);
+      assert.equal(attr(diagram, "width"), "1600");
+      assert.equal(attr(diagram, "height"), "960");
+      assert.match(attr(diagram, "alt"), /Neon Postgres/);
+      assert.doesNotMatch(attr(diagram, "alt"), /RDS|private-VPC/);
     }
   }
-  assert.match((await htmlFor("/case-studies/terragate")).html, /Reference architecture, with live-demo differences explained/);
+  assert.match((await htmlFor("/case-studies/terragate")).html, /The deployed architecture, with every boundary visible/);
 });
 
 test("refined reading paths and evidence remain available in server-rendered HTML", async () => {
@@ -533,10 +540,10 @@ test("refined reading paths and evidence remain available in server-rendered HTM
   assert.doesNotMatch(hero, /Resume|\.pdf/i);
   const supporting = section(home, 'id=["\']supporting["\']');
   const details = tags(supporting, "details");
-  assert.equal(details.length, 6);
+  assert.equal(details.length, 7);
   assert.ok(details.every(tag => !/\bopen(?:=|\s|>)/.test(tag)), "supporting proof starts collapsed, not removed");
   assert.match(supporting, /Evidence &amp; boundaries/);
-  assert.match(home, /Let’s talk about your cloud engineering team/);
+  assert.match(home, /Let’s talk about your engineering team/);
   for (const route of cases) {
     const html = (await htmlFor(route)).html;
     const contents = element(html, "nav", 'aria-label="Case study contents"');
@@ -567,6 +574,7 @@ test("architecture viewer links keep their image fallback and unique accessible 
 
 test("renders project-specific reliability and recovery analysis", async () => {
   const expected = new Map([
+    ["/case-studies/shiftclarity", ["shiftclarity-security", "shiftclarity-tests"]],
     ["/case-studies/inspectiq", ["inspectiq-security", "inspectiq-runbook"]],
     ["/case-studies/terragate", ["terragate-threat-model", "terragate-release"]],
     ["/case-studies/clearpath", ["clearpath-tests", "clearpath-validation"]],
@@ -680,7 +688,7 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
   const internalCaseLinks = tags(home, "a")
     .map((tag) => attr(tag, "href"))
     .filter((href) => href?.startsWith("/case-studies/") && !href.endsWith(".webp"));
-  assert.deepEqual([...new Set(internalCaseLinks)].sort(), [...cases].sort());
+  assert.deepEqual([...new Set(internalCaseLinks)].sort(), cases.filter(route => !route.endsWith("clearpath")).sort());
   for (const href of internalCaseLinks) {
     assert.equal((await render(href)).status, 200);
   }
@@ -696,6 +704,10 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
     "public/case-studies/inspectiq-platform-health.webp",
     "public/case-studies/terragate-architecture.webp",
     "public/case-studies/clearpath-architecture.webp",
+    "public/case-studies/shiftclarity-architecture.webp",
+    "public/case-studies/shiftclarity-workspace.webp",
+    "public/case-studies/shiftclarity-evidence.webp",
+    "public/case-studies/market-scout-android.webp",
     "public/og.png",
   ];
   for (const asset of publicAssets) {

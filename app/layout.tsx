@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { siteOrigin } from "@/lib/site-url";
 import "./globals.css";
 
-const title = "Aiden Rhaa — AWS Infrastructure & Platform Engineer";
+const title = "Aiden Rhaa — AI Applications & Cloud Engineer";
 const description =
-  "Product-minded AWS infrastructure and platform engineering portfolio focused on Terraform, delivery automation, observability, recovery, and operational handoff.";
+  "Product-minded AI applications and cloud engineering: business workflows, tested data contracts, AWS delivery, observability, recovery, and operational handoff.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),

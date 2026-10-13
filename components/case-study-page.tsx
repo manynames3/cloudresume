@@ -18,6 +18,19 @@ function DemoBoundary({ study }: { study: CaseStudy }) {
   const { demo } = study;
   const repository = caseRepositories[study.slug];
 
+  if (demo.kind === "synthetic-pilot") {
+    return (
+      <section id="demo-boundary" className="demo-boundary" data-demo-kind={demo.kind} data-demo-data={demo.data} data-demo-writes={demo.writes} aria-labelledby="demo-title">
+        <div><p className="eyebrow">Pilot boundary</p><h2 id="demo-title">Synthetic AWS pilot</h2><p className="status-text">Fictional records / public demo in memory / persistent workspace requires access</p><p>{demo.disclosure}</p></div>
+        <div className="demo-actions">
+          <ExternalLink href={demo.href} className="button-link">Open fictional-data demo</ExternalLink>
+          <ExternalLink href={demo.workspaceHref} className="text-link">Persistent pilot · assigned account required</ExternalLink>
+          <ExternalLink href={repository} className="text-link">Review repository</ExternalLink>
+        </div>
+      </section>
+    );
+  }
+
   if (demo.kind === "live-readonly") {
     return (
       <section
@@ -225,7 +238,7 @@ export function CaseStudyPage({
         {architecture?.image ? (
           <section className="case-section architecture-section" aria-labelledby="architecture-title">
             <p className="eyebrow">{chapter(architectureChapter, "System")}</p>
-            <h2 id="architecture-title">{study.slug === "terragate" ? "Reference architecture, with live-demo differences explained." : "Current architecture, with every major boundary visible."}</h2>
+            <h2 id="architecture-title">{study.slug === "terragate" ? "The deployed architecture, with every boundary visible." : "Current architecture, with every major boundary visible."}</h2>
             <ArchitectureFigure slug={study.slug} title={study.title} artifact={{ ...architecture, image: architecture.image }} />
           </section>
         ) : null}
@@ -349,16 +362,17 @@ export function CaseStudyPage({
         </section>
 
         {study.development ? (
-          <section className="case-section" aria-labelledby="development-title" data-development-status="deployment-unverified">
-            <p className="eyebrow">Development / separate from live proof</p>
+          <section className="case-section" aria-labelledby="development-title" data-development-status="mixed-release-status">
+            <p className="eyebrow">Release status / deployed and unmerged work</p>
             <h2 id="development-title">{study.development.heading}</h2>
             <p className="section-dek">{study.development.boundary}</p>
             <ul className="prose-list">
               {study.development.items.map((item) => <li key={item}>{item}</li>)}
             </ul>
-            <ExternalLink href={study.development.href} className="text-link" label="Review the InspectIQ QC source checkpoint and field protocol in a new tab">
-              Review the QC contract and field protocol
+            <ExternalLink href={study.development.href} className="text-link">
+              Review the source release-status record
             </ExternalLink>
+            {study.development.links?.map(link => <p key={link.href}><ExternalLink href={link.href} className="text-link">{link.label}</ExternalLink></p>)}
           </section>
         ) : null}
 
