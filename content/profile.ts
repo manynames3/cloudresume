@@ -50,6 +50,8 @@ interface SupportingProject {
   title: string;
   category: string;
   copy: string;
+  preview?: string;
+  scope?: string;
   boundary?: string;
   href: `https://${string}`;
   links?: readonly { label: string; href: `https://${string}` }[];
@@ -63,6 +65,8 @@ export const supportingProjects: readonly SupportingProject[] = [
   {
     title: "AegisDesk",
     category: "AWS incident operations / evaluation deployment",
+    preview: "Team-scoped incident workspaces with evidence, runbooks, and action-specific human approvals.",
+    scope: "Evaluation deployment. Readiness and authenticated case listing verified; external integrations unconfigured.",
     copy: "Keep incident evidence, operator hypotheses, runbooks, and action approvals in one team-scoped case. Independent approval applies to an exact action; uncertain outcomes remain unresolved rather than triggering an automatic redispatch.",
     boundary: "October 10 AWS release: readiness and authenticated DynamoDB-backed case listing verified. Jira and CloudWatch integrations are unconfigured; hosted case writes and real ticket execution were not verified.",
     href: "https://github.com/manynames3/aegisdesk-cloudops-control-plane",
@@ -82,6 +86,8 @@ export const supportingProjects: readonly SupportingProject[] = [
   {
     title: "Pulpit / Serverless",
     category: "AWS bilingual retrieval / deployed migration",
+    preview: "Cited Korean-English archive search, with S3 Vectors retrieval and versioned snapshots designed for rollback.",
+    scope: "Deployed migration. Local ingestion; recorded smoke checks are not a relevance or performance benchmark.",
     copy: "Search a Korean-English sermon archive with cited answers. S3 Vectors and sharded lexical retrieval keep embeddings out of query-Lambda memory; versioned snapshots publish the manifest last and preserve a rollback path. The October 7 migration retained 360 sermons and 8,191 chunks at that checkpoint.",
     boundary: "Individual API smoke observations, not a relevance or performance benchmark. Ingestion runs locally because the caption path is blocked from AWS IPs; cache-only polling is timeout recovery, not a durable job system. Snapshot cleanup remains manual.",
     href: "https://github.com/manynames3/pulpit",
@@ -125,6 +131,8 @@ export const supportingProjects: readonly SupportingProject[] = [
   {
     title: "WorshipCue",
     category: "Offline-first iPad workflow / independent development",
+    preview: "Offline charts, handwritten notes, and team rehearsal workflows built around exact chart versions.",
+    scope: "Independent development. Latest work partly local; no App Store release or qualified multi-iPad pilot.",
     copy: "A music stand for rehearsal: keep charts available offline, preserve handwritten notes, and coordinate exact chart versions, team access, cues, and chat through a cloud workspace. Native usability, permissions, and recovery are designed around the same operating workflow.",
     boundary: "Latest native/backend work remains partly local; published source checkpoints are earlier builds. Selected AWS and managed-session checks are recorded, but there is no App Store release or fully qualified multi-iPad rehearsal pilot. Capacity and final gesture qualification remain open.",
     href: "https://github.com/manynames3/WorshipCue",

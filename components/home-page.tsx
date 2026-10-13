@@ -11,17 +11,12 @@ import { homeStructuredData } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { ExternalLink, SiteFrame } from "@/components/site-frame";
 import { absoluteUrl } from "@/lib/site-url";
+import { ArchitectureFigure } from "@/components/architecture-figure";
 
 const lifecycle = {
   inspectiq: "Live AWS-backed application · session-only public walkthrough",
   terragate: "Live constrained demo · deterministic checks · external writes mocked",
   clearpath: "Short-lived AWS validation · torn down after validation",
-} as const;
-
-const architectureCaptions = {
-  inspectiq: "From inspection photos to reviewed condition reports.",
-  terragate: "From Terraform plans to evidence-backed review decisions. Live deployment shown; RDS/VPC is a separate reference stack.",
-  clearpath: "From lead intake to scoring and reporting on AWS Fargate.",
 } as const;
 
 function SectionHeading({
@@ -44,21 +39,6 @@ function SectionHeading({
   );
 }
 
-// Decorative crop marks and graduations around each architecture preview. They
-// sit outside the diagram, ignore the pointer, and are styled by globals.css.
-function RegistrationMarks() {
-  return (
-    <span className="registration" aria-hidden="true">
-      <span className="registration__corner registration__corner--tl" />
-      <span className="registration__corner registration__corner--tr" />
-      <span className="registration__corner registration__corner--br" />
-      <span className="registration__corner registration__corner--bl" />
-      <span className="registration__tick registration__tick--x" />
-      <span className="registration__tick registration__tick--y" />
-    </span>
-  );
-}
-
 export function HomePage() {
   return (
     <SiteFrame currentPage="work">
@@ -72,6 +52,10 @@ export function HomePage() {
           <div className="hero__title">
             <canvas className="hero__plate" aria-hidden="true" />
             <h1 id="hero-title">Cloud systems people can understand, operate, and trust.</h1>
+          </div>
+          <div className="hero__actions">
+            <a className="text-link" href="#work">Explore the work <span aria-hidden="true">↓</span></a>
+            <ExternalLink href={profile.resume} className="hero__resume" label="Open Aiden Rhaa resume PDF in a new tab">Resume <span className="file-label">PDF</span></ExternalLink>
           </div>
         </div>
         <div className="hero__dek">
@@ -92,17 +76,13 @@ export function HomePage() {
             <li>DevSecOps</li>
             <li>Observability</li>
           </ul>
-          <a className="text-link" href="#work">
-            Review the cloud systems and decisions behind the work{" "}
-            <span aria-hidden="true">↓</span>
-          </a>
         </div>
       </section>
 
       <section id="work" className="project-index" aria-labelledby="work-title">
         <SectionHeading
           folio="01 / SELECTED CLOUD SYSTEMS"
-          title="Three systems, three explicit operating boundaries."
+          title="Selected AWS systems."
           titleId="work-title"
           copy="Each case study shows the architecture, key decisions, tradeoffs, and implementation behind the system."
         />
@@ -127,49 +107,9 @@ export function HomePage() {
                   <div className="project-entry__copy">
                     <p>{study.summary}</p>
                     <p className="status-text">{lifecycle[slug]}</p>
+                    <a className="text-link" href={`/case-studies/${slug}`} aria-label={`Explore the case study: ${study.title}`}>Explore the case study <span aria-hidden="true">→</span></a>
                   </div>
-                  <figure
-                    className="project-entry__architecture"
-                    data-architecture-preview={slug}
-                  >
-                    <a
-                      className="architecture-preview__image"
-                      href={architecture.image.src}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`View the full-size ${study.title} architecture diagram in a new tab`}
-                    >
-                      <img
-                        src={architecture.image.src}
-                        alt={architecture.image.alt}
-                        width={architecture.image.width}
-                        height={architecture.image.height}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <RegistrationMarks />
-                    </a>
-                    <figcaption className="architecture-preview__meta">
-                      <p>{architectureCaptions[slug]}</p>
-                      <div className="architecture-preview__links">
-                        <a
-                          className="text-link"
-                          href={`/case-studies/${slug}`}
-                          aria-label={`Explore the case study: ${study.title}`}
-                        >
-                          Explore the case study <span aria-hidden="true">→</span>
-                        </a>
-                        <ExternalLink
-                          href={architecture.image.src}
-                          className="architecture-preview__full-size"
-                          label={`View the full-size ${study.title} architecture diagram in a new tab`}
-                          dataArtifactLink={architecture.id}
-                        >
-                          View full-size architecture
-                        </ExternalLink>
-                      </div>
-                    </figcaption>
-                  </figure>
+                  <ArchitectureFigure slug={slug} title={study.title} artifact={{ ...architecture, image: architecture.image }} preview />
                 </article>
               </li>
             );
@@ -252,7 +192,7 @@ export function HomePage() {
       <section id="supporting" className="supporting-section" aria-labelledby="supporting-title">
         <SectionHeading
           folio="04 / Supporting index"
-          title="More systems, kept in their proper register."
+          title="Supporting cloud systems."
           titleId="supporting-title"
         />
         <ul className="supporting-list">
@@ -263,24 +203,35 @@ export function HomePage() {
                 <p className="status-text">{project.category}</p>
               </div>
               <div className="supporting-entry__copy">
-                <p>{project.copy}</p>
-                {project.boundary ? <p className="supporting-boundary">{project.boundary}</p> : null}
+                <p>{project.preview ?? project.copy}</p>
+                {project.scope ? <p className="supporting-scope">{project.scope}</p> : null}
               </div>
-              <div className="supporting-entry__links">
-                {(project.links ?? [{ label: "Repository", href: project.href }]).map((link) => (
-                  <ExternalLink key={link.href} href={link.href} className="text-link" label={`${project.title}: ${link.label} in a new tab`}>
-                    {link.label}
-                  </ExternalLink>
-                ))}
-              </div>
-              {project.visual ? (
-                <figure className="supporting-entry__visual">
-                  <a href={project.visual.src} target="_blank" rel="noreferrer" aria-label={`View the full-size ${project.title} visual in a new tab`}>
-                    <img src={project.visual.src} alt={project.visual.alt} width={project.visual.width} height={project.visual.height} loading="lazy" decoding="async" />
-                  </a>
-                  <figcaption>{project.visual.caption} <ExternalLink href={project.visual.href} className="caption-link" label={`Review the ${project.title} visual source in a new tab`}>Source record</ExternalLink></figcaption>
-                </figure>
-              ) : null}
+              {project.boundary ? (
+                <details className="supporting-evidence">
+                  <summary>Evidence &amp; boundaries <span aria-hidden="true">+</span></summary>
+                  <div className="supporting-evidence__body">
+                    <p>{project.copy}</p>
+                    <p className="supporting-boundary">{project.boundary}</p>
+                    <div className="supporting-entry__links">
+                      {(project.links ?? [{ label: "Repository", href: project.href }]).map((link) => (
+                        <ExternalLink key={link.href} href={link.href} className="text-link" label={`${project.title}: ${link.label} in a new tab`}>
+                          {link.label}
+                        </ExternalLink>
+                      ))}
+                    </div>
+                    {project.visual ? (
+                      <figure className="supporting-entry__visual">
+                        <a href={project.visual.src} target="_blank" rel="noreferrer" aria-label={`View the full-size ${project.title} visual in a new tab`}>
+                          <img src={project.visual.src} alt={project.visual.alt} width={project.visual.width} height={project.visual.height} loading="lazy" decoding="async" />
+                        </a>
+                        <figcaption>{project.visual.caption} <ExternalLink href={project.visual.href} className="caption-link" label={`Review the ${project.title} visual source in a new tab`}>Source record</ExternalLink></figcaption>
+                      </figure>
+                    ) : null}
+                  </div>
+                </details>
+              ) : (
+                <div className="supporting-entry__links"><ExternalLink href={project.href} className="text-link" label={`${project.title}: Repository in a new tab`}>Repository</ExternalLink></div>
+              )}
             </li>
           ))}
         </ul>
@@ -337,7 +288,8 @@ export function HomePage() {
       <section id="contact" className="contact-section grid" aria-labelledby="contact-title">
         <div>
           <p className="eyebrow">06 / Contact</p>
-          <h2 id="contact-title">Need a system the next person can actually operate?</h2>
+          <h2 id="contact-title">Let’s talk about your cloud engineering team.</h2>
+          <p className="contact-dek">AWS infrastructure, delivery pipelines, platform workflows—and the operating context behind them.</p>
         </div>
         <div className="contact-section__links">
           <a href={`mailto:${profile.email}`}>Email Aiden Rhaa</a>
@@ -358,6 +310,7 @@ export function HomePage() {
 
       {/* Optional enhancement: the page is complete without it. */}
       <script src="/motion/portfolio-motion.js" defer data-portfolio-motion="" />
+      <script src="/presentation/architecture-viewer.js" defer data-portfolio-viewer="" />
     </SiteFrame>
   );
 }

@@ -61,3 +61,14 @@ test("rewrites root-relative font assets in the generated stylesheet", () => {
     "@font-face{src:url(/cloudresume/fonts/newsreader.woff2)}",
   );
 });
+
+test("preserves only the exact progressive diagram viewer in static exports", () => {
+  const transformed = transformHtmlForGitHubPages(`
+    <script src="/presentation/architecture-viewer.js" defer="" data-portfolio-viewer=""></script>
+    <script src="/presentation/other.js" data-portfolio-viewer=""></script>
+    <script src="/presentation/architecture-viewer.js" data-portfolio-viewer="">injected()</script>
+    <script src="/presentation/architecture-viewer.js"></script>`);
+  assert.equal(transformed.match(/<script\b/g)?.length, 1);
+  assert.match(transformed, /src="\/cloudresume\/presentation\/architecture-viewer.js"/);
+  assert.doesNotMatch(transformed, /other\.js|injected/);
+});

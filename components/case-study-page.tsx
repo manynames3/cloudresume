@@ -8,6 +8,7 @@ import { caseStructuredData } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { ExternalLink, SiteFrame } from "@/components/site-frame";
 import { absoluteUrl } from "@/lib/site-url";
+import { ArchitectureFigure } from "@/components/architecture-figure";
 
 function chapter(number: number, label: string) {
   return `${String(number).padStart(2, "0")} / ${label}`;
@@ -169,6 +170,20 @@ export function CaseStudyPage({
           </div>
         </div>
 
+        <nav className="case-contents" aria-label="Case study contents">
+          <p className="subsection-label">In this case</p>
+          <ol>
+            {[
+              ["#problem-title", "Overview"],
+              ["#architecture-title", "Architecture"],
+              ["#decisions-title", "Decisions"],
+              ["#evidence", "Evidence"],
+              ["#operations", "Reliability"],
+              ["#limits-title", "Limits"],
+            ].map(([href, label], index) => <li key={href}><a href={href}><span aria-hidden="true">0{index + 1}</span>{label}</a></li>)}
+          </ol>
+        </nav>
+
         <DemoBoundary study={study} />
 
         <section className="case-section split-section" aria-labelledby="problem-title">
@@ -211,27 +226,7 @@ export function CaseStudyPage({
           <section className="case-section architecture-section" aria-labelledby="architecture-title">
             <p className="eyebrow">{chapter(architectureChapter, "System")}</p>
             <h2 id="architecture-title">Current architecture, with every major boundary visible.</h2>
-            <figure>
-              <img
-                src={architecture.image.src}
-                alt={architecture.image.alt}
-                width={architecture.image.width}
-                height={architecture.image.height}
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>
-                {architecture.title}. The source record explains data ownership, failure
-                handling, and why deferred services remain outside this version. {" "}
-                <ExternalLink
-                  href={architecture.href}
-                  className="caption-link"
-                  label={`Open the ${study.title} architecture source in a new tab`}
-                >
-                  Architecture source
-                </ExternalLink>
-              </figcaption>
-            </figure>
+            <ArchitectureFigure slug={study.slug} title={study.title} artifact={{ ...architecture, image: architecture.image }} />
           </section>
         ) : null}
 
@@ -419,6 +414,7 @@ export function CaseStudyPage({
           </a>
         </nav>
       </article>
+      <script src="/presentation/architecture-viewer.js" defer data-portfolio-viewer="" />
     </SiteFrame>
   );
 }

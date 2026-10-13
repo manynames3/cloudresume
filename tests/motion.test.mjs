@@ -236,7 +236,14 @@ test("homepage renders the optional script and decorative layers without new con
   const source = await read("components/home-page.tsx");
   assert.match(source, /<script src="\/motion\/portfolio-motion\.js" defer data-portfolio-motion="" \/>/);
   assert.match(source, /<canvas className="hero__plate" aria-hidden="true" \/>/);
-  assert.match(source, /className="registration" aria-hidden="true"/);
+  assert.match(await read("components/architecture-figure.tsx"), /className="registration" aria-hidden="true"/);
   assert.equal(source.match(/<h1\b/g)?.length, 1);
   assert.doesNotMatch(source, /["']use client["']/);
+});
+
+test("diagram graduations stay bounded by their current container after resize", async () => {
+  const css = await read("app/globals.css");
+  assert.match(css, /\.registration\s*\{[^}]*container-type:\s*size/s);
+  assert.match(css, /clamp\(0px, var\(--cx, 0px\), calc\(100cqw - 1px\)\)/);
+  assert.match(css, /clamp\(0px, var\(--cy, 0px\), calc\(100cqh - 1px\)\)/);
 });

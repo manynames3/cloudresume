@@ -420,7 +420,7 @@ test("renders exact homepage positioning and résumé-derived profile content", 
     "Cloud systems people can understand, operate, and trust.",
     "I design and build AWS infrastructure, delivery pipelines, and platform workflows with Terraform, GitHub Actions, serverless architecture, containers, observability, and explicit recovery paths.",
     "The work starts with real operating needs and ends with systems another team can understand, operate, and own.",
-    "Review the cloud systems and decisions behind the work",
+    "Explore the work",
     "SELECTED CLOUD SYSTEMS",
     "Each case study shows the architecture, key decisions, tradeoffs, and implementation behind the system.",
     "ECS & Serverless",
@@ -496,16 +496,56 @@ test("shows all three flagship architecture diagrams in the homepage project ind
     assert.match(preview, /width=["']\d+["']/);
     assert.match(preview, /height=["']\d+["']/);
     assert.match(preview, /loading=["']lazy["']/);
-    assert.match(preview, new RegExp(`href=["']\\/case-studies\\/${slug}["']`));
     assert.match(preview, new RegExp(`data-artifact-link=["']${artifactId}["']`));
     assert.match(preview, new RegExp(`href=["']${src.replaceAll("/", "\\/")}["']`));
     assert.match(preview, /View full-size architecture/);
+    assert.match(preview, /Inspect diagram/);
+    assert.match(preview, /How to read the/);
     const entry = (html.match(/<article\b[^>]*class="project-entry grid"[^>]*>[\s\S]*?<\/article>/g) ?? [])
       .find((article) => article.includes(`data-architecture-preview="${slug}"`));
     assert.ok(entry, `${slug} should have one cohesive project entry`);
     assert.equal(tags(entry, "h3").length, 1, `${slug} should have one project heading`);
     assert.equal(tags(entry, "a").filter((tag) => attr(tag, "href") === `/case-studies/${slug}`).length, 1);
     assert.match(preview, /From (inspection photos|Terraform plans|lead intake) to/);
+  }
+});
+
+test("refined reading paths and evidence remain available in server-rendered HTML", async () => {
+  const home = (await htmlFor("/")).html;
+  const hero = section(home, 'data-section=["\']hero["\']');
+  assert.match(hero, /Explore the work/);
+  assert.match(hero, /href="\/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf"/);
+  const supporting = section(home, 'id=["\']supporting["\']');
+  const details = tags(supporting, "details");
+  assert.equal(details.length, 3);
+  assert.ok(details.every(tag => !/\bopen(?:=|\s|>)/.test(tag)), "supporting proof starts collapsed, not removed");
+  assert.match(supporting, /Evidence &amp; boundaries/);
+  assert.match(home, /Let’s talk about your cloud engineering team/);
+  for (const route of cases) {
+    const html = (await htmlFor(route)).html;
+    const contents = element(html, "nav", 'aria-label="Case study contents"');
+    for (const id of ["problem-title", "architecture-title", "decisions-title", "evidence", "operations", "limits-title"]) {
+      assert.match(contents, new RegExp(`href="#${id}"`));
+      assert.match(html, new RegExp(`id="${id}"`));
+    }
+  }
+});
+
+test("architecture viewer links keep their image fallback and unique accessible dialogs", async () => {
+  const home = (await htmlFor("/")).html;
+  const dialogs = tags(home, "dialog");
+  assert.equal(dialogs.length, 3);
+  const ids = new Set(dialogs.map(tag => attr(tag, "id")));
+  assert.equal(ids.size, 3);
+  for (const dialog of dialogs) {
+    assert.equal(attr(dialog, "aria-modal"), "true");
+    assert.match(home, new RegExp(`id="${attr(dialog, "aria-labelledby")}"`));
+  }
+  const viewerLinks = tags(home, "a").filter(tag => attr(tag, "data-diagram-open"));
+  assert.equal(viewerLinks.length, 6);
+  for (const link of viewerLinks) {
+    assert.ok(ids.has(attr(link, "data-diagram-open")));
+    assert.match(attr(link, "href"), /^\/case-studies\/.+\.webp$/);
   }
 });
 
@@ -617,7 +657,7 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
   const resumeLinks = tags(home, "a").filter(
     (tag) => attr(tag, "href") === "/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
   );
-  assert.equal(resumeLinks.length, 1);
+  assert.equal(resumeLinks.length, 2, "header and hero should both offer the resume");
   assert.equal(attr(resumeLinks[0], "target"), "_blank");
   assert.equal(attr(resumeLinks[0], "rel"), "noreferrer");
   assert.match(home, />RESUME<span aria-hidden="true"> ↗<\/span><\/a>/);
