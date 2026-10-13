@@ -1,125 +1,89 @@
-# Cloud Resume
+# Aiden Rhaa — AWS Infrastructure & Platform Engineer
 
-Static personal brand site for Aiden Rhaa, a Cloud & DevOps Engineer who builds production-style AWS systems from real operator workflows and verified business problems.
+> Cloud systems people can understand, operate, and trust.
 
-- Live site: https://manynames3.github.io/cloudresume/
-- Repository: https://github.com/manynames3/cloudresume
-- GitHub profile: https://github.com/manynames3
-- LinkedIn: https://linkedin.com/in/aidenrhaa
+A product-minded engineering portfolio connecting real operating needs with AWS infrastructure, delivery pipelines, and platform workflows. The case studies explain how each system works, why key decisions were made, and what another engineer needs to operate or extend it.
 
-## Overview
+[Portfolio](https://manynames3.github.io/cloudresume/) · [Resume PDF](https://manynames3.github.io/cloudresume/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf) · [Current source · v3](https://github.com/manynames3/cloudresume/tree/v3)
 
-This repository hosts a single-page portfolio site built with plain HTML, embedded CSS, a local headshot image, and a downloadable resume PDF. There is no framework, build step, package manager, or runtime dependency.
+The current implementation and release workflow live on `v3`; `master` retains the legacy site.
 
-The page preserves the dark/blue cloud-engineer visual system and presents the brand through these sections:
+## Selected cloud systems
 
-- Hero
-- Why Hiring Managers Should Care
-- Story
-- Credentials
-- Stack
-- Systems with evidence-labeled project cards
-- Origin
-- Connect
+These are independent cloud reference systems, presented separately from paid professional experience. Each case study includes product context, architecture, consequential decisions, security and reliability boundaries, recovery paths, implementation artifacts, and known limitations.
 
-## Brand Positioning
+- [InspectIQ](https://manynames3.github.io/cloudresume/case-studies/inspectiq/) — A vehicle inspection platform connecting guided photo evidence, asynchronous AI-assisted analysis, human review, grading, and condition reports. The application is live and AWS-backed. Public evaluation decisions stay within the browser session and do not change persistent records. Cognito JWT/RBAC enforcement is at the application layer; API Gateway authorizer enforcement and model-accuracy benchmarks are not claimed.
+- [TerraGate](https://manynames3.github.io/cloudresume/case-studies/terragate/) — An evidence-first Terraform review workspace with deterministic Python findings and snapshot-scoped decisions. The hosted Cloudflare/AWS/Neon demo uses shared dev identities and mocked GitHub writes; Terraform execution is disabled. A review decision does not authorize merge or deployment.
+- [Clearpath](https://manynames3.github.io/cloudresume/case-studies/clearpath/) — A Fargate API reference system demonstrating infrastructure provisioning, container delivery, validation, observability, and recovery. AWS resources were torn down after a short-lived validation. The case study retains contextual test and runtime evidence; it is not a live service or a long-term availability claim.
 
-The site presents Aiden as an AWS-certified Cloud & DevOps Engineer who builds secure, reviewable AWS systems from real operator workflows. The first read emphasizes business value and operating discipline, while the project cards carry the deeper stack details.
+Supporting systems cover incident operations, retrieval, transcription, document processing, and offline-first workflows. The separate [games page](https://manynames3.github.io/cloudresume/games/) collects personal creative projects without replacing the engineering work.
 
-The "Why Hiring Managers Should Care" section focuses on three proof points:
+## Portfolio implementation
 
-- Translates business workflows into AWS systems
-- Builds with reviewability and operations in mind
-- Documents enough for another engineer to inspect, run, and trust
+- Server-rendered React and TypeScript with [Vinext](https://github.com/cloudflare/vinext) and typed local content.
+- Static GitHub Pages output under `/cloudresume/`, with framework hydration and JavaScript bundles removed.
+- Optional authored motion and an in-page architecture viewer. All reading content remains available without JavaScript; original-image links remain a viewer fallback.
+- Self-hosted Newsreader typography, original project diagrams and screenshots, explicit image dimensions, and an ivory/ink/signal-red editorial design.
+- No portfolio backend, login, analytics, contact form, or third-party font runtime.
 
-## Featured Project
+## Routes
 
-The featured project is **PursuitDesk - GovCon Capture & Proposal Platform**, a business-validated AWS SaaS-style system for client intake, readiness scoring, opportunity triage, async proposal drafting, public data ingestion, PDF/DOCX exports, and cloud workflow automation.
+- `/` — selected systems, operator profile, supporting work, experience, credentials, and contact.
+- `/case-studies/inspectiq/`
+- `/case-studies/terragate/`
+- `/case-studies/clearpath/`
+- `/games/`
+- `/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf` — two-page, searchable resume.
 
-Major project cards use this structure:
+## Local development
 
-- Business problem
-- Cloud system built
-- Confidence signals
-- Evidence labels and links, such as live demo, repo, architecture notes, tests, Terraform, and runbooks
-
-## Project Groups
-
-### Platform & CloudOps Proof
-
-- TerraGate - Terraform PR Risk Gate
-- AegisDesk - Self-Hosted CloudOps AI Control Plane
-- Clearpath - AWS Fargate Lead Intelligence API
-- Pulpit V2 - Validated EKS/GitOps Platform
-
-### Business-Validated Cloud Systems
-
-- ElecBidSpec AI - Electrical Bid Intelligence Platform
-- StockSense AI - Expiration-Aware Inventory Optimization
-- QueueWatch - Serverless Grid-Capacity Intelligence
-
-### Supporting AWS Patterns
-
-- PhotoScribe AI - Governed Serverless Media Search
-- DocuFlow OCR - Step Functions + Textract Workflow
-- Super Transcriber API - API-First Serverless Transcription Backend
-- Pulpit V1 - Serverless Bedrock RAG Application
-
-## Repository Structure
-
-```text
-.
-├── index.html
-├── Aiden_Rhaa_AWS_Cloud_Engineer_Resume_2026.pdf
-├── aiden_rhaa_headshot__resized_.jpg
-└── README.md
-```
-
-## Local Preview
-
-Because this is a static site, it can be opened directly in a browser:
+Use Node.js `>=22.13.0` and the committed npm lockfile.
 
 ```sh
-open index.html
+git clone --branch v3 https://github.com/manynames3/cloudresume.git
+cd cloudresume
+npm ci
+npm run dev
 ```
 
-For a local HTTP server, use Python:
+## Verification and output
 
 ```sh
-python3 -m http.server 8000
+npm run typecheck
+npm run lint
+npm test
+npm run build:github-pages
 ```
 
-Then open:
+`npm test` performs a build before the tests. The checks cover rendered routes, project boundaries, static export behavior, and authored enhancements. The GitHub Pages artifact is written to `dist/github-pages`.
 
-```text
-http://localhost:8000/
-```
+`npm run build:pages` prepares the alternate Cloudflare Pages output in `dist/pages`. That deployment is separate from the GitHub Pages workflow.
 
-## Deployment
+## Where to edit
 
-The site deploys from the root of the `master` branch. GitHub Pages can serve it directly, and Cloudflare Pages can deploy the same repository with no build command.
+- `content/case-studies.ts` — flagship narratives, evidence, artifacts, and limitations.
+- `content/architecture-guides.ts` — architecture reading guides.
+- `content/profile.ts` — profile, experience, supporting systems, and contact.
+- `content/games.ts` — personal game entries and links.
+- `components/` — page renderers and the shared architecture figure.
+- `app/globals.css` — responsive layout and visual system.
+- `public/` — original imagery, self-hosted fonts, resume, and optional enhancement scripts.
+- `scripts/prepare-github-pages.mjs` — static routes, base-path rewriting, and script allowlist.
+- `tests/` — content, rendering, export, and enhancement checks.
 
-GitHub Pages:
+## Deployment and branches
 
-```text
-https://manynames3.github.io/cloudresume/
-```
+`v3` is the current portfolio implementation and GitHub Pages release branch. `master` retains the legacy site and is not the current deployment source.
 
-Cloudflare Pages compatible settings:
+`.github/workflows/deploy-v3-pages.yml` runs on a push to `v3` or manual dispatch. It installs locked dependencies, verifies the portfolio, builds the static artifact, and publishes `dist/github-pages` with GitHub Pages Actions.
 
-```text
-Build command: none
-Build output directory: ./
-```
+Local previews and review branches do not publish changes. An approved push to `v3` triggers the release workflow.
 
-## Editing Notes
+## Content and evidence rules
 
-- Keep the site static unless a build step becomes necessary.
-- Test desktop and mobile widths after changing hero, project cards, or contact sections.
-- Keep GitHub, LinkedIn, email, deployed demo, API, and resume links current.
-- Compress replacement images before committing them.
-- Do not commit secrets, `.env` files, Terraform state, API keys, Cloudflare credentials, or AWS credentials.
-
-## License
-
-No license has been declared. All rights are reserved unless a license file is added.
+- Keep independent systems distinct from paid professional experience.
+- State whether evidence is live, constrained, a controlled fixture, local-only, or retained after teardown.
+- Link claims to architecture, code, tests, runtime records, and operating documentation.
+- Do not turn deterministic tests into AI-accuracy claims, short validation runs into availability claims, or historical credentials into current certification.
+- Preserve recovery paths, known limitations, and human authorization boundaries when editing copy.
+- Keep the phone number in the PDF only. Never commit credentials, environment secrets, API keys, certificates, or Terraform state.
