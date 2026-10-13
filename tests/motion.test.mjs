@@ -63,8 +63,9 @@ async function heroRuntime({ reduce = false, finePointer = true, failIndex = fal
   const rect = { left: 100, right: 800, top: 200, bottom: 300, width: 700, height: 100 };
   const h1 = eventTarget({ textContent: "Cloud systems people can understand, operate, and trust.", getBoundingClientRect: () => rect });
   let draws = 0;
+  let segments = 0;
   const context = {
-    setTransform() {}, clearRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, stroke() {},
+    setTransform() {}, clearRect() {}, beginPath() {}, moveTo() {}, lineTo() { segments++; }, stroke() {},
     save() {}, restore() {}, translate() {}, rotate() {}, scale() {}, fillText() { draws++; },
     measureText: () => ({ fontBoundingBoxAscent: 66 }),
   };
@@ -120,8 +121,19 @@ async function heroRuntime({ reduce = false, finePointer = true, failIndex = fal
     frames.clear();
     for (const [, fn] of queue) fn(now);
   };
-  return { sandbox, document, hero, root, reduced, frames, timers, observers, advance, draws: () => draws };
+  return { sandbox, document, hero, root, reduced, frames, timers, observers, advance, draws: () => draws, segments: () => segments };
 }
+
+test("settled hero and cursor interaction draw no grid or baseline underscores", async () => {
+  const runtime = await heroRuntime();
+  for (let frame = 0; frame < 250; frame++) runtime.advance(16);
+  const before = runtime.segments();
+  runtime.hero.emit("pointermove", { pointerType: "mouse", clientX: 400, clientY: 240 });
+  runtime.advance(16);
+  runtime.hero.emit("pointermove", { pointerType: "mouse", clientX: 450, clientY: 260 });
+  for (let frame = 0; frame < 150; frame++) runtime.advance(16);
+  assert.equal(runtime.segments(), before, "pointer motion must not draw decorative lines");
+});
 
 test("partial initialization and asynchronous layout failures release the hero", async () => {
   for (const options of [{ failIndex: true }, { failMeasure: true }]) {

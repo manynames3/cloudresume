@@ -55,7 +55,6 @@ export function HomePage() {
           </div>
           <div className="hero__actions">
             <a className="text-link" href="#work">Explore the work <span aria-hidden="true">↓</span></a>
-            <ExternalLink href={profile.resume} className="hero__resume" label="Open Aiden Rhaa resume PDF in a new tab">Resume <span className="file-label">PDF</span></ExternalLink>
           </div>
         </div>
         <div className="hero__dek">

@@ -530,7 +530,7 @@ test("refined reading paths and evidence remain available in server-rendered HTM
   const home = (await htmlFor("/")).html;
   const hero = section(home, 'data-section=["\']hero["\']');
   assert.match(hero, /Explore the work/);
-  assert.match(hero, /href="\/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf"/);
+  assert.doesNotMatch(hero, /Resume|\.pdf/i);
   const supporting = section(home, 'id=["\']supporting["\']');
   const details = tags(supporting, "details");
   assert.equal(details.length, 6);
@@ -673,10 +673,8 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
   const resumeLinks = tags(home, "a").filter(
     (tag) => attr(tag, "href") === "/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
   );
-  assert.equal(resumeLinks.length, 2, "header and hero should both offer the resume");
-  assert.equal(attr(resumeLinks[0], "target"), "_blank");
-  assert.equal(attr(resumeLinks[0], "rel"), "noreferrer");
-  assert.match(home, />RESUME<span aria-hidden="true"> ↗<\/span><\/a>/);
+  assert.equal(resumeLinks.length, 0, "resume download is temporarily withdrawn");
+  await assert.rejects(access(new URL("public/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf", projectRoot)));
   assert.doesNotMatch(home, /Résumé|résumé/);
 
   const internalCaseLinks = tags(home, "a")
@@ -698,7 +696,6 @@ test("resolves internal routes, public assets, sitemap, robots, and favicon", as
     "public/case-studies/inspectiq-platform-health.webp",
     "public/case-studies/terragate-architecture.webp",
     "public/case-studies/clearpath-architecture.webp",
-    "public/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
     "public/og.png",
   ];
   for (const asset of publicAssets) {

@@ -1507,15 +1507,15 @@ main > section,
 
   .hero {
     min-height: 0;
-    padding-top: 2.3rem;
-    padding-bottom: 3rem;
+    padding-top: 5rem;
+    padding-bottom: 6rem;
   }
 
   .hero__heading h1 {
     max-width: none;
-    margin-top: .65rem;
-    margin-bottom: 0;
-    font-size: clamp(2.8rem, 12.3vw, 3.4rem);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-size: clamp(2.8rem, 15vw, 5rem);
     overflow-wrap: normal;
   }
 

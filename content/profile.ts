@@ -4,7 +4,6 @@ export const profile = {
   email: "aidenrhaacloud@gmail.com",
   github: "https://github.com/manynames3",
   linkedin: "https://linkedin.com/in/aidenrhaa",
-  resume: "/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf",
   portrait: {
     src: "/case-studies/aiden-rhaa-portrait.webp",
     alt: "Portrait of Aiden Rhaa",

@@ -29,8 +29,7 @@
   const LINE_STEP = 200;
   const RULE_MS = 520;
   const LOCK_MS = 900;
-  const GRID = 14;
-  const REST = { head: 1, tail: 1, amp: 0, alpha: 0, tick: true };
+  const REST = { head: 1, tail: 1, amp: 0, alpha: 0 };
 
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const clamp01 = (v) => clamp(v, 0, 1);
@@ -190,7 +189,7 @@
       const amp = u >= 1 ? 0 : Math.exp(-5.2 * u) * Math.cos(u * Math.PI * 2.6);
       const fadeIn = clamp01(t / 240);
       const fadeOut = 1 - smooth(clamp01((u - 0.72) / 0.28));
-      return { head, tail, amp, alpha: u >= 1 ? 0 : 0.92 * fadeIn * fadeOut, tick: tail > 0 };
+      return { head, tail, amp, alpha: u >= 1 ? 0 : 0.92 * fadeIn * fadeOut };
     }
 
     function inView() {
@@ -409,8 +408,6 @@
       ctx.clearRect(0, 0, box.w, box.h);
       ctx.lineWidth = 1;
 
-      if (cross.a > 0.012) drawCross();
-
       const states = lines.map((_, i) => (t === null ? REST : lineState(i, t)));
       lines.forEach((line, i) => drawRule(line, states[i]));
 
@@ -435,62 +432,7 @@
           ctx.lineTo(hxp, y + 6);
         }
       }
-      if (s.tick) {
-        ctx.moveTo(xs, y);
-        ctx.lineTo(xs + 10, y);
-      }
       ctx.stroke();
-    }
-
-    function drawCross() {
-      const a = cross.a;
-      const x = Math.round(cross.x) + 0.5;
-      const y = Math.round(cross.y) + 0.5;
-      const x0 = inner.x - 12;
-      const x1 = inner.x + inner.w + 12;
-      const showV = x >= x0 && x <= x1;
-      const showH = y >= 0 && y <= box.h;
-
-      ctx.strokeStyle = `rgba(${SIGNAL},${(0.7 * a).toFixed(3)})`;
-      ctx.beginPath();
-      if (showV) {
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, box.h);
-      }
-      if (showH) {
-        ctx.moveTo(x0, y);
-        ctx.lineTo(x1, y);
-      }
-      ctx.stroke();
-
-      // Graduations are fixed to the canvas grid and revealed near the pointer.
-      const reach = GRID * 6;
-      if (showH) {
-        for (let k = Math.ceil((cross.x - reach) / GRID); k * GRID <= cross.x + reach; k++) {
-          const gx = Math.round(k * GRID) + 0.5;
-          if (gx < x0 || gx > x1) continue;
-          const fade = 1 - Math.abs(k * GRID - cross.x) / reach;
-          const len = k % 5 === 0 ? 9 : 5;
-          ctx.strokeStyle = `rgba(${SIGNAL},${(0.6 * a * fade).toFixed(3)})`;
-          ctx.beginPath();
-          ctx.moveTo(gx, y - len);
-          ctx.lineTo(gx, y + len);
-          ctx.stroke();
-        }
-      }
-      if (showV) {
-        for (let k = Math.ceil((cross.y - reach) / GRID); k * GRID <= cross.y + reach; k++) {
-          const gy = Math.round(k * GRID) + 0.5;
-          if (gy < 0 || gy > box.h) continue;
-          const fade = 1 - Math.abs(k * GRID - cross.y) / reach;
-          const len = k % 5 === 0 ? 9 : 5;
-          ctx.strokeStyle = `rgba(${SIGNAL},${(0.6 * a * fade).toFixed(3)})`;
-          ctx.beginPath();
-          ctx.moveTo(x - len, gy);
-          ctx.lineTo(x + len, gy);
-          ctx.stroke();
-        }
-      }
     }
 
     function drawPlate(states, slip) {

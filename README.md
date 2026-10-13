@@ -4,7 +4,7 @@
 
 A product-minded engineering portfolio connecting real operating needs with AWS infrastructure, delivery pipelines, and platform workflows. The case studies explain how each system works, why key decisions were made, and what another engineer needs to operate or extend it.
 
-[Portfolio](https://manynames3.github.io/cloudresume/) · [Resume PDF](https://manynames3.github.io/cloudresume/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf) · [Current source · v3](https://github.com/manynames3/cloudresume/tree/v3)
+[Portfolio](https://manynames3.github.io/cloudresume/) · [Current source · v3](https://github.com/manynames3/cloudresume/tree/v3)
 
 The current implementation and release workflow live on `v3`; `master` retains the legacy site.
 
@@ -33,7 +33,6 @@ Supporting systems cover incident operations, retrieval, transcription, document
 - `/case-studies/terragate/`
 - `/case-studies/clearpath/`
 - `/games/`
-- `/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf` — two-page, searchable resume.
 
 ## Local development
 
