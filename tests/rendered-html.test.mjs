@@ -517,7 +517,7 @@ test("refined reading paths and evidence remain available in server-rendered HTM
   assert.match(hero, /href="\/Aiden_Rhaa_Cloud_Platform_Engineer_Resume.pdf"/);
   const supporting = section(home, 'id=["\']supporting["\']');
   const details = tags(supporting, "details");
-  assert.equal(details.length, 3);
+  assert.equal(details.length, 6);
   assert.ok(details.every(tag => !/\bopen(?:=|\s|>)/.test(tag)), "supporting proof starts collapsed, not removed");
   assert.match(supporting, /Evidence &amp; boundaries/);
   assert.match(home, /Let’s talk about your cloud engineering team/);
