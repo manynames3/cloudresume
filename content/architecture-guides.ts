@@ -16,7 +16,7 @@ export const architectureGuides = {
     ],
   },
   terragate: {
-    caption: "From Terraform plans to evidence-backed review decisions. Live deployment shown; RDS/VPC is a separate reference stack.",
+    caption: "Earlier service-icon reference diagram, not the current live inventory. The live demo uses Cloudflare Workers, API Gateway, Lambda outside a VPC, and Neon. The pictured RDS/private-VPC stack is a reference alternative; GitHub writes are mocked and Terraform execution is disabled.",
     points: [
       { label: "Entry", title: "A bounded review workspace", copy: "Cloudflare Workers serves the UI. The public demo uses shared dev identities." },
       { label: "Processing", title: "Deterministic checks", copy: "API Gateway → Python Lambda. Encoded Python rules produce the findings." },

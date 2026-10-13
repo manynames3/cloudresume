@@ -506,8 +506,24 @@ test("shows all three flagship architecture diagrams in the homepage project ind
     assert.ok(entry, `${slug} should have one cohesive project entry`);
     assert.equal(tags(entry, "h3").length, 1, `${slug} should have one project heading`);
     assert.equal(tags(entry, "a").filter((tag) => attr(tag, "href") === `/case-studies/${slug}`).length, 1);
-    assert.match(preview, /From (inspection photos|Terraform plans|lead intake) to/);
+    assert.match(preview, slug === "terragate" ? /Earlier service-icon reference diagram/ : /From (inspection photos|lead intake) to/);
   }
+});
+
+test("restored TerraGate icon diagram stays separate from verified live-runtime claims", async () => {
+  for (const route of ["/", "/case-studies/terragate"]) {
+    const html = (await htmlFor(route)).html;
+    assert.match(html, /Earlier service-icon reference diagram, not the current live inventory/);
+    assert.match(html, /Lambda outside a VPC, and Neon/);
+    const diagrams = tags(html, "img").filter(tag => attr(tag, "src") === "/case-studies/terragate-architecture.webp");
+    assert.ok(diagrams.length > 0);
+    for (const diagram of diagrams) {
+      assert.equal(attr(diagram, "width"), "1200");
+      assert.equal(attr(diagram, "height"), "1299");
+      assert.match(attr(diagram, "alt"), /not the live demo/);
+    }
+  }
+  assert.match((await htmlFor("/case-studies/terragate")).html, /Reference architecture, with live-demo differences explained/);
 });
 
 test("refined reading paths and evidence remain available in server-rendered HTML", async () => {

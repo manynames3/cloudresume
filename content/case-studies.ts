@@ -490,13 +490,13 @@ export const terragate = {
     {
       id: "terragate-architecture",
       kind: "architecture",
-      title: "Verified live deployment / October 10",
+      title: "Earlier service-icon reference architecture—not the current live inventory",
       href: "https://github.com/manynames3/terragate/blob/main/docs/deployment.md#verified-public-demo-release",
       image: {
         src: "/case-studies/terragate-architecture.webp",
-        alt: "Verified TerraGate deployment: Cloudflare Workers and OpenNext call AWS API Gateway and Lambda outside a VPC; Neon stores review state, Lambda temporary files can expire, GitHub writes are mocked, and Terraform execution is disabled",
-        width: 1600,
-        height: 960,
+        alt: "Earlier TerraGate reference diagram with Cloudflare, GitHub Actions, Terraform, API Gateway, Lambda, RDS, CodeBuild, ECR, and CloudWatch service icons. The illustrated RDS/private-VPC stack is not the live demo; the live runtime uses Neon and Lambda outside a VPC.",
+        width: 1200,
+        height: 1299,
       },
     },
     {

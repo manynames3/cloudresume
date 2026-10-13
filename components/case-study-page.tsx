@@ -225,7 +225,7 @@ export function CaseStudyPage({
         {architecture?.image ? (
           <section className="case-section architecture-section" aria-labelledby="architecture-title">
             <p className="eyebrow">{chapter(architectureChapter, "System")}</p>
-            <h2 id="architecture-title">Current architecture, with every major boundary visible.</h2>
+            <h2 id="architecture-title">{study.slug === "terragate" ? "Reference architecture, with live-demo differences explained." : "Current architecture, with every major boundary visible."}</h2>
             <ArchitectureFigure slug={study.slug} title={study.title} artifact={{ ...architecture, image: architecture.image }} />
           </section>
         ) : null}
